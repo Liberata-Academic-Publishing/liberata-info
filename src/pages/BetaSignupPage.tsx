@@ -54,7 +54,8 @@ function BetaSignupPage() {
         institution: institutionInputValue,
         institutional_email: emailInputValue,
         discipline: disciplineInputValue,
-        orcid: orcidInputValue,
+        // null, not "": empty strings would collide on the unique index
+        orcid: orcidInputValue.trim() || null,
         publish_timeframe_months: timeframeInputValue ? parseInt(timeframeInputValue, 10) : null,
         oa_challenges: openAccessChallengesInputValue || null,
       })
@@ -146,8 +147,7 @@ function BetaSignupPage() {
               // onBlur={() => validateFName(fNameInputValue)}
             />
             <TextField
-              label="ORCID"
-              required
+              label="ORCID (optional)"
               className="BetaSignup-input"
               value={orcidInputValue}
               onChange={(e) => setOrcidInputValue(e.target.value)}
