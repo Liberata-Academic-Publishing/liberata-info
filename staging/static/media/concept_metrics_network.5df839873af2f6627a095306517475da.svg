@@ -1,0 +1,32 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="292.364" height="164.728" viewBox="0 0 292.364 164.728" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 102">
+<path id="edge" d="M5.93164 49.1504L51.6928 76.2681" stroke="#4F70D8" stroke-opacity="0.7" stroke-width="2.03383" stroke-linecap="round"/>
+<path id="edge_2" d="M51.6934 76.268L97.4546 33.8965" stroke="#4F70D8" stroke-opacity="0.7" stroke-width="2.03383" stroke-linecap="round"/>
+<path id="edge_3" d="M51.6934 76.2681L122.877 99.9961" stroke="#4F70D8" stroke-opacity="0.7" stroke-width="2.03383" stroke-linecap="round"/>
+<path id="edge_4" d="M51.6934 76.2676L69.6934 153.268" stroke="#4F70D8" stroke-opacity="0.7" stroke-width="2.03383" stroke-linecap="round"/>
+<path id="edge_5" d="M96.6934 34.2676L69.6934 153.268" stroke="#4F70D8" stroke-opacity="0.7" stroke-width="2.03383" stroke-linecap="round"/>
+<path id="edge_6" d="M227.693 31.2676L190.693 147.268" stroke="#4F70D8" stroke-opacity="0.7" stroke-width="2.03383" stroke-linecap="round"/>
+<path id="edge_7" d="M190.693 147.268L181.693 54.2676" stroke="#4F70D8" stroke-opacity="0.7" stroke-width="2.03383" stroke-linecap="round"/>
+<path id="edge_8" d="M123.725 99.9971L228.806 30.5078" stroke="#4F70D8" stroke-opacity="0.7" stroke-width="2.03383" stroke-linecap="round"/>
+<path id="edge_9" d="M97.4541 33.8965L139.826 55.9297" stroke="#4F70D8" stroke-opacity="0.7" stroke-width="2.03383" stroke-linecap="round"/>
+<path id="edge_10" d="M51.8252 75.9297L139.825 55.9297" stroke="#4F70D8" stroke-opacity="0.7" stroke-width="2.03383" stroke-linecap="round"/>
+<path id="edge_11" d="M139.826 55.9312L182.198 54.2363" stroke="#4F70D8" stroke-opacity="0.7" stroke-width="2.03383" stroke-linecap="round"/>
+<path id="edge_12" d="M182.197 54.2358L227.958 30.5078" stroke="#4F70D8" stroke-opacity="0.7" stroke-width="2.03383" stroke-linecap="round"/>
+<path id="edge_13" d="M182.197 54.2363L253.381 72.8798" stroke="#4F70D8" stroke-opacity="0.7" stroke-width="2.03383" stroke-linecap="round"/>
+<path id="edge_14" d="M227.959 30.5078L285.584 47.4564" stroke="#4F70D8" stroke-opacity="0.7" stroke-width="2.03383" stroke-linecap="round"/>
+<path id="edge_15" d="M181.584 55.457L285.584 47.457" stroke="#4F70D8" stroke-opacity="0.7" stroke-width="2.03383" stroke-linecap="round"/>
+<circle id="ring_4" cx="182.197" cy="54.2363" r="22.0332" fill="#22D3EE" fill-opacity="0.2"/>
+<circle id="ring_5" cx="227.959" cy="30.5075" r="30.5075" fill="#8CA8FF" fill-opacity="0.35"/>
+<circle id="node_0" cx="5.93201" cy="49.1508" r="5.93201" fill="#22D3EE"/>
+<circle id="node_1" cx="51.6936" cy="76.2688" r="10.1692" fill="#1384FF"/>
+<circle id="node_2" cx="97.4548" cy="33.8972" r="11.864" fill="#0C45CC"/>
+<circle id="node_2_2" cx="190.5" cy="146.5" r="8.5" fill="#0C45CC"/>
+<circle id="node_2_3" cx="69.864" cy="152.864" r="11.864" fill="#0C45CC"/>
+<circle id="node_2_4" cx="122.03" cy="99.9974" r="16.9486" fill="#1384FF"/>
+<circle id="node_3" cx="139.826" cy="55.9298" r="6.77944" fill="#1384FF"/>
+<circle id="node_4" cx="182.197" cy="54.2351" r="11.864" fill="#14BBFD"/>
+<circle id="node_5" cx="227.959" cy="30.5076" r="15.2537" fill="#0C45CC"/>
+<circle id="node_6" cx="253.381" cy="72.8784" r="9.32173" fill="#4F70D8"/>
+<circle id="node_7" cx="285.584" cy="47.4552" r="6.77944" fill="#4F70D8"/>
+</g>
+</svg>
