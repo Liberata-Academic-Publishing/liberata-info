@@ -1,0 +1,67 @@
+{
+  "name": "liberata",
+  "version": "0.1.0",
+  "homepage": "https://christinapan98.github.io",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@fontsource/inter": "^5.1.1",
+    "@fontsource/roboto": "^5.1.0",
+    "@mui/icons-material": "^5.18.0",
+    "@mui/joy": "^5.0.0-beta.51",
+    "@mui/material": "5.11.15",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.116",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "lightswind": "^3.1.18",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-material-ui-carousel": "^3.4.2",
+    "react-router-dom": "^7.9.6",
+    "react-scripts": "5.0.1",
+    "react-slick": "^0.31.0",
+    "typescript": "^4.9.5",
+    "web-vitals": "^2.1.4"
+  },
+  "devDependencies": {
+    "@craco/craco": "^7.1.0",
+    "babel-preset-react-app": "@babel/plugin-proposal-private-property-in-object",
+    "gh-pages": "^6.3.0"
+  },
+  "scripts": {
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "react-scripts eject",
+    "deploy": "cp CNAME build/ && gh-pages -d build"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "pnpm": {
+    "ignoredBuiltDependencies": [
+      "core-js",
+      "core-js-pure"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

@@ -1,0 +1,57 @@
+@media (min-width: 1000px) {
+  .BetaSignup-body {
+    width: 88vw !important;
+    flex-direction: row !important;
+  }
+  .BetaSignup-message {
+    width: 40% !important;
+    position: sticky !important;
+    align-self: flex-start;
+  }
+  .BetaSignup-form {
+    width: 45% !important;
+  }
+}
+
+.BetaSignup-form {
+  width: 100%;
+  margin-top: 40px;
+}
+
+.BetaSignup-form input:hover {
+  cursor: pointer;
+}
+
+.BetaSignup-message {
+  width: 100%;
+  position: static;
+  top: 100px;
+}
+
+.BetaSignup-input {
+  width: 90%;
+}
+
+.BetaSignup-basic {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: left;
+  margin-bottom: 48px;
+}
+
+.BetaSignup-body {
+  width: 82vw;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 100px;
+  background-color: transparent;
+  z-index: -1;
+  margin-bottom: 140px;
+  opacity: 0;
+	transform: translateY(50px);
+	transition: opacity .8s, transform .8s;
+}

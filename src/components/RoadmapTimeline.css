@@ -1,0 +1,101 @@
+.roadmap {
+  display: flex;
+  width: 100%;
+  margin-top: 45px;
+}
+
+.roadmap-step {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.roadmap-date {
+  margin: 0;
+  font-weight: 500;
+  font-size: 20px;
+  color: black;
+}
+
+.roadmap-line {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.roadmap-dot {
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+}
+
+.roadmap-rule {
+  flex: 1;
+  min-width: 0;
+  height: 3px;
+}
+
+.roadmap-milestone {
+  margin: 0;
+  font-weight: 300;
+  font-size: 20px;
+  color: black;
+  padding-right: 30px;
+}
+
+/* Mobile: vertical timeline with a dot rail on the left */
+@media (max-width: 699px) {
+  .roadmap {
+    flex-direction: column;
+    gap: 50px;
+    margin-top: 20px;
+  }
+
+  .roadmap-step {
+    display: grid;
+    grid-template-columns: 19px 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 17px;
+    row-gap: 6px;
+  }
+
+  .roadmap-line {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+    height: 100%;
+  }
+
+  .roadmap-rule {
+    display: none;
+  }
+
+  /* connector segment bridging the gap to the next dot */
+  .roadmap-line::after {
+    content: "";
+    width: 2.5px;
+    flex: 1;
+    background: #d9d9d9;
+    margin-top: 6px;
+    margin-bottom: -50px;
+  }
+
+  .roadmap-step:last-child .roadmap-line::after {
+    display: none;
+  }
+
+  .roadmap-date {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .roadmap-milestone {
+    grid-column: 2;
+    grid-row: 2;
+    padding-right: 0;
+  }
+}

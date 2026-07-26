@@ -1,0 +1,402 @@
+.NormaHero {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 150px 100px;
+  background-image: url(../images/figma/hero_bg.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+.NormaHero-inner {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.NormaHero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: flex-start;
+  flex: 1;
+  min-width: 0;
+}
+
+.NormaHero-title {
+  margin: 0;
+  font-weight: 500;
+  font-size: 4.7rem;
+  line-height: 1.15;
+  color: white;
+}
+
+.NormaHero-subtitle {
+  margin: 0;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.6;
+  color: white;
+}
+
+.NormaHero-description {
+  margin: 0;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.6;
+  color: white;
+  opacity: 0.85;
+}
+
+.NormaHero-actions {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.NormaHero-primary {
+  background: white;
+  border: 1.5px solid white;
+  color: var(--duke-blue);
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.6;
+  height: auto;
+  padding: 10px 20px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.NormaHero-secondary {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.6;
+  color: white !important;
+  text-decoration: underline dotted;
+  text-underline-offset: 4px;
+}
+
+.NormaHero-glass {
+  width: 320px;
+  height: 342px;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.06);
+  border: 0.7px solid rgba(255, 255, 255, 0.13);
+  border-radius: 16px;
+  backdrop-filter: blur(6.7px);
+  padding: 21px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.NormaHero-graph {
+  width: 266px;
+  height: 222px;
+  align-self: center;
+}
+
+.NormaHero-glass-footer {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.NormaBody {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 100px 75px;
+  display: flex;
+  flex-direction: column;
+  gap: 125px;
+  align-items: flex-start;
+}
+
+.NormaSection {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+.NormaSection-title {
+  margin: 0 0 35px 0;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 1.3;
+  color: #454545;
+}
+
+.NormaCards {
+  display: grid;
+  gap: 30px;
+  width: 100%;
+  align-items: stretch;
+}
+
+.NormaCards-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.NormaCards-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.NormaCard {
+  background: var(--grey-background);
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.NormaCard-illustration {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  height: 132px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 14px;
+  box-sizing: border-box;
+}
+
+.NormaCard-illustration-tall {
+  height: 200px;
+}
+
+.NormaCard-name {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: #454545;
+}
+
+.NormaCard-desc {
+  margin: 0;
+  font-weight: 300;
+  font-size: 17.5px;
+  line-height: 1.5;
+  color: var(--grey-text);
+}
+
+.NormaGrid {
+  display: grid;
+  gap: 3px;
+  width: 100%;
+  height: 100%;
+}
+
+.NormaGrid span {
+  border-radius: 2.5px;
+  min-height: 0;
+}
+
+.NormaDiagram-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.NormaDiagram-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Quickstart */
+.NormaQuickstart {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  width: 100%;
+  align-items: stretch;
+}
+
+.NormaCode {
+  margin: 0;
+  background: #2e3947;
+  border-radius: 15px;
+  padding: 32px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: white;
+  overflow-x: auto;
+  min-width: 0;
+}
+
+.NormaCode .tok-kw {
+  color: #c084fc;
+}
+
+.NormaCode .tok-fn {
+  color: #60a5fa;
+}
+
+.NormaCode .tok-num {
+  color: #f59e0b;
+}
+
+.NormaCode .tok-str {
+  color: #4ade80;
+}
+
+.NormaCode .tok-comment {
+  color: #8b95a5;
+}
+
+.NormaOutput {
+  background: #374151;
+  border: 1px solid rgba(226, 232, 240, 0.25);
+  border-radius: 16px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.NormaOutput-header {
+  margin: 0 0 6px 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.NormaOutput-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.NormaOutput-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: white;
+}
+
+.NormaOutput-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: #22d3ee;
+}
+
+.NormaOutput-chart {
+  flex: 1;
+  min-height: 130px;
+  margin: 6px -32px -32px -32px;
+  overflow: hidden;
+  border-radius: 0 0 16px 16px;
+}
+
+.NormaOutput-chart img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  /* the design stretches the chart artwork to fill the remaining panel space */
+  object-fit: fill;
+}
+
+.NormaDocsButton {
+  margin-top: 30px;
+  align-self: flex-start;
+  background: #4f70d8;
+  border: none;
+  color: white;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 20px;
+  height: auto;
+  padding: 20px 40px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* Mobile */
+@media (max-width: 699px) {
+  .NormaHero {
+    padding: 120px 36px 80px 36px;
+  }
+
+  .NormaHero-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .NormaHero-glass {
+    display: none;
+  }
+
+  .NormaHero-title {
+    font-size: 3.1rem;
+  }
+
+  .NormaHero-actions {
+    gap: 20px;
+  }
+
+  .NormaHero-primary,
+  .NormaHero-secondary {
+    font-size: 16px;
+  }
+
+  .NormaBody {
+    padding: 50px 36px;
+    gap: 60px;
+  }
+
+  .NormaSection-title {
+    font-size: 22px;
+    margin-bottom: 25px;
+  }
+
+  .NormaCards-4,
+  .NormaCards-3,
+  .NormaQuickstart {
+    grid-template-columns: 1fr;
+  }
+
+  .NormaCode {
+    font-size: 12px;
+    padding: 20px;
+  }
+
+  .NormaOutput {
+    padding: 20px;
+  }
+
+  .NormaOutput-chart {
+    margin: 6px -20px -20px -20px;
+  }
+
+  .NormaDocsButton {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 17px;
+  }
+}
+
+/* Tablet */
+@media (min-width: 700px) and (max-width: 1150px) {
+  .NormaCards-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .NormaQuickstart {
+    grid-template-columns: 1fr;
+  }
+
+  .NormaHero-glass {
+    display: none;
+  }
+}

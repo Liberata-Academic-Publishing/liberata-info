@@ -1,0 +1,171 @@
+.ContactModal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.ContactModal {
+  position: relative;
+  background: white;
+  width: 971px;
+  max-width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 64px 80px;
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.ContactModal-close {
+  position: absolute;
+  top: 23px;
+  right: 22px;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.ContactModal-close img {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+.ContactModal-left {
+  flex: 0 0 44%;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+.ContactModal-title {
+  margin: 0;
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 1.15;
+  color: #454545;
+  max-width: 341px;
+}
+
+.ContactModal-title span {
+  color: #4f70d8;
+}
+
+.ContactModal-subtitle {
+  margin: 0;
+  font-weight: 300;
+  font-size: 16px;
+  color: var(--grey-text);
+}
+
+.ContactModal-form {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.ContactModal-form input,
+.ContactModal-form select,
+.ContactModal-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--grey-background);
+  border: 1px solid #dce2ea;
+  border-radius: 8px;
+  padding: 7px 15px;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 16px;
+  color: #454545;
+  outline: none;
+}
+
+.ContactModal-form input,
+.ContactModal-form select {
+  height: 37px;
+}
+
+.ContactModal-form input::placeholder,
+.ContactModal-form textarea::placeholder {
+  color: rgba(104, 104, 104, 0.5);
+}
+
+.ContactModal-form select {
+  appearance: none;
+  background-image: url(../images/figma/contact/icon_chevron_down.svg);
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 14px 8px;
+}
+
+.ContactModal-select-placeholder {
+  color: rgba(104, 104, 104, 0.5) !important;
+}
+
+.ContactModal-form textarea {
+  height: 112px;
+  resize: vertical;
+}
+
+.ContactModal-actions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.ContactModal-submit {
+  background: #1976d2;
+  border: none;
+  color: white;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 16px;
+  height: auto;
+  padding: 8px 16px;
+  border-radius: 24px;
+  cursor: pointer;
+}
+
+.ContactModal-status {
+  font-size: 15px;
+  color: var(--grey-text);
+}
+
+.ContactModal-status-error {
+  color: #d32f2f;
+}
+
+@media (max-width: 699px) {
+  .ContactModal {
+    flex-direction: column;
+    padding: 50px 24px 30px 24px;
+    gap: 24px;
+  }
+
+  .ContactModal-left {
+    flex: none;
+    gap: 20px;
+  }
+
+  .ContactModal-title {
+    font-size: 32px;
+  }
+
+  .ContactModal-form {
+    width: 100%;
+  }
+}

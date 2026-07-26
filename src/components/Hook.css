@@ -1,0 +1,115 @@
+@media (min-width: 450px) {
+  .Hook-header {
+    margin-top: 9vh;
+    font-size: 4.5rem !important;
+    line-height: 5rem !important;
+  }
+  .Hook-subtext{
+    font-size: 0.9rem !important;
+    line-height: 1.5rem !important;
+    max-width: 50vw !important;
+  }
+  .Hook-subheader {
+    font-size: 1.1rem !important;
+    line-height: 1.5rem !important;
+    max-width: 40vw;
+  }
+}
+
+@media (min-width: 768px) {
+  .Hook-header {
+    padding-left: 0vw !important;
+    margin-bottom: 0.8rem !important;
+  }
+  .Hook-subtext {
+    font-size: 0.7rem !important;
+    line-height: 1.5rem !important;
+    max-width: 45vw !important;
+  }
+  .Hook-subheader {
+    font-size: 1.1rem !important;
+    max-width: 20vw;
+  }
+}
+
+@media (min-width: 1200px) {
+  .Hook-header {
+    margin-top: 6vh;
+    font-size: 5rem !important;
+    line-height: 6.2rem !important;
+  }
+  .Hook-subheader {
+    margin-top: 10vh !important;
+    font-size: 1.3rem !important;
+    line-height: 1.8rem !important;
+  }
+}
+
+/* Media queries for large screens like monitors */
+@media (min-width: 1500px) {
+  .Hook-header {
+    font-size: 6.5rem !important;
+    line-height: 6.5rem !important;
+  }
+  .Hook-subheader {
+    font-size: 1.5rem !important;
+    line-height: 2.8rem !important;
+  }
+}
+
+.Hook-header {
+  font-size: 3.5rem;
+  line-height: 4.5rem;
+  max-width: 45vw;
+}
+
+.Hook-subheader {
+  font-size: 1.5rem;
+  line-height: 2.5rem;
+  margin-top: 3.5rem;
+  font-weight: 200;
+  color: white;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.Hook-subtext {
+  font-size: 1rem !important;
+  line-height: 2rem;
+  margin-top: 0.2rem;
+  font-weight: 200;
+  color: white;
+  max-width: 40vw;
+}
+
+.Hook-cta-row {
+  display: flex;
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.Hook-cta {
+  background-color: transparent;
+  color: white !important;
+  border: 1.25px solid white;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: 500;
+  font-size: 1.4rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.Hook-cta:hover {
+  background-color: white;
+  color: var(--duke-blue) !important;
+}
+
+.Hook-wrapper {
+  display: flex;
+  margin-bottom: 10vh;
+  width: 100vw;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+}

@@ -1,0 +1,95 @@
+.open-close-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    cursor: pointer;
+}
+.open-close-wrapper{
+    scroll-margin-top: 65px;
+}
+.open-close-title{
+    font-weight: 500;
+    font-size: 28px;
+    color: #454545;
+    cursor: pointer;
+    user-select: none;
+}
+.open-close-num{
+    color: var(--grey-text);
+}
+.open-close-icon{
+    font-size: 28px !important;
+    color: #454545;
+    cursor: pointer;
+    user-select: none;
+    transition: opacity 0.3s ease;
+}
+
+.open-close-description{
+    color: var(--grey-text);
+    font-weight: 300;
+    font-size: 18px;
+    padding-left: 28px;
+}
+
+.cards-layout{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: flex-start;
+    padding: 15px 0 50px 0;
+}
+
+.card{
+    flex: 1 0 0;
+    border-radius: 10px;
+    padding: 26px 28px;
+    display: flex;
+    flex-direction: column;
+}
+.card.old-system-card{
+    background-color: var(--grey-background);
+}
+.card.liberata-card{
+    color: white;
+    border-radius: 16px;
+    background-image: url('../images/figma/blue_gradient.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.card-image{
+    width: 75%;
+    border-radius: 6px;
+    margin: 10px auto 15px auto;
+    object-fit: cover;
+}
+
+.card-title{
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.card-content{
+    font-weight: 300;
+    font-size: 16px;
+}
+
+@media (max-width: 450px) {
+    .open-close-title{
+        font-size: 22px;
+    }
+    .open-close-icon{
+        font-size: 24px !important;
+    }
+    .open-close-description{
+        font-size: 16px;
+        padding-left: 0;
+    }
+    .card{
+        padding: 20px 18px;
+    }
+    .card-image{
+        width: 100%;
+    }
+}

@@ -1,0 +1,134 @@
+.MensuraHero {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 150px 100px 100px 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: flex-start;
+  background-image: url(../images/figma/hero_bg.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+.MensuraHero-title {
+  margin: 0;
+  font-weight: 500;
+  font-size: 4.7rem;
+  line-height: 1.15;
+  color: white;
+}
+
+.MensuraHero-subtitle {
+  margin: 0;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.6;
+  color: white;
+  max-width: 800px;
+}
+
+.MensuraHero-description {
+  margin: 0;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.6;
+  color: white;
+  opacity: 0.9;
+  max-width: 950px;
+}
+
+.MensuraBody {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 100px 75px;
+  display: flex;
+  flex-direction: column;
+  gap: 125px;
+  align-items: flex-start;
+}
+
+.MensuraSection {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+.MensuraSection-title {
+  margin: 0 0 35px 0;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 1.3;
+  color: #454545;
+}
+
+.MensuraAnalytics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  width: 100%;
+}
+
+.MensuraAnalytics-panel {
+  background: var(--grey-background);
+  border-radius: 16px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.MensuraAnalytics-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.MensuraAnalytics-name {
+  font-weight: 600;
+  font-size: 17px;
+  color: #454545;
+}
+
+.MensuraAnalytics-tag {
+  font-weight: 400;
+  font-size: 15px;
+  color: var(--grey-text);
+}
+
+.MensuraAnalytics-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+@media (max-width: 699px) {
+  .MensuraHero {
+    padding: 120px 36px 80px 36px;
+    gap: 24px;
+  }
+
+  .MensuraHero-title {
+    font-size: 3.1rem;
+  }
+
+  .MensuraBody {
+    padding: 50px 36px;
+    gap: 60px;
+  }
+
+  .MensuraSection-title {
+    font-size: 22px;
+    margin-bottom: 25px;
+  }
+
+  .MensuraAnalytics {
+    grid-template-columns: 1fr;
+  }
+
+  .MensuraAnalytics-panel {
+    padding: 20px;
+  }
+}

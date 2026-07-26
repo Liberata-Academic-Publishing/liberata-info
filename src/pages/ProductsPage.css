@@ -1,0 +1,73 @@
+.ProductsHero {
+  width: 100%;
+  height: 500px;
+  box-sizing: border-box;
+  padding: 150px 100px 0 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: flex-start;
+  background-image: url(../images/figma/hero_bg.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+.ProductsHero-title {
+  margin: 0;
+  font-weight: 500;
+  font-size: 4.7rem;
+  line-height: 1.15;
+  color: white;
+}
+
+.ProductsHero-subtitle {
+  margin: 0;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.6;
+  color: white;
+  max-width: 500px;
+}
+
+.ProductsBody {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 100px 75px;
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  align-items: flex-start;
+}
+
+.ProductsEcosystem {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  width: 100%;
+}
+
+@media (max-width: 699px) {
+  .ProductsHero {
+    height: auto;
+    min-height: 380px;
+    padding: 120px 24px 50px 24px;
+    gap: 20px;
+  }
+
+  .ProductsHero-title {
+    font-size: 3rem;
+  }
+
+  .ProductsHero-subtitle {
+    font-size: 18px;
+  }
+
+  .ProductsBody {
+    padding: 60px 20px;
+    gap: 60px;
+  }
+
+  .ProductsEcosystem {
+    gap: 40px;
+  }
+}

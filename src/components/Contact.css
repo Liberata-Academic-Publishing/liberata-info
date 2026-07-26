@@ -1,0 +1,93 @@
+@media screen and (min-width: 1050px) {
+  .Contact-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    clear: both;
+  }
+  .Contact-text {
+    width: 40%;
+    margin-bottom: 0vh;
+  }
+  .Contact-text-headline {
+    font-size: 50px;
+  }
+  .Contact-form {
+    width: 44.5%;
+  }
+}
+
+.Contact-body {
+  width: 86vw;
+  padding-top: 12vh;
+}
+
+.Contact-form {
+  margin-top: 17px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Contact-form div{
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.Contact-text {
+  margin-bottom: 5vh;
+}
+
+.Contact-text-headline {
+  font-size: 2.7rem;
+  line-height: 3.8rem;
+  margin-bottom: 23px;
+}
+
+.Contact-text-subline {
+  font-size: 20px;
+  color: var(--duke-blue);
+  margin-bottom: 13px;
+}
+
+#outlined-fname {
+  margin-left: 25px;
+}
+
+#outlined-lname {
+  margin-left: 25px;
+}
+
+#outlined-email {
+  margin-left: 25px;
+}
+
+#outlined-institution {
+  margin-left: 25px;
+}
+
+#outlined-message {
+  margin-left: 25px;
+}
+
+.outlined-submit {
+  border: none;
+  padding: 14px 20px;
+  background-color: var(--accent-blue);
+  color: whitesmoke;
+  border-radius: 5px;
+  font-size: 15px;
+  width: 130px;
+  transition: all 0.4s;
+  transform: translateY(-15px);
+  opacity: 0;
+}
+
+.is-visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.Contact-form input:hover {
+  cursor: pointer;
+}

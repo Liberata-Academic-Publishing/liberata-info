@@ -1,0 +1,749 @@
+.TexturaHero {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 150px 50px 150px 100px;
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+  position: relative;
+  overflow: hidden;
+  background-image: url(../images/figma/hero_bg.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+.TexturaHero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: flex-start;
+  max-width: 800px;
+  position: relative;
+  z-index: 1;
+}
+
+.TexturaHero-title {
+  margin: 0;
+  font-weight: 500;
+  font-size: 4.7rem;
+  line-height: 1.15;
+  color: white;
+}
+
+.TexturaHero-subtitle {
+  margin: 0;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.6;
+  color: white;
+}
+
+.TexturaHero-description {
+  margin: 0;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.6;
+  color: white;
+  opacity: 0.85;
+}
+
+.TexturaHero-actions {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.TexturaHero-primary {
+  background: white;
+  border: 1.5px solid white;
+  color: var(--duke-blue);
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.6;
+  height: auto;
+  padding: 10px 20px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.TexturaHero-secondary {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.6;
+  color: white !important;
+  text-decoration: underline dotted;
+  text-underline-offset: 4px;
+}
+
+.TexturaHero-visual {
+  position: absolute;
+  left: 545px;
+  top: 90px;
+  width: 958px;
+  pointer-events: none;
+}
+
+.TexturaHero-network {
+  width: 100%;
+  height: auto;
+  transform: scaleY(-1) rotate(180deg);
+  opacity: 0.9;
+}
+
+.TexturaHero-cards {
+  position: absolute;
+  left: 473px;
+  top: 45px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.TexturaHero-pill {
+  width: 192px;
+  height: 45px;
+  border-radius: 13px;
+  border: 2.4px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: center;
+}
+
+.TexturaHero-pill span {
+  display: block;
+  height: 4.8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.75);
+  opacity: 0.4;
+}
+
+.TexturaHero-pill-0,
+.TexturaHero-pill-3 {
+  margin-left: 48px;
+}
+
+.TexturaBody {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 100px 75px;
+  display: flex;
+  flex-direction: column;
+  gap: 125px;
+  align-items: flex-start;
+}
+
+.TexturaSection {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+.TexturaSection-title {
+  margin: 0 0 35px 0;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 1.3;
+  color: #454545;
+}
+
+.TexturaSection-subtitle {
+  margin: -20px 0 35px 0;
+  font-family: 'Geist', 'Inter', sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  color: #475569;
+}
+
+/* Features */
+.TexturaFeatures {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  width: 100%;
+  align-items: stretch;
+}
+
+.TexturaFeature {
+  background: var(--grey-background);
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+.TexturaFeature-illustration {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  height: 132px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  opacity: 0.85;
+}
+
+.TexturaDoc {
+  position: relative;
+  width: 79px;
+  height: 94px;
+  background: white;
+  border: 2px solid rgba(124, 172, 237, 0.25);
+  border-radius: 11px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.TexturaDoc-line {
+  display: block;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(19, 132, 255, 0.5);
+}
+
+.TexturaDoc-line-title {
+  background: #112ea8;
+  width: 60%;
+}
+
+.TexturaDoc-badge {
+  position: absolute;
+  right: -18px;
+  bottom: -8px;
+  width: 53px;
+  height: 53px;
+}
+
+.TexturaTags {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+}
+
+.TexturaTags-row {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+}
+
+.TexturaTags-row img {
+  height: 18px;
+  width: auto;
+}
+
+.TexturaFeature-api {
+  width: 124px;
+  height: auto;
+}
+
+.TexturaFeature-graph {
+  height: 110px;
+  width: auto;
+}
+
+.TexturaFeature-name {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: #454545;
+}
+
+.TexturaFeature-desc {
+  margin: 0;
+  font-weight: 300;
+  font-size: 17.5px;
+  line-height: 1.5;
+  color: var(--grey-text);
+}
+
+/* How it works */
+.TexturaSteps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  width: 100%;
+  align-items: stretch;
+}
+
+.TexturaStep {
+  background: var(--grey-background);
+  border-radius: 15px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  min-width: 0;
+}
+
+.TexturaStep-tile {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(130% 130% at 0% 100%, #050599 0%, #0c45cc 27%, #567ddb 49%, #9fb5eb 71%, #ffffff 100%);
+}
+
+.TexturaStep-tile-img {
+  width: 50px;
+  height: 50px;
+}
+
+.TexturaStep-icon {
+  position: relative;
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+.TexturaStep-icon img {
+  position: absolute;
+}
+
+.TexturaStep-download-arrow {
+  width: 47%;
+  height: 79%;
+  left: 26.5%;
+  top: 0;
+}
+
+.TexturaStep-download-base {
+  width: 100%;
+  height: 33%;
+  left: 0;
+  bottom: 0;
+}
+
+.TexturaStep-deliver {
+  width: 24px;
+  height: 26px;
+  transform: rotate(-90deg);
+}
+
+.TexturaStep-cloud {
+  width: 100%;
+  height: 92%;
+  left: 0;
+  top: 4%;
+}
+
+.TexturaStep-cloud-arrow {
+  width: 33%;
+  height: 47%;
+  left: 46%;
+  bottom: 0;
+}
+
+.TexturaStep-name {
+  margin: 0;
+  font-weight: 600;
+  font-size: 22.5px;
+  color: #454545;
+}
+
+.TexturaStep-desc {
+  margin: 0;
+  font-weight: 300;
+  font-size: 17.5px;
+  line-height: 1.5;
+  color: var(--grey-text);
+}
+
+/* Inside a record */
+.TexturaRecord {
+  display: grid;
+  grid-template-columns: 1fr 520px;
+  gap: 48px;
+  width: 100%;
+  align-items: stretch;
+  margin-top: 13px;
+}
+
+.TexturaRecord-card {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  min-width: 0;
+  filter: drop-shadow(0px 12px 12px rgba(0, 0, 0, 0.04));
+}
+
+.TexturaRecord-paper {
+  margin: 0;
+  font-family: 'Geist', 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 1.2;
+  color: #0f172a;
+}
+
+.TexturaRecord-authors {
+  margin: -16px 0 0 0;
+  font-family: 'Geist', 'Inter', sans-serif;
+  font-size: 16px;
+  color: #475569;
+}
+
+.TexturaRecord-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.TexturaChip {
+  font-family: 'Geist', 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.TexturaChip-square {
+  border-radius: 6px;
+}
+
+.TexturaChip-blue {
+  background: rgba(19, 132, 255, 0.15);
+  color: #1384ff;
+}
+
+.TexturaChip-purple {
+  background: rgba(124, 58, 237, 0.15);
+  color: #7c3aed;
+}
+
+.TexturaChip-green {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+}
+
+.TexturaChip-lightblue {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.TexturaRecord-canvas {
+  background: #f1f5f9;
+  border-radius: 12px;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.TexturaRecord-graph {
+  width: 100%;
+  height: 100%;
+}
+
+.TexturaRecord-caption {
+  margin: -16px 0 0 0;
+  font-family: 'Geist', 'Inter', sans-serif;
+  font-size: 14px;
+  text-align: center;
+  color: #94a3b8;
+}
+
+.TexturaJson {
+  background: #374151;
+  border-radius: 16px;
+  padding: 32px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #c084fc;
+  min-width: 0;
+  overflow-x: auto;
+}
+
+.TexturaJson p {
+  margin: 0 0 4px 0;
+}
+
+.TexturaJson > p {
+  color: #9ca3af;
+}
+
+.TexturaJson-level {
+  padding-left: 20px;
+}
+
+.TexturaJson-str {
+  color: #57d05c;
+}
+
+.TexturaJson-num {
+  color: #f59e0b;
+}
+
+/* Datasets */
+.TexturaDatasets {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+
+.TexturaDataset {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.TexturaDataset-name {
+  margin: 0;
+  font-family: 'Geist', 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: #0f172a;
+}
+
+.TexturaDataset-records {
+  margin: -4px 0 0 0;
+  font-family: 'Geist', 'Inter', sans-serif;
+  font-size: 14px;
+  color: #475569;
+}
+
+.TexturaDataset-bar {
+  display: flex;
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.TexturaDataset-bar span {
+  flex: 1;
+}
+
+.TexturaDataset-bar-a { background: #1384ff; }
+.TexturaDataset-bar-b { background: #7c3aed; }
+.TexturaDataset-bar-c { background: #ddd6fe; }
+
+.TexturaDataset-legend {
+  display: flex;
+  gap: 16px;
+  font-family: 'Geist', 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  color: #475569;
+}
+
+.TexturaDataset-legend span {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.TexturaDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.TexturaDot-a { background: #1384ff; }
+.TexturaDot-b { background: #7c3aed; }
+.TexturaDot-c { background: #ddd6fe; }
+
+/* Integration guide */
+.TexturaCurl {
+  width: 100%;
+  box-sizing: border-box;
+  background: #374151;
+  border-radius: 15px;
+  padding: 30px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 16px;
+  line-height: 1.6;
+  color: white;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin-bottom: 20px;
+}
+
+.TexturaEndpoints {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.TexturaEndpoint {
+  background: var(--grey-background);
+  border-radius: 15px;
+  padding: 25px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.TexturaMethod {
+  font-weight: 700;
+  font-size: 17.5px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  flex-shrink: 0;
+}
+
+.TexturaMethod-get {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+.TexturaMethod-post {
+  background: #e8f5e9;
+  color: #388e3c;
+}
+
+.TexturaEndpoint-path {
+  margin: 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  font-size: 17.5px;
+  color: #454545;
+}
+
+.TexturaEndpoint-desc {
+  margin: 5px 0 0 0;
+  font-size: 17.5px;
+  line-height: 1.5;
+  color: var(--grey-text);
+}
+
+.TexturaDocsButton {
+  margin-top: 25px;
+  align-self: flex-start;
+  background: #4f70d8;
+  border: none;
+  color: white;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 20px;
+  height: auto;
+  padding: 20px 40px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* Mobile */
+@media (max-width: 699px) {
+  .TexturaHero {
+    padding: 120px 36px 80px 36px;
+  }
+
+  .TexturaHero-visual {
+    display: none;
+  }
+
+  .TexturaHero-title {
+    font-size: 3.1rem;
+  }
+
+  .TexturaHero-actions {
+    gap: 20px;
+  }
+
+  .TexturaHero-primary {
+    font-size: 16px;
+  }
+
+  .TexturaHero-secondary {
+    font-size: 16px;
+  }
+
+  .TexturaBody {
+    padding: 50px 36px;
+    gap: 60px;
+  }
+
+  .TexturaSection-title {
+    font-size: 22px;
+    margin-bottom: 25px;
+  }
+
+  .TexturaSection-subtitle {
+    font-size: 16px;
+  }
+
+  .TexturaFeatures,
+  .TexturaSteps,
+  .TexturaDatasets {
+    grid-template-columns: 1fr;
+  }
+
+  .TexturaRecord {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .TexturaRecord-card {
+    padding: 24px;
+  }
+
+  .TexturaRecord-paper {
+    font-size: 22px;
+  }
+
+  .TexturaJson {
+    padding: 20px;
+    font-size: 12.5px;
+  }
+
+  .TexturaCurl {
+    font-size: 13px;
+    padding: 20px;
+  }
+
+  .TexturaEndpoint {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .TexturaDocsButton {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 17px;
+  }
+}
+
+/* Tablet: keep cards readable between 700-1150px */
+@media (min-width: 700px) and (max-width: 1150px) {
+  .TexturaFeatures,
+  .TexturaSteps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .TexturaRecord {
+    grid-template-columns: 1fr;
+  }
+
+  .TexturaHero-visual {
+    opacity: 0.4;
+  }
+}

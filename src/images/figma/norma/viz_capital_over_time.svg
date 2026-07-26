@@ -1,0 +1,25 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="294.738" height="126.424" viewBox="0 0 294.738 126.424" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 99">
+<path id="Vector 7" d="M1.36912 55.3487H291.283" stroke="#0C45CC" stroke-opacity="0.1" stroke-width="0.9125"/>
+<path id="Vector 11" d="M1.36912 19.7611H291.283" stroke="#0C45CC" stroke-opacity="0.1" stroke-width="0.9125"/>
+<path id="Vector 8" d="M1.36912 67.2111H291.283" stroke="#0C45CC" stroke-opacity="0.1" stroke-width="0.9125"/>
+<path id="Vector 12" d="M1.36912 31.6237H291.283" stroke="#0C45CC" stroke-opacity="0.1" stroke-width="0.9125"/>
+<path id="Vector 9" d="M1.36912 79.0737H291.283" stroke="#0C45CC" stroke-opacity="0.1" stroke-width="0.9125"/>
+<path id="Vector 13" d="M1.36912 43.4862H291.283" stroke="#0C45CC" stroke-opacity="0.1" stroke-width="0.9125"/>
+<path id="Vector 10" d="M1.36912 90.9361H291.283" stroke="#0C45CC" stroke-opacity="0.1" stroke-width="0.9125"/>
+<path id="Vector 6" d="M54.7554 85.176L1.36912 91.5635V106.392H293.369V14.4572L279.442 28.1447L252.053 36.3572L229.77 50.501L210.272 64.6447L187.525 56.8885H173.134L143.887 59.626H130.425L117.891 64.6447L110.463 73.7697L96.536 81.9822L89.5726 78.3322H78.4311H69.1465L54.7554 85.176Z" fill="url(#paint0_linear_0_4)"/>
+<path id="Vector 15" d="M59.8605 67.2727L1.36912 86.2313V126.424H293.369V1.3688L276.461 14.9107L258.183 42.8973L231.222 55.9878L216.142 59.5989H207.003L193.294 71.3352L179.128 78.5576H172.731L161.307 71.3352L137.544 67.2727H122.465H96.8746L82.7087 71.3352L59.8605 67.2727Z" fill="url(#paint1_linear_0_4)"/>
+<path id="Vector 5" d="M1.36912 91.5635L54.7554 85.176L69.1465 78.3322H78.4311H89.5726L96.536 81.9822L110.463 73.7697L117.891 64.6447L130.425 59.626H143.887L173.134 56.8885H187.525L210.272 64.6447L229.77 50.501L252.053 36.3572L279.442 28.1447L293.369 14.4572" stroke="#0C45CC" stroke-width="2.7375" stroke-linecap="round"/>
+<path id="Vector 14" d="M1.36912 86.2313L59.8605 67.2727L82.7087 71.3352L96.8746 67.2727H122.465H137.544L161.307 71.3352L172.731 78.5576H179.128L193.294 71.3352L207.003 59.5989H216.142L231.222 55.9878L258.183 42.8973L276.461 14.9107L293.369 1.3688" stroke="#22D3EE" stroke-width="2.7375" stroke-linecap="round"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_4" x1="140.684" y1="14.4572" x2="146.472" y2="106.867" gradientUnits="userSpaceOnUse">
+<stop stop-color="#1384FF"/>
+<stop offset="0.871778" stop-color="#1384FF" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="paint1_linear_0_4" x1="129.575" y1="-95.3348" x2="147.369" y2="126.424" gradientUnits="userSpaceOnUse">
+<stop stop-color="#41FFE6"/>
+<stop offset="1" stop-color="#41FFE6" stop-opacity="0"/>
+</linearGradient>
+</defs>
+</svg>

@@ -1,0 +1,94 @@
+.Footer-body{
+  background-image: url(../images/figma/blue_gradient.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-top: 1.25px solid #e5e7eb;
+  width: 100%;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  padding: 70px 90px;
+  margin-top: 30px;
+}
+
+.Footer-row{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.Footer-row-bottom{
+  align-items: flex-end;
+  margin-top: 60px;
+}
+
+.Footer-logo{
+  height: 48px;
+  width: auto;
+}
+
+.Footer-quick-links {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.footer-dot{
+  color: white;
+}
+
+.footer-link{
+  text-decoration: none;
+  color: white !important;
+  font-weight: 400;
+  font-size: 1.2rem;
+}
+
+.footer-link-button{
+  background: transparent;
+  border: none;
+  padding: 0;
+  height: auto;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.Footer-copyright{
+  color: white;
+  opacity: 0.6;
+  font-weight: 300;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.Footer-icons {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+}
+
+.mediaIcon {
+  font-size: 30px !important;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .Footer-body{
+    padding: 40px 24px;
+  }
+  .Footer-row{
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    text-align: center;
+  }
+  .Footer-row-bottom{
+    margin-top: 30px;
+  }
+}

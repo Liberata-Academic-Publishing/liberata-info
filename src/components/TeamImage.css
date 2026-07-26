@@ -1,0 +1,144 @@
+.team-wrapper {
+  width: 100%;
+  padding: 20px;
+}
+
+.team-title {
+  color: var(--duke-blue);
+  font-weight: 500;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.team-tagline {
+  color: grey;
+  font-size: 1.2rem;
+  line-height: 1.7rem;
+  margin-bottom: 30px;
+}
+
+.carousel-wrapper {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  margin-top: 15px;
+}
+
+.carousel-slide {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+  row-gap: 15px;
+}
+
+.team-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 30px;
+  column-gap: 20px;
+}
+
+.team-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.team-card img {
+  width: 160px;
+  height: 160px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-bottom: 8px;
+  align-self: center;
+}
+
+.member-name {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.member-role {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.carousel-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--duke-blue);
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.carousel-btn:hover {
+  transform: scale(1.1);
+}
+
+.carousel-btn:active {
+  transform: scale(0.95);
+}
+
+@media (max-width: 768px) {
+  .team-wrapper {
+    padding: 15px;
+  }
+
+  .grid-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .team-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .team-card img {
+    width: 140px;
+    height: 140px;
+  }
+}
+
+@media (max-width: 450px) {
+  .team-wrapper {
+    padding: 10px;
+  }
+
+  .team-title {
+    font-size: 1.1rem;
+  }
+
+  .team-tagline {
+    font-size: 1.1rem;
+    line-height: 1.6rem;
+    margin-bottom: 20px;
+  }
+
+  .grid-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .team-row {
+    grid-template-columns: 1fr;
+  }
+
+  .carousel-wrapper {
+    gap: 10px;
+  }
+
+  .team-card img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .carousel-btn {
+    padding: 6px;
+  }
+}

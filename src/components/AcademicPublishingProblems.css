@@ -1,0 +1,334 @@
+/* Ensure that padding gets included in width calculations, instead of added on top */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Basic 3D Carousel Styles */
+.ap-shell {
+    display: flex;
+    width: 100%;
+    height: 456px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1.25px solid #e5e7eb;
+    max-width: 920px;
+    margin: 0 auto;
+}
+
+.ap-sidebar {
+    display: flex;
+    width: 238px;
+    padding: 30px 15px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+    flex-shrink: 0;
+    align-self: stretch;
+    background: #FFF;
+}
+
+.ap-steps {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 2px;
+    flex-shrink: 0;
+}
+
+.ap-step {
+    display: flex;
+    padding: 10px 15px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+    border-radius: 8px;
+    border: 1.25px solid var(--duke-blue);
+    background: var(--duke-blue);
+    color: white;
+    text-align: center;
+    font-family: Figtree;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.085px;
+}
+
+/* The last step gets the light-blue treatment per the design */
+.ap-steps .ap-step:last-child {
+    background: var(--light-blue);
+    border-color: var(--light-blue);
+}
+
+.ap-step.isActive,
+.ap-steps .ap-step.isActive:last-child {
+    background: #FFF;
+    border-color: var(--duke-blue);
+    color: var(--duke-blue);
+}
+
+.ap-stepArrow {
+    height: 18px;
+    display: flex;
+    justify-content: center;
+}
+
+.ap-stepArrow::before {
+    content: "↓";
+    color: rgba(5, 5, 153, 0.65);
+}
+
+.ap-panel {
+    background-image: url("../images/figma/blue_gradient.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    /* top | flexible middle | bottom */
+
+    padding: 47px 49px;
+    flex: 1 0 0;
+    align-self: stretch;
+    min-width: 0;
+}
+
+.ap-panel > * {
+    min-width: 0;
+}
+
+.ap-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    align-self: stretch;
+}
+
+.ap-num {
+    display: flex;
+    width: 56px;
+    height: 56px;
+    padding: 5px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 999px;
+    background: var(--accent-blue);
+    color: white;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.ap-pill {
+    display: flex;
+    width: fit-content;
+    padding: 3px 6px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 3px;
+    border-radius: 16px;
+    border: 1px solid #7CACED;
+    background: rgba(124, 172, 237, 0.10);
+    color: #7CACED;
+    text-align: center;
+    font-family: Figtree;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.085px;
+}
+
+.ap-title {
+    margin: 0;
+    color: #FFF;
+    text-align: left;
+    font-family: Figtree;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.085px;
+}
+
+.ap-subtitle {
+    opacity: 0.85;
+    color: #FFF;
+    text-align: left;
+    font-family: Figtree;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    letter-spacing: 0.085px;
+}
+
+.ap-body {
+    line-height: 1.6;
+    opacity: 0.95;
+    color: #FFF;
+    margin-top: 50px;
+    text-align: center;
+    font-family: Figtree;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    letter-spacing: 0.085px;
+    width: 100%;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.ap-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 10px;
+}
+
+.ap-arrowBtn {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.ap-dots {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.ap-dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 999px;
+    border: none;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+}
+
+.ap-dot.active {
+    width: 16px;
+    height: 3px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.95);
+}
+
+/* Tablet Styles */
+@media (max-width: 1150px) {
+    .ap-shell {
+        flex-direction: column;
+        height: auto;
+        max-width: 680px;
+    }
+
+    .ap-sidebar {
+        width: 100%;
+        padding: 18px 16px;
+    }
+
+    .ap-steps {
+        gap: 8px;
+    }
+
+    .ap-step {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+
+    .ap-panel {
+        padding: 28px 22px;
+        gap: 18px;
+    }
+
+    .ap-body {
+        margin-top: 18px;
+        font-size: 13px;
+        max-width: 100%;
+    }
+}
+
+/* Mobile Styles */
+@media (max-width: 450px) {
+    .ap-shell {
+        border-radius: 16px;
+        border-width: 2px;
+        max-width: 100%;
+    }
+
+    .ap-sidebar {
+        padding: 14px 12px;
+    }
+
+    .ap-step {
+        padding: 12px 12px;
+        font-size: 13px;
+        border-radius: 10px;
+    }
+
+    .ap-stepArrow {
+        height: 14px;
+    }
+
+    .ap-panel {
+        padding: 18px 14px;
+    }
+
+    .ap-top {
+        gap: 12px;
+    }
+
+    .ap-num {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+    }
+
+    .ap-pill {
+        font-size: 9px;
+        padding: 2px 6px;
+    }
+
+    .ap-title {
+        font-size: 18px;
+    }
+
+    .ap-subtitle {
+        font-size: 12px;
+    }
+
+    .ap-body {
+        margin-top: 14px;
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+    .ap-nav {
+        gap: 12px;
+    }
+
+    .ap-arrowBtn {
+        font-size: 20px;
+    }
+
+    .ap-dot {
+        width: 5px;
+        height: 5px;
+    }
+
+    .ap-dot.active {
+        width: 16px;
+        height: 5px;
+    }
+}

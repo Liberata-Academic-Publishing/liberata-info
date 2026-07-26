@@ -1,0 +1,114 @@
+.Platforms-title {
+  font-size: 56px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 10px 0 18px;
+  color: #2a2a2a;
+}
+
+.Platforms-noteText {
+  font-size: 12px;
+  line-height: 1.4;
+  color: #7a7a7a;
+  max-width: 520px;
+}
+
+#Platforms-metrics-section {
+  border-bottom: none;
+}
+
+.Platforms-paragraph {
+  color: #8a8a8a;
+  font-size: 12.5px;
+  line-height: 1.55;
+  max-width: 520px;
+  margin: 0 0 16px;
+}
+
+.Platforms-placeholderCard {
+  width: 100%;
+  max-width: 520px;
+  height: 170px;
+  border-radius: 10px;
+  background: #ededed;
+  margin: 16px 0 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Platforms-placeholderText {
+  color: #8d8d8d;
+  font-size: 12px;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  padding: 18px;
+}
+
+.platforms-timeline {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  margin-top: 18px;
+  padding-top: 6px;
+}
+
+.platforms-timeline-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 32px;
+  height: 1px;
+  background: #d7d7d7;
+}
+
+.platforms-timeline-items {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.platforms-timeline-item {
+  display: grid;
+  grid-template-rows: auto auto auto;
+  gap: 10px;
+}
+
+.platforms-timeline-date {
+  font-size: 11px;
+  color: #2b2b2b;
+  font-weight: 500;
+}
+
+.platforms-timeline-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #cfcfcf;
+  margin-top: 2px;
+}
+
+.platforms-timeline-label {
+  font-size: 11px;
+  color: #6f6f6f;
+  line-height: 1.35;
+  white-space: pre-line;
+}
+
+/* Tablet */
+@media (max-width: 860px) {
+  .Platforms-title {
+    font-size: 42px;
+  }
+}
+
+@media (max-width: 520px) {
+  .Platforms-title {
+    font-size: 34px;
+  }
+
+  .platforms-timeline-items {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 22px;
+  }
+}

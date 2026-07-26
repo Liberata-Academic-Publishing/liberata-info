@@ -1,0 +1,400 @@
+@import 'global.css';
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  min-height: 100vh;
+}
+.App::after {
+  content: "";
+  position: absolute;
+  top: 70vh;
+  bottom: 91.5vh;
+  right: 32%;
+  width: 1px;
+  /* background: lightgray; */
+}
+.App-intro {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  max-height: 920px;
+  margin-bottom: 8vh;
+}
+
+.App-background {
+  position: absolute;
+  inset: 0; 
+  z-index: -2;
+}
+
+.App-background-gradient {
+  position: absolute;
+  inset: 0;
+  background-image: url(./images/figma/hero_bg.jpg);
+  background-size: cover;
+  z-index: -1;
+}
+
+.App-background-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: url(./images/BG_overlay.png);
+  background-size: cover;
+  z-index: 0;
+  pointer-events: none;
+  transform-origin: center;
+  will-change: transform;
+  transform: rotateX(0deg) rotateY(0deg);
+  transition: transform 0.15s ease-out;
+}
+
+.App-body-container {
+  display: grid;
+  grid-template-columns: 78vw;
+  margin-left: auto;
+  margin-right: auto;  
+}
+
+.App-section {
+  margin-right: auto;
+  text-align: left;
+  opacity: 0;
+	transform: translateY(50px);
+	transition: opacity .8s, transform .8s;
+}
+
+.App-column-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-top: 8vh;
+  padding-bottom: 8vh;
+  border-bottom: 1px solid lightgray; 
+}
+
+.App-col-left-section {
+  padding-top: 11vh;
+  padding-bottom: 11vh;
+  border-bottom: 1px solid lightgray;
+}
+
+.App-column-right {
+  display: none;
+  position: sticky;
+  padding-top: 11vh;
+  top: 0vh;
+  width: 20%;
+  margin-right: 6%;
+}
+
+.section-active {
+  color: var(--duke-blue) !important;
+}
+
+.App-column-right a {
+  display: block;
+  color: #aab3bd;
+  font-size: 1.2rem;
+  margin-bottom: 2.5vh;
+}
+
+.App-column-right a:hover {
+  opacity: 0.8;
+}
+
+.App-column-right a.section-active {
+  text-decoration: none !important;
+}
+
+#mission-heading {
+  font-size: 1.9rem;
+  line-height: 2.5rem;
+  margin-bottom: 10vh;
+  max-width: 55vw;
+  color: #454545;
+  font-weight: 500;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+#mission-body {
+  color: var(--grey-text);
+  font-size: 1.2rem;
+  line-height: 1.7rem;
+}
+
+#faq-heading {
+  font-weight: 700;
+  font-size: 2.4rem;
+  color: #111827;
+  margin: 20px 0 24px 0;
+}
+
+@media (max-width: 450px) {
+  #faq-heading {
+    font-size: 1.8rem;
+  }
+}
+
+.section-heading {
+  color: var(--duke-blue);
+  font-weight: 500;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+@media (min-width: 700px) {
+  .App-column-left {
+    width: 60%;
+  }
+  .App-column-right {
+    display: block;
+  }
+  .App-intro {
+    left: 0px !important;
+  }
+}
+
+.PlatformsGradientBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 76px;
+  z-index: 9998;
+
+  background: linear-gradient(135deg, #2b56ff 0%, #1a37b6 55%, #0b1a5a 100%);
+}
+
+.PlatformsHeaderLayer {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+}
+
+.PlatformsHeaderLayer a,
+.PlatformsHeaderLayer button,
+.PlatformsHeaderLayer span,
+.PlatformsHeaderLayer p,
+.PlatformsHeaderLayer h1,
+.PlatformsHeaderLayer h2,
+.PlatformsHeaderLayer h3,
+.PlatformsHeaderLayer li,
+.PlatformsHeaderLayer svg {
+  color: #fff !important;
+  fill: #fff !important;
+}
+
+.PlatformsHeaderLayer header,
+.PlatformsHeaderLayer nav,
+.PlatformsHeaderLayer > div {
+  background: transparent !important;
+}
+
+.PlatformsHeaderLayer,
+.PlatformsHeaderLayer * {
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.PlatformsHeaderLayer *::before,
+.PlatformsHeaderLayer *::after {
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.PlatformsHeaderLayer * {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.PlatformsPageBody {
+  padding-top: 76px;
+}
+
+@media (max-width: 699px) {
+  .App-column-right {
+  display: none;
+  }
+  .App-column-left {
+  width: 100%;
+  }
+  #mission-heading {
+  max-width: 100%;
+  }
+}
+@media (min-width: 700px) {
+  .App-body-container {
+    grid-template-columns: 86vw;
+  }
+
+}
+
+@media (min-width: 1050px) {
+  .sticky {
+    position: sticky;
+    top: 12vh;
+  }
+  .App-problem-header {
+    line-height: 4.5rem !important;
+    font-size: 3rem !important;
+    width: 40%;
+  }
+  .App-problem-body {
+    width: 44.5%;
+    margin-top: 10px;
+  }
+  .App-problem-body > div:first-child {
+    font-size: 1.8rem !important;
+    line-height: 2.8rem !important;
+  }
+  .App-problem-body > div:last-child {
+    min-height: 40vh;
+    font-size: 17.5px !important;
+    padding: 2vw !important;
+    margin-bottom: 2vh;
+  }
+  .App-problem-header img {
+    display: block !important;
+  }
+}
+
+
+.App-problem {
+  height: 100vh;
+}
+
+.App-problem-header {
+  display: inline-block;
+  line-height: 3.8rem;
+  font-size: 2.6rem;
+  margin-bottom: .8rem;
+}
+
+.App-problem-header img {
+  display: none;
+  width: 260px;
+  height: auto;
+  opacity: .75;
+  margin-left: 20px;
+  margin-top: 5vh;
+}
+
+.App-problem-body {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  float: right;
+}
+
+.App-problem-body > div:first-child {
+  line-height: 2rem;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: gray;
+}
+
+.App-problem-body > div:last-child {
+  padding: max(2vw, 22px) max(4vw, 25px);
+  color: rgb(95, 95, 95);
+  font-size: 15px;
+  font-family: Helvetica, sans-serif;
+  line-height: 1.4;
+  border-radius: 15px;
+  margin-top: 4vh;
+  border: 1px solid gray;
+  /* height: auto; */
+}
+
+#App-faq {
+  padding-bottom: 0;
+  border-bottom: 0
+}
+
+.faq-video-wrapper {
+  width: 100%;
+  min-height: 60vh;
+}
+
+.faq-video:hover {
+  cursor: pointer;
+}
+
+
+#section-hook {
+  padding-top: 40px;
+}
+
+@media (min-width: 700px) {
+  #section-hook {
+    padding-right: 2rem;
+  }
+}
+
+#section-one-video {
+  border-radius: 10px;
+}
+
+#section-one-video:hover {
+  cursor: pointer;
+}
+
+.App-problem-button-carousel {
+  border: 1px solid gray;
+  border-radius: 25px;
+  padding: 6px;
+  display: flex;
+  width: 230px;
+  justify-content: space-between;
+}
+
+.liberata-active-button {
+  background-color: var(--duke-blue);
+  color: white;
+}
+
+.old-system-active-button {
+  background-color: gray;
+  color: white;
+}
+
+button {
+  color: gray;
+  background-color: white;
+  border: none;
+  height: 35px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 25px;
+  padding-left: 12px;
+  padding-right: 12px;
+  transition: all 0.2s;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+#Team-leadership, #Team-product, #Team-business, 
+#App-mission, #App-overview-video, #App-solutions, #App-problems{
+  scroll-margin-top: 80px;
+}
+
+/* -------------------------------------------------- */
+
+.Footer-accent {
+  background-image: url(./images/BG.png);
+  background-size: cover;
+  z-index: 1;
+  padding: 10px;
+  height: 10vh;
+  width: 100vw;
+}

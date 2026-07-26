@@ -1,0 +1,190 @@
+.eco-diagram {
+  display: flex;
+  align-items: stretch;
+  gap: 20px;
+  width: 100%;
+  min-height: 383px;
+  border-radius: 14px;
+  padding: 52px;
+  box-sizing: border-box;
+  /* When the window gets too narrow for the full diagram, scroll inside
+     the panel rather than crushing or bleeding the content */
+  overflow-x: auto;
+  overflow-y: hidden;
+  background:
+    radial-gradient(140% 200% at 100% 120%, rgba(170, 180, 222, 0.85) 0%, rgba(58, 76, 174, 0.6) 32%, rgba(20, 38, 122, 0.3) 60%, rgba(10, 22, 78, 0) 100%),
+    linear-gradient(100deg, #0b1954 0%, #0f1f77 55%, #1c359c 100%);
+  font-family: 'Inter', sans-serif;
+}
+
+.eco-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 30px;
+  flex: 0 1 213px;
+  min-width: 140px;
+}
+
+.eco-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 0.9px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12.5px;
+  box-shadow: 0px 10.8px 21.5px 0px rgba(0, 0, 0, 0.25);
+  padding: 21.5px;
+  display: flex;
+  flex-direction: column;
+  gap: 12.5px;
+  justify-content: center;
+}
+
+.eco-card-label {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  font-weight: 600;
+  font-size: 10.8px;
+  color: #94a3b8;
+}
+
+.eco-card-label img {
+  width: 7px;
+  height: 7px;
+}
+
+.eco-card-name {
+  margin: 0;
+  font-weight: 600;
+  font-size: 20px;
+  color: white;
+}
+
+.eco-card-sub {
+  margin: 5px 0 0 0;
+  font-weight: 400;
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.eco-connections {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex: 0 1 85px;
+  min-width: 60px;
+}
+
+.eco-connection {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+}
+
+.eco-connection span {
+  font-weight: 400;
+  font-size: 11.7px;
+  color: #94a3b8;
+  white-space: nowrap;
+}
+
+.eco-connection img {
+  width: 100%;
+  height: 8px;
+}
+
+.eco-center {
+  flex: 1;
+  min-width: 230px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 0.9px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0px 10.8px 25.1px 0px rgba(0, 0, 0, 0.31);
+  padding: 21.5px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.eco-center-title {
+  margin: 0;
+  font-weight: 600;
+  font-size: 20px;
+  color: white;
+  text-align: center;
+}
+
+.eco-pills {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  width: 100%;
+}
+
+.eco-pill {
+  background: rgba(255, 255, 255, 0.1);
+  border: 0.9px solid rgba(255, 255, 255, 0.2);
+  border-radius: 7px;
+  padding: 11.7px 14.3px;
+  font-weight: 400;
+  font-size: 16px;
+  color: #e2e8f0;
+  text-align: center;
+}
+
+/* Mobile: vertical flow — sources on top, shared graph in the middle,
+   consumers on the bottom, with the arrows rotated to point down */
+@media (max-width: 699px) {
+  .eco-diagram {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    min-height: 0;
+    padding: 24px 18px;
+  }
+
+  .eco-side {
+    flex-direction: row;
+    flex: none;
+    min-width: 0;
+    width: 100%;
+    gap: 14px;
+    justify-content: stretch;
+  }
+
+  .eco-side .eco-card {
+    flex: 1;
+    min-width: 0;
+    padding: 14px;
+  }
+
+  .eco-card-name {
+    font-size: 17px;
+  }
+
+  .eco-card-sub {
+    font-size: 11px;
+  }
+
+  .eco-connections {
+    flex-direction: row;
+    flex: none;
+    min-width: 0;
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .eco-connection img {
+    width: 32px;
+    height: 8px;
+    transform: rotate(90deg);
+    /* reserve vertical room for the rotated arrow's visual extent */
+    margin: 13px 0;
+  }
+
+  .eco-center {
+    flex: none;
+    min-width: 0;
+    width: 100%;
+  }
+}
