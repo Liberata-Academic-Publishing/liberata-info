@@ -3,10 +3,12 @@
   <head>
     <meta charset="utf-8" />
     <script>
-      // Redirect all 404s to index.html
+      // Redirect 404s to the SPA's index.html, staying inside the staging
+      // preview when the path is under /staging/ (both apps share this file
+      // because GitHub Pages only serves the 404 at the site root).
       sessionStorage.redirect = location.href;
+      location.replace(location.pathname.indexOf("/staging/") === 0 ? "/staging/" : "/");
     </script>
-    <meta http-equiv="refresh" content="0;URL='/'" />
   </head>
   <body></body>
 </html>
