@@ -27,8 +27,9 @@ function Footer() {
         <div className="Footer-quick-links">
           <Link to="/" className="footer-link">Overview</Link>
           <span className="footer-dot">•</span>
+          {/* Team link temporarily hidden until content is curated:
           <Link to="/team" className="footer-link">Team</Link>
-          <span className="footer-dot">•</span>
+          <span className="footer-dot">•</span> */}
           <button type="button" className="footer-link footer-link-button" onClick={() => setContactOpen(true)}>Contact</button>
         </div>
       </div>
