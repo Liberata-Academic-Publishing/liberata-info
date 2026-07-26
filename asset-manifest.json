@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.af797f05.css",
-    "main.js": "/static/js/main.999678ea.js",
+    "main.css": "/static/css/main.e93e0b81.css",
+    "main.js": "/static/js/main.1ded4d1c.js",
     "static/js/40.95b48be9.chunk.js": "/static/js/40.95b48be9.chunk.js",
     "static/media/BG.png": "/static/media/BG.6a943bc2f990b78b1e4e.png",
     "static/media/BG_overlay.png": "/static/media/BG_overlay.5e8eb93efec437e602b2.png",
@@ -16,20 +16,13 @@
     "static/media/chart_example.png": "/static/media/chart_example.e4fd3fa975f52e41f62d.png",
     "static/media/dataframe.png": "/static/media/dataframe.dd4d2ed78fa054b59c15.png",
     "static/media/chart.png": "/static/media/chart.f75a27e4a0bd4ceac5b1.png",
-    "static/media/affiliations.png": "/static/media/affiliations.4b2ad813259ce35842e7.png",
     "static/media/dataframe_comparison.png": "/static/media/dataframe_comparison.86e86a99324d034249da.png",
     "static/media/Logo_White.png": "/static/media/Logo_White.8373d9acd5f2eaf8a104.png",
-    "static/media/team_algorithms.png": "/static/media/team_algorithms.0de6457b83f7addb9a37.png",
-    "static/media/team_uiux.png": "/static/media/team_uiux.8dfe733768af1f616f15.png",
-    "static/media/team_aiml.png": "/static/media/team_aiml.6069032409057cb7fd03.png",
-    "static/media/team_product.png": "/static/media/team_product.4a60b50a11b3df2a46b6.png",
     "static/media/Logo_Blue.png": "/static/media/Logo_Blue.912211943a1f959d1fcc.png",
-    "static/media/team_software.png": "/static/media/team_software.e5f28ed0e37ae24a9b6c.png",
     "static/media/concept_references_matrix.svg": "/static/media/concept_references_matrix.0525f82e379111535c72770b2d72733e.svg",
     "static/media/viz_citation_network.svg": "/static/media/viz_citation_network.8e4031aab3dccf75504071aa6eabdf46.svg",
     "static/media/check_mark.svg": "/static/media/check_mark.23db8ff43a0865d3a912722db0788a68.svg",
     "static/media/visual_layer.svg": "/static/media/visual_layer.f07a23f2546b66f44eb8b61cbfa7a6fc.svg",
-    "static/media/icon_linkedin.svg": "/static/media/icon_linkedin.3eb54589682c726a81f1f1ff1b0589c4.svg",
     "static/media/icon_database.svg": "/static/media/icon_database.d6e0ee452bdda3f00afe6f42bb50bad0.svg",
     "static/media/concept_metrics_network.svg": "/static/media/concept_metrics_network.5df839873af2f6627a095306517475da.svg",
     "static/media/hero_graph.svg": "/static/media/hero_graph.38c33fe0604517252b54148b84656325.svg",
@@ -46,7 +39,6 @@
     "static/media/icon_deliver.svg": "/static/media/icon_deliver.8c87de38c4b9e78b8002c7dda5042cb5.svg",
     "static/media/icon_chevron_down.svg": "/static/media/icon_chevron_down.369d8b1ddc1d6d4a58ff.svg",
     "static/media/icon_expand.svg": "/static/media/icon_expand.c879710b0bd99793059d036a063c3d38.svg",
-    "static/media/icon_expand_clear.svg": "/static/media/icon_expand_clear.a80f631f83790ac38010496bd3a91b23.svg",
     "static/media/icon_close.svg": "/static/media/icon_close.efcc07ecad9141df3ad62fbcd478280d.svg",
     "static/media/icon_download_arrow.svg": "/static/media/icon_download_arrow.00f664ac94e82ed8b5fc4bc0cc399048.svg",
     "index.html": "/index.html",
@@ -65,7 +57,6 @@
     "static/media/spark_watched.svg": "/static/media/spark_watched.abbd5cb64864436c8302ae2898c421c0.svg",
     "static/media/spark_forked.svg": "/static/media/spark_forked.580a9e293a763b481033eab86820bd4f.svg",
     "static/media/spark_sharpe.svg": "/static/media/spark_sharpe.f48e32dbd233d1ae5ce73e26f25dde22.svg",
-    "static/media/icon_email.svg": "/static/media/icon_email.669c251ce7bb97624f1cf6db387ec684.svg",
     "static/media/spark_gini.svg": "/static/media/spark_gini.8aa7814d50d22aa6f0729cc7961f2972.svg",
     "static/media/spark_starred.svg": "/static/media/spark_starred.e5878dc1171b157b45b5a5f6bd927385.svg",
     "static/media/spark_capital.svg": "/static/media/spark_capital.860e8c95c4295d23952d8b4daa23fc5e.svg",
@@ -86,12 +77,12 @@
     "static/media/dot_methods.svg": "/static/media/dot_methods.4409db235685a15e2b96181ad293b9e3.svg",
     "static/media/dot_research.svg": "/static/media/dot_research.847dd39be44ef321c1ee432f2b6c646e.svg",
     "static/media/dot_publishing.svg": "/static/media/dot_publishing.c9abd2499ec7ff31974390a111d40f71.svg",
-    "main.af797f05.css.map": "/static/css/main.af797f05.css.map",
-    "main.999678ea.js.map": "/static/js/main.999678ea.js.map",
+    "main.e93e0b81.css.map": "/static/css/main.e93e0b81.css.map",
+    "main.1ded4d1c.js.map": "/static/js/main.1ded4d1c.js.map",
     "40.95b48be9.chunk.js.map": "/static/js/40.95b48be9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.af797f05.css",
-    "static/js/main.999678ea.js"
+    "static/css/main.e93e0b81.css",
+    "static/js/main.1ded4d1c.js"
   ]
 }
