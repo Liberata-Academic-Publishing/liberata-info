@@ -10,9 +10,12 @@ create table if not exists beta_signups (
   institution text not null,
   institutional_email text not null,
   discipline text not null,
-  orcid text not null unique,
+  -- optional: early signups predate the ORCID field; uniqueness only
+  -- applies to real values (Postgres treats nulls as distinct)
+  orcid text unique,
   publish_timeframe_months int,
-  oa_challenges text check (char_length(oa_challenges) <= 500)
+  -- form UI caps new submissions at 500; 1000 accommodates legacy rows
+  oa_challenges text check (char_length(oa_challenges) <= 1000)
 );
 
 create table if not exists contact_messages (
