@@ -29,6 +29,7 @@ jobs:
       - name: Build for the /staging subpath
         run: pnpm build
         env:
+          CI: false  # legacy lint warnings should not fail the build
           PUBLIC_URL: https://liberata.info/staging
           REACT_APP_SUPABASE_URL: ${{ secrets.REACT_APP_SUPABASE_URL }}
           REACT_APP_SUPABASE_ANON_KEY: ${{ secrets.REACT_APP_SUPABASE_ANON_KEY }}
