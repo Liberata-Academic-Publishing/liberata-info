@@ -25,6 +25,7 @@ function MenuDrawer({ onContact = () => { } }: { onContact?: () => void }) {
             <ListItemText primary="Products" />
           </ListItemButton>
         </ListItem>
+        {/* Temporarily hidden until content is curated:
         <ListItem disablePadding>
           <ListItemButton component={Link} to="/research">
             <ListItemText primary="Research" />
@@ -39,7 +40,7 @@ function MenuDrawer({ onContact = () => { } }: { onContact?: () => void }) {
           <ListItemButton component={Link} to="/news">
             <ListItemText primary="News" />
           </ListItemButton>
-        </ListItem>
+        </ListItem> */}
       </List>
       <Divider/>
       <List>

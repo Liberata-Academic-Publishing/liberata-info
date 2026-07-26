@@ -81,6 +81,7 @@ function Header({ scrollToSection = () => { }, forceLight = false }) {
                 Products ▾
               </NavLink>
             </span>
+            {/* Temporarily hidden until content is curated:
             <NavLink to="/research" className="Header-navbar">
               Research
             </NavLink>
@@ -89,7 +90,7 @@ function Header({ scrollToSection = () => { }, forceLight = false }) {
             </NavLink>
             <NavLink to="/news" className="Header-navbar">
               News
-            </NavLink>
+            </NavLink> */}
           </span>
 
           <span className="Header-ctas">
