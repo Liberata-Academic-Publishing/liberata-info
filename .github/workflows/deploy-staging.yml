@@ -1,0 +1,41 @@
+name: Deploy staging
+
+# Every merge to master auto-publishes a preview to liberata.info/staging/.
+# Production (liberata.info root) is untouched — see deploy-production.yml.
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+concurrency:
+  group: gh-pages-publish
+
+permissions:
+  contents: write
+
+jobs:
+  staging:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Build for the /staging subpath
+        run: pnpm build
+        env:
+          PUBLIC_URL: https://liberata.info/staging
+          REACT_APP_SUPABASE_URL: ${{ secrets.REACT_APP_SUPABASE_URL }}
+          REACT_APP_SUPABASE_ANON_KEY: ${{ secrets.REACT_APP_SUPABASE_ANON_KEY }}
+      - name: Publish to gh-pages/staging
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./build
+          destination_dir: staging

@@ -15,9 +15,13 @@ import NewsPage from './pages/NewsPage';
 import BetaSignupPage from './pages/BetaSignupPage';
 import ScrollToTop from './utils/ScrollToTop';
 
+// Serve from a subpath when PUBLIC_URL has one (e.g. the staging Pages site);
+// resolves to "/" for production builds where PUBLIC_URL is the bare domain.
+const BASENAME = new URL(process.env.PUBLIC_URL || "/", "https://liberata.info").pathname;
+
 function App() {
   return(
-    <BrowserRouter>
+    <BrowserRouter basename={BASENAME}>
       <ScrollToTop/>
       <Routes>
         <Route path="/" element={<OverviewPage/>}/>

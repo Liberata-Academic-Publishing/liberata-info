@@ -1,0 +1,40 @@
+name: Deploy production
+
+# Manual rollout to liberata.info: Actions tab -> Deploy production -> Run workflow.
+# Publishes the current master build to this repo's gh-pages branch.
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: gh-pages-publish
+
+permissions:
+  contents: write
+
+jobs:
+  production:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Build
+        run: pnpm build
+        env:
+          REACT_APP_SUPABASE_URL: ${{ secrets.REACT_APP_SUPABASE_URL }}
+          REACT_APP_SUPABASE_ANON_KEY: ${{ secrets.REACT_APP_SUPABASE_ANON_KEY }}
+      - run: cp CNAME build/
+      - name: Publish to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./build
+          # don't wipe the /staging preview living in the same branch
+          keep_files: true
