@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Header from '../components/Header';
 import Hook from '../components/Hook';
-import Contact from '../components/Contact';
 import KeyConcepts from '../components/KeyConcepts';
 import AcademicPublishingProblems from '../components/AcademicPublishingProblems'
 import FAQAccordion from '../components/FAQAccordion';
@@ -11,7 +10,6 @@ function OverviewPage() {
   const introRef = useRef<HTMLDivElement | null>(null);
   const overlayRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef(null);
-  const contactRef = useRef(null);
 
   const MISSION_TEXT = "To democratize an academic review system influenced by politics";
   const TYPING_SPEED = 25;
@@ -239,10 +237,6 @@ function OverviewPage() {
           </div>
         </div>
 
-        {/* Contact form */}
-        <div className="App-section" ref={contactRef} id="section-contact">
-          <Contact />
-        </div>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import { CircularProgress } from "@mui/material";
+import { supabase } from "../lib/supabase";
 import "./Contact.css";
 
 function Contact() {
@@ -16,8 +17,6 @@ function Contact() {
   // const [isLNameErrorVisible, setLNameErrorVisible] = useState(true);
   // const [isFNameErrorVisible, setFNameErrorVisible] = useState(true);
   const [isEmailErrorVisible, setEmailErrorVisible] = useState(false);
-  const googleSheetApiUrl =
-    "https://script.google.com/macros/s/AKfycbxxxxcMbnh3e86tRLOqz57Fcw2LpLG14kVWVtuoqMClVNCLb8Ut0v1SpW4E3aetfzT9/exec";
 
   const handleContactFormSubmit = (e: any) => {
     e.preventDefault();
@@ -32,42 +31,27 @@ function Contact() {
     }
 
     setLoading(true);
-    const formData = new FormData();
-    formData.append("Email", emailInputValue);
-    formData.append("First name", fNameInputValue);
-    formData.append("Last name", lNameInputValue);
-    formData.append("Institution", institutionInputValue);
-    formData.append("Message", messageInputValue);
-
-    // Push the contact form data to a google sheet
-    fetch(googleSheetApiUrl, {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
+    supabase
+      .from("contact_messages")
+      .insert({
+        name: `${fNameInputValue} ${lNameInputValue}`.trim(),
+        email: emailInputValue,
+        affiliation: institutionInputValue || null,
+        message: messageInputValue || null,
+      })
+      .then(({ error }) => {
+        setLoading(false);
+        if (error) {
+          setErrorVisible(true);
+          return;
         }
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data);
         setSuccessVisible(true);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error(
-          "There has been a problem with your fetch operation:",
-          error
-        );
-        setErrorVisible(true);
-        setLoading(false);
+        setEmailInputValue("");
+        setFNameInputValue("");
+        setLNameInputValue("");
+        setInstitutionInputValue("");
+        setMessageInputValue("");
       });
-    setEmailInputValue("");
-    setFNameInputValue("");
-    setLNameInputValue("");
-    setInstitutionInputValue("");
-    setMessageInputValue("");
   };
 
   /**
@@ -181,6 +165,7 @@ function Contact() {
           id="outlined-message"
           label="Message"
           sx={{ maxWidth: "92%", marginBottom: "30px" }}
+          inputProps={{ maxLength: 5000 }}
           value={messageInputValue}
           onChange={(e) => setMessageInputValue(e.target.value)}
           onFocus={() => setSubmitVisible(true)}

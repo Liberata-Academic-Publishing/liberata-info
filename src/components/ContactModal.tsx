@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
 import { CircularProgress } from "@mui/material";
+import { supabase } from "../lib/supabase";
 import iconClose from "../images/figma/contact/icon_close.svg";
 import "./ContactModal.css";
-
-// Same Apps Script endpoint the Overview contact form posts to
-const googleSheetApiUrl =
-  "https://script.google.com/macros/s/AKfycbxxxxcMbnh3e86tRLOqz57Fcw2LpLG14kVWVtuoqMClVNCLb8Ut0v1SpW4E3aetfzT9/exec";
 
 // TODO: confirm the purpose options with the team
 const PURPOSES = ["General inquiry", "Beta access", "Partnership", "Press", "Other"];
@@ -36,25 +33,18 @@ function ContactModal({ open, onClose }: { open: boolean; onClose: () => void })
 
     setLoading(true);
     setStatus("idle");
-    const formData = new FormData();
-    formData.append("Email", email);
-    formData.append("First name", name);
-    formData.append("Last name", "");
-    formData.append("Institution", affiliation);
-    formData.append("Message", purpose ? `[${purpose}] ${message}` : message);
-
-    fetch(googleSheetApiUrl, { method: "POST", body: formData })
-      .then((response) => {
-        if (!response.ok) throw new Error("Network response was not ok");
-        return response.json();
+    supabase
+      .from("contact_messages")
+      .insert({
+        name,
+        email,
+        affiliation: affiliation || null,
+        purpose: purpose || null,
+        message: message || null,
       })
-      .then(() => {
-        setStatus("success");
+      .then(({ error }) => {
         setLoading(false);
-      })
-      .catch(() => {
-        setStatus("error");
-        setLoading(false);
+        setStatus(error ? "error" : "success");
       });
   };
 
@@ -85,7 +75,7 @@ function ContactModal({ open, onClose }: { open: boolean; onClose: () => void })
               <option key={p} value={p}>{p}</option>
             ))}
           </select>
-          <textarea placeholder="Message" value={message} onChange={(e) => setMessage(e.target.value)} rows={4} />
+          <textarea placeholder="Message" value={message} onChange={(e) => setMessage(e.target.value)} rows={4} maxLength={5000} />
           <div className="ContactModal-actions">
             <button type="submit" className="ContactModal-submit" disabled={isLoading}>
               {isLoading ? <CircularProgress size={18} style={{ color: "white" }} /> : "Submit"}

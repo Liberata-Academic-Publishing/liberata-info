@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Header from '../components/Header';
+import { supabase } from "../lib/supabase";
 import TextField from "@mui/material/TextField";
 import { CircularProgress } from "@mui/material";
 import InputLabel from '@mui/material/InputLabel';
@@ -19,9 +20,8 @@ function BetaSignupPage() {
   const [openAccessChallengesInputValue, setOpenAccessChallengesInputValue] = useState("");
   const [isLoading, setLoading] = useState(false);
   const [isSuccessVisible, setSuccessVisible] = useState(false);
+  const [isDuplicateVisible, setDuplicateVisible] = useState(false);
   const [isErrorVisible, setErrorVisible] = useState(false);
-
-  const googleSheetApiUrl = "https://script.google.com/macros/s/AKfycbwuRnh_I88YjrfUZek7Yw3Pb-5EtJPcDtq_cG7IJA9Yu5wVgl18KqmDdW0x95pVeRM8/exec";
 
   // Section observer
   useEffect(() => {
@@ -43,50 +43,43 @@ function BetaSignupPage() {
 
   const handleBetaSignupFormSubmit = (e: any) => {
     e.preventDefault();
-    
-    setLoading(true);
-    const formData = new FormData();
-    formData.append("Institutional Email", emailInputValue);
-    formData.append("First name", fNameInputValue);
-    formData.append("Last name", lNameInputValue);
-    formData.append("Institution", institutionInputValue);
-    formData.append("Academic discipline", disciplineInputValue);
-    formData.append("ORCID", orcidInputValue);
-    formData.append("Timeframe for next publication", timeframeInputValue);
-    formData.append("OA challenges message", openAccessChallengesInputValue);
 
-    // Push the contact form data to a google sheet
-    fetch(googleSheetApiUrl, {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
+    setLoading(true);
+    setErrorVisible(false);
+    supabase
+      .from("beta_signups")
+      .insert({
+        first_name: fNameInputValue,
+        last_name: lNameInputValue,
+        institution: institutionInputValue,
+        institutional_email: emailInputValue,
+        discipline: disciplineInputValue,
+        orcid: orcidInputValue,
+        publish_timeframe_months: timeframeInputValue ? parseInt(timeframeInputValue, 10) : null,
+        oa_challenges: openAccessChallengesInputValue || null,
+      })
+      .then(({ error }) => {
+        setLoading(false);
+        if (error) {
+          // 23505 = unique violation on ORCID: they already signed up
+          if (error.code === "23505") {
+            setDuplicateVisible(true);
+          } else {
+            setErrorVisible(true);
+            return;
+          }
+        } else {
+          setSuccessVisible(true);
         }
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data);
-        setSuccessVisible(true);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error(
-          "There has been a problem with your fetch operation:",
-          error
-        );
-        setErrorVisible(true);
-        setLoading(false);
+        setEmailInputValue("");
+        setFNameInputValue("");
+        setLNameInputValue("");
+        setInstitutionInputValue("");
+        setOrcidInputValue("");
+        setDisciplineInputValue("");
+        setTimeframeInputValue("");
+        setOpenAccessChallengesInputValue("");
       });
-    setEmailInputValue("");
-    setFNameInputValue("");
-    setLNameInputValue("");
-    setInstitutionInputValue("");
-    setOrcidInputValue("");
-    setDisciplineInputValue("");
-    setTimeframeInputValue("");
-    setOpenAccessChallengesInputValue("");
   }
 
   return (
@@ -179,21 +172,26 @@ function BetaSignupPage() {
               multiline
               rows={4}
               style={{width: "90%", marginBottom: '24px'}}
+              inputProps={{ maxLength: 500 }}
               value={openAccessChallengesInputValue}
               onChange={(e) => setOpenAccessChallengesInputValue(e.target.value)}
             />
           </div>
 
           {isLoading && <CircularProgress/>}
-          {!isLoading && !isSuccessVisible && <input
+          {!isLoading && !isSuccessVisible && !isDuplicateVisible && <input
             type="submit"
             value="Request Beta Access"
             className="outlined-submit is-visible"
             style={{width: 'fit-content', padding: '10px 20px', fontSize: '16px', fontWeight: 'bold'}}
           />}
-          
+
           {isSuccessVisible && (
             <div>Thank you! We'll be in touch regarding future updates.</div>
+          )}
+
+          {isDuplicateVisible && (
+            <div>Looks like this ORCID has already signed up — you're on the list, and we'll be in touch!</div>
           )}
 
           {isErrorVisible && (
