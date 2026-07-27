@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from "react-router-dom";
 import { NavLink } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -14,30 +14,11 @@ function Header({ scrollToSection = () => { }, forceLight = false }) {
   const [scrolledPastIntro, setscrolledPastIntro] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
-  const [stripIndent, setStripIndent] = useState(0);
-  const productsRef = useRef<HTMLSpanElement | null>(null);
-  const productsCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const openProducts = () => {
-    if (productsCloseTimer.current) clearTimeout(productsCloseTimer.current);
-    // align the strip's items under the Products trigger
-    const trigger = productsRef.current;
-    if (trigger) {
-      const containerLeft = window.innerWidth * 0.04; // strip is 92vw, centered
-      setStripIndent(Math.max(0, trigger.getBoundingClientRect().left - containerLeft));
-    }
-    setProductsOpen(true);
-  };
-  const closeProducts = () => {
-    if (productsCloseTimer.current) clearTimeout(productsCloseTimer.current);
-    productsCloseTimer.current = setTimeout(() => setProductsOpen(false), 150);
-  };
-
-  // Push the page hero down while the products menu is expanded
-  useEffect(() => {
-    document.body.classList.toggle('products-open', productsOpen);
-    return () => document.body.classList.remove('products-open');
-  }, [productsOpen]);
+  // no close timer: the trigger's padding bridges the cursor's path to the
+  // items, so open/close can react instantly
+  const openProducts = () => setProductsOpen(true);
+  const closeProducts = () => setProductsOpen(false);
   useEffect(() => {
     if (location.pathname === "/beta-signup" || location.pathname === "/platforms") {
       setscrolledPastIntro(true);
@@ -76,10 +57,17 @@ function Header({ scrollToSection = () => { }, forceLight = false }) {
             <NavLink id="Header-overview" className="Header-navbar" to="/">
               Overview
             </NavLink>
-            <span className="Header-products" ref={productsRef} onMouseEnter={openProducts} onMouseLeave={closeProducts} onFocus={openProducts} onBlur={closeProducts}>
+            <span className={`Header-products ${productsOpen ? "open" : ""}`} onMouseEnter={openProducts} onMouseLeave={closeProducts} onFocus={openProducts} onBlur={closeProducts}>
               <NavLink to="/products" className="Header-navbar">
-                Products ▾
+                Products ▸
               </NavLink>
+              {/* always rendered so the slide-out can animate both ways */}
+              <span className="Header-products-inline" aria-hidden={!productsOpen}>
+                <Link to="/products/scriptura" tabIndex={productsOpen ? 0 : -1}>Scriptura</Link>
+                <Link to="/products/mensura" tabIndex={productsOpen ? 0 : -1}>Mensura</Link>
+                <Link to="/products/textura" tabIndex={productsOpen ? 0 : -1}>Textura</Link>
+                <Link to="/products/norma" tabIndex={productsOpen ? 0 : -1}>Norma</Link>
+              </span>
             </span>
             {/* Temporarily hidden until content is curated:
             <NavLink to="/research" className="Header-navbar">
@@ -106,14 +94,6 @@ function Header({ scrollToSection = () => { }, forceLight = false }) {
             <MenuDrawer onContact={openContact} />
           </div>
         </div>
-        {productsOpen && (
-          <div className="Header-products-strip" style={{ paddingLeft: stripIndent }} onMouseEnter={openProducts} onMouseLeave={closeProducts}>
-            <Link to="/products/scriptura">Scriptura</Link>
-            <Link to="/products/mensura">Mensura</Link>
-            <Link to="/products/textura">Textura</Link>
-            <Link to="/products/norma">Norma</Link>
-          </div>
-        )}
       </div>
       <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
     </>

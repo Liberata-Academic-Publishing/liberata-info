@@ -6,7 +6,6 @@ import iconSearch from "../images/figma/mensura/icon_search.svg";
 import iconDatabase from "../images/figma/mensura/icon_database.svg";
 import iconChartArrow from "../images/figma/mensura/icon_chart_arrow.svg";
 import iconChartBubble from "../images/figma/mensura/icon_chart_bubble.svg";
-import iconDollar from "../images/figma/mensura/icon_dollar.svg";
 import imgDataframe from "../images/dataframe_comparison.png";
 import imgChart from "../images/chart_example.png";
 import "../App.css";
@@ -70,19 +69,6 @@ const FEATURES: ShowcaseFeature[] = [
       { lead: "Explain the moment.", text: "Drop a pin on a spike or anomaly and attach a note, right on the chart, right where it happened." },
       { lead: "Ready when you are.", text: "Every change saves automatically. Export to image or PDF, or share a view-only link when it's time to hand it off." },
     ],
-  },
-  {
-    // No expanded design exists for Economic Impact yet — card renders without an expand button
-    key: "economic",
-    name: "Economic Impact",
-    icon: <img src={iconDollar} alt="" />,
-    gridDesc: "Connect scholarly output to downstream funding, patents, and technology transfer.",
-    altDesc: "Connect scholarly output to downstream funding, patents, and technology transfer.",
-    label: "/Economic Impact",
-    headline: "",
-    longDesc: "",
-    points: [],
-    expandable: false,
   },
 ];
 

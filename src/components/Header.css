@@ -96,67 +96,66 @@
   cursor: default;
 }
 
-/* Products hover menu: transparent strip that expands below the bar (desktop only) */
+/* Products hover menu: subcategories slide out to the right of the trigger
+   (desktop only). Smaller font marks them as children of Products. */
 .Header-products {
   display: none;
 }
 
 @media (min-width: 700px) {
   .Header-products {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
   }
 }
 
-.Header-wrapper {
-  height: auto;
-  min-height: 65px;
+/* the gap between the trigger and the row is trigger padding, not margin,
+   so the cursor never leaves the hover area while crossing it */
+.Header-products .Header-navbar {
+  padding-right: 20px;
 }
 
-.Header-products-strip {
-  display: none;
-  flex-direction: column;
-  gap: 16px;
-  width: 92vw;
-  margin: 0 auto;
-  padding: 6px 0 22px 0;
-  box-sizing: border-box;
+/* doubled selector so this beats the `.Header-wrapper span { transition: inherit }`
+   rule above — otherwise the closing transition gets replaced and snaps shut */
+.Header-products .Header-products-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  /* closing: items retract at full opacity first; the clip collapse and
+     fade only mop up at the tail end */
+  transition: max-width 0.15s linear 0.3s, opacity 0.1s linear 0.35s;
 }
 
-@media (min-width: 700px) {
-  .Header-products-strip {
-    display: flex;
-  }
+.Header-products.open .Header-products-inline {
+  max-width: 300px;
+  opacity: 1;
+  /* opening: the clip expands right away */
+  transition: max-width 0.25s linear, opacity 0.2s linear;
 }
 
-.Header-products-strip a {
-  color: rgba(255, 255, 255, 0.6) !important;
+/* the whole row slides as one rigid unit at constant velocity */
+.Header-products-inline a {
   font-weight: 500;
-  font-size: 17.5px;
-  width: fit-content;
+  font-size: 14px;
+  letter-spacing: 0.01em;
+  transform: translateX(-70px);
+  transition: transform 0.35s linear;
 }
 
-.Header-products-strip a:hover {
+.Header-products.open .Header-products-inline a {
+  transform: translateX(0);
+}
+
+.Header-products-inline a:hover {
   color: white !important;
 }
 
-.Header-wrapper.scrolled .Header-products-strip a {
-  color: rgba(5, 5, 153, 0.55) !important;
-}
-
-.Header-wrapper.scrolled .Header-products-strip a:hover {
+.Header-wrapper.scrolled .Header-products-inline a:hover {
   color: var(--duke-blue) !important;
-}
-
-/* Push the hero content down while the products menu is open */
-#intro::before {
-  content: "";
-  display: block;
-  height: 0;
-  transition: height 0.25s ease;
-}
-
-body.products-open #intro::before {
-  height: 160px;
 }
 
 .Header-ctas {
