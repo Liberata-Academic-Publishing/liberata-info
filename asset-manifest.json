@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.e93e0b81.css",
-    "main.js": "/static/js/main.8644ee7f.js",
+    "main.css": "/static/css/main.7e57d673.css",
+    "main.js": "/static/js/main.8dc35212.js",
     "static/js/40.95b48be9.chunk.js": "/static/js/40.95b48be9.chunk.js",
     "static/media/BG.png": "/static/media/BG.6a943bc2f990b78b1e4e.png",
     "static/media/BG_overlay.png": "/static/media/BG_overlay.5e8eb93efec437e602b2.png",
@@ -29,7 +29,6 @@
     "static/media/viz_capital_over_time.svg": "/static/media/viz_capital_over_time.68f777c3019b1eaa9f59612d4fc18905.svg",
     "static/media/icon_cloud.svg": "/static/media/icon_cloud.15790607488cd1151756672590449d1f.svg",
     "static/media/output_chart.svg": "/static/media/output_chart.82ecdddf11943d5df47530c0f908df21.svg",
-    "static/media/icon_dollar.svg": "/static/media/icon_dollar.644f93f744d00602eda05189d53d72f5.svg",
     "static/media/graph_illustration.svg": "/static/media/graph_illustration.5532f4d3956830adfa1ee87c8bbd9a49.svg",
     "static/media/icon_book_alt.svg": "/static/media/icon_book_alt.3c2d029498dadb5b8facb02df50f9775.svg",
     "static/media/icon_pencil.svg": "/static/media/icon_pencil.5f7d4b05eea8eaffaa2c95faae5020ae.svg",
@@ -77,12 +76,12 @@
     "static/media/dot_methods.svg": "/static/media/dot_methods.4409db235685a15e2b96181ad293b9e3.svg",
     "static/media/dot_research.svg": "/static/media/dot_research.847dd39be44ef321c1ee432f2b6c646e.svg",
     "static/media/dot_publishing.svg": "/static/media/dot_publishing.c9abd2499ec7ff31974390a111d40f71.svg",
-    "main.e93e0b81.css.map": "/static/css/main.e93e0b81.css.map",
-    "main.8644ee7f.js.map": "/static/js/main.8644ee7f.js.map",
+    "main.7e57d673.css.map": "/static/css/main.7e57d673.css.map",
+    "main.8dc35212.js.map": "/static/js/main.8dc35212.js.map",
     "40.95b48be9.chunk.js.map": "/static/js/40.95b48be9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e93e0b81.css",
-    "static/js/main.8644ee7f.js"
+    "static/css/main.7e57d673.css",
+    "static/js/main.8dc35212.js"
   ]
 }
