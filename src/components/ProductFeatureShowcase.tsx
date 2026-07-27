@@ -1,5 +1,4 @@
 import { ReactNode, useState } from "react";
-import iconArrowRight from "../images/figma/products/icon_arrow_right.svg";
 import iconExpand from "../images/figma/products/icon_expand.svg";
 import iconMinimize from "../images/figma/products/icon_minimize.svg";
 import checkMark from "../images/figma/scriptura/check_mark.svg";
@@ -19,23 +18,20 @@ export type ShowcaseFeature = {
   expandable?: boolean;
 };
 
-// TODO: point at the real product apps once they exist
-function ExploreCta() {
-  return (
-    <div className="sf-explore">
-      <span>Explore</span>
-      <img src={iconArrowRight} alt="" />
-    </div>
-  );
-}
-
+// Grid state: every card carries an expand button (and is click-to-expand)
 function SmallCard({ feature, onExpand }: { feature: ShowcaseFeature; onExpand: () => void }) {
+  const expandable = feature.expandable !== false;
   return (
-    <div className="sf-card sf-card-small">
-      {feature.expandable !== false && (
-        <button type="button" className="sf-toggle" onClick={onExpand} aria-label={`Expand ${feature.name}`}>
+    <div
+      className={`sf-card sf-card-small ${expandable ? "sf-card-clickable" : ""}`}
+      onClick={expandable ? onExpand : undefined}
+      role={expandable ? "button" : undefined}
+      aria-label={expandable ? `Expand ${feature.name}` : undefined}
+    >
+      {expandable && (
+        <span className="sf-toggle">
           <img src={iconExpand} alt="" />
-        </button>
+        </span>
       )}
       <div className="sf-icon-tile sf-icon-tile-small">{feature.icon}</div>
       <p className="sf-small-name">{feature.name}</p>
@@ -44,18 +40,14 @@ function SmallCard({ feature, onExpand }: { feature: ShowcaseFeature; onExpand: 
   );
 }
 
-function CompactCard({ feature, onExpand }: { feature: ShowcaseFeature; onExpand: () => void }) {
+// While another card is expanded, the rest are display-only: no expand
+// button, not clickable. Minimize the featured card first, then expand.
+function CompactCard({ feature }: { feature: ShowcaseFeature }) {
   return (
     <div className="sf-card sf-card-compact">
-      {feature.expandable !== false && (
-        <button type="button" className="sf-toggle" onClick={onExpand} aria-label={`Expand ${feature.name}`}>
-          <img src={iconExpand} alt="" />
-        </button>
-      )}
       <div className="sf-icon-tile">{feature.icon}</div>
       <p className="sf-compact-name">{feature.name}</p>
       <p className="sf-compact-desc">{feature.altDesc}</p>
-      <ExploreCta />
     </div>
   );
 }
@@ -85,9 +77,8 @@ function FeaturedCard({ feature, onMinimize }: { feature: ShowcaseFeature; onMin
             </div>
           ))}
         </div>
-        <ExploreCta />
       </div>
-      <div className="sf-demo-placeholder">Demo carousel</div>
+      <div className="sf-demo-placeholder">Demo (coming soon)</div>
     </div>
   );
 }
@@ -113,7 +104,7 @@ function ProductFeatureShowcase({ features, largeSmallTitles = false }: { featur
       <FeaturedCard feature={expanded} onMinimize={() => setExpandedKey(null)} />
       <div className="sf-bottom-row">
         {rest.map((feature) => (
-          <CompactCard key={feature.key} feature={feature} onExpand={() => setExpandedKey(feature.key)} />
+          <CompactCard key={feature.key} feature={feature} />
         ))}
       </div>
     </div>

@@ -200,3 +200,8 @@
     min-height: 220px;
   }
 }
+
+/* whole shrunk card is the expand trigger (no separate icon) */
+.product-card-clickable {
+  cursor: pointer;
+}

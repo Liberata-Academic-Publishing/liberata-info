@@ -155,22 +155,6 @@
   height: 14px;
 }
 
-.sf-explore {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 1.6;
-  color: var(--duke-blue);
-  cursor: pointer;
-}
-
-.sf-explore img {
-  width: 20px;
-  height: 20px;
-}
-
 .sf-featured-left {
   display: flex;
   flex-direction: column;
@@ -315,4 +299,9 @@
     width: 100%;
     min-height: 260px;
   }
+}
+
+/* whole shrunk card is the expand trigger (no separate icon) */
+.sf-card-clickable {
+  cursor: pointer;
 }

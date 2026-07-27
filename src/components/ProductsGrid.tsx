@@ -4,7 +4,6 @@ import iconFileText from "../images/figma/products/icon_file_text.svg";
 import iconBarChart from "../images/figma/products/icon_bar_chart.svg";
 import iconUsers from "../images/figma/products/icon_users.svg";
 import iconArrowRight from "../images/figma/products/icon_arrow_right.svg";
-import iconExpand from "../images/figma/products/icon_expand.svg";
 import iconMinimize from "../images/figma/products/icon_minimize.svg";
 import "./ProductsGrid.css";
 
@@ -105,16 +104,16 @@ function ProductIcon({ icon }: { icon: string }) {
 
 function CompactCard({ product, onExpand }: { product: Product; onExpand: () => void }) {
   return (
-    <div className="product-card">
-      <button type="button" className="product-toggle" onClick={onExpand} aria-label={`Expand ${product.name}`}>
-        <img src={iconExpand} alt="" />
-      </button>
+    <div className="product-card product-card-clickable" onClick={onExpand} role="button" aria-label={`Expand ${product.name}`}>
       <div className="product-card-top">
         <ProductIcon icon={product.icon} />
         <p className="product-name">{product.name}</p>
         <p className="product-desc">{product.shortDesc}</p>
       </div>
-      <ExploreCta to={product.exploreTo} />
+      {/* stop the card's expand handler so Explore navigates cleanly */}
+      <span onClick={(e) => e.stopPropagation()}>
+        <ExploreCta to={product.exploreTo} />
+      </span>
     </div>
   );
 }
@@ -141,7 +140,7 @@ function FeaturedCard({ product, onMinimize }: { product: Product; onMinimize?: 
         </div>
         <ExploreCta to={product.exploreTo} />
       </div>
-      <div className="product-demo-placeholder">Demo carousel</div>
+      <div className="product-demo-placeholder">Demo (coming soon)</div>
     </div>
   );
 }
