@@ -1,0 +1,41 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="958" height="383.2" viewBox="0 0 958 383.2" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="visual-layer">
+<circle id="central-hub-glow" cx="655.432" cy="191.6" r="191.6" fill="url(#paint0_radial_0_4)" fill-opacity="0.1"/>
+<line id="Line" x1="483.529" y1="104.311" x2="655.164" y2="190.542" stroke="white" stroke-opacity="0.14902" stroke-width="2.395"/>
+<line id="Line_2" x1="483.954" y1="104.669" x2="631.646" y2="304.253" stroke="white" stroke-opacity="0.14902" stroke-width="2.395"/>
+<line id="Line_3" x1="436.046" y1="161.675" x2="654.788" y2="190.403" stroke="white" stroke-opacity="0.14902" stroke-width="2.395"/>
+<line id="Line_4" x1="436.554" y1="215.158" x2="654.528" y2="190.435" stroke="white" stroke-opacity="0.14902" stroke-width="2.395"/>
+<line id="Line_5" x1="436.198" y1="215.256" x2="663.723" y2="113.069" stroke="white" stroke-opacity="0.14902" stroke-width="2.395"/>
+<line id="Line_6" x1="482.474" y1="272.749" x2="654.113" y2="190.516" stroke="white" stroke-opacity="0.14902" stroke-width="2.395"/>
+<line id="Line_7" x1="654.171" y1="190.496" x2="732.408" y2="157.764" stroke="white" stroke-opacity="0.14902" stroke-width="2.395"/>
+<line id="Line_8" x1="654.579" y1="190.404" x2="830.191" y2="182.43" stroke="white" stroke-opacity="0.14902" stroke-width="2.395"/>
+<line id="Line_9" x1="655.107" y1="190.501" x2="809.185" y2="256.762" stroke="white" stroke-opacity="0.14902" stroke-width="2.395"/>
+<line id="Line_10" x1="655.581" y1="190.868" x2="701.884" y2="250.743" stroke="white" stroke-opacity="0.14902" stroke-width="2.395"/>
+<line id="Line_11" x1="655.819" y1="191.77" x2="639.855" y2="303.52" stroke="white" stroke-opacity="0.14902" stroke-width="2.395"/>
+<line id="Line_12" x1="435.809" y1="161.903" x2="631.4" y2="307.998" stroke="white" stroke-opacity="0.14902" stroke-width="2.395"/>
+<line id="Line_13" x1="759.48" y1="93.9571" x2="647.713" y2="309.507" stroke="white" stroke-opacity="0.14902" stroke-width="2.395"/>
+<line id="Line_14" x1="653.699" y1="192.349" x2="589.758" y2="112.537" stroke="white" stroke-opacity="0.14902" stroke-width="2.395"/>
+<line id="Line_15" x1="653.464" y1="191.345" x2="670.229" y2="114.705" stroke="white" stroke-opacity="0.14902" stroke-width="2.395"/>
+<line id="Line_16" x1="654.837" y1="190.42" x2="882.362" y2="229.539" stroke="white" stroke-opacity="0.14902" stroke-width="2.395"/>
+<line id="Line_17" x1="653.787" y1="190.754" x2="757.543" y2="86.9975" stroke="white" stroke-opacity="0.14902" stroke-width="2.395"/>
+<line id="Line_18" x1="774.551" y1="89.5048" x2="831.232" y2="166.943" stroke="white" stroke-opacity="0.14902" stroke-width="2.395"/>
+<line id="Line_19" x1="766.746" y1="93.0517" x2="815.444" y2="250.323" stroke="white" stroke-opacity="0.14902" stroke-width="2.395"/>
+<line id="Line_20" x1="841.782" y1="195.966" x2="823.42" y2="251.849" stroke="white" stroke-opacity="0.14902" stroke-width="2.395"/>
+<circle id="satellite-node" cx="736.862" cy="155.676" r="6.38667" fill="white" fill-opacity="0.75"/>
+<circle id="satellite-node_2" cx="847.032" cy="179.625" r="19.9583" fill="white" fill-opacity="0.75"/>
+<circle id="satellite-node_3" cx="820.288" cy="261.455" r="13.9708" fill="white" fill-opacity="0.75"/>
+<circle id="satellite-node_4" cx="700.936" cy="254.669" r="7.185" fill="white" fill-opacity="0.75"/>
+<circle id="satellite-node_5" cx="639.465" cy="316.139" r="14.37" fill="white" fill-opacity="0.75"/>
+<circle id="satellite-node_6" cx="579.191" cy="98.5949" r="19.5592" fill="white" fill-opacity="0.75"/>
+<circle id="satellite-node_7" cx="670.6" cy="110.169" r="7.98333" fill="white" fill-opacity="0.75"/>
+<circle id="satellite-node_8" cx="896.528" cy="230.718" r="14.37" fill="white" fill-opacity="0.75"/>
+<circle id="satellite-node_9" cx="765.202" cy="81.8302" r="13.9708" fill="white" fill-opacity="0.75"/>
+<circle id="central-hub-node" cx="654.633" cy="191.601" r="23.95" fill="white"/>
+</g>
+<defs>
+<radialGradient id="paint0_radial_0_4" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(655.432 191.6) rotate(90) scale(191.6)">
+<stop stop-color="white"/>
+<stop offset="0.798077" stop-color="#999999" stop-opacity="0"/>
+</radialGradient>
+</defs>
+</svg>
