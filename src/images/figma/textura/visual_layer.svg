@@ -1,6 +1,6 @@
 <svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="958" height="383.2" viewBox="0 0 958 383.2" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g id="visual-layer">
-<circle id="central-hub-glow" cx="655.432" cy="191.6" r="191.6" fill="url(#paint0_radial_0_139)" fill-opacity="0.1"/>
+<circle id="central-hub-glow" cx="655.432" cy="191.6" r="191.6" fill="url(#paint0_radial_0_4)" fill-opacity="0.1"/>
 <line id="Line" x1="483.529" y1="104.311" x2="655.164" y2="190.542" stroke="white" stroke-opacity="0.14902" stroke-width="2.395"/>
 <line id="Line_2" x1="483.954" y1="104.669" x2="631.646" y2="304.253" stroke="white" stroke-opacity="0.14902" stroke-width="2.395"/>
 <line id="Line_3" x1="436.046" y1="161.675" x2="654.788" y2="190.403" stroke="white" stroke-opacity="0.14902" stroke-width="2.395"/>
@@ -33,7 +33,7 @@
 <circle id="central-hub-node" cx="654.633" cy="191.601" r="23.95" fill="white"/>
 </g>
 <defs>
-<radialGradient id="paint0_radial_0_139" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(655.432 191.6) rotate(90) scale(191.6)">
+<radialGradient id="paint0_radial_0_4" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(655.432 191.6) rotate(90) scale(191.6)">
 <stop stop-color="white"/>
 <stop offset="0.798077" stop-color="#999999" stop-opacity="0"/>
 </radialGradient>

@@ -76,10 +76,15 @@
   text-underline-offset: 4px;
 }
 
+/* Figma hero composition (node 659:1728): mirrored network layer with a pill
+   card-stack overlapping its right side. At the 1440px design width the
+   composition starts at x=545 and bleeds 63px past the right edge; the calc
+   keeps that right-edge relationship on wider screens without ever sliding
+   left of the design position. */
 .TexturaHero-visual {
   position: absolute;
-  left: 545px;
-  top: 90px;
+  left: max(545px, calc(100vw - 895px));
+  top: 91px;
   width: 958px;
   pointer-events: none;
 }
@@ -87,43 +92,38 @@
 .TexturaHero-network {
   width: 100%;
   height: auto;
-  transform: scaleY(-1) rotate(180deg);
-  opacity: 0.9;
+  /* the design flips the exported layer horizontally */
+  transform: scaleX(-1);
+  /* the export carries 10% vertical overflow around the 319px design box */
+  margin-top: -32px;
 }
 
 .TexturaHero-cards {
   position: absolute;
   left: 473px;
-  top: 45px;
+  top: 47px;
   display: flex;
   flex-direction: column;
-  gap: 13px;
+  gap: 12.8px;
 }
 
 .TexturaHero-pill {
-  width: 192px;
-  height: 45px;
-  border-radius: 13px;
+  position: relative;
+  width: 191.6px;
+  height: 44.7px;
+  box-sizing: border-box;
+  border-radius: 12.8px;
   border: 2.4px solid rgba(255, 255, 255, 0.2);
   background: rgba(255, 255, 255, 0.05);
-  padding: 12px 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  justify-content: center;
 }
 
 .TexturaHero-pill span {
+  position: absolute;
   display: block;
   height: 4.8px;
   border-radius: 4px;
   background: rgba(255, 255, 255, 0.75);
   opacity: 0.4;
-}
-
-.TexturaHero-pill-0,
-.TexturaHero-pill-3 {
-  margin-left: 48px;
 }
 
 .TexturaBody {
