@@ -18,22 +18,16 @@ export type ShowcaseFeature = {
   expandable?: boolean;
 };
 
-// Grid state: every card carries an expand button (and is click-to-expand).
-// Passing no onExpand renders it display-only (used on mobile while another
-// card is expanded).
+// Grid state: expansion happens only via the expand button in the corner.
+// Passing no onExpand renders the card display-only.
 function SmallCard({ feature, onExpand }: { feature: ShowcaseFeature; onExpand?: () => void }) {
   const expandable = feature.expandable !== false && onExpand !== undefined;
   return (
-    <div
-      className={`sf-card sf-card-small ${expandable ? "sf-card-clickable" : ""}`}
-      onClick={expandable ? onExpand : undefined}
-      role={expandable ? "button" : undefined}
-      aria-label={expandable ? `Expand ${feature.name}` : undefined}
-    >
+    <div className="sf-card sf-card-small">
       {expandable && (
-        <span className="sf-toggle">
+        <button type="button" className="sf-toggle" onClick={onExpand} aria-label={`Expand ${feature.name}`}>
           <img src={iconExpand} alt="" />
-        </span>
+        </button>
       )}
       <div className="sf-icon-tile sf-icon-tile-small">{feature.icon}</div>
       <p className="sf-small-name">{feature.name}</p>
@@ -110,22 +104,31 @@ function ProductFeatureShowcase({ features, largeSmallTitles = false }: { featur
     </div>
   );
 
+  // Mobile is an accordion: tapping any card expands it and collapses the
+  // previous one, so nobody has to scroll back up to minimize first. The
+  // scroll nudge keeps the tapped card in view after the card above it
+  // collapses and shifts the layout.
+  const expandOnMobile = (key: string) => {
+    setExpandedKey(key);
+    setTimeout(() => {
+      document.getElementById(`sf-mobile-${key}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 60);
+  };
+
   return (
     <>
       <div className="sf-desktop">{desktop}</div>
       {/* Mobile: cards keep their order; the expanded one grows in place */}
       <div className={`sf-mobile ${titles}`}>
-        {features.map((feature) =>
-          feature.key === expandedKey ? (
-            <FeaturedCard key={feature.key} feature={feature} onMinimize={() => setExpandedKey(null)} />
-          ) : (
-            <SmallCard
-              key={feature.key}
-              feature={feature}
-              onExpand={expanded ? undefined : () => setExpandedKey(feature.key)}
-            />
-          )
-        )}
+        {features.map((feature) => (
+          <div className="sf-mobile-slot" id={`sf-mobile-${feature.key}`} key={feature.key}>
+            {feature.key === expandedKey ? (
+              <FeaturedCard feature={feature} onMinimize={() => setExpandedKey(null)} />
+            ) : (
+              <SmallCard feature={feature} onExpand={() => expandOnMobile(feature.key)} />
+            )}
+          </div>
+        ))}
       </div>
     </>
   );
