@@ -46,7 +46,7 @@ function EcosystemDiagram() {
         <div className="eco-pills">
           <div className="eco-pill">Academic Capital</div>
           <div className="eco-pill">Contribution shares</div>
-          <div className="eco-pill">Academic Taxonomy</div>
+          <div className="eco-pill">Academic taxonomy</div>
           <div className="eco-pill">Entity hierarchy</div>
         </div>
       </div>
