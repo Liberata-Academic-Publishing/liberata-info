@@ -23,6 +23,16 @@ import iconCloudArrow from "../images/figma/textura/icon_cloud_arrow.svg";
 import "../App.css";
 import "./TexturaPage.css";
 
+// Hero pill-card stack from the Figma hero (node 659:2078). The design mirrors
+// the whole stack horizontally, so bar positions here are the mirror-corrected
+// [left, top, width] within each 191.6x44.7 pill.
+const HERO_PILLS: { indent: number; bars: [number, number, number][] }[] = [
+  { indent: 0, bars: [[106.2, 29.5, 69.5], [141.3, 21.6, 40.7], [56.7, 21.6, 82.2], [71.9, 29.5, 31.9]] },
+  { indent: 47.9, bars: [[130.1, 29.5, 45.5], [117.4, 21.6, 64.7], [56.7, 21.6, 58.3], [71.9, 29.5, 55.9], [91.8, 13.6, 55.9]] },
+  { indent: 47.9, bars: [[157.3, 29.5, 18.4], [162.9, 21.6, 19.2], [114.2, 21.6, 46.3], [34.3, 21.6, 77.4], [71.9, 29.5, 83.0]] },
+  { indent: 0, bars: [[115.8, 29.5, 32.7], [74.2, 13.6, 74.2], [36.7, 13.6, 35.1], [141.3, 21.6, 40.7], [56.7, 21.6, 82.2]] },
+];
+
 const KPIS = [
   { label: "total_capital", value: "812,412", spark: sparkCapital },
   { label: "volatility", value: "0.24", spark: sparkVolatility },
@@ -109,11 +119,11 @@ function TexturaPage() {
         <div className="TexturaHero-visual" aria-hidden="true">
           <img className="TexturaHero-network" src={visualLayer} alt="" />
           <div className="TexturaHero-cards">
-            {[0, 1, 2, 3].map((i) => (
-              <div className={`TexturaHero-pill TexturaHero-pill-${i}`} key={i}>
-                <span style={{ width: "35%" }} />
-                <span style={{ width: "55%" }} />
-                <span style={{ width: "42%" }} />
+            {HERO_PILLS.map((pill, i) => (
+              <div className="TexturaHero-pill" style={{ marginLeft: pill.indent }} key={i}>
+                {pill.bars.map(([x, y, w], j) => (
+                  <span key={j} style={{ left: x, top: y, width: w }} />
+                ))}
               </div>
             ))}
           </div>

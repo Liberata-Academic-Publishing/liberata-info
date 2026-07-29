@@ -18,9 +18,11 @@ export type ShowcaseFeature = {
   expandable?: boolean;
 };
 
-// Grid state: every card carries an expand button (and is click-to-expand)
-function SmallCard({ feature, onExpand }: { feature: ShowcaseFeature; onExpand: () => void }) {
-  const expandable = feature.expandable !== false;
+// Grid state: every card carries an expand button (and is click-to-expand).
+// Passing no onExpand renders it display-only (used on mobile while another
+// card is expanded).
+function SmallCard({ feature, onExpand }: { feature: ShowcaseFeature; onExpand?: () => void }) {
+  const expandable = feature.expandable !== false && onExpand !== undefined;
   return (
     <div
       className={`sf-card sf-card-small ${expandable ? "sf-card-clickable" : ""}`}
@@ -88,19 +90,17 @@ function ProductFeatureShowcase({ features, largeSmallTitles = false }: { featur
 
   const expanded = features.find((f) => f.key === expandedKey);
   const rest = features.filter((f) => f.key !== expandedKey);
+  const titles = largeSmallTitles ? "sf-large-titles" : "";
 
-  if (!expanded) {
-    return (
-      <div className={`sf-grid ${largeSmallTitles ? "sf-large-titles" : ""}`}>
-        {features.map((feature) => (
-          <SmallCard key={feature.key} feature={feature} onExpand={() => setExpandedKey(feature.key)} />
-        ))}
-      </div>
-    );
-  }
-
-  return (
-    <div className={`sf-expanded ${largeSmallTitles ? "sf-large-titles" : ""}`}>
+  // Desktop: the expanded card is promoted to a featured row on top
+  const desktop = !expanded ? (
+    <div className={`sf-grid ${titles}`}>
+      {features.map((feature) => (
+        <SmallCard key={feature.key} feature={feature} onExpand={() => setExpandedKey(feature.key)} />
+      ))}
+    </div>
+  ) : (
+    <div className={`sf-expanded ${titles}`}>
       <FeaturedCard feature={expanded} onMinimize={() => setExpandedKey(null)} />
       <div className="sf-bottom-row">
         {rest.map((feature) => (
@@ -108,6 +108,26 @@ function ProductFeatureShowcase({ features, largeSmallTitles = false }: { featur
         ))}
       </div>
     </div>
+  );
+
+  return (
+    <>
+      <div className="sf-desktop">{desktop}</div>
+      {/* Mobile: cards keep their order; the expanded one grows in place */}
+      <div className={`sf-mobile ${titles}`}>
+        {features.map((feature) =>
+          feature.key === expandedKey ? (
+            <FeaturedCard key={feature.key} feature={feature} onMinimize={() => setExpandedKey(null)} />
+          ) : (
+            <SmallCard
+              key={feature.key}
+              feature={feature}
+              onExpand={expanded ? undefined : () => setExpandedKey(feature.key)}
+            />
+          )
+        )}
+      </div>
+    </>
   );
 }
 

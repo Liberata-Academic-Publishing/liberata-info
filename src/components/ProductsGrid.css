@@ -5,20 +5,6 @@
   width: 100%;
 }
 
-.products-expanded {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  width: 100%;
-}
-
-.products-bottom-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  width: 100%;
-}
-
 .product-card {
   position: relative;
   background: var(--grey-background);
@@ -86,104 +72,15 @@
   height: 20px;
 }
 
-.product-toggle {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 28px;
-  height: 28px;
-  padding: 7px;
-  border-radius: 6px;
-  background: #e8e8e8;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.product-toggle img {
-  width: 14px;
-  height: 14px;
-}
-
-.product-card-featured {
-  flex-direction: row;
-  gap: 40px;
-  min-height: 500px;
-  justify-content: flex-start;
-}
-
-.product-featured-left {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  align-items: flex-start;
-  width: 46%;
-  flex-shrink: 0;
-}
-
-.product-features {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  width: 100%;
-}
-
-.product-feature {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.5;
-  color: var(--grey-text);
-}
-
-.product-feature-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 3px;
-  background: var(--duke-blue);
-  flex-shrink: 0;
-}
-
-.product-demo-placeholder {
-  flex: 1;
-  align-self: stretch;
-  background: #e5e5e5;
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 500;
-  font-size: 14px;
-  color: var(--grey-text);
-}
-
-.products-mobile {
-  display: none;
-}
-
 @media (max-width: 699px) {
-  .products-desktop {
-    display: none;
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
 
-  .products-mobile {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    width: 100%;
-  }
-
-  .product-card-featured {
-    flex-direction: column;
-    gap: 24px;
+  .product-card {
     min-height: 0;
     padding: 28px 24px;
-  }
-
-  .product-featured-left {
-    width: 100%;
   }
 
   .product-name {
@@ -193,15 +90,4 @@
   .product-desc {
     font-size: 18px;
   }
-
-  .product-demo-placeholder {
-    flex: none;
-    width: 100%;
-    min-height: 220px;
-  }
-}
-
-/* whole shrunk card is the expand trigger (no separate icon) */
-.product-card-clickable {
-  cursor: pointer;
 }

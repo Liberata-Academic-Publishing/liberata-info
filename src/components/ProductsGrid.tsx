@@ -1,10 +1,8 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import iconFileText from "../images/figma/products/icon_file_text.svg";
 import iconBarChart from "../images/figma/products/icon_bar_chart.svg";
 import iconUsers from "../images/figma/products/icon_users.svg";
 import iconArrowRight from "../images/figma/products/icon_arrow_right.svg";
-import iconMinimize from "../images/figma/products/icon_minimize.svg";
 import "./ProductsGrid.css";
 
 type Product = {
@@ -102,82 +100,27 @@ function ProductIcon({ icon }: { icon: string }) {
   );
 }
 
-function CompactCard({ product, onExpand }: { product: Product; onExpand: () => void }) {
+// No expanded view: every card links straight to its product page
+function ProductCard({ product }: { product: Product }) {
   return (
-    <div className="product-card product-card-clickable" onClick={onExpand} role="button" aria-label={`Expand ${product.name}`}>
+    <div className="product-card">
       <div className="product-card-top">
         <ProductIcon icon={product.icon} />
         <p className="product-name">{product.name}</p>
         <p className="product-desc">{product.shortDesc}</p>
       </div>
-      {/* stop the card's expand handler so Explore navigates cleanly */}
-      <span onClick={(e) => e.stopPropagation()}>
-        <ExploreCta to={product.exploreTo} />
-      </span>
-    </div>
-  );
-}
-
-function FeaturedCard({ product, onMinimize }: { product: Product; onMinimize?: () => void }) {
-  return (
-    <div className="product-card product-card-featured">
-      {onMinimize && (
-        <button type="button" className="product-toggle" onClick={onMinimize} aria-label={`Minimize ${product.name}`}>
-          <img src={iconMinimize} alt="" />
-        </button>
-      )}
-      <div className="product-featured-left">
-        <ProductIcon icon={product.icon} />
-        <p className="product-name">{product.name}</p>
-        <p className="product-desc">{product.longDesc}</p>
-        <div className="product-features">
-          {product.features.map((feature) => (
-            <div className="product-feature" key={feature}>
-              <span className="product-feature-dot" />
-              <span>{feature}</span>
-            </div>
-          ))}
-        </div>
-        <ExploreCta to={product.exploreTo} />
-      </div>
-      <div className="product-demo-placeholder">Demo (coming soon)</div>
+      <ExploreCta to={product.exploreTo} />
     </div>
   );
 }
 
 function ProductsGrid() {
-  const [expandedKey, setExpandedKey] = useState<string | null>(null);
-
-  const expanded = PRODUCTS.find((p) => p.key === expandedKey);
-  const rest = PRODUCTS.filter((p) => p.key !== expandedKey);
-
-  const desktop = !expanded ? (
-    <div className="products-grid products-desktop">
+  return (
+    <div className="products-grid">
       {PRODUCTS.map((product) => (
-        <CompactCard key={product.key} product={product} onExpand={() => setExpandedKey(product.key)} />
+        <ProductCard key={product.key} product={product} />
       ))}
     </div>
-  ) : (
-    <div className="products-expanded products-desktop">
-      <FeaturedCard product={expanded} onMinimize={() => setExpandedKey(null)} />
-      <div className="products-bottom-row">
-        {rest.map((product) => (
-          <CompactCard key={product.key} product={product} onExpand={() => setExpandedKey(product.key)} />
-        ))}
-      </div>
-    </div>
-  );
-
-  return (
-    <>
-      {desktop}
-      {/* Mobile: every product shown expanded, stacked vertically */}
-      <div className="products-mobile">
-        {PRODUCTS.map((product) => (
-          <FeaturedCard key={product.key} product={product} />
-        ))}
-      </div>
-    </>
   );
 }
 
