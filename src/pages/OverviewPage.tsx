@@ -215,7 +215,7 @@ function OverviewPage() {
               <div style={{ color: 'var(--grey-text)', fontSize: '1.2rem', marginBottom: '10vh' }}>Watch a brief overview video explaining the Liberata system.</div>
 
               {/* Since they are large files, our explainer videos must be stored in AWS. */}
-              <video ref={videoRef} src="https://liberata-overview-videos.s3.us-east-1.amazonaws.com/Cover_Edited_Liberata+Overview.mp4" width="100%" id="section-one-video" controls muted />
+              <video ref={videoRef} src="https://pub-c93f131df06d44f88212bf9bdb396d2c.r2.dev/Cover_Edited_Liberata_Overview.mp4" width="100%" id="section-one-video" controls muted />
             </div>
             <div className="App-section App-col-left-section" id="App-solutions">
               <div className="section-heading">/Key Concepts</div>
