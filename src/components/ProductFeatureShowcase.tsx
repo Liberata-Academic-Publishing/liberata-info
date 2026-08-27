@@ -1,6 +1,7 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import iconExpand from "../images/figma/products/icon_expand.svg";
 import iconMinimize from "../images/figma/products/icon_minimize.svg";
+import iconCarouselNext from "../images/figma/products/icon_carousel_next.svg";
 import checkMark from "../images/figma/scriptura/check_mark.svg";
 import "./ProductFeatureShowcase.css";
 
@@ -14,6 +15,11 @@ export type ShowcaseFeature = {
   headline: string;
   longDesc: string;
   points: { lead: string; text: string }[];
+  // Product screenshots for the demo slot, in slide order. Features without
+  // any fall back to the "Demo (coming soon)" placeholder; a single slide
+  // renders without carousel controls.
+  demo?: string[];
+  demoAlt?: string;
   // Features without expanded designs yet render without an expand button
   expandable?: boolean;
 };
@@ -48,18 +54,92 @@ function CompactCard({ feature }: { feature: ShowcaseFeature }) {
   );
 }
 
+// The demo slot. One slide renders as a plain screenshot; several add the
+// design's dot row and next arrow (Figma 1056:15995 / Component 5). Only the
+// current slide is in the DOM, so the other slides cost nothing until asked
+// for — the next one is warmed in the background to keep stepping instant.
+export function DemoCarousel({ slides, name, alt }: { slides: string[]; name: string; alt: string }) {
+  const [index, setIndex] = useState(0);
+  const touchX = useRef<number | null>(null);
+  const count = slides.length;
+  const go = (i: number) => setIndex((i + count) % count);
+
+  useEffect(() => {
+    if (count < 2) return;
+    const next = new Image();
+    next.src = slides[(index + 1) % count];
+  }, [index, count, slides]);
+
+  if (count < 2) {
+    return (
+      <div className="sf-demo-placeholder sf-demo-image">
+        <img src={slides[0]} alt={alt} />
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className="sf-demo-placeholder sf-demo-image sf-demo-carousel"
+      onKeyDown={(e) => {
+        if (e.key === "ArrowRight") go(index + 1);
+        if (e.key === "ArrowLeft") go(index - 1);
+      }}
+      onTouchStart={(e) => { touchX.current = e.touches[0].clientX; }}
+      onTouchEnd={(e) => {
+        if (touchX.current === null) return;
+        const dx = e.changedTouches[0].clientX - touchX.current;
+        if (Math.abs(dx) > 40) go(index + (dx < 0 ? 1 : -1));
+        touchX.current = null;
+      }}
+    >
+      <img src={slides[index]} alt={`${alt} (${index + 1} of ${count})`} />
+      <div className="sf-demo-dots">
+        {slides.map((slide, i) => (
+          <button
+            key={slide}
+            type="button"
+            className={`sf-demo-dot${i === index ? " is-active" : ""}`}
+            aria-label={`Show ${name} demo ${i + 1} of ${count}`}
+            aria-current={i === index}
+            onClick={() => setIndex(i)}
+          />
+        ))}
+      </div>
+      <button type="button" className="sf-demo-next" aria-label={`Next ${name} demo`} onClick={() => go(index + 1)}>
+        <img src={iconCarouselNext} alt="" />
+      </button>
+    </div>
+  );
+}
+
 function FeaturedCard({ feature, onMinimize }: { feature: ShowcaseFeature; onMinimize: () => void }) {
   return (
     <div className="sf-card sf-card-featured">
       <button type="button" className="sf-toggle" onClick={onMinimize} aria-label={`Minimize ${feature.name}`}>
         <img src={iconMinimize} alt="" />
       </button>
+      {/* Design puts the demo under the headline in the left column, with the
+          description and checklist filling the right one */}
       <div className="sf-featured-left">
         <div className="sf-featured-label-row">
           <div className="sf-icon-tile">{feature.icon}</div>
           <span className="sf-featured-label">{feature.label}</span>
         </div>
         <p className="sf-featured-headline">{feature.headline}</p>
+        {feature.demo?.length ? (
+          /* keyed so switching features restarts the carousel at slide 1 */
+          <DemoCarousel
+            key={feature.key}
+            slides={feature.demo}
+            name={feature.name}
+            alt={feature.demoAlt ?? `${feature.name} preview`}
+          />
+        ) : (
+          <div className="sf-demo-placeholder">Demo (coming soon)</div>
+        )}
+      </div>
+      <div className="sf-featured-right">
         <p className="sf-featured-desc">{feature.longDesc}</p>
         <div className="sf-points">
           {feature.points.map((point) => (
@@ -74,7 +154,6 @@ function FeaturedCard({ feature, onMinimize }: { feature: ShowcaseFeature; onMin
           ))}
         </div>
       </div>
-      <div className="sf-demo-placeholder">Demo (coming soon)</div>
     </div>
   );
 }
