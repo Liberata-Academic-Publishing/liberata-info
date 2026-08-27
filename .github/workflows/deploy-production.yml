@@ -27,9 +27,8 @@ jobs:
       - name: Build
         run: pnpm build
         env:
-          CI: false  # legacy lint warnings should not fail the build
-          REACT_APP_SUPABASE_URL: ${{ secrets.REACT_APP_SUPABASE_URL }}
-          REACT_APP_SUPABASE_ANON_KEY: ${{ secrets.REACT_APP_SUPABASE_ANON_KEY }}
+          VITE_SUPABASE_URL: ${{ secrets.REACT_APP_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.REACT_APP_SUPABASE_ANON_KEY }}
       - run: cp CNAME build/
       - name: Publish to gh-pages
         uses: peaceiris/actions-gh-pages@v4

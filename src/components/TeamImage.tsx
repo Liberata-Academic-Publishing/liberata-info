@@ -3,6 +3,13 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import './TeamImage.css';
 
+// Vite has no require(), so the team photos are resolved at build time.
+// Eager so lookups stay synchronous, matching the old behaviour.
+const TEAM_IMAGES = import.meta.glob<string>(
+    "../images/team_images/*.{png,jpg,jpeg}",
+    { eager: true, import: "default" }
+);
+
 type Member = {
     name: string;
     role: string;
@@ -41,9 +48,8 @@ function TeamImage({id, title, tagline, members, useCarousel = true, itemsPerSli
         const formatted = name.toLowerCase().replace(/\s+/g, "_");
         const extensions = ["png", "jpg", "jpeg"];
         for (const ext of extensions) {
-            try {
-                return require(`../images/team_images/${formatted}.${ext}`);
-            } catch {}
+            const hit = TEAM_IMAGES[`../images/team_images/${formatted}.${ext}`];
+            if (hit) return hit;
         }
         return "/images/team_images/default.png";
         };
