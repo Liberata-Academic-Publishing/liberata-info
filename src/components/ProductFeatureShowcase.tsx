@@ -66,8 +66,10 @@ export function DemoCarousel({ slides, name, alt }: { slides: string[]; name: st
 
   useEffect(() => {
     if (count < 2) return;
-    const next = new Image();
-    next.src = slides[(index + 1) % count];
+    for (const offset of [1, -1]) {
+      const neighbour = new Image();
+      neighbour.src = slides[(index + offset + count) % count];
+    }
   }, [index, count, slides]);
 
   if (count < 2) {
@@ -94,6 +96,9 @@ export function DemoCarousel({ slides, name, alt }: { slides: string[]; name: st
       }}
     >
       <img src={slides[index]} alt={`${alt} (${index + 1} of ${count})`} />
+      <button type="button" className="sf-demo-prev" aria-label={`Previous ${name} demo`} onClick={() => go(index - 1)}>
+        <img src={iconCarouselNext} alt="" />
+      </button>
       <div className="sf-demo-dots">
         {slides.map((slide, i) => (
           <button

@@ -337,22 +337,41 @@
 
 /* right edge, centred on the whole box — the design overlaps it onto the
    screenshot rather than clearing it */
+.sf-demo-prev,
 .sf-demo-next {
   position: absolute;
-  right: 9px;
   top: 50%;
   transform: translateY(-50%);
-  width: 20px;
-  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
   padding: 0;
   border: none;
   background: none;
   cursor: pointer;
 }
 
+/* 3px + the button's 6px of internal padding keeps each glyph's outer edge at
+   the same 9px inset the next arrow had when the button was icon-sized */
+.sf-demo-prev {
+  left: 3px;
+}
+
+.sf-demo-next {
+  right: 3px;
+}
+
+.sf-demo-prev img,
 .sf-demo-next img {
-  width: 20px;
-  height: 20px;
+  width: 32px;
+  height: 32px;
+}
+
+/* one asset for both directions */
+.sf-demo-prev img {
+  transform: scaleX(-1);
 }
 
 /* Four cards across don't fit at the narrow end of the desktop range (they
