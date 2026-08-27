@@ -16,9 +16,10 @@ import BetaSignupPage from './pages/BetaSignupPage';
 // import NewsPage from './pages/NewsPage';
 import ScrollToTop from './utils/ScrollToTop';
 
-// Serve from a subpath when PUBLIC_URL has one (e.g. the staging Pages site);
-// resolves to "/" for production builds where PUBLIC_URL is the bare domain.
-const BASENAME = new URL(process.env.PUBLIC_URL || "/", "https://liberata.info").pathname;
+// Serve from a subpath when the build has one (e.g. the staging Pages site).
+// Vite sets BASE_URL from the `base` option, so this is "/staging/" there and
+// "/" for production.
+const BASENAME = import.meta.env.BASE_URL;
 
 function App() {
   return(
