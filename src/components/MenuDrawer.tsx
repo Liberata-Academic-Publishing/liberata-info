@@ -65,6 +65,11 @@ function MenuDrawer({ onContact = () => { } }: { onContact?: () => void }) {
             <ListItemText primary="Norma" />
           </ListItemButton>
         </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton component={Link} to="/faqs">
+            <ListItemText primary="FAQs" />
+          </ListItemButton>
+        </ListItem>
         {/* Temporarily hidden until content is curated:
         <ListItem disablePadding>
           <ListItemButton component={Link} to="/research">
