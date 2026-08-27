@@ -3,13 +3,11 @@ import Header from '../components/Header';
 import Hook from '../components/Hook';
 import KeyConcepts from '../components/KeyConcepts';
 import AcademicPublishingProblems from '../components/AcademicPublishingProblems'
-import FAQAccordion from '../components/FAQAccordion';
 import '../App.css';
 
 function OverviewPage() {
   const introRef = useRef<HTMLDivElement | null>(null);
   const overlayRef = useRef<HTMLDivElement | null>(null);
-  const videoRef = useRef(null);
 
   const MISSION_TEXT = "To democratize an academic review system influenced by politics";
   const TYPING_SPEED = 25;
@@ -39,14 +37,10 @@ function OverviewPage() {
   useEffect(() => {
     const missionSection = document.getElementById("App-mission");
     const academicProblemsSection = document.getElementById("App-publishing-problems");
-    const overviewVideoSection = document.getElementById("App-overview-video");
     const solutionSection = document.getElementById("App-solutions");
-    const faqSection = document.getElementById("App-faq");
     const missionNav = document.getElementById("mission-nav");
     const acaPublishNav = document.getElementById("acaPublish-nav")
-    const overviewNav = document.getElementById("overview-nav");
     const solutionNav = document.getElementById("solution-nav");
-    const faqNav = document.getElementById("faq-nav");
 
     let prev: any;
     const observerOptions = {
@@ -72,22 +66,10 @@ function OverviewPage() {
                 prev = acaPublishNav;
               }
               break;
-            case "App-overview-video":
-              if (overviewNav) {
-                overviewNav.classList.add('section-active');
-                prev = overviewNav;
-              }
-              break;
             case "App-solutions":
               if (solutionNav) {
                 solutionNav.classList.add('section-active');
                 prev = solutionNav;
-              }
-              break;
-            case "App-faq":
-              if (faqNav) {
-                faqNav.classList.add('section-active');
-                prev = faqNav;
               }
               break;
             default:
@@ -102,9 +84,7 @@ function OverviewPage() {
     const observer = new IntersectionObserver(observerCallback, observerOptions);
     missionSection && observer.observe(missionSection);
     academicProblemsSection && observer.observe(academicProblemsSection);
-    overviewVideoSection && observer.observe(overviewVideoSection);
     solutionSection && observer.observe(solutionSection);
-    faqSection && observer.observe(faqSection);
     return () => observer.disconnect();
   }, []);
 
@@ -210,30 +190,16 @@ function OverviewPage() {
                 Our existing academic review system is influenced by politics in places where it should be impartial. With an open-source publishing platform that follows a shareholder model distribution of credit, Liberata seeks to reward all academic contributors fairly.
               </div>
             </div>
-            <div className="App-section App-col-left-section" id="App-overview-video">
-              <div className="section-heading">/The Liberata System</div>
-              <div style={{ color: 'var(--grey-text)', fontSize: '1.2rem', marginBottom: '10vh' }}>Watch a brief overview video explaining the Liberata system.</div>
-
-              {/* Since they are large files, our explainer videos must be stored in AWS. */}
-              <video ref={videoRef} src="https://liberata-overview-videos.s3.us-east-1.amazonaws.com/Cover_Edited_Liberata+Overview.mp4" width="100%" id="section-one-video" controls muted />
-            </div>
             <div className="App-section App-col-left-section" id="App-solutions">
               <div className="section-heading">/Key Concepts</div>
               <KeyConcepts />
-            </div>
-            <div className="App-section App-col-left-section" id="App-faq">
-              <div className="section-heading">/FAQ</div>
-              <div id="faq-heading">Frequently Asked Questions</div>
-              <FAQAccordion />
             </div>
           </div>
 
           <div className="App-column-right">
             <a href="#App-publishing-problems" id="acaPublish-nav">Academic Publishing Problems</a>
             <a href="#App-mission" id="mission-nav">Liberata's Mission</a>
-            <a href="#App-overview-video" id="overview-nav">The Liberata System</a>
             <a href="#App-solutions" id="solution-nav">Key Concepts</a>
-            <a href="#App-faq" id="faq-nav">FAQ</a>
           </div>
         </div>
 
