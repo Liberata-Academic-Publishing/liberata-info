@@ -69,6 +69,9 @@ function Header({ scrollToSection = () => { }, forceLight = false }) {
                 <Link to="/products/norma" tabIndex={productsOpen ? 0 : -1}>Norma</Link>
               </span>
             </span>
+            <NavLink to="/faqs" className="Header-navbar">
+              FAQs
+            </NavLink>
             {/* Temporarily hidden until content is curated:
             <NavLink to="/research" className="Header-navbar">
               Research

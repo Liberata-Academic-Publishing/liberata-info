@@ -6,6 +6,30 @@ import iconSearch from "../images/figma/mensura/icon_search.svg";
 import iconDatabase from "../images/figma/mensura/icon_database.svg";
 import iconChartArrow from "../images/figma/mensura/icon_chart_arrow.svg";
 import iconChartBubble from "../images/figma/mensura/icon_chart_bubble.svg";
+import iconCohorts from "../images/figma/mensura/icon_cohorts.svg";
+import demoChart1 from "../images/figma/mensura/demo_chart_1.png";
+import demoChart2 from "../images/figma/mensura/demo_chart_2.png";
+import demoChart3 from "../images/figma/mensura/demo_chart_3.png";
+import demoChart4 from "../images/figma/mensura/demo_chart_4.png";
+import demoChart5 from "../images/figma/mensura/demo_chart_5.png";
+import demoChart6 from "../images/figma/mensura/demo_chart_6.png";
+import demoDataframe1 from "../images/figma/mensura/demo_dataframe_1.png";
+import demoDataframe2 from "../images/figma/mensura/demo_dataframe_2.png";
+import demoDataframe3 from "../images/figma/mensura/demo_dataframe_3.png";
+import demoDataframe4 from "../images/figma/mensura/demo_dataframe_4.png";
+import demoDataframe5 from "../images/figma/mensura/demo_dataframe_5.png";
+import demoDataframe6 from "../images/figma/mensura/demo_dataframe_6.png";
+import demoInspect1 from "../images/figma/mensura/demo_inspect_1.png";
+import demoInspect2 from "../images/figma/mensura/demo_inspect_2.png";
+import demoInspect3 from "../images/figma/mensura/demo_inspect_3.png";
+import demoInspect4 from "../images/figma/mensura/demo_inspect_4.png";
+import demoInspect5 from "../images/figma/mensura/demo_inspect_5.png";
+import demoInspect6 from "../images/figma/mensura/demo_inspect_6.png";
+import demoCohorts1 from "../images/figma/mensura/demo_cohorts_1.png";
+import demoCohorts2 from "../images/figma/mensura/demo_cohorts_2.png";
+import demoCohorts3 from "../images/figma/mensura/demo_cohorts_3.png";
+import demoCohorts4 from "../images/figma/mensura/demo_cohorts_4.png";
+import demoCohorts5 from "../images/figma/mensura/demo_cohorts_5.png";
 import imgDataframe from "../images/dataframe_comparison.png";
 import imgChart from "../images/chart_example.png";
 import "../App.css";
@@ -26,6 +50,8 @@ const FEATURES: ShowcaseFeature[] = [
     gridDesc: "Deep entity profiles for researchers, labs, departments, institutions, fields, and regions with Liberata-native metrics.",
     altDesc: "Deep entity profiles for researchers, labs, departments, institutions, fields, and regions with Liberata-native metrics.",
     label: "/Inspect",
+    demo: [demoInspect1, demoInspect2, demoInspect3, demoInspect4, demoInspect5, demoInspect6],
+    demoAlt: "Mensura entity profile: a search bar above a dashboard of metric cards for the selected entity",
     headline: "Every entity, fully explained",
     longDesc:
       "Search any researcher, lab, institution, field, or region and open a dashboard built around it — what they publish, where their academic capital comes from, and how they stack up against peers. No stitching together five different systems to get one answer.",
@@ -43,11 +69,13 @@ const FEATURES: ShowcaseFeature[] = [
     gridDesc: "A spreadsheet-style workspace to line entities up side by side across any set of metrics. Sort, filter, and export benchmarking tables in seconds.",
     altDesc: "A spreadsheet-style workspace to line entities up side by side across any set of metrics. Sort, filter, and export benchmarking tables in seconds.",
     label: "/Dataframe",
+    demo: [demoDataframe1, demoDataframe2, demoDataframe3, demoDataframe4, demoDataframe5, demoDataframe6],
+    demoAlt: "Mensura dataframe: entities as rows and metrics as sortable columns in a comparison table",
     headline: "Build the table you actually need",
     longDesc:
       "Add entities as rows, metrics as columns, and build a comparison table across researchers, institutions, fields, regions, or labs. No flipping between tabs, no rebuilding the same spreadsheet from scratch every time.",
     points: [
-      { lead: "Rows for entities, columns for metrics.", text: "Compare ten researchers or a hundred institutions in the same table. Mixed entity types are labeled clearly, so a table of labs and countries never gets confusing" },
+      { lead: "Rows for entities, columns for metrics.", text: "Compare ten researchers or a hundred institutions in the same table. Mixed entity types are labeled clearly, so a table of labs and countries never gets confusing." },
       { lead: "Never manually saved.", text: "Every entity, metric, and layout choice saves automatically as you work — no Save button, no starting over." },
       { lead: "A real spreadsheet.", text: "Sort, filter, resize, collapse, and highlight columns and rows, the same way you already work in a table." },
       { lead: "Reusable, not disposable.", text: "Come back to a saved comparison later, or export it as CSV, TSV, XLSX, or PDF when it's ready to leave the platform." },
@@ -60,6 +88,8 @@ const FEATURES: ShowcaseFeature[] = [
     gridDesc: "Track output, impact, and academic capital over time. See trajectories and field dynamics that a single number can't show.",
     altDesc: "Track output, impact, and academic capital over time. See trajectories and field dynamics that a single number can't show.",
     label: "/Chart",
+    demo: [demoChart1, demoChart2, demoChart3, demoChart4, demoChart5, demoChart6],
+    demoAlt: "Mensura chart builder: the entity and cohort picker open over an empty chart canvas",
     headline: "See the pattern, not just the numbers",
     longDesc:
       "Pick entities and metrics in any order and let the chart build itself — time series, scatter, bar, histogram, or bubble. Mark the spike, the drop, the turning point, and explain why it happened.",
@@ -68,6 +98,25 @@ const FEATURES: ShowcaseFeature[] = [
       { lead: "Six ways to ask the question.", text: "Time series for trends, scatter and bubble for relationships, bar for rankings, histogram for distributions — each with the exact controls that chart type needs." },
       { lead: "Explain the moment.", text: "Drop a pin on a spike or anomaly and attach a note, right on the chart, right where it happened." },
       { lead: "Ready when you are.", text: "Every change saves automatically. Export to image or PDF, or share a view-only link when it's time to hand it off." },
+    ],
+  },
+  {
+    key: "cohorts",
+    name: "Cohorts",
+    icon: <img className="sf-icon-cohorts" src={iconCohorts} alt="" />,
+    gridDesc: "A comparison group built from entity type, geography, research area, and organization — as a live rule or a fixed list you pick yourself.",
+    altDesc: "A comparison group built from entity type, geography, research area, and organization — as a live rule or a fixed list you pick yourself.",
+    label: "/Cohorts",
+    demo: [demoCohorts1, demoCohorts2, demoCohorts3, demoCohorts4, demoCohorts5],
+    demoAlt: "Mensura cohort builder: a dynamic cohort form beside a live preview of the matching researchers",
+    headline: "Build the cohort that makes sense",
+    longDesc:
+      "Set a rule or hand-pick the list — either way, watch the cohort build itself in real time. Filters lock when they don't apply, geography inherits when it should, and nothing's final until you say so.",
+    points: [
+      { lead: "Watch the cohort build in real time.", text: "As you set a rule like \"Top 50 by Academic Capital\" and add filters, a live preview ranks and counts the matches before you commit to anything." },
+      { lead: "Dynamic or static, your call.", text: "Build a rule that keeps updating as new entities qualify, or check off exactly who belongs and lock the list — even mixing researchers, labs, and institutions in the same static cohort." },
+      { lead: "Filters that know their limits.", text: "Fields that don't apply to the selected entity type disable automatically, so you're never stuck choosing an option that doesn't make sense." },
+      { lead: "Saved, searchable, shareable.", text: "Every cohort lives in a library you can search and sort by recency, share with a colleague, or export as data or insights." },
     ],
   },
 ];

@@ -2,6 +2,29 @@ import iconFileText from "../images/figma/products/icon_file_text.svg";
 import iconRefreshCw from "../images/figma/scriptura/icon_refresh_cw.svg";
 import iconShieldCheck from "../images/figma/scriptura/icon_shield_check.svg";
 import iconSearch from "../images/figma/scriptura/icon_search.svg";
+import demoPreprints1 from "../images/figma/scriptura/demo_preprints_1.png";
+import demoPreprints2 from "../images/figma/scriptura/demo_preprints_2.png";
+import demoPreprints3 from "../images/figma/scriptura/demo_preprints_3.png";
+import demoPreprints4 from "../images/figma/scriptura/demo_preprints_4.png";
+import demoPreprints5 from "../images/figma/scriptura/demo_preprints_5.png";
+import demoPreprints6 from "../images/figma/scriptura/demo_preprints_6.png";
+import demoPeerReview1 from "../images/figma/scriptura/demo_peer_review_1.png";
+import demoPeerReview2 from "../images/figma/scriptura/demo_peer_review_2.png";
+import demoPeerReview3 from "../images/figma/scriptura/demo_peer_review_3.png";
+import demoPeerReview4 from "../images/figma/scriptura/demo_peer_review_4.png";
+import demoPeerReview5 from "../images/figma/scriptura/demo_peer_review_5.png";
+import demoReplication1 from "../images/figma/scriptura/demo_replication_1.png";
+import demoReplication2 from "../images/figma/scriptura/demo_replication_2.png";
+import demoReplication3 from "../images/figma/scriptura/demo_replication_3.png";
+import demoReplication4 from "../images/figma/scriptura/demo_replication_4.png";
+import demoReplication5 from "../images/figma/scriptura/demo_replication_5.png";
+import demoReplication6 from "../images/figma/scriptura/demo_replication_6.png";
+import demoReplication7 from "../images/figma/scriptura/demo_replication_7.png";
+import demoCollections1 from "../images/figma/scriptura/demo_collections_1.png";
+import demoCollections2 from "../images/figma/scriptura/demo_collections_2.png";
+import demoCollections3 from "../images/figma/scriptura/demo_collections_3.png";
+import demoCollections4 from "../images/figma/scriptura/demo_collections_4.png";
+import demoCollections5 from "../images/figma/scriptura/demo_collections_5.png";
 import ProductFeatureShowcase, { ShowcaseFeature } from "./ProductFeatureShowcase";
 
 const FEATURES: ShowcaseFeature[] = [
@@ -12,6 +35,8 @@ const FEATURES: ShowcaseFeature[] = [
     gridDesc: "Host, version, and cite your work with DOI-linked records. Open access by default, and you keep the copyright.",
     altDesc: "Host, version, and cite your work with DOI-linked records. Open access by default, and you keep the copyright.",
     label: "/Preprints & Papers",
+    demo: [demoPreprints1, demoPreprints2, demoPreprints3, demoPreprints4, demoPreprints5, demoPreprints6],
+    demoAlt: "Scriptura walkthrough: browsing papers, filtering, saving to a collection, and the upload flow",
     headline: "Publishing that you actually own",
     longDesc:
       "Post a preprint the moment it's ready, attach your data and code, and get a citable, DOI-linked record — without signing your rights over to a journal.",
@@ -29,6 +54,8 @@ const FEATURES: ShowcaseFeature[] = [
     gridDesc: "Offer reviewers a share of credit, so review is rewarded for improving the work — with enforced deadlines.",
     altDesc: "Commission and trade structured peer review with transparent, verifiable credit.",
     label: "/Peer Review Marketplace",
+    demo: [demoPeerReview1, demoPeerReview2, demoPeerReview3, demoPeerReview4, demoPeerReview5],
+    demoAlt: "Scriptura peer review marketplace: a filterable, sortable feed of open review solicitations",
     headline: "Review that's worth doing",
     longDesc:
       "Authors post a review request offering a share of credit in the paper. Reviewers bid, the best matches are accepted, and everyone's incentive points the same way: toward making the work better.",
@@ -46,6 +73,8 @@ const FEATURES: ShowcaseFeature[] = [
     gridDesc: "Request or take on replications for a verified stake in the work. Reproducibility readers can trust.",
     altDesc: "Request or offer replications; build a verified record of reproducibility.",
     label: "/Replication Marketplace",
+    demo: [demoReplication1, demoReplication2, demoReplication3, demoReplication4, demoReplication5, demoReplication6, demoReplication7],
+    demoAlt: "Scriptura replication marketplace: a searchable feed of open replication solicitations",
     headline: "Reproducibility, finally rewarded",
     longDesc:
       "Authors offer a stake in their paper to independent labs that reproduce the results. Replicators get durable credit instead of competing against the work for citations — and readers get a trust signal they can check.",
@@ -63,6 +92,9 @@ const FEATURES: ShowcaseFeature[] = [
     gridDesc: "Search 250M+ open works at fine-grained precision, then save them into project folders and live journals.",
     altDesc: "Editors and institutions organize research into canonical, citable collections.",
     label: "/Collections",
+    // the design file has no active-4 variant, so this runs 5 slides
+    demo: [demoCollections1, demoCollections2, demoCollections3, demoCollections4, demoCollections5],
+    demoAlt: "Scriptura collections library: saved article collections in a searchable, sortable grid",
     headline: "Find the right work, then keep it",
     longDesc:
       "Search 250M+ open papers at a granularity legacy tools can't reach, ranked by what authors actually meant — then organize what you find into project folders and journals that update themselves.",

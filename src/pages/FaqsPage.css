@@ -1,0 +1,228 @@
+.FaqsHero {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 150px 100px 100px 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: flex-start;
+  background-image: url(../images/figma/hero_bg.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+.FaqsHero-title {
+  margin: 0;
+  font-weight: 500;
+  font-size: 75px;
+  line-height: 87.5px;
+  color: #ffffff;
+}
+
+.FaqsHero-subtitle {
+  margin: 0;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.6;
+  color: #ffffff;
+  max-width: 500px;
+}
+
+/* Design puts an 868px content column beside a 280px rail (Figma 1108:17336) */
+.FaqsBody {
+  box-sizing: border-box;
+  padding: 100px;
+  display: flex;
+  gap: 75px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.Faqs-main {
+  display: flex;
+  flex-direction: column;
+  gap: 125px;
+  flex: 793 1 0;
+  min-width: 0;
+}
+
+.Faqs-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* scroll-margin so the rail links clear the fixed header */
+  scroll-margin-top: 90px;
+}
+
+.Faqs-intro {
+  margin: 30px 0 0 0;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 1.6;
+  letter-spacing: normal;
+  color: var(--grey-text);
+  max-width: 600px;
+}
+
+.Faqs-system-video {
+  display: block;
+  width: 100%;
+  margin-top: 40px;
+  border-radius: 16px;
+  aspect-ratio: 568 / 319;
+  object-fit: cover;
+}
+
+.Faqs-title {
+  margin: 20px 0 0 0;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #111827;
+}
+
+.Faqs-list {
+  width: 100%;
+  margin-top: 40px;
+}
+
+.Faqs-row {
+  border-bottom: 1.25px solid #e5e7eb;
+}
+
+.Faqs-question {
+  width: 100%;
+  padding: 40px 0;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 22.5px;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #111827;
+}
+
+.Faqs-chevron {
+  width: 25px;
+  height: 25px;
+  flex-shrink: 0;
+  transition: transform 0.2s linear;
+}
+
+.Faqs-row.is-open .Faqs-chevron {
+  transform: scaleY(-1);
+}
+
+/* the question button already carries the row's top padding, so the answer
+   only needs the 15px gap the design puts under the question */
+.Faqs-answer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 0 0 40px 0;
+  margin-top: -25px;
+}
+
+.Faqs-answer p {
+  margin: 0;
+  font-weight: 400;
+  font-size: 18.75px;
+  line-height: 1.6;
+  letter-spacing: normal;
+  color: #374151;
+  max-width: 750px;
+}
+
+.Faqs-video {
+  display: block;
+  width: 100%;
+  max-width: 750px;
+  aspect-ratio: 750 / 422;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 2px 2px 4px 0 rgba(128, 173, 233, 0.3);
+  background: var(--grey-background);
+}
+
+.Faqs-rail {
+  position: sticky;
+  top: 110px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  flex: 280 1 0;
+  min-width: 0;
+}
+
+.Faqs-rail a {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.2;
+  color: var(--duke-blue);
+}
+
+.Faqs-rail a:hover {
+  color: #0c45cc;
+}
+
+@media (max-width: 899px) {
+  .FaqsBody {
+    padding: 60px 36px;
+    gap: 40px;
+  }
+
+  /* the rail is redundant once the page is a single column */
+  .Faqs-rail {
+    display: none;
+  }
+}
+
+@media (max-width: 699px) {
+  .FaqsHero {
+    padding: 120px 36px 80px 36px;
+    gap: 24px;
+  }
+
+  .FaqsHero-title {
+    font-size: 48px;
+    line-height: 1.15;
+  }
+
+  .FaqsHero-subtitle {
+    font-size: 17px;
+  }
+
+  .Faqs-main {
+    gap: 70px;
+  }
+
+  .Faqs-title {
+    font-size: 30px;
+  }
+
+  .Faqs-question {
+    padding: 28px 0;
+    font-size: 18px;
+    gap: 16px;
+  }
+
+  .Faqs-answer {
+    margin-top: -16px;
+    padding-bottom: 28px;
+  }
+
+  .Faqs-answer p {
+    font-size: 16px;
+  }
+
+  .Faqs-intro {
+    font-size: 17px;
+  }
+}

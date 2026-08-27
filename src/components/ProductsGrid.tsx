@@ -1,8 +1,22 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import iconFileText from "../images/figma/products/icon_file_text.svg";
 import iconBarChart from "../images/figma/products/icon_bar_chart.svg";
 import iconUsers from "../images/figma/products/icon_users.svg";
 import iconArrowRight from "../images/figma/products/icon_arrow_right.svg";
+import iconExpand from "../images/figma/products/icon_expand.svg";
+import iconMinimize from "../images/figma/products/icon_minimize.svg";
+import demoScriptura1 from "../images/figma/products/demo_scriptura_1.png";
+import demoScriptura2 from "../images/figma/products/demo_scriptura_2.png";
+import demoScriptura3 from "../images/figma/products/demo_scriptura_3.png";
+import demoScriptura4 from "../images/figma/products/demo_scriptura_4.png";
+import demoScriptura5 from "../images/figma/products/demo_scriptura_5.png";
+import demoScriptura6 from "../images/figma/products/demo_scriptura_6.png";
+import demoMensura1 from "../images/figma/products/demo_mensura_1.png";
+import demoMensura2 from "../images/figma/products/demo_mensura_2.png";
+import demoMensura3 from "../images/figma/products/demo_mensura_3.png";
+// the carousel is shared with the product pages; only the surrounding card differs
+import { DemoCarousel } from "./ProductFeatureShowcase";
 import "./ProductsGrid.css";
 
 type Product = {
@@ -13,6 +27,9 @@ type Product = {
   longDesc: string;
   features: string[];
   exploreTo?: string;
+  // Products-page demo slides; products without any fall back to the placeholder
+  demo?: string[];
+  demoAlt?: string;
 };
 
 const PRODUCTS: Product[] = [
@@ -23,6 +40,8 @@ const PRODUCTS: Product[] = [
     shortDesc: "Open-access publishing with community-run peer review.",
     longDesc: "Open-access academic publishing & crowdsourced peer review.",
     exploreTo: "/products/scriptura",
+    demo: [demoScriptura1, demoScriptura2, demoScriptura3, demoScriptura4, demoScriptura5, demoScriptura6],
+    demoAlt: "Scriptura walkthrough: your papers, peer review bids, collections, and the replication marketplace",
     features: [
       "Peer-reviewed submissions",
       "Open-access publishing",
@@ -37,6 +56,8 @@ const PRODUCTS: Product[] = [
     shortDesc: "Precise contribution metrics and institutional impact analysis.",
     longDesc: "Precise contribution metrics and institutional impact analysis.",
     exploreTo: "/products/mensura",
+    demo: [demoMensura1, demoMensura2, demoMensura3],
+    demoAlt: "Mensura walkthrough: entity dashboards, benchmarking tables, and impact charts",
     features: [
       "Real-time contribution tracking",
       "Impact factor analytics",
@@ -100,10 +121,16 @@ function ProductIcon({ icon }: { icon: string }) {
   );
 }
 
-// No expanded view: every card links straight to its product page
-function ProductCard({ product }: { product: Product }) {
+// Collapsed state: expansion happens only via the expand button, matching the
+// product pages. Explore still navigates straight to the product page.
+function CompactCard({ product, onExpand }: { product: Product; onExpand?: () => void }) {
   return (
     <div className="product-card">
+      {onExpand && (
+        <button type="button" className="product-toggle" onClick={onExpand} aria-label={`Expand ${product.name}`}>
+          <img src={iconExpand} alt="" />
+        </button>
+      )}
       <div className="product-card-top">
         <ProductIcon icon={product.icon} />
         <p className="product-name">{product.name}</p>
@@ -114,13 +141,80 @@ function ProductCard({ product }: { product: Product }) {
   );
 }
 
-function ProductsGrid() {
+// Unlike the product pages, the Products card puts the demo on the RIGHT
+// (Figma 1032:11455): 446px of text, a 40px gap, then the 563px carousel.
+function FeaturedCard({ product, onMinimize }: { product: Product; onMinimize?: () => void }) {
   return (
-    <div className="products-grid">
+    <div className="product-card product-card-featured">
+      {onMinimize && (
+        <button type="button" className="product-toggle" onClick={onMinimize} aria-label={`Minimize ${product.name}`}>
+          <img src={iconMinimize} alt="" />
+        </button>
+      )}
+      <div className="product-featured-left">
+        <ProductIcon icon={product.icon} />
+        <p className="product-name">{product.name}</p>
+        <p className="product-desc">{product.longDesc}</p>
+        <div className="product-features">
+          {product.features.map((feature) => (
+            <div className="product-feature" key={feature}>
+              <span className="product-feature-dot" />
+              <span>{feature}</span>
+            </div>
+          ))}
+        </div>
+        <ExploreCta to={product.exploreTo} />
+      </div>
+      <div className="product-featured-right">
+        {product.demo?.length ? (
+          <DemoCarousel
+            key={product.key}
+            slides={product.demo}
+            name={product.name}
+            alt={product.demoAlt ?? `${product.name} preview`}
+          />
+        ) : (
+          <div className="sf-demo-placeholder product-demo-placeholder">Demo (coming soon)</div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function ProductsGrid() {
+  const [expandedKey, setExpandedKey] = useState<string | null>(null);
+
+  const expanded = PRODUCTS.find((p) => p.key === expandedKey);
+  const rest = PRODUCTS.filter((p) => p.key !== expandedKey);
+
+  // While one card is expanded the rest are display-only, as on the product pages
+  const desktop = !expanded ? (
+    <div className="products-grid products-desktop">
       {PRODUCTS.map((product) => (
-        <ProductCard key={product.key} product={product} />
+        <CompactCard key={product.key} product={product} onExpand={() => setExpandedKey(product.key)} />
       ))}
     </div>
+  ) : (
+    <div className="products-expanded products-desktop">
+      <FeaturedCard product={expanded} onMinimize={() => setExpandedKey(null)} />
+      <div className="products-bottom-row">
+        {rest.map((product) => (
+          <CompactCard key={product.key} product={product} />
+        ))}
+      </div>
+    </div>
+  );
+
+  return (
+    <>
+      {desktop}
+      {/* Mobile: every product shown expanded, stacked vertically */}
+      <div className="products-mobile">
+        {PRODUCTS.map((product) => (
+          <FeaturedCard key={product.key} product={product} />
+        ))}
+      </div>
+    </>
   );
 }
 

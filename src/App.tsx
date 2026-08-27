@@ -10,6 +10,7 @@ import MensuraPage from './pages/MensuraPage';
 import TexturaPage from './pages/TexturaPage';
 import NormaPage from './pages/NormaPage';
 import BetaSignupPage from './pages/BetaSignupPage';
+import FaqsPage from './pages/FaqsPage';
 // Temporarily hidden until content is curated — see the commented routes below.
 // import ResearchPage from './pages/ResearchPage';
 // import TeamPage from './pages/TeamPage';
@@ -35,6 +36,7 @@ function App() {
         <Route path="/research" element={<ResearchPage />} />
         <Route path="/team" element={<TeamPage />} />
         <Route path="/news" element={<NewsPage />} /> */}
+        <Route path="/faqs" element={<FaqsPage />} />
         <Route path="/platforms" element={<PlatformsPage />} />
         <Route path="/beta-signup" element={<BetaSignupPage/>}/>
         <Route path="*" element={<Navigate to="/" replace />} />

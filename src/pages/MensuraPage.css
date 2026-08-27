@@ -132,3 +132,11 @@
     padding: 20px;
   }
 }
+
+/* The Cohorts glyph is drawn on a 28.8px grid rather than the 24px grid the
+   other feature icons use, so it needs a larger box to read at the same
+   weight inside the small tile (Figma 950:8418). */
+.sf-icon-tile-small .sf-icon-cohorts {
+  width: 28.8px;
+  height: 28.8px;
+}

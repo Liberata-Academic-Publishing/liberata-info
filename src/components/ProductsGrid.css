@@ -72,7 +72,118 @@
   height: 20px;
 }
 
+.products-expanded {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+}
+
+.products-bottom-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  width: 100%;
+}
+
+.product-toggle {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 28px;
+  height: 28px;
+  padding: 7px;
+  border-radius: 6px;
+  background: #e8e8e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.product-toggle img {
+  width: 14px;
+  height: 14px;
+}
+
+.product-card-featured {
+  flex-direction: row;
+  gap: 40px;
+  min-height: 500px;
+  justify-content: flex-start;
+  /* the two columns must stretch so the demo can centre against the text */
+  align-items: stretch;
+}
+
+/* Design splits the 1050px content box into 446px of text and a 563px demo
+   with a 40px gap (Figma 1032:11455); the flex ratios hold that proportion at
+   any width. Demo on the right here — the product pages mirror it. */
+.product-featured-left {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex: 446 1 0;
+  min-width: 0;
+}
+
+.product-featured-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 563 1 0;
+  min-width: 0;
+}
+
+.product-features {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.product-feature {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: normal;
+  color: var(--grey-text);
+}
+
+.product-feature-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--duke-blue);
+  flex-shrink: 0;
+}
+
+/* only used by products with no slides yet */
+.product-demo-placeholder {
+  width: 100%;
+  aspect-ratio: 563 / 418;
+}
+
+.products-mobile {
+  display: none;
+}
+
 @media (max-width: 699px) {
+  .products-desktop {
+    display: none;
+  }
+
+  .products-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+  }
+
   .products-grid {
     grid-template-columns: 1fr;
     gap: 24px;
@@ -81,6 +192,19 @@
   .product-card {
     min-height: 0;
     padding: 28px 24px;
+  }
+
+  .product-card-featured {
+    flex-direction: column;
+    gap: 24px;
+    min-height: 0;
+  }
+
+  /* stacked: drop the desktop column ratios, which size along the wrong axis */
+  .product-featured-left,
+  .product-featured-right {
+    flex: none;
+    width: 100%;
   }
 
   .product-name {

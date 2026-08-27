@@ -105,7 +105,7 @@ function TexturaPage() {
         <Header />
         <div className="TexturaHero-content">
           <h1 className="TexturaHero-title">Textura.</h1>
-          <p className="TexturaHero-subtitle">Scientific AI training data - structured, validated, and expert-annotated.</p>
+          <p className="TexturaHero-subtitle">Scientific AI training data — structured, validated, and expert-annotated.</p>
           <p className="TexturaHero-description">
             The natural source of expert annotations on state-of-the-art scientific literature, paired with graph
             representations, for scientific AI that actually understands research.

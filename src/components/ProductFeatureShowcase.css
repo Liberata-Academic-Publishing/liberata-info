@@ -6,7 +6,9 @@
 .sf-grid {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: 1fr;
+  /* minmax(0,…) so tracks stay equal instead of freezing at min-content
+     once four cards no longer clear their intrinsic width */
+  grid-auto-columns: minmax(0, 1fr);
   gap: 30px;
   width: 100%;
   align-items: stretch;
@@ -22,7 +24,9 @@
 .sf-bottom-row {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: 1fr;
+  /* minmax(0,…) so tracks stay equal instead of freezing at min-content
+     once four cards no longer clear their intrinsic width */
+  grid-auto-columns: minmax(0, 1fr);
   gap: 30px;
   width: 100%;
 }
@@ -33,6 +37,11 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  /* The global body rule adds 0.5px of tracking; every text node in these cards
+     is spec'd at zero (the label's 0.1198px is Figma's percentage rounding).
+     Over a 60-character line that half-pixel costs a whole word, so the copy
+     wrapped a word early and read looser than the design everywhere. */
+  letter-spacing: normal;
 }
 
 .sf-card-small {
@@ -52,6 +61,9 @@
   padding: 40px;
   flex-direction: row;
   gap: 40px;
+  /* .sf-card sets align-items: flex-start; the two columns must stretch to
+     equal height or the demo can't fill and the text can't centre */
+  align-items: stretch;
 }
 
 .sf-icon-tile {
@@ -162,13 +174,29 @@
   height: 14px;
 }
 
+/* Design splits the 1050px content box into a 520px demo column and a 490px
+   text column with a 40px gap; the flex ratios keep that proportion at any
+   width. The text column is centred against the taller demo column. */
 .sf-featured-left {
   display: flex;
   flex-direction: column;
   gap: 24px;
   align-items: flex-start;
-  width: 46%;
-  flex-shrink: 0;
+  /* inert while the demo grows to fill; it only matters for the screenshot
+     variant, which keeps its own height and leaves the column short */
+  justify-content: center;
+  flex: 520 1 0;
+  min-width: 0;
+}
+
+.sf-featured-right {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: center;
+  flex: 490 1 0;
+  min-width: 0;
 }
 
 .sf-featured-label-row {
@@ -241,9 +269,11 @@
 }
 
 .sf-demo-placeholder {
-  flex: 1;
-  align-self: stretch;
-  min-height: 500px;
+  width: 100%;
+  /* design: 520 x 385.18 — a floor, not a cap: the demo grows to fill the
+     column whenever the text side is taller (i.e. below the design width) */
+  aspect-ratio: 520 / 385;
+  flex: 1 0 auto;
   background: #e5e5e5;
   border-radius: 16px;
   display: flex;
@@ -252,6 +282,88 @@
   font-weight: 500;
   font-size: 14px;
   color: var(--grey-text);
+}
+
+/* Real screenshot instead of the grey placeholder: a white card with an 11px
+   inset around the shot (Figma 1130:22710). The design's aspect includes a row
+   of carousel dots we drop, so the box is 520 x 345 rather than 520 x 385. */
+.sf-demo-image {
+  background: #ffffff;
+  padding: 11px;
+  /* the box hugs the screenshot rather than growing into the column's spare
+     height — a screenshot can only widen, so growth would show as a white void
+     (up to 390px of it at the narrow end of the two-column range) */
+  aspect-ratio: auto;
+  flex: 0 0 auto;
+}
+
+.sf-demo-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Multi-slide demos add the design's dot row: 22px of bottom padding and a
+   22.8px gap under the screenshot (Figma 1130:21509 measures 11 + 322.917 +
+   22.801 + 6.465 + 22 = 385.183). */
+.sf-demo-carousel {
+  /* anchors the next arrow; .sf-card is otherwise the nearest positioned box */
+  position: relative;
+  padding-bottom: 22px;
+  flex-direction: column;
+  gap: 22.8px;
+}
+
+.sf-demo-dots {
+  display: flex;
+  /* dot centres sit 17.866px apart at 6.465px across */
+  gap: 11.4px;
+  align-items: center;
+}
+
+.sf-demo-dot {
+  width: 6.465px;
+  height: 6.465px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #d9d9d9;
+  cursor: pointer;
+}
+
+.sf-demo-dot.is-active {
+  background: #555555;
+}
+
+/* right edge, centred on the whole box — the design overlaps it onto the
+   screenshot rather than clearing it */
+.sf-demo-next {
+  position: absolute;
+  right: 9px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.sf-demo-next img {
+  width: 20px;
+  height: 20px;
+}
+
+/* Four cards across don't fit at the narrow end of the desktop range (they
+   overflow below ~825px), so the grid wraps to two columns until the mobile
+   stack takes over. */
+@media (min-width: 700px) and (max-width: 899px) {
+  .sf-grid,
+  .sf-bottom-row {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 /* Mobile: cards stack in a single column in their original order; the
@@ -297,8 +409,13 @@
     gap: 24px;
   }
 
-  .sf-featured-left {
+  /* stacked: drop the desktop column ratios, which size along the wrong
+     axis once the card becomes a column */
+  .sf-featured-left,
+  .sf-featured-right {
+    flex: none;
     width: 100%;
+    justify-content: flex-start;
   }
 
   .sf-featured-headline {
@@ -312,7 +429,14 @@
   .sf-demo-placeholder {
     flex: none;
     width: 100%;
+    aspect-ratio: auto;
     min-height: 260px;
+  }
+
+  /* the screenshot sets its own height; the placeholder's floor would only pad
+     it with white */
+  .sf-demo-image {
+    min-height: 0;
   }
 }
 
