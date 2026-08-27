@@ -159,7 +159,7 @@ const CAPABILITIES = [
   },
   {
     name: "Public Data Index",
-    desc: "Sparsity matrix and citation Concentration patterns across the whole academic corpus.",
+    desc: "Sparsity matrix and citation concentration patterns across the whole academic corpus.",
     diagram: <ScatterBand seed={23} />,
   },
 ];

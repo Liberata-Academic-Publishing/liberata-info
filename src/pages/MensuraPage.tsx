@@ -47,7 +47,7 @@ const FEATURES: ShowcaseFeature[] = [
     longDesc:
       "Add entities as rows, metrics as columns, and build a comparison table across researchers, institutions, fields, regions, or labs. No flipping between tabs, no rebuilding the same spreadsheet from scratch every time.",
     points: [
-      { lead: "Rows for entities, columns for metrics.", text: "Compare ten researchers or a hundred institutions in the same table. Mixed entity types are labeled clearly, so a table of labs and countries never gets confusing" },
+      { lead: "Rows for entities, columns for metrics.", text: "Compare ten researchers or a hundred institutions in the same table. Mixed entity types are labeled clearly, so a table of labs and countries never gets confusing." },
       { lead: "Never manually saved.", text: "Every entity, metric, and layout choice saves automatically as you work — no Save button, no starting over." },
       { lead: "A real spreadsheet.", text: "Sort, filter, resize, collapse, and highlight columns and rows, the same way you already work in a table." },
       { lead: "Reusable, not disposable.", text: "Come back to a saved comparison later, or export it as CSV, TSV, XLSX, or PDF when it's ready to leave the platform." },
