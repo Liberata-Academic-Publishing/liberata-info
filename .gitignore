@@ -4,6 +4,8 @@
 /node_modules
 /.pnp
 .pnp.js
+# this project installs with pnpm; an npm lockfile would drift from pnpm-lock.yaml
+package-lock.json
 
 # testing
 /coverage
