@@ -18,9 +18,9 @@ type Faq = {
 };
 
 // Videos are large, so they're served from Cloudflare R2 rather than bundled.
-// The three filmed answers are the clips previously shown by FAQCarousel; each
-// still is a frame from its own video, used as the poster. Note the R2 object
-// names use "_" where the old S3 keys used "+".
+// The three filmed answers are the clips that used to run on the overview
+// page; each still is a frame from its own video, used as the poster. Note
+// the R2 object names use "_" where the old S3 keys used "+".
 const VIDEO_BASE = "https://pub-c93f131df06d44f88212bf9bdb396d2c.r2.dev/";
 const FAQS: Faq[] = [
   {
