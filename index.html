@@ -1,1 +1,44 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="/favicon.ico"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#000000"/><meta name="description" content="Website describing Liberata, a system for open-source academic publishing"/><link rel="apple-touch-icon" href="/logo192.png"/><link rel="manifest" href="/manifest.json"/><title>Liberata</title><script>!function(){var e=sessionStorage.redirect;delete sessionStorage.redirect,e&&e!==location.href&&history.replaceState(null,null,e)}()</script><script defer="defer" src="/static/js/main.20c813f0.js"></script><link href="/static/css/main.8d37dc94.css" rel="stylesheet"></head><script async src="https://www.googletagmanager.com/gtag/js?id=G-BCSN2MSXJ1"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-BCSN2MSXJ1")</script><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Website describing Liberata, a system for open-source academic publishing"
+    />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <title>Liberata</title>
+
+    <!-- SPA Redirect Fix for GitHub Pages: pairs with public/404.html -->
+    <script>
+      (function() {
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
+
+    <!-- Google analytics tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BCSN2MSXJ1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-BCSN2MSXJ1');
+    </script>
+    <script type="module" crossorigin src="/assets/index-Dqt4vrI7.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CYGhN1ZB.css">
+  </head>
+
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
+</html>
