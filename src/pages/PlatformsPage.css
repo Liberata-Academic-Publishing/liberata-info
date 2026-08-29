@@ -3,13 +3,13 @@
   font-weight: 600;
   letter-spacing: -0.02em;
   margin: 10px 0 18px;
-  color: #2a2a2a;
+  color: var(--neutral-800);
 }
 
 .Platforms-noteText {
   font-size: 12px;
   line-height: 1.4;
-  color: #7a7a7a;
+  color: var(--neutral-700);
   max-width: 520px;
 }
 
@@ -18,7 +18,7 @@
 }
 
 .Platforms-paragraph {
-  color: #8a8a8a;
+  color: var(--neutral-700);
   font-size: 12.5px;
   line-height: 1.55;
   max-width: 520px;
@@ -38,7 +38,7 @@
 }
 
 .Platforms-placeholderText {
-  color: #8d8d8d;
+  color: var(--neutral-700);
   font-size: 12px;
   line-height: 1.4;
   white-space: pre-wrap;
@@ -59,7 +59,7 @@
   right: 0;
   top: 32px;
   height: 1px;
-  background: #d7d7d7;
+  background: var(--neutral-400);
 }
 
 .platforms-timeline-items {
@@ -76,7 +76,7 @@
 
 .platforms-timeline-date {
   font-size: 11px;
-  color: #2b2b2b;
+  color: var(--neutral-800);
   font-weight: 500;
 }
 
@@ -90,7 +90,7 @@
 
 .platforms-timeline-label {
   font-size: 11px;
-  color: #6f6f6f;
+  color: var(--neutral-700);
   line-height: 1.35;
   white-space: pre-line;
 }

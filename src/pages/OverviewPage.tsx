@@ -177,7 +177,8 @@ function OverviewPage() {
           <div className="App-column-left">
             <div className="App-section App-col-left-section" id="App-publishing-problems">
               <div className="section-heading">/Academic Publishing Problems</div>
-              <div style={{ color: 'var(--grey-text)', fontSize: '1.2rem', marginTop: '5vh', marginBottom: "24px" }}>Academic publishing today suffers from merit, economic, and societal problems arising from maligned legacy incentive structures
+              <div className="section-description">Academic publishing today suffers from merit, economic, and societal problems arising from maligned legacy incentive structures
+                
               </div>
               <AcademicPublishingProblems />
             </div>

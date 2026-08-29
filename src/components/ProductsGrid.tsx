@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import iconFileText from "../images/figma/products/icon_file_text.svg";
 import iconBarChart from "../images/figma/products/icon_bar_chart.svg";
@@ -182,26 +181,12 @@ function FeaturedCard({ product, onMinimize }: { product: Product; onMinimize?: 
 }
 
 function ProductsGrid() {
-  const [expandedKey, setExpandedKey] = useState<string | null>(null);
-
-  const expanded = PRODUCTS.find((p) => p.key === expandedKey);
-  const rest = PRODUCTS.filter((p) => p.key !== expandedKey);
-
-  // While one card is expanded the rest are display-only, as on the product pages
-  const desktop = !expanded ? (
+  // Desktop: static grid, no expand/collapse — Explore links straight to the product page
+  const desktop = (
     <div className="products-grid products-desktop">
       {PRODUCTS.map((product) => (
-        <CompactCard key={product.key} product={product} onExpand={() => setExpandedKey(product.key)} />
+        <CompactCard key={product.key} product={product} />
       ))}
-    </div>
-  ) : (
-    <div className="products-expanded products-desktop">
-      <FeaturedCard product={expanded} onMinimize={() => setExpandedKey(null)} />
-      <div className="products-bottom-row">
-        {rest.map((product) => (
-          <CompactCard key={product.key} product={product} />
-        ))}
-      </div>
     </div>
   );
 

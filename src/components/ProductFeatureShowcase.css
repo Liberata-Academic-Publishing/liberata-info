@@ -33,7 +33,7 @@
 
 .sf-card {
   position: relative;
-  background: var(--grey-background);
+  background: var(--neutral-300);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -97,7 +97,7 @@
   margin: 0;
   font-weight: 600;
   font-size: 17px;
-  color: #454545;
+  color: var(--neutral-800);
 }
 
 .sf-large-titles .sf-small-name {
@@ -136,7 +136,7 @@
   font-weight: 300;
   font-size: 17.5px;
   line-height: 1.5;
-  color: var(--grey-text);
+  color: var(--neutral-700);
 }
 
 .sf-compact-name {
@@ -144,7 +144,7 @@
   font-weight: 500;
   font-size: 30px;
   line-height: 1.3;
-  color: #454545;
+  color: var(--neutral-800);
 }
 
 .sf-compact-desc {
@@ -152,7 +152,7 @@
   font-weight: 400;
   font-size: 20px;
   line-height: 1.6;
-  color: var(--grey-text);
+  color: var(--neutral-700);
 }
 
 .sf-toggle {
@@ -163,7 +163,7 @@
   height: 28px;
   padding: 7px;
   border-radius: 6px;
-  background: #e8e8e8;
+  background: var(--neutral-350);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -174,18 +174,16 @@
   height: 14px;
 }
 
-/* Design splits the 1050px content box into a 520px demo column and a 490px
-   text column with a 40px gap; the flex ratios keep that proportion at any
-   width. The text column is centred against the taller demo column. */
+/* Design splits the 1050px content box into a 490px text column and a 520px
+   demo column with a 40px gap; the flex ratios keep that proportion at any
+   width. The demo column is centred against the taller text column. */
 .sf-featured-left {
   display: flex;
   flex-direction: column;
   gap: 24px;
   align-items: flex-start;
-  /* inert while the demo grows to fill; it only matters for the screenshot
-     variant, which keeps its own height and leaves the column short */
   justify-content: center;
-  flex: 520 1 0;
+  flex: 490 1 0;
   min-width: 0;
 }
 
@@ -194,8 +192,10 @@
   flex-direction: column;
   gap: 24px;
   align-items: flex-start;
+  /* inert while the demo grows to fill; it only matters for the screenshot
+     variant, which keeps its own height and leaves the column short */
   justify-content: center;
-  flex: 490 1 0;
+  flex: 520 1 0;
   min-width: 0;
 }
 
@@ -216,7 +216,7 @@
   font-weight: 500;
   font-size: 30px;
   line-height: 1.3;
-  color: #454545;
+  color: var(--neutral-800);
 }
 
 .sf-featured-desc {
@@ -224,7 +224,7 @@
   font-weight: 400;
   font-size: 20px;
   line-height: 1.6;
-  color: var(--grey-text);
+  color: var(--neutral-700);
 }
 
 .sf-points {
@@ -261,7 +261,7 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 1.5;
-  color: var(--grey-text);
+  color: var(--neutral-700);
 }
 
 .sf-point strong {
@@ -274,21 +274,21 @@
      column whenever the text side is taller (i.e. below the design width) */
   aspect-ratio: 520 / 385;
   flex: 1 0 auto;
-  background: #e5e5e5;
+  background: var(--neutral-400);
   border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 500;
   font-size: 14px;
-  color: var(--grey-text);
+  color: var(--neutral-700);
 }
 
 /* Real screenshot instead of the grey placeholder: a white card with an 11px
    inset around the shot (Figma 1130:22710). The design's aspect includes a row
    of carousel dots we drop, so the box is 520 x 345 rather than 520 x 385. */
 .sf-demo-image {
-  background: #ffffff;
+  background: var(--neutral-100);
   padding: 11px;
   /* the box hugs the screenshot rather than growing into the column's spare
      height — a screenshot can only widen, so growth would show as a white void
@@ -327,12 +327,12 @@
   padding: 0;
   border: none;
   border-radius: 50%;
-  background: #d9d9d9;
+  background: var(--neutral-400);
   cursor: pointer;
 }
 
 .sf-demo-dot.is-active {
-  background: #555555;
+  background: var(--neutral-800);
 }
 
 /* right edge, centred on the whole box — the design overlaps it onto the
@@ -413,8 +413,12 @@
   }
 
   .sf-small-name,
-  .sf-small-desc,
   .sf-compact-desc {
+    font-size: 16px;
+    line-height: 1.5rem;
+  }
+
+  .sf-small-desc {
     font-size: 16px;
   }
 

@@ -1,3 +1,25 @@
+
+.ap-mobile {
+    display: none;
+}
+
+@media (max-width: 450px) {
+    .ap-desktop {
+        display: none;
+    }
+    .ap-mobile {
+        display: flex;
+    }
+    /* Scoped to the mobile accordion (not the bare .ap-pill class) so this
+       always wins over the desktop carousel's own .ap-pill mobile override
+       further down this file, regardless of source order */
+    .ap-mobile-stepper .ap-pill {
+        font-size: 14px;
+        border-width: 1.5px;
+        border-color: #4f70d8;
+        color: #4f70d8;
+    }
+}
 /* Ensure that padding gets included in width calculations, instead of added on top */
 *,
 *::before,
@@ -26,7 +48,7 @@
     gap: 10px;
     flex-shrink: 0;
     align-self: stretch;
-    background: #FFF;
+    background: var(--neutral-100);
 }
 
 .ap-steps {
@@ -47,8 +69,8 @@
     gap: 10px;
     align-self: stretch;
     border-radius: 8px;
-    border: 1.25px solid var(--duke-blue);
-    background: var(--duke-blue);
+    border: 1.25px solid var(--brand-500);
+    background: var(--brand-500);
     color: white;
     text-align: center;
     font-family: Figtree;
@@ -59,17 +81,17 @@
     letter-spacing: 0.085px;
 }
 
-/* The last step gets the light-blue treatment per the design */
+/* The last step gets the accent-300 treatment per the design */
 .ap-steps .ap-step:last-child {
-    background: var(--light-blue);
-    border-color: var(--light-blue);
+    background: var(--accent-300);
+    border-color: var(--accent-300);
 }
 
 .ap-step.isActive,
 .ap-steps .ap-step.isActive:last-child {
-    background: #FFF;
-    border-color: var(--duke-blue);
-    color: var(--duke-blue);
+    background: var(--neutral-100);
+    border-color: var(--brand-500);
+    color: var(--brand-500);
 }
 
 .ap-stepArrow {
@@ -120,7 +142,7 @@
     align-items: center;
     gap: 10px;
     border-radius: 999px;
-    background: var(--accent-blue);
+    background: var(--accent-500);
     color: white;
     font-size: 24px;
     font-weight: 600;
@@ -134,12 +156,12 @@
     align-items: flex-start;
     gap: 3px;
     border-radius: 16px;
-    border: 1px solid #7CACED;
-    background: rgba(124, 172, 237, 0.10);
-    color: #7CACED;
+    border: 1px solid var(--accent-300);
+    background: rgba(137, 194, 255, 0.10);
+    color: var(--accent-300);
     text-align: center;
     font-family: Figtree;
-    font-size: 10px;
+    font-size: 12.5px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -148,7 +170,7 @@
 
 .ap-title {
     margin: 0;
-    color: #FFF;
+    color: var(--neutral-100);
     text-align: left;
     font-family: Figtree;
     font-size: 24px;
@@ -160,7 +182,7 @@
 
 .ap-subtitle {
     opacity: 0.85;
-    color: #FFF;
+    color: var(--neutral-100);
     text-align: left;
     font-family: Figtree;
     font-size: 16px;
@@ -173,7 +195,7 @@
 .ap-body {
     line-height: 1.6;
     opacity: 0.95;
-    color: #FFF;
+    color: var(--neutral-100);
     margin-top: 50px;
     text-align: center;
     font-family: Figtree;
@@ -331,4 +353,108 @@
         width: 16px;
         height: 5px;
     }
+}
+
+/* Mobile stepper/accordion. display is NOT set here — this element also
+   carries .ap-mobile, which is what toggles display: none/flex between
+   desktop and mobile; setting it again here (unconditionally, later in the
+   file) would win that tie and show the accordion on desktop too. */
+.ap-mobile-stepper {
+    flex-direction: column;
+    width: 100%;
+}
+
+.ap-mobile-card {
+    background: var(--neutral-300);
+    border-radius: 15px;
+    padding: 30px 15px;
+}
+
+.ap-mobile-item {
+    display: flex;
+    gap: 12px;
+}
+
+.ap-mobile-rail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.ap-mobile-circle {
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    background: #4F70D8;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Figtree;
+    font-size: 16px;
+    line-height: 1.5rem;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.ap-mobile-line {
+    width: 2px;
+    flex: 1;
+    background: #4F70D8;
+    margin-top: 3px;
+}
+
+.ap-mobile-content {
+    flex: 1;
+    padding-bottom: 10px;
+}
+
+.ap-mobile-content-expanded {
+    padding-bottom: 20px;
+}
+
+.ap-mobile-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: none;
+    border: none;
+    padding: 2px 0 0 0;
+    cursor: pointer;
+    text-align: left;
+}
+
+.ap-mobile-title {
+    font-family: Figtree;
+    font-size: 16px;
+    line-height: 1.5rem;
+    font-weight: 600;
+    color: var(--neutral-800);
+}
+
+.ap-mobile-chevron {
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+
+.ap-mobile-chevron.open {
+    transform: rotate(180deg);
+}
+
+.ap-mobile-body {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.ap-mobile-body p {
+    margin: 0;
+    font-family: Figtree;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--neutral-700);
 }

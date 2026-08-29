@@ -46,7 +46,7 @@
 
 .Contact-text-subline {
   font-size: 20px;
-  color: var(--duke-blue);
+  color: var(--brand-500);
   margin-bottom: 13px;
 }
 
@@ -73,7 +73,7 @@
 .outlined-submit {
   border: none;
   padding: 14px 20px;
-  background-color: var(--accent-blue);
+  background-color: var(--accent-500);
   color: whitesmoke;
   border-radius: 5px;
   font-size: 15px;

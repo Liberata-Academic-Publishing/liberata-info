@@ -124,27 +124,15 @@ function FeaturedCard({ feature, onMinimize }: { feature: ShowcaseFeature; onMin
       <button type="button" className="sf-toggle" onClick={onMinimize} aria-label={`Minimize ${feature.name}`}>
         <img src={iconMinimize} alt="" />
       </button>
-      {/* Design puts the demo under the headline in the left column, with the
-          description and checklist filling the right one */}
+      {/* Icon, headline, description, and checklist all live in the left
+          column; the demo carousel is its own column on the right (and
+          falls after all the text once the columns stack on mobile) */}
       <div className="sf-featured-left">
         <div className="sf-featured-label-row">
           <div className="sf-icon-tile">{feature.icon}</div>
           <span className="sf-featured-label">{feature.label}</span>
         </div>
         <p className="sf-featured-headline">{feature.headline}</p>
-        {feature.demo?.length ? (
-          /* keyed so switching features restarts the carousel at slide 1 */
-          <DemoCarousel
-            key={feature.key}
-            slides={feature.demo}
-            name={feature.name}
-            alt={feature.demoAlt ?? `${feature.name} preview`}
-          />
-        ) : (
-          <div className="sf-demo-placeholder">Demo (coming soon)</div>
-        )}
-      </div>
-      <div className="sf-featured-right">
         <p className="sf-featured-desc">{feature.longDesc}</p>
         <div className="sf-points">
           {feature.points.map((point) => (
@@ -158,6 +146,19 @@ function FeaturedCard({ feature, onMinimize }: { feature: ShowcaseFeature; onMin
             </div>
           ))}
         </div>
+      </div>
+      <div className="sf-featured-right">
+        {feature.demo?.length ? (
+          /* keyed so switching features restarts the carousel at slide 1 */
+          <DemoCarousel
+            key={feature.key}
+            slides={feature.demo}
+            name={feature.name}
+            alt={feature.demoAlt ?? `${feature.name} preview`}
+          />
+        ) : (
+          <div className="sf-demo-placeholder">Demo (coming soon)</div>
+        )}
       </div>
     </div>
   );
