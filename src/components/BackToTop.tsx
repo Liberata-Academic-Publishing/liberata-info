@@ -45,8 +45,8 @@ function BackToTop() {
       tabIndex={visible ? 0 : -1}
     >
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <line x1="12" y1="19" x2="12" y2="5" stroke="#3F4C67" strokeWidth="2" strokeLinecap="round" />
-        <polyline points="5 12 12 5 19 12" fill="none" stroke="#3F4C67" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <line x1="12" y1="19" x2="12" y2="5" stroke="var(--neutral-700)" strokeWidth="2" strokeLinecap="round" />
+        <polyline points="5 12 12 5 19 12" fill="none" stroke="var(--neutral-700)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     </button>
   );
