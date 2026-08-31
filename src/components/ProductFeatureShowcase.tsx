@@ -55,22 +55,41 @@ function CompactCard({ feature }: { feature: ShowcaseFeature }) {
 }
 
 // The demo slot. One slide renders as a plain screenshot; several add the
-// design's dot row and next arrow (Figma 1056:15995 / Component 5). Only the
-// current slide is in the DOM, so the other slides cost nothing until asked
-// for — the next one is warmed in the background to keep stepping instant.
-export function DemoCarousel({ slides, name, alt }: { slides: string[]; name: string; alt: string }) {
+// design's dot row and next arrow (Figma 1056:15995 / Component 5).
+// Desktop is unchanged from before this round of mobile work: a plain image
+// that cuts instantly between slides. Mobile (mobile=true, only ever passed
+// from the accordion) gets the swipe treatment instead: dragging follows
+// your finger and drags the neighbour in via .sf-demo-track in the CSS,
+// rather than just cutting to it; a tap on a dot/arrow still cuts instantly
+// there too.
+const SNAP_MS = 260;
+
+export function DemoCarousel({ slides, name, alt, mobile = false }: { slides: string[]; name: string; alt: string; mobile?: boolean }) {
   const [index, setIndex] = useState(0);
+  // Mobile-only: drag offset in px, added on top of the track's index-based
+  // base position — 0 except while actively dragging.
+  const [dragPx, setDragPx] = useState(0);
+  const [dragging, setDragging] = useState(false);
   const touchX = useRef<number | null>(null);
   const count = slides.length;
   const go = (i: number) => setIndex((i + count) % count);
 
   useEffect(() => {
     if (count < 2) return;
-    for (const offset of [1, -1]) {
-      const neighbour = new Image();
-      neighbour.src = slides[(index + offset + count) % count];
+    if (mobile) {
+      // A swipe can reach any slide within a couple of gestures, so warm the
+      // whole set right away rather than just the immediate neighbours.
+      slides.forEach((slide) => {
+        const img = new Image();
+        img.src = slide;
+      });
+    } else {
+      for (const offset of [1, -1]) {
+        const neighbour = new Image();
+        neighbour.src = slides[(index + offset + count) % count];
+      }
     }
-  }, [index, count, slides]);
+  }, [index, count, slides, mobile]);
 
   if (count < 2) {
     return (
@@ -80,6 +99,58 @@ export function DemoCarousel({ slides, name, alt }: { slides: string[]; name: st
     );
   }
 
+  if (!mobile) {
+    return (
+      <div
+        className="sf-demo-placeholder sf-demo-image sf-demo-carousel"
+        onKeyDown={(e) => {
+          if (e.key === "ArrowRight") go(index + 1);
+          if (e.key === "ArrowLeft") go(index - 1);
+        }}
+        onTouchStart={(e) => { touchX.current = e.touches[0].clientX; }}
+        onTouchEnd={(e) => {
+          if (touchX.current === null) return;
+          const dx = e.changedTouches[0].clientX - touchX.current;
+          if (Math.abs(dx) > 40) go(index + (dx < 0 ? 1 : -1));
+          touchX.current = null;
+        }}
+      >
+        <img src={slides[index]} alt={`${alt} (${index + 1} of ${count})`} />
+        <button type="button" className="sf-demo-prev" aria-label={`Previous ${name} demo`} onClick={() => go(index - 1)}>
+          <img src={iconCarouselNext} alt="" />
+        </button>
+        <div className="sf-demo-dots">
+          {slides.map((slide, i) => (
+            <button
+              key={slide}
+              type="button"
+              className={`sf-demo-dot${i === index ? " is-active" : ""}`}
+              aria-label={`Show ${name} demo ${i + 1} of ${count}`}
+              aria-current={i === index}
+              onClick={() => setIndex(i)}
+            />
+          ))}
+        </div>
+        <button type="button" className="sf-demo-next" aria-label={`Next ${name} demo`} onClick={() => go(index + 1)}>
+          <img src={iconCarouselNext} alt="" />
+        </button>
+      </div>
+    );
+  }
+
+  const handleTouchEnd = () => {
+    if (touchX.current === null) return;
+    touchX.current = null;
+    setDragging(false);
+    // One continuous strip of every slide (below), so finishing the drag is
+    // just moving the index by one — the same math either direction, and the
+    // transition animates the rest of the way from wherever the finger let go.
+    if (Math.abs(dragPx) > 40) {
+      setIndex((i) => (i + (dragPx < 0 ? 1 : -1) + count) % count);
+    }
+    setDragPx(0);
+  };
+
   return (
     <div
       className="sf-demo-placeholder sf-demo-image sf-demo-carousel"
@@ -87,15 +158,34 @@ export function DemoCarousel({ slides, name, alt }: { slides: string[]; name: st
         if (e.key === "ArrowRight") go(index + 1);
         if (e.key === "ArrowLeft") go(index - 1);
       }}
-      onTouchStart={(e) => { touchX.current = e.touches[0].clientX; }}
-      onTouchEnd={(e) => {
-        if (touchX.current === null) return;
-        const dx = e.changedTouches[0].clientX - touchX.current;
-        if (Math.abs(dx) > 40) go(index + (dx < 0 ? 1 : -1));
-        touchX.current = null;
+      onTouchStart={(e) => {
+        touchX.current = e.touches[0].clientX;
+        setDragging(true);
       }}
+      onTouchMove={(e) => {
+        if (touchX.current === null) return;
+        setDragPx(e.touches[0].clientX - touchX.current);
+      }}
+      onTouchEnd={handleTouchEnd}
     >
-      <img src={slides[index]} alt={`${alt} (${index + 1} of ${count})`} />
+      <div
+        className="sf-demo-track"
+        style={{
+          width: `${count * 100}%`,
+          transform: `translateX(calc(${(-index / count) * 100}% + ${dragPx}px))`,
+          transition: dragging ? "none" : `transform ${SNAP_MS}ms ease`,
+        }}
+      >
+        {slides.map((slide, i) => (
+          <div className="sf-demo-slide" style={{ flexBasis: `${100 / count}%` }} key={slide}>
+            <img
+              src={slide}
+              alt={i === index ? `${alt} (${index + 1} of ${count})` : ""}
+              aria-hidden={i === index ? undefined : true}
+            />
+          </div>
+        ))}
+      </div>
       <button type="button" className="sf-demo-prev" aria-label={`Previous ${name} demo`} onClick={() => go(index - 1)}>
         <img src={iconCarouselNext} alt="" />
       </button>
@@ -118,7 +208,7 @@ export function DemoCarousel({ slides, name, alt }: { slides: string[]; name: st
   );
 }
 
-function FeaturedCard({ feature, onMinimize }: { feature: ShowcaseFeature; onMinimize: () => void }) {
+function FeaturedCard({ feature, onMinimize, mobile = false }: { feature: ShowcaseFeature; onMinimize: () => void; mobile?: boolean }) {
   return (
     <div className="sf-card sf-card-featured">
       <button type="button" className="sf-toggle" onClick={onMinimize} aria-label={`Minimize ${feature.name}`}>
@@ -155,6 +245,7 @@ function FeaturedCard({ feature, onMinimize }: { feature: ShowcaseFeature; onMin
             slides={feature.demo}
             name={feature.name}
             alt={feature.demoAlt ?? `${feature.name} preview`}
+            mobile={mobile}
           />
         ) : (
           <div className="sf-demo-placeholder">Demo (coming soon)</div>
@@ -208,7 +299,7 @@ function ProductFeatureShowcase({ features, largeSmallTitles = false }: { featur
         {features.map((feature) => (
           <div className="sf-mobile-slot" id={`sf-mobile-${feature.key}`} key={feature.key}>
             {feature.key === expandedKey ? (
-              <FeaturedCard feature={feature} onMinimize={() => setExpandedKey(null)} />
+              <FeaturedCard feature={feature} onMinimize={() => setExpandedKey(null)} mobile />
             ) : (
               <SmallCard feature={feature} onExpand={() => expandOnMobile(feature.key)} />
             )}
