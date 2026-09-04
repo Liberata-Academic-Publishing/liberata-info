@@ -295,6 +295,10 @@
      (up to 390px of it at the narrow end of the two-column range) */
   aspect-ratio: auto;
   flex: 0 0 auto;
+  /* clips the sliding track (see .sf-demo-track) down to the current slide —
+     the track lays every slide out side by side, so without this the
+     neighbours would show through past the card's edge */
+  overflow: hidden;
 }
 
 .sf-demo-image img {
@@ -303,15 +307,54 @@
   height: auto;
 }
 
-/* Multi-slide demos add the design's dot row: 22px of bottom padding and a
-   22.8px gap under the screenshot (Figma 1130:21509 measures 11 + 322.917 +
-   22.801 + 6.465 + 22 = 385.183). */
+/* Multi-slide track: every screenshot laid out in one continuous row so
+   sliding between them (via the arrows/dots, or a drag on mobile) animates
+   the neighbour in instead of the image just cutting to the next slide.
+   Width and each slide's share of it are set inline (DemoCarousel) since
+   they depend on the slide count; DemoCarousel also adds the live drag
+   distance on top of the base position via the inline transform. */
+.sf-demo-track {
+  display: flex;
+  align-items: flex-start;
+}
+
+/* The carousel's own white-matte inset (see .sf-demo-image) moves down onto
+   each slide instead of staying on the shared box: left on the shared box it
+   sits outside the track entirely, so the clip region stays wider than one
+   slide and lets a sliver of the neighbour show through at rest. border-box
+   keeps the 11px inside each slide's inline flexBasis instead of adding on
+   top of it, so the slides still tile edge to edge with no gap. The 30px
+   below the dots (see .sf-demo-carousel's gap for the 20px above them) is
+   its own chosen value now, not derived from that gap. */
+.sf-demo-carousel.sf-demo-image {
+  padding: 0 0 30px 0;
+}
+
+.sf-demo-slide {
+  flex-shrink: 0;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 11px;
+  background: var(--neutral-100);
+}
+
+/* Multi-slide demos add the design's dot row. The photo's own 11px matte
+   (see .sf-demo-slide) counts as part of the gap above the dots, so 9px of
+   flex gap here plus that 11px puts the dots 20px below the bare photo —
+   closer than the 30px still sitting below them (see .sf-demo-carousel.sf-
+   demo-image above), a deliberate asymmetry rather than the equal-gap
+   Figma split (1130:21509 measures 11 + 322.917 + 22.801 + 6.465 + 22 =
+   385.183). */
 .sf-demo-carousel {
   /* anchors the next arrow; .sf-card is otherwise the nearest positioned box */
   position: relative;
-  padding-bottom: 22px;
   flex-direction: column;
-  gap: 22.8px;
+  gap: 9px;
+  /* .sf-demo-placeholder centers its content (right for the plain "coming
+     soon" text) — but the mobile track is 6x this box's width, so that
+     centering shifted it hundreds of pixels off to the left instead */
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 
 .sf-demo-dots {
@@ -319,6 +362,10 @@
   /* dot centres sit 17.866px apart at 6.465px across */
   gap: 11.4px;
   align-items: center;
+  /* .sf-demo-carousel switched to align-items: flex-start so the track
+     wouldn't get centered too (see its own comment) — pull just the dot row
+     back to the middle */
+  align-self: center;
 }
 
 .sf-demo-dot {
@@ -382,6 +429,23 @@
   .sf-bottom-row {
     grid-auto-flow: row;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* .sf-featured-left/-right hold their 490:520 ratio at any width (see their
+   own comment), so once the card is well below the ~1050px it was designed
+   for, both columns get squeezed too thin for the demo to read. Stack them
+   instead, same as the true mobile breakpoint below — but keep the arrow/dot
+   controls (unlike mobile, this range isn't touch-only, so hiding them would
+   remove the only way to navigate). */
+@media (min-width: 700px) and (max-width: 1149px) {
+  .sf-card-featured {
+    flex-direction: column;
+  }
+
+  .sf-featured-left,
+  .sf-featured-right {
+    flex: none;
   }
 }
 
@@ -451,15 +515,66 @@
 
   .sf-demo-placeholder {
     flex: none;
-    width: 100%;
+    /* bleed partway past the card's own 24px side padding so the demo reads
+       bigger than the text column without reaching all the way to the
+       card's true edges */
+    box-sizing: border-box;
+    width: calc(100% + 24px);
+    margin-left: -12px;
+    margin-right: -12px;
     aspect-ratio: auto;
     min-height: 260px;
+    /* matches .sf-demo-image img's own radius below — this box clips the
+       sliding track (overflow: hidden), so a mismatched radius here would
+       cut the photo's rounded corner off at a different curve than the
+       photo's own white border draws */
+    border-radius: 8px;
   }
 
   /* the screenshot sets its own height; the placeholder's floor would only pad
      it with white */
   .sf-demo-image {
     min-height: 0;
+    /* drop the white matte inset so the screenshot itself is bigger inside
+       the gray card, without touching its aspect ratio */
+    padding: 0;
+    background: none;
+  }
+
+  /* Carousel matte inset lives on .sf-demo-slide on desktop (see the base
+     rule) — drop it here too, same reason as .sf-demo-image above. */
+  .sf-demo-slide {
+    padding: 0;
+    background: none;
+  }
+
+  /* .sf-card-featured's own 30px bottom padding (below) sits outside this
+     box entirely, so this box's own padding-bottom (still 30px from the base
+     rule otherwise) would double up with it — drop to 0 and let the card's
+     30px be the only space below the dots. The gap above is its own smaller
+     value (20px), not matched to it — a deliberate choice, not the equal-gap
+     approach used elsewhere in this file. */
+  .sf-demo-carousel.sf-demo-image {
+    padding-bottom: 0;
+  }
+
+  .sf-demo-carousel {
+    gap: 20px;
+  }
+
+  /* border goes on the photo itself, not the carousel box — otherwise it'd
+     also wrap the dot row sitting below the image */
+  .sf-demo-image img {
+    box-sizing: border-box;
+    border: 3px solid white;
+    border-radius: 8px;
+  }
+
+  /* Mobile navigates by swiping (already wired up via onTouchStart/onTouchEnd
+     in DemoCarousel), Instagram-style — no visible arrow buttons needed */
+  .sf-demo-prev,
+  .sf-demo-next {
+    display: none;
   }
 }
 
