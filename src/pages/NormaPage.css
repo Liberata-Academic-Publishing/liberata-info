@@ -57,7 +57,7 @@
 .NormaHero-primary {
   background: white;
   border: 1.5px solid white;
-  color: var(--duke-blue);
+  color: var(--brand-500);
   font-family: inherit;
   font-weight: 600;
   font-size: 20px;
@@ -128,7 +128,7 @@
   font-weight: 500;
   font-size: 30px;
   line-height: 1.3;
-  color: #454545;
+  color: var(--neutral-800);
 }
 
 .NormaCards {
@@ -147,7 +147,7 @@
 }
 
 .NormaCard {
-  background: var(--grey-background);
+  background: var(--neutral-300);
   border-radius: 15px;
   padding: 20px;
   display: flex;
@@ -178,7 +178,7 @@
   font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-size: 15px;
-  color: #454545;
+  color: var(--neutral-800);
 }
 
 .NormaCard-desc {
@@ -186,7 +186,7 @@
   font-weight: 300;
   font-size: 17.5px;
   line-height: 1.5;
-  color: var(--grey-text);
+  color: var(--neutral-700);
 }
 
 .NormaGrid {
@@ -338,7 +338,7 @@
   }
 
   .NormaHero-title {
-    font-size: 3.1rem;
+    font-size: 50px;
   }
 
   .NormaHero-actions {
@@ -348,6 +348,7 @@
   .NormaHero-primary,
   .NormaHero-secondary {
     font-size: 16px;
+    line-height: 1.5rem;
   }
 
   .NormaBody {

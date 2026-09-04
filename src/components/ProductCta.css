@@ -40,7 +40,7 @@
 .product-cta-primary {
   background: white;
   border: none;
-  color: var(--duke-blue) !important;
+  color: var(--brand-500) !important;
   font-family: inherit;
   font-weight: 600;
   font-size: 20px;
@@ -78,6 +78,7 @@
 
   .product-cta-subtitle {
     font-size: 16px;
+    line-height: 1.5rem;
   }
 
   .product-cta-actions {

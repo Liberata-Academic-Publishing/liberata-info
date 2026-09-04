@@ -5,26 +5,39 @@ import "./Hook.css";
 type HookProps = {
   header: string;
   subheader: string;
-  subtext? :string
+  subtext?: string;
 }
 
-function Hook({header, subheader, subtext}:HookProps) {
+function Hook({ header, subheader, subtext }: HookProps) {
   return (
     <div className="Hook-wrapper">
-      <div style={{width: '85vw', marginTop: '10vh'}}>
+      {/* DESKTOP: header, CTA, subheader (unchanged order/styling) */}
+      <div className="Hook-content Hook-desktop">
         <div className="Hook-header">
           {header}
         </div>
-
-        {/* {subtext && <div className="Hook-subtext">{subtext}</div>} */}
         <div className="Hook-cta-row">
           <Link to="/beta-signup" className="Hook-cta">Sign up for beta</Link>
         </div>
-
-        <div style={{width: 'inherit', display: 'flex', justifyContent: 'end', marginTop: '0vh', opacity: .8}}>
+        <div className="Hook-subheader-row">
           <div className="Hook-subheader">
             {subheader}
           </div>
+        </div>
+      </div>
+
+      {/* MOBILE: header, subheader, CTA */}
+      <div className="Hook-content Hook-mobile">
+        <div className="Hook-header">
+          {header}
+        </div>
+        <div className="Hook-subheader-row">
+          <div className="Hook-subheader">
+            {subheader}
+          </div>
+        </div>
+        <div className="Hook-cta-row">
+          <Link to="/beta-signup" className="Hook-cta">Sign up for beta →</Link>
         </div>
       </div>
     </div>

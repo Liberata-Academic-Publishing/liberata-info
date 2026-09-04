@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import OverviewPage from './pages/OverviewPage';
 import Footer from './components/Footer';
+import BackToTop from './components/BackToTop';
 import PlatformsPage from './pages/PlatformsPage';
 import ProductsPage from './pages/ProductsPage';
 import ScripturaPage from './pages/ScripturaPage';
@@ -43,6 +44,7 @@ function App() {
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <Footer/>
+      <BackToTop/>
     </BrowserRouter>
   );
 }
