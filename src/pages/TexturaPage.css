@@ -1,7 +1,7 @@
 .TexturaHero {
   width: 100%;
   box-sizing: border-box;
-  padding: 150px 100px;
+  padding: 150px 100px 100px 100px;
   display: flex;
   gap: 30px;
   align-items: flex-start;
@@ -654,6 +654,7 @@
 @media (max-width: 699px) {
   .TexturaHero {
     padding: 120px 36px 80px 36px;
+    gap: 24px;
   }
 
   .TexturaHero-visual {
