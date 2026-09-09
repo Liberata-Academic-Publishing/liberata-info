@@ -350,7 +350,8 @@
 .TexturaStep-name {
   margin: 0;
   font-weight: 600;
-  font-size: 22.5px;
+  /* matches Scriptura's .sf-small-name */
+  font-size: 17px;
   color: var(--neutral-800);
 }
 
@@ -384,6 +385,38 @@
   filter: drop-shadow(0px 12px 12px rgba(0, 0, 0, 0.04));
 }
 
+/* Mobile-only toggle between this card and the JSON view below (see the
+   max-width: 699px block for the actual tab/panel switching — desktop shows
+   both at once via the two-column grid above, so the toggle stays hidden). */
+.TexturaRecord-toggle {
+  display: none;
+}
+
+.TexturaRecord-tab {
+  position: relative;
+  z-index: 1;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--neutral-600);
+  background: none;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: color 0.25s ease;
+}
+
+.TexturaRecord-tab-active {
+  color: white;
+}
+
+/* the sliding blue pill sits behind the tab labels (z-index above, here)
+   and moves between them instead of the color just cutting over */
+.TexturaRecord-toggle-indicator {
+  display: none;
+}
+
 .TexturaRecord-paper {
   margin: 0;
   font-family: 'Geist', 'Inter', sans-serif;
@@ -398,6 +431,21 @@
   font-family: 'Geist', 'Inter', sans-serif;
   font-size: 16px;
   color: #475569;
+}
+
+/* Desktop keeps all 5 chips in a single wrapped row (unchanged look) by
+   flattening the two grouping divs into it; the mobile override below
+   turns those same two divs back into real rows with their own gap, to
+   match Figma's grouping there — metadata chips together, signal chips
+   together, 15px between the groups. */
+.TexturaRecord-chip-rows {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.TexturaRecord-chip-rows .TexturaRecord-chips {
+  display: contents;
 }
 
 .TexturaRecord-chips {
@@ -495,6 +543,22 @@
 }
 
 /* Datasets */
+/* mobile-only outer card the three datasets share (see max-width: 699px) —
+   plain pass-through wrapper on desktop, where each dataset keeps its own
+   card look via the grid below */
+.TexturaDatasets-card {
+  width: 100%;
+}
+
+/* higher specificity than .TexturaDataset-legend / .TexturaRecord-chips
+   below so this hide-rule can't lose to them on source order alone — the
+   shared row also carries one of those classes so it can reuse their
+   look, but on desktop it must stay hidden regardless */
+.TexturaDatasets-card > .TexturaDatasets-shared-legend,
+.TexturaDatasets-card > .TexturaDatasets-shared-tags {
+  display: none;
+}
+
 .TexturaDatasets {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -704,21 +768,115 @@
     grid-template-columns: 1fr;
   }
 
-  /* Horizontal scroll-snap row instead of a stacked grid, peeking on BOTH
-     sides of whichever card is snapped into place. Two DIFFERENT insets
-     are at play here, and they must not be conflated (that was the bug
-     that made the peek lopsided): the 36px bleed below is fixed — it just
-     cancels out the page's own 36px margin so this container's box maps
-     1:1 onto the true screen edges, same as the page always did. The 50px
-     padding is the actual peek control: it's re-added ON TOP of that
-     bleed as scrollable space, and `scroll-padding` tells the snap system
-     to rest each active card 50px in from the (now-true-screen) edges
-     rather than flush with them. That 50px, minus the 10px gap between
-     cards, is what shows up on screen as peek.
-     Card width is `100vw - 100px` (viewport minus both 50px insets) —
-     keep it at `100vw − 2×padding` if the padding value changes, to stay
-     symmetric. No JS: overflow-x + scroll-snap alone give the swipe/snap
-     behavior on touch. */
+  /* matches Scriptura's .sf-mobile stacked-card gap */
+  .TexturaSteps {
+    gap: 10px;
+  }
+
+  /* Datasets becomes one combined card instead of three separate ones —
+     each dataset keeps just its name/records/bar, and the legend + tags
+     (identical across all three) move out to a single shared row at the
+     bottom instead of repeating per card. */
+  .TexturaDatasets-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 25px;
+    padding: 20px;
+  }
+
+  .TexturaDatasets {
+    display: flex;
+    flex-direction: column;
+    /* replaced by the divider line's own margin/padding below */
+    gap: 0;
+  }
+
+  .TexturaDataset {
+    background: none;
+    border: none;
+    padding: 0;
+  }
+
+  /* a divider line between datasets instead of just blank gap — 10px
+     above the line, 10px below it before the next block's own content */
+  .TexturaDataset:not(:first-child) {
+    border-top: 1px solid #e2e8f0;
+    margin-top: 15px;
+    padding-top: 10px;
+  }
+
+  .TexturaDataset-name {
+    font-size: 14px;
+  }
+
+  .TexturaDataset-records {
+    font-size: 12px;
+  }
+
+  .TexturaDataset-bar {
+    /* block's flex gap is 16px; pull up 4px so records→bar lands at 12px,
+       matching the existing name→records gap */
+    margin-top: -4px;
+  }
+
+  /* the per-card legend + tags stay hidden on mobile — the shared row
+     below replaces them */
+  .TexturaDataset .TexturaDataset-legend,
+  .TexturaDataset .TexturaRecord-chips {
+    display: none;
+  }
+
+  .TexturaDatasets-card > .TexturaDatasets-shared-legend,
+  .TexturaDatasets-card > .TexturaDatasets-shared-tags {
+    display: flex;
+  }
+
+  .TexturaDataset-name,
+  .TexturaDataset-records {
+    font-family: 'Inter', sans-serif;
+  }
+
+  .TexturaDataset-legend span {
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* matches Scriptura's .sf-small-name/.sf-small-desc mobile sizing (the
+     internal icon→name→desc gap already matches at 15px on both, unchanged
+     here — only text size/line-height were off) */
+  .TexturaStep-name {
+    font-size: 16px;
+    line-height: 1.5rem;
+  }
+
+  .TexturaStep-desc {
+    font-size: 16px;
+  }
+
+  /* Horizontal scroll-snap row instead of a stacked grid. Three DIFFERENT
+     insets are at play here, and they must not be conflated (conflating
+     the first two was the bug that made the peek lopsided earlier):
+     - The 36px bleed (width/margin below) is fixed — it just cancels out
+       the page's own 36px margin so this container's box maps 1:1 onto
+       the true screen edges, same as the page always did.
+     - `padding` (36px, matching the bleed) is the container's own visual
+       inset — since it equals the bleed exactly, it puts card 1 flush
+       with the page's normal margin at rest (scrollLeft: 0), with
+       whatever peek of card 2 falls out of that naturally on the right.
+     - `scroll-padding` (50px, deliberately DIFFERENT from padding) only
+       governs where the snap system rests a card once you've actually
+       scrolled to it — so card 2 onward centers with an even peek on
+       both sides (50px inset minus the 10px gap = 40px peek each side),
+       without touching where card 1 sits before any scrolling happens.
+     Card width stays `100vw - 100px` either way (100vw − 2×scroll-padding)
+     — this only repositions cards, it doesn't resize them. No JS:
+     overflow-x + scroll-snap alone give the swipe/snap behavior on touch.
+     Note: if you scroll away from card 1 and swipe back to it, it'll
+     re-snap to the same centered 50px position as the others, since nothing
+     here makes card 1 special once scroll-snap is actively engaged — it
+     only rests flush at the very start, before any scrolling. */
   .TexturaFeatures {
     display: flex;
     grid-template-columns: none;
@@ -728,7 +886,7 @@
     box-sizing: border-box;
     width: calc(100% + 72px);
     margin: 0 -36px;
-    padding: 0 50px;
+    padding: 0 36px;
     scroll-padding: 0 50px;
     gap: 10px;
     scrollbar-width: none;
@@ -746,27 +904,176 @@
     gap: 15px;
   }
 
+  /* Below 700px, "Inside a record" becomes one card with a Graph
+     View/Code View toggle instead of stacking both panels — that stack was
+     a big chunk of the page's scroll length. The toggle and whichever
+     panel is active each keep their own rounding (toggle rounded on top,
+     panel rounded on the bottom) and sit flush with no gap, so together
+     they read as one card — per Figma's dev-mode spec for this frame:
+     30px padding, 15px gap between the panel's own children, 0/0/15/15
+     corner radii, and a 0 12px 24px shadow (replacing the old uniform
+     20px card + drop-shadow filter). */
   .TexturaRecord {
-    grid-template-columns: 1fr;
-    gap: 24px;
+    display: flex;
+    flex-direction: column;
+    /* the base rule's 48px grid-gap was leaking through here, leaving a
+       gap between the toggle and whichever panel is active */
+    gap: 0;
+    /* ditto the base rule's 13px margin-top, on top of the section's own
+       title-to-content spacing — brings this in line with the 40px used
+       elsewhere (section gap + title margin) instead of 53px */
+    margin-top: 0;
+  }
+
+  .TexturaRecord-toggle {
+    position: relative;
+    display: flex;
+    gap: 8px;
+    padding: 8px;
+    background: white;
+    /* top + sides only — the card below carries the matching sides +
+       bottom, so together they trace one border around the whole thing
+       with no seam where they meet */
+    border: 1px solid #e2e8f0;
+    border-bottom: none;
+    border-radius: 25px 25px 0 0;
+    transition: background-color 0.25s ease, border-color 0.25s ease;
+  }
+
+  .TexturaRecord-code-active .TexturaRecord-toggle {
+    background: #374151;
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .TexturaRecord-code-active .TexturaRecord-tab {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .TexturaRecord-code-active .TexturaRecord-tab-active {
+    color: white;
+  }
+
+  /* split the bar evenly so Code View starts exactly at the card's
+     horizontal center */
+  .TexturaRecord-tab {
+    flex: 1;
+    text-align: center;
+  }
+
+  /* the blue pill itself — sized to match one tab exactly (container width
+     minus the 8px padding on each side and the 8px gap, split in two) and
+     slid over to the other tab instead of the color just cutting over */
+  .TexturaRecord-toggle-indicator {
+    display: block;
+    position: absolute;
+    z-index: 0;
+    top: 8px;
+    bottom: 8px;
+    left: 8px;
+    width: calc(50% - 12px);
+    /* the recurring un-tokenized blue used for the docs button, eyebrow
+       links, etc. across the site (App.css .section-heading and others) */
+    background: #4f70d8;
+    /* the same 15px radius as the card reads much rounder here, since this
+       box is so much smaller — nesting the corner (outer radius minus the
+       8px inset) is what actually looks visually consistent */
+    border-radius: 100px;
+    transition: transform 0.25s ease;
+  }
+
+  .TexturaRecord-toggle-indicator-code {
+    transform: translateX(calc(100% + 8px));
+  }
+
+  /* only one panel shows at a time on mobile, picked by the toggle above */
+  .TexturaRecord:not(.TexturaRecord-code-active) .TexturaJson {
+    display: none;
+  }
+
+  .TexturaRecord-code-active .TexturaRecord-card {
+    display: none;
   }
 
   .TexturaRecord-card {
-    padding: 24px;
+    /* less top inset than the sides/bottom, so the title sits closer to
+       the toggle above it */
+    padding: 16px 30px 30px 30px;
+    gap: 15px;
+    /* sides + bottom only, completing the border the toggle starts above */
+    border: 1px solid #e2e8f0;
+    border-top: none;
+    border-radius: 0 0 25px 25px;
+    filter: none;
+    box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.04);
+    /* tucks under the toggle by 1px so no sub-pixel seam shows between them */
+    margin-top: -1px;
   }
 
-  .TexturaRecord-paper {
-    font-size: 22px;
+  .TexturaRecord-chip-rows {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .TexturaRecord-chip-rows .TexturaRecord-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
   }
 
   .TexturaJson {
-    padding: 20px;
+    /* less top inset than the sides/bottom, matching the graph card */
+    padding: 16px 30px 30px 30px;
+    /* sides + bottom, matching the graph card's treatment — light enough
+       to read against the dark background here */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: none;
+    border-radius: 0 0 25px 25px;
+    margin-bottom: 0;
+    box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.04);
+    /* tucks under the toggle by 1px so no sub-pixel seam shows between them */
+    margin-top: -1px;
+  }
+
+  .TexturaRecord-paper {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+  }
+
+  .TexturaRecord-authors {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    /* card's flex gap is 15px; pull up 7px so paper→authors lands at 8px */
+    margin: -7px 0 0 0;
+  }
+
+  .TexturaChip {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+  }
+
+  .TexturaRecord-caption {
+    font-size: 12px;
+    /* card's flex gap is already 15px, so no margin override needed here */
+    margin: 0;
+  }
+
+  .TexturaJson {
     font-size: 12.5px;
   }
 
   .TexturaCurl {
-    font-size: 13px;
+    font-size: 12px;
     padding: 20px;
+    /* section's flex gap (15) + title's own margin (25) = 40 by default;
+       pull up 10px so title→curl lands at 30px */
+    margin-top: -10px;
+    /* 15 here + the section's 15px flex gap = 30px curl→endpoints */
+    margin-bottom: 15px;
+  }
+
+  .TexturaEndpoints {
+    /* between-endpoint gap */
+    gap: 10px;
   }
 
   .TexturaEndpoint {
@@ -775,10 +1082,19 @@
     gap: 10px;
   }
 
+  .TexturaEndpoint-path,
+  .TexturaEndpoint-desc {
+    font-size: 12px;
+  }
+
   .TexturaDocsButton {
     width: 100%;
     padding: 14px 20px;
-    font-size: 17px;
+    font-size: 20px;
+    /* full pill, matching the docs button elsewhere on the site */
+    border-radius: 999px;
+    /* 15 here + the section's 15px flex gap = 30px endpoints→button */
+    margin-top: 15px;
   }
 }
 
