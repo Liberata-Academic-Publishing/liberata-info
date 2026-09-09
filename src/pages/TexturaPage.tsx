@@ -107,8 +107,9 @@ function TexturaPage() {
             representations, for scientific AI that actually understands research.
           </p>
           <div className="TexturaHero-actions">
-            {/* TODO: point at the real repository once public */}
-            <button type="button" className="TexturaHero-primary">View repository →</button>
+            {/* Textura is still coming soon — no real CTA here yet.
+                TODO: swap back to "View repository →" once it's public. */}
+            <button type="button" className="TexturaHero-primary" disabled>Coming soon</button>
             <a href="#textura-how" className="TexturaHero-secondary">See how it works</a>
           </div>
         </div>
