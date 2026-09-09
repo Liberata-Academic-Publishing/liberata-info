@@ -79,7 +79,7 @@
     content: "";
     width: 2.5px;
     flex: 1;
-    background: #d9d9d9;
+    background: var(--neutral-400);
     margin-top: 6px;
     margin-bottom: -50px;
   }

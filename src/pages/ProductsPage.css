@@ -50,20 +50,20 @@
   .ProductsHero {
     height: auto;
     min-height: 380px;
-    padding: 120px 24px 50px 24px;
+    padding: 120px 36px 50px 36px;
     gap: 20px;
   }
 
   .ProductsHero-title {
-    font-size: 3rem;
+    font-size: 50px;
   }
 
   .ProductsHero-subtitle {
-    font-size: 18px;
+    font-size: 20px;
   }
 
   .ProductsBody {
-    padding: 60px 20px;
+    padding: 60px 36px;
     gap: 60px;
   }
 

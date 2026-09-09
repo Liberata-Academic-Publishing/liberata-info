@@ -1,0 +1,33 @@
+/* Hidden entirely on desktop; only ever shown on mobile (see media query
+   below). display:none here is the real gate — the .back-to-top-visible
+   opacity toggle only matters once that's already flex. */
+.back-to-top {
+  display: none;
+  position: fixed;
+  right: 20px;
+  bottom: 24px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--neutral-300);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+@media (max-width: 699px) {
+  .back-to-top {
+    display: flex;
+  }
+
+  .back-to-top-visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}

@@ -16,7 +16,7 @@
   font-weight: 500;
   font-size: 75px;
   line-height: 87.5px;
-  color: #ffffff;
+  color: var(--neutral-100);
 }
 
 .FaqsHero-subtitle {
@@ -24,7 +24,7 @@
   font-weight: 400;
   font-size: 20px;
   line-height: 1.6;
-  color: #ffffff;
+  color: var(--neutral-100);
   max-width: 500px;
 }
 
@@ -60,7 +60,7 @@
   font-size: 20px;
   line-height: 1.6;
   letter-spacing: normal;
-  color: var(--grey-text);
+  color: var(--neutral-700);
   max-width: 600px;
 }
 
@@ -79,7 +79,7 @@
   font-size: 40px;
   line-height: normal;
   letter-spacing: normal;
-  color: #111827;
+  color: var(--neutral-800);
 }
 
 .Faqs-list {
@@ -106,7 +106,7 @@
   font-size: 22.5px;
   line-height: normal;
   letter-spacing: normal;
-  color: #111827;
+  color: var(--neutral-800);
 }
 
 .Faqs-chevron {
@@ -136,7 +136,7 @@
   font-size: 18.75px;
   line-height: 1.6;
   letter-spacing: normal;
-  color: #374151;
+  color: var(--neutral-800);
   max-width: 750px;
 }
 
@@ -148,7 +148,7 @@
   object-fit: cover;
   border-radius: 16px;
   box-shadow: 2px 2px 4px 0 rgba(128, 173, 233, 0.3);
-  background: var(--grey-background);
+  background: var(--neutral-300);
 }
 
 .Faqs-rail {
@@ -165,7 +165,7 @@
   font-weight: 400;
   font-size: 20px;
   line-height: 1.2;
-  color: var(--duke-blue);
+  color: var(--brand-500);
 }
 
 .Faqs-rail a:hover {
@@ -191,7 +191,7 @@
   }
 
   .FaqsHero-title {
-    font-size: 48px;
+    font-size: 50px;
     line-height: 1.15;
   }
 
@@ -200,7 +200,7 @@
   }
 
   .Faqs-main {
-    gap: 70px;
+    gap: 60px;
   }
 
   .Faqs-title {
@@ -220,6 +220,7 @@
 
   .Faqs-answer p {
     font-size: 16px;
+    line-height: 1.5rem;
   }
 
   .Faqs-intro {

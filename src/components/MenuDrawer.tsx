@@ -24,7 +24,7 @@ function MenuDrawer({ onContact = () => { } }: { onContact?: () => void }) {
           fontFamily: '"Figtree", sans-serif',
           fontWeight: 500,
           fontSize: "17.5px",
-          color: "var(--duke-blue)",
+          color: "var(--brand-500)",
         },
         // product subpages read as children, like the header's slide-out
         "& .MenuDrawer-sub .MuiListItemText-primary": {
@@ -104,7 +104,7 @@ function MenuDrawer({ onContact = () => { } }: { onContact?: () => void }) {
               mt: 1,
               borderRadius: "999px",
               justifyContent: "center",
-              backgroundColor: "var(--duke-blue)",
+              backgroundColor: "var(--brand-500)",
               "&:hover": { backgroundColor: "#0c45cc" },
               "& .MuiListItemText-primary": { color: "white", textAlign: "center" },
             }}

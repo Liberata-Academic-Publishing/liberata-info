@@ -11,23 +11,23 @@
 .open-close-title{
     font-weight: 500;
     font-size: 28px;
-    color: #454545;
+    color: var(--neutral-800);
     cursor: pointer;
     user-select: none;
 }
 .open-close-num{
-    color: var(--grey-text);
+    color: var(--neutral-700);
 }
 .open-close-icon{
     font-size: 28px !important;
-    color: #454545;
+    color: var(--neutral-800);
     cursor: pointer;
     user-select: none;
     transition: opacity 0.3s ease;
 }
 
 .open-close-description{
-    color: var(--grey-text);
+    color: var(--neutral-700);
     font-weight: 300;
     font-size: 18px;
     padding-left: 28px;
@@ -49,7 +49,7 @@
     flex-direction: column;
 }
 .card.old-system-card{
-    background-color: var(--grey-background);
+    background-color: var(--neutral-300);
 }
 .card.liberata-card{
     color: white;
@@ -84,6 +84,7 @@
     }
     .open-close-description{
         font-size: 16px;
+        line-height: 1.5rem;
         padding-left: 0;
     }
     .card{

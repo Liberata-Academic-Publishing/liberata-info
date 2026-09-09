@@ -5,13 +5,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
 
 :root {
-  /* Variables that dictate the color scheme of the site */
-  --accent-blue: #1384FF;
-  --duke-blue: #050599;
-  --light-blue: #7CACED;
-  --light-peach: #f0afa7;
-  --grey-text: #686868;
-  --grey-background: #F7F7F7;
+  /* Figma design tokens */
+  --neutral-100: #FEFEFE;
+  --brand-500: #050599;
+  --accent-500: #1384FF;
+  --accent-300: #89C2FF;
+  --error-300: #FDA598;
+  --error-500: #F75252;
+  --neutral-300: #F4F6F9;
+  --neutral-350: #DEE4EA; /* not an official Figma token — midpoint between Neutral/300 and /400, for elements (like button-on-card) that need more contrast than 300 but less than 400 */
+  --neutral-400: #C9D1DB;
+  --neutral-500: #94A4B8;
+  --neutral-600: #64758B;
+  --neutral-700: #3F4C67;
+  --neutral-800: #0E172A;
 }
 
 html {
