@@ -1,5 +1,8 @@
+import { useState } from "react";
 import Header from "../components/Header";
-import ProductCta from "../components/ProductCta";
+// Unused while the ProductCta below is hidden — restore this import
+// alongside it.
+// import ProductCta from "../components/ProductCta";
 import KpiStrip from "../components/KpiStrip";
 import heroGraph from "../images/figma/norma/hero_graph.svg";
 import sparkStarred from "../images/figma/norma/spark_starred.svg";
@@ -190,6 +193,10 @@ const OUTPUT_ROWS = [
 ];
 
 function NormaPage() {
+  // Desktop always shows both the code and output side by side (see
+  // .NormaQuickstart's two-column grid) — this only drives the mobile toggle.
+  const [quickstartView, setQuickstartView] = useState<"code" | "output">("code");
+
   return (
     <div className="App">
       {/* id="intro" drives the Header's transparent-over-hero scroll behavior */}
@@ -253,7 +260,19 @@ function NormaPage() {
         <div className="NormaSection" id="norma-quickstart">
           <div className="section-heading">/Quickstart</div>
           <h2 className="NormaSection-title">From install to metrics in 30 seconds</h2>
-          <div className="NormaQuickstart">
+          <div className={`NormaQuickstart${quickstartView === "output" ? " NormaQuickstart-output-active" : ""}`}>
+            <div className="NormaQuickstart-toggle">
+              <div
+                className={`NormaQuickstart-toggle-indicator${quickstartView === "output" ? " NormaQuickstart-toggle-indicator-output" : ""}`}
+                aria-hidden="true"
+              />
+              <button type="button" className={`NormaQuickstart-tab${quickstartView === "code" ? " NormaQuickstart-tab-active" : ""}`} onClick={() => setQuickstartView("code")}>
+                Code View
+              </button>
+              <button type="button" className={`NormaQuickstart-tab${quickstartView === "output" ? " NormaQuickstart-tab-active" : ""}`} onClick={() => setQuickstartView("output")}>
+                Output
+              </button>
+            </div>
             <pre className="NormaCode">
 <span className="tok-kw">from</span> liberata_metrics.generators <span className="tok-kw">import</span> <span className="tok-fn">generate_references_matrix</span>{"\n"}
 <span className="tok-kw">from</span> liberata_metrics.metrics.portfolio_metrics <span className="tok-kw">import</span> <span className="tok-fn">PortfolioMetrics</span>{"\n\n"}
@@ -284,12 +303,15 @@ matrix_visuals.<span className="tok-fn">plot_sparsity_pattern</span>(refs)
           <button type="button" className="NormaDocsButton">View full documentation</button>
         </div>
 
-        <ProductCta
+        {/* Hidden: keeping the hero CTA and "View full documentation" button,
+            just dropping this bottom CTA per Vicky's request. Restore if
+            that changes. */}
+        {/* <ProductCta
           title="Open-source graph-based scientometrics."
           subtitle="Decision-grade intelligence on every researcher, lab, and institution — built on the world's most credibility-rich research corpus."
           primaryLabel="View repository →"
           secondaryLabel="View API docs"
-        />
+        /> */}
       </div>
     </div>
   );

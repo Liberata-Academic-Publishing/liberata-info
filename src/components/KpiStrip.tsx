@@ -9,6 +9,7 @@ function KpiStrip({ kpis }: { kpis: Kpi[] }) {
         <div className="kpi-card" key={kpi.label}>
           <p className="kpi-label">{kpi.label}</p>
           <p className="kpi-value">{kpi.value}</p>
+          <img className="kpi-spark" src={kpi.spark} alt="" />
         </div>
       ))}
     </div>
