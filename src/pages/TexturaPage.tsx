@@ -1,11 +1,6 @@
 import Header from "../components/Header";
 import ProductCta from "../components/ProductCta";
-import KpiStrip from "../components/KpiStrip";
 import visualLayer from "../images/figma/textura/visual_layer.svg";
-import sparkCapital from "../images/figma/textura/spark_capital.svg";
-import sparkVolatility from "../images/figma/textura/spark_volatility.svg";
-import sparkSharpe from "../images/figma/textura/spark_sharpe.svg";
-import sparkGini from "../images/figma/textura/spark_gini.svg";
 import featDocBadge from "../images/figma/textura/feat_doc_badge.svg";
 import tag1 from "../images/figma/textura/tag_1.svg";
 import tag2 from "../images/figma/textura/tag_2.svg";
@@ -31,13 +26,6 @@ const HERO_PILLS: { indent: number; bars: [number, number, number][] }[] = [
   { indent: 47.9, bars: [[130.1, 29.5, 45.5], [117.4, 21.6, 64.7], [56.7, 21.6, 58.3], [71.9, 29.5, 55.9], [91.8, 13.6, 55.9]] },
   { indent: 47.9, bars: [[157.3, 29.5, 18.4], [162.9, 21.6, 19.2], [114.2, 21.6, 46.3], [34.3, 21.6, 77.4], [71.9, 29.5, 83.0]] },
   { indent: 0, bars: [[115.8, 29.5, 32.7], [74.2, 13.6, 74.2], [36.7, 13.6, 35.1], [141.3, 21.6, 40.7], [56.7, 21.6, 82.2]] },
-];
-
-const KPIS = [
-  { label: "total_capital", value: "812,412", spark: sparkCapital },
-  { label: "volatility", value: "0.24", spark: sparkVolatility },
-  { label: "sharpe_ratio", value: "1.87", spark: sparkSharpe },
-  { label: "gini", value: "0.62", spark: sparkGini },
 ];
 
 const DATASETS = [
@@ -131,11 +119,9 @@ function TexturaPage() {
       </div>
 
       <div className="TexturaBody">
-        <KpiStrip kpis={KPIS} />
-
         <div className="TexturaSection">
           <div className="section-heading">/Features</div>
-          <h2 className="TexturaSection-title">Data infrastructure for scientific AI</h2>
+          <h2 className="TexturaSection-title TexturaFeatures-title">Data infrastructure for scientific AI</h2>
           <div className="TexturaFeatures">
             <div className="TexturaFeature">
               <div className="TexturaFeature-illustration">

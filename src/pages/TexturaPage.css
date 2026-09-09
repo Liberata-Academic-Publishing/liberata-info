@@ -171,7 +171,7 @@
 .TexturaFeature {
   background: var(--neutral-300);
   border-radius: 15px;
-  padding: 20px;
+  padding: 30px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -689,14 +689,61 @@
     margin-bottom: 25px;
   }
 
+  /* forces the break after "for" so "scientific AI" wraps together onto its
+     own line, instead of "AI" alone being orphaned on a third line */
+  .TexturaFeatures-title {
+    max-width: 260px;
+  }
+
   .TexturaSection-subtitle {
     font-size: 16px;
   }
 
-  .TexturaFeatures,
   .TexturaSteps,
   .TexturaDatasets {
     grid-template-columns: 1fr;
+  }
+
+  /* Horizontal scroll-snap row instead of a stacked grid, peeking on BOTH
+     sides of whichever card is snapped into place. Two DIFFERENT insets
+     are at play here, and they must not be conflated (that was the bug
+     that made the peek lopsided): the 36px bleed below is fixed — it just
+     cancels out the page's own 36px margin so this container's box maps
+     1:1 onto the true screen edges, same as the page always did. The 50px
+     padding is the actual peek control: it's re-added ON TOP of that
+     bleed as scrollable space, and `scroll-padding` tells the snap system
+     to rest each active card 50px in from the (now-true-screen) edges
+     rather than flush with them. That 50px, minus the 10px gap between
+     cards, is what shows up on screen as peek.
+     Card width is `100vw - 100px` (viewport minus both 50px insets) —
+     keep it at `100vw − 2×padding` if the padding value changes, to stay
+     symmetric. No JS: overflow-x + scroll-snap alone give the swipe/snap
+     behavior on touch. */
+  .TexturaFeatures {
+    display: flex;
+    grid-template-columns: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    box-sizing: border-box;
+    width: calc(100% + 72px);
+    margin: 0 -36px;
+    padding: 0 50px;
+    scroll-padding: 0 50px;
+    gap: 10px;
+    scrollbar-width: none;
+  }
+
+  .TexturaFeatures::-webkit-scrollbar {
+    display: none;
+  }
+
+  .TexturaFeature {
+    box-sizing: border-box;
+    flex: 0 0 calc(100vw - 100px);
+    scroll-snap-align: start;
+    /* matches Scriptura's .sf-card-small mobile override */
+    gap: 15px;
   }
 
   .TexturaRecord {
