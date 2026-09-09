@@ -5,10 +5,8 @@ import heroGraph from "../images/figma/norma/hero_graph.svg";
 import sparkStarred from "../images/figma/norma/spark_starred.svg";
 import sparkWatched from "../images/figma/norma/spark_watched.svg";
 import sparkForked from "../images/figma/norma/spark_forked.svg";
-import vizCitationNetwork from "../images/figma/norma/viz_citation_network.svg";
 import vizCapitalOverTime from "../images/figma/norma/viz_capital_over_time.svg";
 import outputChart from "../images/figma/norma/output_chart.svg";
-import conceptReferencesMatrix from "../images/figma/norma/concept_references_matrix.svg";
 import conceptMetricsNetwork from "../images/figma/norma/concept_metrics_network.svg";
 import "../App.css";
 import "./NormaPage.css";
@@ -149,7 +147,7 @@ const CAPABILITIES = [
   },
   {
     name: "Portfolio & system metrics",
-    desc: "Returns, volatility, Sharpe, concentration, inequality, and overall system health, paper-by-paper.",
+    desc: "Every record segmented by discipline, time period, quality tier, and position in the citation graph.",
     diagram: <AreaChart />,
   },
   {
@@ -164,39 +162,23 @@ const CAPABILITIES = [
   },
 ];
 
-const VISUALIZATIONS = [
-  {
-    name: "Citation network",
-    caption: "View the citations matrix as a structural map — see where citations concentrate in the corpus.",
-    diagram: <img className="NormaDiagram-img" src={conceptMetricsNetwork} alt="" />,
-  },
-  {
-    name: "Capital allocation",
-    caption: "Capital accrued by each researcher from each paper — bright cells are concentrated impact.",
-    diagram: <HeatGrid rows={9} cols={15} seed={41} />,
-  },
-  {
-    name: "Capital over time",
-    caption: "How capital accumulates across the graph as citations arrive and contributions compound.",
-    diagram: <img className="NormaDiagram-img" src={vizCapitalOverTime} alt="" />,
-  },
-];
-
-const CONCEPTS = [
+// Visualize and Concepts used to be two separate 3-card sections with a lot
+// of overlapping content — merged into one, per the updated Figma.
+const MODEL_CARDS = [
   {
     name: "Capital Matrix",
-    caption: "Rows are papers, columns are researchers. Entry [i, j] is the capital researcher j accrued from paper i. Shape (papers × researchers).",
+    caption: "Rows are papers, columns are researchers. Entry [i, j] is the capital researcher j accrued from paper i (papers × researchers). Bright cells mark where capital concentrates, showing at a glance which researchers accrued the most from which papers.",
     diagram: <HeatGrid rows={10} cols={16} seed={53} />,
   },
   {
-    name: "References Matrix",
-    caption: "Papers on both axes. Entry [i, j] counts how often paper i cites paper j — the citation graph as a sparse matrix.",
-    diagram: <img className="NormaDiagram-img" src={conceptReferencesMatrix} alt="" />,
+    name: "Citation network",
+    caption: "Papers on both axes. Entry [i, j] counts how often paper i cites paper j, the citation graph as a sparse matrix. Viewed structurally, the same matrix becomes a map of where citations concentrate across the corpus.",
+    diagram: <img className="NormaDiagram-img" src={conceptMetricsNetwork} alt="" />,
   },
   {
     name: "Metrics",
-    caption: "Portfolio, market, distribution, and system metrics quantify concentration, returns, risk, and the health of the whole network.",
-    diagram: <img className="NormaDiagram-img" src={vizCitationNetwork} alt="" />,
+    caption: "Portfolio, market, distribution, and system metrics quantify concentration, returns, risk, and the health of the network, including how capital compounds over time as citations arrive and contributions accumulate.",
+    diagram: <img className="NormaDiagram-img" src={vizCapitalOverTime} alt="" />,
   },
 ];
 
@@ -242,7 +224,7 @@ function NormaPage() {
 
         <div className="NormaSection">
           <div className="section-heading">/Features</div>
-          <h2 className="NormaSection-title">Data infrastructure for scientific AI</h2>
+          <h2 className="NormaSection-title NormaFeatures-title">Data infrastructure for scientific AI</h2>
           <div className="NormaCards NormaCards-4">
             {CAPABILITIES.map((card) => (
               <div className="NormaCard" key={card.name}>
@@ -256,9 +238,9 @@ function NormaPage() {
 
         <div className="NormaSection">
           <div className="section-heading">/Visualize</div>
-          <h2 className="NormaSection-title">See how capital flows</h2>
-          <div className="NormaCards NormaCards-3">
-            {VISUALIZATIONS.map((panel) => (
+          <h2 className="NormaSection-title">The data model</h2>
+          <div className="NormaCards NormaCards-3 NormaModel">
+            {MODEL_CARDS.map((panel) => (
               <div className="NormaCard" key={panel.name}>
                 <div className="NormaCard-illustration NormaCard-illustration-tall">{panel.diagram}</div>
                 <p className="NormaCard-name">{panel.name}</p>
@@ -300,20 +282,6 @@ matrix_visuals.<span className="tok-fn">plot_sparsity_pattern</span>(refs)
           </div>
           {/* TODO: link to the real documentation once published */}
           <button type="button" className="NormaDocsButton">View full documentation</button>
-        </div>
-
-        <div className="NormaSection">
-          <div className="section-heading">/Concepts</div>
-          <h2 className="NormaSection-title">The data model</h2>
-          <div className="NormaCards NormaCards-3">
-            {CONCEPTS.map((panel) => (
-              <div className="NormaCard" key={panel.name}>
-                <div className="NormaCard-illustration NormaCard-illustration-tall">{panel.diagram}</div>
-                <p className="NormaCard-name">{panel.name}</p>
-                <p className="NormaCard-desc">{panel.caption}</p>
-              </div>
-            ))}
-          </div>
         </div>
 
         <ProductCta

@@ -149,7 +149,8 @@
 .NormaCard {
   background: var(--neutral-300);
   border-radius: 15px;
-  padding: 20px;
+  /* matches Textura's card padding */
+  padding: 30px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -227,7 +228,8 @@
   border-radius: 15px;
   padding: 32px;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 14.5px;
+  /* matches Textura's .TexturaCurl */
+  font-size: 16px;
   line-height: 1.7;
   color: white;
   overflow-x: auto;
@@ -361,10 +363,72 @@
     margin-bottom: 25px;
   }
 
+  /* forces the break after "for" so "scientific AI" wraps together onto its
+     own line, instead of "AI" alone being orphaned on a third line —
+     matches Textura's .TexturaFeatures-title */
+  .NormaFeatures-title {
+    max-width: 260px;
+  }
+
   .NormaCards-4,
   .NormaCards-3,
   .NormaQuickstart {
     grid-template-columns: 1fr;
+  }
+
+  /* Features cards drop their illustration on mobile per Figma — just
+     name + description, matching the tight stacked-card look there */
+  .NormaCards-4 .NormaCard-illustration {
+    display: none;
+  }
+
+  /* Capital & reference metrics' caption needs a bit more room */
+  .NormaCards-4 .NormaCard:first-child .NormaCard-desc {
+    margin-right: -15px;
+  }
+
+  /* matches Scriptura's .sf-mobile stacked-card gap */
+  .NormaCards-4,
+  .NormaCards-3 {
+    gap: 10px;
+  }
+
+  /* Horizontal scroll-snap row instead of a stacked grid, same treatment as
+     Textura's Features carousel — see that file's mobile block for the full
+     explanation of the bleed/padding/scroll-padding split. Card 1 sits flush
+     with the page margin at rest; card 2 onward centers with an even peek
+     on both sides once scrolled to. */
+  .NormaModel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    box-sizing: border-box;
+    width: calc(100% + 72px);
+    margin: 0 -36px;
+    padding: 0 36px;
+    /* a bit narrower an inset than Textura's carousel (40 vs 50) so the
+       card — and its longer caption text — has more room, at the cost of a
+       slightly smaller peek (30px vs 40px) */
+    scroll-padding: 0 40px;
+    gap: 10px;
+    scrollbar-width: none;
+  }
+
+  .NormaModel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .NormaModel .NormaCard {
+    box-sizing: border-box;
+    flex: 0 0 calc(100vw - 80px);
+    scroll-snap-align: start;
+  }
+
+  /* per Figma, only Capital Matrix's caption runs past the card's own right
+     padding — the other two cards stay fully inset */
+  .NormaModel .NormaCard:first-child .NormaCard-desc {
+    margin-right: -25px;
   }
 
   .NormaCode {
@@ -383,7 +447,9 @@
   .NormaDocsButton {
     width: 100%;
     padding: 14px 20px;
-    font-size: 17px;
+    /* matches Textura's mobile docs button: same size as desktop, full pill */
+    font-size: 20px;
+    border-radius: 999px;
   }
 }
 

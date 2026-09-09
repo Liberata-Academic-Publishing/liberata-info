@@ -33,14 +33,3 @@
   font-size: 37px;
   color: var(--neutral-800);
 }
-
-.kpi-spark {
-  width: 100%;
-  height: 36px;
-}
-
-@media (max-width: 699px) {
-  .kpi-strip {
-    grid-template-columns: 1fr !important;
-  }
-}
