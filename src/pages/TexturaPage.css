@@ -974,9 +974,8 @@
     /* the recurring un-tokenized blue used for the docs button, eyebrow
        links, etc. across the site (App.css .section-heading and others) */
     background: #4f70d8;
-    /* the same 15px radius as the card reads much rounder here, since this
-       box is so much smaller — nesting the corner (outer radius minus the
-       8px inset) is what actually looks visually consistent */
+    /* full pill radius, per Figma — the card/toggle use 25px (see
+       .TexturaRecord-toggle and .TexturaRecord-card above) */
     border-radius: 100px;
     transition: transform 0.25s ease;
   }
