@@ -89,7 +89,7 @@ function Contact() {
       <div className="Contact-text">
         <div className="Contact-text-headline">
           Let's build a better system{" "}
-          <span style={{ color: "var(--duke-blue)" }}>together</span>.
+          <span style={{ color: "var(--brand-500)" }}>together</span>.
         </div>
         <div className="Contact-text-subline">
           Join our mailing list for future updates.
