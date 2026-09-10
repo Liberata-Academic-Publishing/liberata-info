@@ -31,7 +31,8 @@
 /* Design puts an 868px content column beside a 280px rail (Figma 1108:17336) */
 .FaqsBody {
   box-sizing: border-box;
-  /* matches Textura's/Norma's body padding */
+  /* matches the site-wide body padding (Textura, Norma, Mensura,
+     Scriptura, Research, News, Team all use this same value) */
   padding: 100px 75px;
   display: flex;
   gap: 75px;
