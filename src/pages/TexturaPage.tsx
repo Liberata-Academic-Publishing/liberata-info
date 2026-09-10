@@ -1,11 +1,9 @@
+import { useState } from "react";
 import Header from "../components/Header";
-import ProductCta from "../components/ProductCta";
-import KpiStrip from "../components/KpiStrip";
+// Unused while the ProductCta below is hidden (Textura is still coming
+// soon) — restore this import alongside it.
+// import ProductCta from "../components/ProductCta";
 import visualLayer from "../images/figma/textura/visual_layer.svg";
-import sparkCapital from "../images/figma/textura/spark_capital.svg";
-import sparkVolatility from "../images/figma/textura/spark_volatility.svg";
-import sparkSharpe from "../images/figma/textura/spark_sharpe.svg";
-import sparkGini from "../images/figma/textura/spark_gini.svg";
 import featDocBadge from "../images/figma/textura/feat_doc_badge.svg";
 import tag1 from "../images/figma/textura/tag_1.svg";
 import tag2 from "../images/figma/textura/tag_2.svg";
@@ -31,13 +29,6 @@ const HERO_PILLS: { indent: number; bars: [number, number, number][] }[] = [
   { indent: 47.9, bars: [[130.1, 29.5, 45.5], [117.4, 21.6, 64.7], [56.7, 21.6, 58.3], [71.9, 29.5, 55.9], [91.8, 13.6, 55.9]] },
   { indent: 47.9, bars: [[157.3, 29.5, 18.4], [162.9, 21.6, 19.2], [114.2, 21.6, 46.3], [34.3, 21.6, 77.4], [71.9, 29.5, 83.0]] },
   { indent: 0, bars: [[115.8, 29.5, 32.7], [74.2, 13.6, 74.2], [36.7, 13.6, 35.1], [141.3, 21.6, 40.7], [56.7, 21.6, 82.2]] },
-];
-
-const KPIS = [
-  { label: "total_capital", value: "812,412", spark: sparkCapital },
-  { label: "volatility", value: "0.24", spark: sparkVolatility },
-  { label: "sharpe_ratio", value: "1.87", spark: sparkSharpe },
-  { label: "gini", value: "0.62", spark: sparkGini },
 ];
 
 const DATASETS = [
@@ -98,6 +89,11 @@ function RecordGraph() {
 }
 
 function TexturaPage() {
+  // Desktop always shows both the graph and the raw record side by side (see
+  // .TexturaRecord's two-column grid) — this only drives the mobile toggle,
+  // where showing both stacked was a big chunk of the page's scroll length.
+  const [recordView, setRecordView] = useState<"graph" | "code">("graph");
+
   return (
     <div className="App">
       {/* id="intro" drives the Header's transparent-over-hero scroll behavior */}
@@ -111,8 +107,9 @@ function TexturaPage() {
             representations, for scientific AI that actually understands research.
           </p>
           <div className="TexturaHero-actions">
-            {/* TODO: point at the real repository once public */}
-            <button type="button" className="TexturaHero-primary">View repository →</button>
+            {/* Textura is still coming soon — no real CTA here yet.
+                TODO: swap back to "View repository →" once it's public. */}
+            <button type="button" className="TexturaHero-primary" disabled>Coming soon</button>
             <a href="#textura-how" className="TexturaHero-secondary">See how it works</a>
           </div>
         </div>
@@ -131,11 +128,9 @@ function TexturaPage() {
       </div>
 
       <div className="TexturaBody">
-        <KpiStrip kpis={KPIS} />
-
         <div className="TexturaSection">
           <div className="section-heading">/Features</div>
-          <h2 className="TexturaSection-title">Data infrastructure for scientific AI</h2>
+          <h2 className="TexturaSection-title TexturaFeatures-title">Data infrastructure for scientific AI</h2>
           <div className="TexturaFeatures">
             <div className="TexturaFeature">
               <div className="TexturaFeature-illustration">
@@ -238,16 +233,43 @@ function TexturaPage() {
         <div className="TexturaSection">
           <div className="section-heading">/Inside a record</div>
           <h2 className="TexturaSection-title">Every record is graph-linked and annotated</h2>
-          <div className="TexturaRecord">
+          <div className={`TexturaRecord${recordView === "code" ? " TexturaRecord-code-active" : ""}`}>
+            {/* mobile-only toggle — hidden on desktop via CSS, where both
+                panels below show at once instead of switching between them */}
+            <div className="TexturaRecord-toggle">
+              <div
+                className={`TexturaRecord-toggle-indicator${recordView === "code" ? " TexturaRecord-toggle-indicator-code" : ""}`}
+                aria-hidden="true"
+              />
+              <button
+                type="button"
+                className={`TexturaRecord-tab${recordView === "graph" ? " TexturaRecord-tab-active" : ""}`}
+                onClick={() => setRecordView("graph")}
+              >
+                Graph View
+              </button>
+              <button
+                type="button"
+                className={`TexturaRecord-tab${recordView === "code" ? " TexturaRecord-tab-active" : ""}`}
+                onClick={() => setRecordView("code")}
+              >
+                Code View
+              </button>
+            </div>
+
             <div className="TexturaRecord-card">
               <p className="TexturaRecord-paper">Graph Scientometrics for Share-Based Publishing</p>
               <p className="TexturaRecord-authors">Zhang, Sabath, Dunn, Brinson · 2026 · cs.DL</p>
-              <div className="TexturaRecord-chips">
-                <span className="TexturaChip TexturaChip-blue">field: cs.DL</span>
-                <span className="TexturaChip TexturaChip-blue">tier: A</span>
-                <span className="TexturaChip TexturaChip-purple">peer-reviewed</span>
-                <span className="TexturaChip TexturaChip-green">replicated</span>
-                <span className="TexturaChip TexturaChip-lightblue">cited +142</span>
+              <div className="TexturaRecord-chip-rows">
+                <div className="TexturaRecord-chips">
+                  <span className="TexturaChip TexturaChip-blue">field: cs.DL</span>
+                  <span className="TexturaChip TexturaChip-blue">tier: A</span>
+                  <span className="TexturaChip TexturaChip-lightblue">cited +142</span>
+                </div>
+                <div className="TexturaRecord-chips">
+                  <span className="TexturaChip TexturaChip-purple">peer-reviewed</span>
+                  <span className="TexturaChip TexturaChip-green">replicated</span>
+                </div>
               </div>
               <div className="TexturaRecord-canvas">
                 <RecordGraph />
@@ -283,27 +305,41 @@ function TexturaPage() {
           <p className="TexturaSection-subtitle">
             Every dataset is filtered to the quality tiers you need and ships with full graph context.
           </p>
-          <div className="TexturaDatasets">
-            {DATASETS.map((dataset) => (
-              <div className="TexturaDataset" key={dataset.name}>
-                <p className="TexturaDataset-name">{dataset.name}</p>
-                <p className="TexturaDataset-records">{dataset.records}</p>
-                <div className="TexturaDataset-bar">
-                  <span className="TexturaDataset-bar-a" />
-                  <span className="TexturaDataset-bar-b" />
-                  <span className="TexturaDataset-bar-c" />
+          <div className="TexturaDatasets-card">
+            <div className="TexturaDatasets">
+              {DATASETS.map((dataset) => (
+                <div className="TexturaDataset" key={dataset.name}>
+                  <p className="TexturaDataset-name">{dataset.name}</p>
+                  <p className="TexturaDataset-records">{dataset.records}</p>
+                  <div className="TexturaDataset-bar">
+                    <span className="TexturaDataset-bar-a" />
+                    <span className="TexturaDataset-bar-b" />
+                    <span className="TexturaDataset-bar-c" />
+                  </div>
+                  <div className="TexturaDataset-legend">
+                    <span><i className="TexturaDot TexturaDot-a" /> Tier A</span>
+                    <span><i className="TexturaDot TexturaDot-b" /> Tier B</span>
+                    <span><i className="TexturaDot TexturaDot-c" /> Tier C</span>
+                  </div>
+                  <div className="TexturaRecord-chips">
+                    <span className="TexturaChip TexturaChip-blue TexturaChip-square">graph-linked</span>
+                    <span className="TexturaChip TexturaChip-purple TexturaChip-square">annotated</span>
+                  </div>
                 </div>
-                <div className="TexturaDataset-legend">
-                  <span><i className="TexturaDot TexturaDot-a" /> Tier A</span>
-                  <span><i className="TexturaDot TexturaDot-b" /> Tier B</span>
-                  <span><i className="TexturaDot TexturaDot-c" /> Tier C</span>
-                </div>
-                <div className="TexturaRecord-chips">
-                  <span className="TexturaChip TexturaChip-blue TexturaChip-square">graph-linked</span>
-                  <span className="TexturaChip TexturaChip-purple TexturaChip-square">annotated</span>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
+
+            {/* mobile-only: the three datasets share one legend + tag row
+                instead of repeating the identical ones per card */}
+            <div className="TexturaDataset-legend TexturaDatasets-shared-legend">
+              <span><i className="TexturaDot TexturaDot-a" /> Tier A</span>
+              <span><i className="TexturaDot TexturaDot-b" /> Tier B</span>
+              <span><i className="TexturaDot TexturaDot-c" /> Tier C</span>
+            </div>
+            <div className="TexturaRecord-chips TexturaDatasets-shared-tags">
+              <span className="TexturaChip TexturaChip-blue TexturaChip-square">graph-linked</span>
+              <span className="TexturaChip TexturaChip-purple TexturaChip-square">annotated</span>
+            </div>
           </div>
         </div>
 
@@ -325,16 +361,20 @@ function TexturaPage() {
               </div>
             ))}
           </div>
-          {/* TODO: link to the real API documentation once published */}
-          <button type="button" className="TexturaDocsButton">View full documentation</button>
+          {/* Hidden: Textura is still coming soon, so no CTAs (this button
+              included) should show on the page yet. Restore once it's ready
+              — TODO: link to the real API documentation once published. */}
+          {/* <button type="button" className="TexturaDocsButton">View full documentation</button> */}
         </div>
 
-        <ProductCta
+        {/* Hidden: Textura is still coming soon, so no CTAs should show on
+            the page yet. Restore this ProductCta once it's ready to launch. */}
+        {/* <ProductCta
           title="The scholarly record, ready for AI."
           subtitle="License structured scientific training data built on the world's most credibility-rich research corpus."
           primaryLabel="Request dataset access →"
           secondaryLabel="View API docs"
-        />
+        /> */}
       </div>
     </div>
   );
