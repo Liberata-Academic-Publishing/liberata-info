@@ -188,7 +188,8 @@
 
 @media (max-width: 899px) {
   .FaqsBody {
-    /* matches Textura's/Norma's mobile body padding */
+    /* matches the site-wide mobile body padding (Textura, Norma, Mensura,
+       Scriptura, Research, News, Team all use this same value) */
     padding: 50px 36px;
     gap: 40px;
   }
