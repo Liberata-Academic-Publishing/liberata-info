@@ -216,11 +216,36 @@
 }
 
 .Conferences-statusToggle {
+  position: relative;
   display: flex;
   gap: 8px;
+  /* matches the hairline color already used for the FAQ row dividers —
+     var(--neutral-300) is too close to white to read as a border here */
+  border: 1px solid #e5e7eb;
+  border-radius: 999px;
+  padding: 4px;
+}
+
+/* the sliding fill behind the active pill — same sliding-indicator pattern
+   as Norma's Quickstart Code View/Output toggle and Textura's Graph
+   View/Code View toggle, but those two are always equal-width (flex: 1)
+   tabs, so a fixed 50%/100% split works. All/Attended/Upcoming aren't equal
+   width — the pill needs to hug each button's own text — so left/width are
+   set inline from the button's actual measured box (see ConferencesPage.tsx)
+   and only those two properties transition here. */
+.Conferences-statusToggle-indicator {
+  position: absolute;
+  z-index: 0;
+  top: 4px;
+  bottom: 4px;
+  background: #4f70d8;
+  border-radius: 999px;
+  transition: left 0.25s ease, width 0.25s ease;
 }
 
 .Conferences-statusPill {
+  position: relative;
+  z-index: 1;
   background: transparent;
   border: none;
   border-radius: 999px;
@@ -231,10 +256,10 @@
   font-size: 15px;
   color: var(--neutral-500);
   cursor: pointer;
+  transition: color 0.25s ease;
 }
 
 .Conferences-statusPill.active {
-  background: #4f70d8;
   color: white;
 }
 
@@ -307,16 +332,6 @@
   color: var(--neutral-700);
 }
 
-@media (max-width: 899px) {
-  .ConferencesBody {
-    padding: 100px 36px;
-  }
-
-  .Conferences-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 @media (max-width: 699px) {
   .ConferencesHero {
     padding: 120px 36px 80px 36px;
@@ -356,7 +371,9 @@
   }
 
   .Conferences-featured-content {
-    padding: 20px;
+    /* matches the 30px card padding used everywhere else on the site (News,
+       Norma) — only surrounding gaps shrink on mobile, not card interiors */
+    padding: 30px;
     gap: 12px;
   }
 
@@ -364,11 +381,17 @@
     font-size: 22px;
   }
 
+  /* matches Textura's/Norma's/Mensura's/Scriptura's 30px -> 22px section
+     title mobile scale */
   .ConferencesSection-title {
-    font-size: 26px;
+    font-size: 22px;
   }
 
-  .Conferences-card {
-    padding: 20px;
+  /* matches Norma's Feature-card grid — same card recipe (background,
+     15px radius, 30px padding), so it follows Norma's/Scriptura's
+     "sf-mobile" stacked-card gap on mobile rather than leaving it at 30px */
+  .Conferences-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
   }
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import Header from "../components/Header";
 import "../App.css";
 import "./ConferencesPage.css";
@@ -237,6 +237,33 @@ function ConferencesPage() {
   const [statusFilter, setStatusFilter] = useState<"All" | "Attended" | "Upcoming">("All");
   const [focusFilter, setFocusFilter] = useState<string | null>(null);
 
+  // the indicator hugs whichever pill's text is active (their widths differ:
+  // "All" vs "Attended" vs "Upcoming"), so its box is measured from the real
+  // button rather than assumed to be an equal third of the toggle
+  const statusPillRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const [statusIndicator, setStatusIndicator] = useState({ left: 0, width: 0 });
+
+  useLayoutEffect(() => {
+    const activeIndex = STATUS_FILTERS.findIndex((f) => f.value === statusFilter);
+    const activeEl = statusPillRefs.current[activeIndex];
+    if (activeEl) {
+      setStatusIndicator({ left: activeEl.offsetLeft, width: activeEl.offsetWidth });
+    }
+  }, [statusFilter]);
+
+  useLayoutEffect(() => {
+    const recalc = () => {
+      const activeIndex = STATUS_FILTERS.findIndex((f) => f.value === statusFilter);
+      const activeEl = statusPillRefs.current[activeIndex];
+      if (activeEl) {
+        setStatusIndicator({ left: activeEl.offsetLeft, width: activeEl.offsetWidth });
+      }
+    };
+    window.addEventListener("resize", recalc);
+    return () => window.removeEventListener("resize", recalc);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const [featured, ...rest] = CONFERENCES;
 
   const filtered = rest.filter((conf) => {
@@ -262,10 +289,20 @@ function ConferencesPage() {
         <div className="Conferences-listHeader">
           <h2 className="ConferencesSection-title">All Conferences</h2>
           <div className="Conferences-statusToggle">
-            {STATUS_FILTERS.map((f) => (
+            {/* sliding pill behind the buttons — same pattern as Norma's
+                Quickstart Code View/Output toggle and Textura's Graph
+                View/Code View toggle, adapted so the pill hugs each
+                button's actual measured width instead of an equal third */}
+            <div
+              className="Conferences-statusToggle-indicator"
+              style={{ left: statusIndicator.left, width: statusIndicator.width }}
+              aria-hidden="true"
+            />
+            {STATUS_FILTERS.map((f, i) => (
               <button
                 type="button"
                 key={f.value}
+                ref={(el) => { statusPillRefs.current[i] = el; }}
                 className={`Conferences-statusPill${statusFilter === f.value ? " active" : ""}`}
                 onClick={() => setStatusFilter(f.value)}
               >
