@@ -42,6 +42,13 @@
   align-items: flex-start;
 }
 
+/* overrides App.css's global .section-heading eyebrow style (20px desktop /
+   18px mobile) just for this page's "MOST RECENT" label — shrinks further
+   on mobile below (see max-width: 699px block) */
+.ConferencesBody .section-heading {
+  font-size: 16px;
+}
+
 .Conferences-tag-dot {
   width: 6px;
   height: 6px;
@@ -53,10 +60,9 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: white;
-  border: 1px solid var(--neutral-300);
-  border-radius: 20px;
-  padding: 4px 12px;
+  background: var(--neutral-300);
+  border-radius: 6px;
+  padding: 4px 8px;
   font-weight: 500;
   font-size: 12.5px;
   color: var(--neutral-700);
@@ -307,7 +313,10 @@
 }
 
 .Conferences-card {
-  background: var(--neutral-300);
+  background: white;
+  /* matches the hairline color already used for the status toggle border
+     and the attribution row dividers on this page */
+  border: 1px solid #e5e7eb;
   border-radius: 15px;
   padding: 30px;
   display: flex;
@@ -353,12 +362,18 @@
     gap: 40px;
   }
 
+  .ConferencesBody .section-heading {
+    font-size: 12px;
+  }
+
   /* image + content collapse into one seamless card on mobile, instead of
      the desktop's separate image-plus-plain-text layout */
   .Conferences-featured {
     flex-direction: column;
     gap: 0;
-    background: var(--neutral-300);
+    background: white;
+    /* matches the grid cards' hairline border treatment */
+    border: 1px solid #e5e7eb;
     border-radius: 15px;
     overflow: hidden;
   }
