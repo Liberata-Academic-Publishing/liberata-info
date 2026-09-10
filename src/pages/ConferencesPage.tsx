@@ -45,7 +45,6 @@ const CONFERENCES: Conference[] = [
       "The CIVICA alliance's open-science gathering, on the practices and infrastructure that keep research open, reproducible, and trustworthy. Han Zhang represented Liberata; the full programme is published.",
     representedBy: ["Han Zhang"],
     status: "attended",
-    link: { label: "Conference paper", url: "#" },
   },
   {
     name: "OIS Research Conference 2026",
@@ -172,7 +171,10 @@ function Attribution({ names }: { names: string[] }) {
   return (
     <div className="Conferences-attribution">
       <AttendeeAvatar name={names[0]} />
-      <span className="Conferences-attribution-label">Represented by {names.join(" & ")}</span>
+      <span className="Conferences-attribution-text">
+        <span className="Conferences-attribution-label">Represented by</span>
+        <span className="Conferences-attribution-name">{names.join(" & ")}</span>
+      </span>
     </div>
   );
 }
