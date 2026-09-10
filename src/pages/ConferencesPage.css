@@ -1,0 +1,374 @@
+.ConferencesHero {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 150px 100px 100px 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: flex-start;
+  background-image: url(../images/figma/hero_bg.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+.ConferencesHero-title {
+  margin: 0;
+  font-weight: 500;
+  font-size: 4.7rem;
+  line-height: 1.15;
+  color: white;
+}
+
+.ConferencesHero-subtitle {
+  margin: 0;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.6;
+  color: white;
+  max-width: 500px;
+}
+
+/* matches the site-wide body padding (Textura, Norma, Mensura, Scriptura,
+   Research, News, Team all use this same value) — the vertical gap here is
+   smaller than their 125px, since this page reads as one flowing list
+   rather than a series of distinct feature sections */
+.ConferencesBody {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 100px 75px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  align-items: flex-start;
+}
+
+.Conferences-tag-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.Conferences-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: white;
+  border: 1px solid var(--neutral-300);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-weight: 500;
+  font-size: 12.5px;
+  color: var(--neutral-700);
+}
+
+.Conferences-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.Conferences-pin {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+  color: var(--neutral-500);
+}
+
+.Conferences-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-weight: 400;
+  font-size: 13.5px;
+  color: var(--neutral-500);
+}
+
+.Conferences-location {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.Conferences-desc {
+  margin: 0;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--neutral-700);
+}
+
+/* the divider line above the attribution row, matching the hairline color
+   already used on the FAQ accordion rows */
+.Conferences-attribution {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding-top: 14px;
+  border-top: 1.25px solid #e5e7eb;
+}
+
+.Conferences-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #4f70d8;
+  color: white;
+  font-weight: 600;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.Conferences-attribution-label {
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--neutral-500);
+}
+
+/* Featured (most recent) conference */
+.Conferences-featured {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.Conferences-featured-image {
+  flex: 0 0 340px;
+  height: 280px;
+  border-radius: 15px;
+  background: linear-gradient(to bottom, white, var(--brand-500));
+}
+
+.Conferences-featured-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: flex-start;
+}
+
+.Conferences-featured-name {
+  margin: 0;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 1.3;
+  color: var(--neutral-800);
+}
+
+.Conferences-quote {
+  margin: 0;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--neutral-700);
+}
+
+.Conferences-featured-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: 100%;
+  padding-top: 14px;
+  border-top: 1.25px solid #e5e7eb;
+}
+
+/* the footer already carries the divider, so the attribution row inside it
+   doesn't need its own */
+.Conferences-featured-footer .Conferences-attribution {
+  padding-top: 0;
+  border-top: none;
+  width: auto;
+}
+
+.Conferences-featured-link {
+  font-weight: 600;
+  font-size: 15px;
+  color: #4f70d8;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* All Conferences */
+.Conferences-listHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  width: 100%;
+}
+
+.ConferencesSection-title {
+  margin: 0;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 1.3;
+  color: var(--neutral-800);
+}
+
+.Conferences-statusToggle {
+  display: flex;
+  gap: 8px;
+}
+
+.Conferences-statusPill {
+  background: transparent;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 20px;
+  height: auto;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--neutral-500);
+  cursor: pointer;
+}
+
+.Conferences-statusPill.active {
+  background: #4f70d8;
+  color: white;
+}
+
+.Conferences-focusRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+}
+
+.Conferences-focusRow-label {
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: var(--neutral-500);
+}
+
+.Conferences-focusPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  height: auto;
+  font-family: inherit;
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--neutral-700);
+  cursor: pointer;
+}
+
+.Conferences-focusPill.active {
+  font-weight: 600;
+  color: var(--neutral-800);
+}
+
+.Conferences-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  width: 100%;
+  align-items: stretch;
+}
+
+.Conferences-card {
+  background: var(--neutral-300);
+  border-radius: 15px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.Conferences-card-name {
+  margin: 0;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.3;
+  color: var(--neutral-800);
+}
+
+.Conferences-empty {
+  margin: 0;
+  font-weight: 400;
+  font-size: 17.5px;
+  color: var(--neutral-700);
+}
+
+@media (max-width: 899px) {
+  .ConferencesBody {
+    padding: 100px 36px;
+  }
+
+  .Conferences-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 699px) {
+  .ConferencesHero {
+    padding: 120px 36px 80px 36px;
+    gap: 24px;
+  }
+
+  .ConferencesHero-title {
+    font-size: 50px;
+  }
+
+  .ConferencesHero-subtitle {
+    font-size: 17px;
+  }
+
+  /* matches the site's mobile spacing convention of trimming vertical
+     gaps by ~10-20px (see .TexturaSection-title's 35px -> 25px) */
+  .ConferencesBody {
+    padding: 50px 36px;
+    gap: 40px;
+  }
+
+  /* image + content collapse into one seamless card on mobile, instead of
+     the desktop's separate image-plus-plain-text layout */
+  .Conferences-featured {
+    flex-direction: column;
+    gap: 0;
+    background: var(--neutral-300);
+    border-radius: 15px;
+    overflow: hidden;
+  }
+
+  .Conferences-featured-image {
+    flex: none;
+    width: 100%;
+    height: 210px;
+    border-radius: 0;
+  }
+
+  .Conferences-featured-content {
+    padding: 20px;
+    gap: 12px;
+  }
+
+  .Conferences-featured-name {
+    font-size: 22px;
+  }
+
+  .ConferencesSection-title {
+    font-size: 26px;
+  }
+
+  .Conferences-card {
+    padding: 20px;
+  }
+}
