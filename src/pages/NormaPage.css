@@ -55,7 +55,9 @@
 }
 
 .NormaHero-primary {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   background: white;
   border: 1.5px solid white;
   color: var(--brand-500) !important;
@@ -69,6 +71,12 @@
   cursor: pointer;
   text-decoration: none;
   text-align: center;
+}
+
+.NormaHero-primary svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
 }
 
 .NormaHero-secondary {
@@ -397,6 +405,11 @@
   .NormaHero-secondary {
     font-size: 16px;
     line-height: 1.5rem;
+  }
+
+  .NormaHero-primary svg {
+    width: 16px;
+    height: 16px;
   }
 
   .NormaBody {

@@ -75,7 +75,16 @@ function ScripturaPage() {
         <ProductCta
           title="Ready to reshape academic publishing?"
           subtitle="Join researchers, labs, and institutions already building on Scriptura."
-          primaryLabel="Start publishing →"
+          primaryLabel={
+            <>
+              <span>Start publishing</span>
+              {/* real icon instead of a plain "→" character — same fix as
+                  the Norma hero CTA and mobile "Sign up for beta" button */}
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M4.16626 10H15.8343M10.0003 15.834L15.8343 10L10.0003 4.16603" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+              </svg>
+            </>
+          }
           primaryTo="/beta-signup"
           secondaryLabel="Request a demo"
         />

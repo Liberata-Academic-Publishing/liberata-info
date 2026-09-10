@@ -112,6 +112,9 @@
 }
 
 .Hook-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   background-color: transparent;
   color: white !important;
   border: 1.25px solid white;
@@ -120,6 +123,12 @@
   font-weight: 500;
   font-size: 1.4rem;
   transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.Hook-cta svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
 }
 
 .Hook-cta:hover {
@@ -178,5 +187,9 @@
     font-size: 16px !important;
     font-weight: 600;
     padding: 10px 20px;
+  }
+  .Hook-cta svg {
+    width: 16px;
+    height: 16px;
   }
 }

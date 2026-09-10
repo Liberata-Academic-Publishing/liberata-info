@@ -217,7 +217,14 @@ function NormaPage() {
                 rel="noopener noreferrer"
                 className="NormaHero-primary"
               >
-                View repository →
+                {/* real icon instead of a plain "→" character so its size is
+                    controlled independently of the button's font-size —
+                    same arrow used in ProductsGrid.tsx, via currentColor so
+                    it matches the brand-500 text */}
+                <span>View repository</span>
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <path d="M4.16626 10H15.8343M10.0003 15.834L15.8343 10L10.0003 4.16603" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+                </svg>
               </a>
               <a href="#norma-quickstart" className="NormaHero-secondary">See how it works</a>
             </div>
