@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import Header from '../components/Header';
 import Hook from '../components/Hook';
 import KeyConcepts from '../components/KeyConcepts';
@@ -118,6 +118,76 @@ function OverviewPage() {
       intro.removeEventListener("mousemove", handleMouseMove);
       intro.removeEventListener("mouseleave", handleMouseLeave);
     };
+  }, []);
+
+  // The overlay is oversized on mobile (inset in App.css) so it has enough
+  // spare image to rotate around a corner without ever exposing a bare
+  // edge. That means background-size/-position (both percentages of the
+  // overlay's OWN, now-enlarged box) can no longer reproduce the original
+  // background-size:200% / position:center 120% crop — so instead we
+  // compute the equivalent in pixels here, measured against the hero's
+  // actual rendered size, and set it directly. Recomputed on resize since
+  // it depends on the hero's real width.
+  useLayoutEffect(() => {
+    const intro: HTMLElement | null = introRef.current;
+    const overlay: HTMLElement | null = overlayRef.current;
+    if (!intro || !overlay) return;
+    if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+
+    // BG_overlay.png's own dimensions (3883 x 2519)
+    const IMAGE_ASPECT = 2519 / 3883;
+
+    function layout() {
+      if (!intro || !overlay) return;
+      const heroRect = intro.getBoundingClientRect();
+      const boxRect = overlay.getBoundingClientRect();
+
+      const imageW = heroRect.width * 2; // matches the original background-size: 200%
+      const imageH = imageW * IMAGE_ASPECT;
+
+      // where the image should sit relative to the hero — the same math
+      // "background-position: center 120%" used back when this element was
+      // exactly hero-sized
+      const imageLeftRel = heroRect.width / 2 - imageW / 2;
+      const imageTopRel = (heroRect.height - imageH) * 1.2;
+
+      // re-expressed relative to the overlay's own (now oversized) box,
+      // since that's what background-position is actually measured from
+      const boxLeftRel = boxRect.left - heroRect.left;
+      const boxTopRel = boxRect.top - heroRect.top;
+
+      overlay.style.backgroundSize = `${imageW}px auto`;
+      overlay.style.backgroundPosition = `${imageLeftRel - boxLeftRel}px ${imageTopRel - boxTopRel}px`;
+    }
+
+    layout();
+    window.addEventListener("resize", layout);
+    return () => window.removeEventListener("resize", layout);
+  }, []);
+
+  // Touch devices have no persistent pointer position for the effect above,
+  // so on mobile the overlay instead rotates based on how far the hero has
+  // scrolled out of view — 0deg at the top, up to 20deg (clockwise, i.e.
+  // sweeping to the right) once it's scrolled fully past. It's anchored at
+  // the hero's bottom-left corner (transform-origin, set in App.css) and
+  // oversized to match (inset, also in App.css) so the rotation never
+  // exposes an edge of the image past where the star pattern reaches.
+  useEffect(() => {
+    const intro: HTMLElement | null = introRef.current;
+    const overlay: HTMLElement | null = overlayRef.current;
+    if (!intro || !overlay) return;
+    if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+
+    function handleScroll() {
+      if (!intro || !overlay) return;
+      const rect = intro.getBoundingClientRect();
+      const progress = Math.min(Math.max(-rect.top / rect.height, 0), 1);
+      overlay.style.transform = `rotate(${progress * 20}deg)`;
+    }
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {

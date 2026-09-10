@@ -29,20 +29,38 @@
   .App-intro {
     margin-bottom: 0;
     height: 660px;
+    /* clips .App-background-overlay below, which is oversized on mobile so
+       it can rotate (OverviewPage.tsx scroll effect) without ever exposing
+       an edge of the image past where the star pattern actually reaches */
+    overflow: hidden;
   }
   .App-column-container {
     margin-top: 50px;
   }
   .App-background-overlay {
-  background-position: center 120%;
-  background-size: 200% !important;
   background-repeat: no-repeat;
+  /* background-size/-position are no longer set here — they're percentages
+     of this element's OWN box, and that box is intentionally oversized
+     below, so those percentages would no longer reproduce the original
+     center/120% crop. OverviewPage.tsx computes and sets them in pixels
+     instead, measured against the hero's actual size, once this oversized
+     box's real rendered dimensions are known. */
+  /* extended well past the hero on every side, and further still to the
+     left, so rotating it (from the bottom-left pivot below) never reveals a
+     bare corner — .App-intro above clips it back down to the hero's bounds.
+     Rotating around a bottom-left pivot sweeps the hero's top-left corner
+     leftward the most, hence the extra room there specifically.
+     !important because the unscoped .App-background-overlay rule below
+     (inset: 0; transform-origin: center;) sits later in this file and would
+     otherwise win the cascade on mobile too. */
+  inset: -30% -30% -30% -65% !important;
+  transform-origin: 33% 81% !important;
   }
 }
 
 .App-background {
   position: absolute;
-  inset: 0; 
+  inset: 0;
   z-index: -2;
 }
 
