@@ -12,6 +12,7 @@ import TexturaPage from './pages/TexturaPage';
 import NormaPage from './pages/NormaPage';
 import BetaSignupPage from './pages/BetaSignupPage';
 import FaqsPage from './pages/FaqsPage';
+import ConferencesPage from './pages/ConferencesPage';
 // Temporarily hidden until content is curated — see the commented routes below.
 // import ResearchPage from './pages/ResearchPage';
 // import TeamPage from './pages/TeamPage';
@@ -39,6 +40,10 @@ function App() {
         <Route path="/team" element={<TeamPage />} />
         <Route path="/news" element={<NewsPage />} /> */}
         <Route path="/faqs" element={<FaqsPage />} />
+        {/* Conferences is meant to eventually live as a category inside News
+            (see NewsPage, still hidden above) — it's standalone for now
+            since conference content is all that exists to show yet. */}
+        <Route path="/conferences" element={<ConferencesPage />} />
         <Route path="/platforms" element={<PlatformsPage />} />
         <Route path="/beta-signup" element={<BetaSignupPage/>}/>
         <Route path="*" element={<Navigate to="/" replace />} />

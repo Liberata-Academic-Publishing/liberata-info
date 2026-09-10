@@ -1,0 +1,511 @@
+.ConferencesHero {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 150px 100px 100px 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: flex-start;
+  background-image: url(../images/figma/hero_bg.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+.ConferencesHero-title {
+  margin: 0;
+  font-weight: 500;
+  font-size: 4.7rem;
+  line-height: 1.15;
+  color: white;
+}
+
+.ConferencesHero-subtitle {
+  margin: 0;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.6;
+  color: white;
+  max-width: 500px;
+}
+
+/* matches the site-wide body padding (Textura, Norma, Mensura, Scriptura,
+   Research, News, Team all use this same value) — the vertical gap here is
+   smaller than their 125px, since this page reads as one flowing list
+   rather than a series of distinct feature sections */
+.ConferencesBody {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 100px 75px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  align-items: flex-start;
+}
+
+/* overrides App.css's global .section-heading eyebrow style (20px desktop /
+   18px mobile) just for this page's "MOST RECENT" label — shrinks further
+   on mobile below (see max-width: 699px block) */
+.ConferencesBody .section-heading {
+  font-size: 16px;
+}
+
+.Conferences-tag-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.Conferences-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--neutral-300);
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-weight: 500;
+  font-size: 12px;
+  color: var(--neutral-700);
+}
+
+.Conferences-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.Conferences-pin {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+  color: var(--neutral-500);
+}
+
+.Conferences-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--neutral-500);
+}
+
+.Conferences-location {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.Conferences-desc {
+  margin: 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--neutral-700);
+}
+
+/* the divider line above the attribution row, matching the hairline color
+   already used on the FAQ accordion rows */
+.Conferences-attribution {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding-top: 14px;
+  border-top: 1.25px solid #e5e7eb;
+}
+
+.Conferences-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #4f70d8;
+  color: white;
+  font-weight: 600;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.Conferences-attribution-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.Conferences-attribution-label {
+  font-weight: 400;
+  font-size: 11px;
+  color: var(--neutral-500);
+}
+
+.Conferences-attribution-name {
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--neutral-800);
+}
+
+/* Featured (most recent) conference */
+.Conferences-featured {
+  display: flex;
+  gap: 40px;
+  /* the photo now derives its height from a fixed width (see
+     .Conferences-featured-image's flex-basis), not the other way around,
+     so stretch is safe here — it also lets the footer below stick to the
+     bottom of the card via margin-top: auto */
+  align-items: stretch;
+  width: 100%;
+  /* matches the grid cards' and mobile featured card's hairline border */
+  border: 1px solid #e5e7eb;
+  border-radius: 15px;
+}
+
+.Conferences-featured-image {
+  /* ~1/3 of the card's (and therefore the page's) width; height is derived
+     from that via the original 340:280 aspect ratio, so this works safely
+     in the width-known -> height-computed direction instead of the
+     height-known -> width-computed direction that collapsed to 0 earlier */
+  flex: 0 0 33%;
+  aspect-ratio: 340 / 280;
+  /* only the two corners flush against the card's own left edge (top-left,
+     bottom-left) are rounded — the right corners sit against the content
+     column, not the card's edge, so they stay square */
+  border-radius: 15px 0 0 15px;
+  background: linear-gradient(to bottom, white, var(--brand-500));
+}
+
+.Conferences-featured-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+  /* the image already sits flush against the card's left/top/bottom edges,
+     and the 40px gap above provides the left inset, so only top/right/
+     bottom need their own 40px padding here */
+  padding: 40px 40px 40px 0;
+}
+
+.Conferences-featured-name {
+  margin: 0;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 1.3;
+  color: var(--neutral-800);
+}
+
+.Conferences-quote {
+  margin: 0;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--neutral-700);
+}
+
+/* .Conferences-meta and .Conferences-attribution-name are shared with the
+   grid cards (13px there); the featured card reads a size up at 14px */
+.Conferences-featured .Conferences-meta,
+.Conferences-featured .Conferences-attribution-name {
+  font-size: 14px;
+}
+
+.Conferences-featured-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: 100%;
+  /* sticks to the bottom of the card (content is stretched to the row's
+     full height, see .Conferences-featured above) instead of a fixed
+     push-down, so it stays pinned there regardless of description length */
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1.25px solid #e5e7eb;
+}
+
+/* the footer already carries the divider, so the attribution row inside it
+   doesn't need its own */
+.Conferences-featured-footer .Conferences-attribution {
+  padding-top: 0;
+  border-top: none;
+  width: auto;
+}
+
+.Conferences-featured-link {
+  font-weight: 600;
+  font-size: 15px;
+  color: #4f70d8;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* All Conferences */
+.Conferences-listHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  /* also doubles as the title->toggle vertical gap once they wrap to their
+     own rows on narrow widths, per Figma's redline */
+  gap: 24px;
+  width: 100%;
+  /* ConferencesBody's 60px gap above felt tight after the featured card —
+     a bit of extra breathing room here */
+  margin-top: 20px;
+}
+
+.ConferencesSection-title {
+  margin: 0;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 1.3;
+  color: var(--neutral-800);
+}
+
+.Conferences-statusToggle {
+  position: relative;
+  display: flex;
+  gap: 8px;
+  /* matches the hairline color already used for the FAQ row dividers —
+     var(--neutral-300) is too close to white to read as a border here */
+  border: 1px solid #e5e7eb;
+  border-radius: 999px;
+  padding: 4px;
+}
+
+/* the sliding fill behind the active pill — same sliding-indicator pattern
+   as Norma's Quickstart Code View/Output toggle and Textura's Graph
+   View/Code View toggle, but those two are always equal-width (flex: 1)
+   tabs, so a fixed 50%/100% split works. All/Attended/Upcoming aren't equal
+   width — the pill needs to hug each button's own text — so left/width are
+   set inline from the button's actual measured box (see ConferencesPage.tsx)
+   and only those two properties transition here. */
+.Conferences-statusToggle-indicator {
+  position: absolute;
+  z-index: 0;
+  top: 4px;
+  bottom: 4px;
+  background: #4f70d8;
+  border-radius: 999px;
+  transition: left 0.25s ease, width 0.25s ease;
+}
+
+.Conferences-statusPill {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 20px;
+  height: auto;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--neutral-500);
+  cursor: pointer;
+  transition: color 0.25s ease;
+}
+
+.Conferences-statusPill.active {
+  color: white;
+}
+
+.Conferences-focusRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  /* row-gap 8px (between wrapped pill rows) / column-gap 13px (label->pill
+     and pill->pill), per Figma's redline */
+  gap: 8px 13px;
+  width: 100%;
+  /* ConferencesBody's flex gap (60px desktop / 40px mobile, see the
+     max-width: 699px block) is too generous for this specific pair — pull
+     up to the 24px the redline calls for */
+  margin-top: -36px;
+}
+
+.Conferences-focusRow-label {
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: var(--neutral-500);
+}
+
+.Conferences-focusPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  height: auto;
+  font-family: inherit;
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--neutral-700);
+  cursor: pointer;
+}
+
+.Conferences-focusPill.active {
+  font-weight: 600;
+  color: var(--neutral-800);
+}
+
+.Conferences-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  width: 100%;
+  align-items: stretch;
+}
+
+.Conferences-card {
+  background: white;
+  /* matches the hairline color already used for the status toggle border
+     and the attribution row dividers on this page */
+  border: 1px solid #e5e7eb;
+  border-radius: 15px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+/* the grid stretches every card in a row to match the tallest one, so
+   pushing this to the bottom of that extra space keeps the avatar+name
+   row aligned across cards regardless of how long each description is */
+.Conferences-card > .Conferences-attribution {
+  margin-top: auto;
+}
+
+.Conferences-card-name {
+  margin: 0;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.3;
+  color: var(--neutral-800);
+}
+
+.Conferences-empty {
+  margin: 0;
+  font-weight: 400;
+  font-size: 17.5px;
+  color: var(--neutral-700);
+}
+
+@media (max-width: 699px) {
+  .ConferencesHero {
+    padding: 120px 36px 80px 36px;
+    gap: 24px;
+  }
+
+  .ConferencesHero-title {
+    font-size: 50px;
+  }
+
+  .ConferencesHero-subtitle {
+    font-size: 17px;
+  }
+
+  /* matches the site's mobile spacing convention of trimming vertical
+     gaps by ~10-20px (see .TexturaSection-title's 35px -> 25px) */
+  .ConferencesBody {
+    padding: 50px 36px;
+    gap: 40px;
+  }
+
+  .ConferencesBody .section-heading {
+    font-size: 12px;
+  }
+
+  /* image + content collapse into one seamless card on mobile, instead of
+     the desktop's separate image-plus-plain-text layout */
+  .Conferences-featured {
+    flex-direction: column;
+    gap: 0;
+    background: white;
+    /* matches the grid cards' hairline border treatment */
+    border: 1px solid #e5e7eb;
+    border-radius: 15px;
+    overflow: hidden;
+  }
+
+  .Conferences-featured-image {
+    flex: none;
+    width: 100%;
+    height: 210px;
+    border-radius: 0;
+  }
+
+  .Conferences-featured-content {
+    /* matches the 30px card padding used everywhere else on the site (News,
+       Norma) — only surrounding gaps shrink on mobile, not card interiors */
+    padding: 30px;
+    gap: 12px;
+  }
+
+  /* the desktop-only 4px push-down and 20px footer padding (see the base
+     rule above) were sized for the desktop redline's spacing — keep
+     mobile's original, tighter footer spacing */
+  .Conferences-featured-footer {
+    margin-top: 0;
+    padding-top: 14px;
+  }
+
+  .Conferences-featured-name {
+    font-size: 22px;
+  }
+
+  /* matches Textura's/Norma's/Mensura's/Scriptura's 30px -> 22px section
+     title mobile scale */
+  .ConferencesSection-title {
+    font-size: 22px;
+  }
+
+  /* ConferencesBody's gap here is 40px; +20px lands on 60px total, matching
+     the site's mobile section-gap convention (Products/Scriptura/Mensura/
+     Textura/Norma all trim their desktop 100-125px down to 60px here) */
+  .Conferences-listHeader {
+    margin-top: 20px;
+  }
+
+  /* ConferencesBody's gap is 40px here (not the desktop 60px), so pull up
+     less to still land on the redline's 24px */
+  .Conferences-focusRow {
+    margin-top: -16px;
+  }
+
+  /* matches Norma's Feature-card grid — same card recipe (background,
+     15px radius, 30px padding), so it follows Norma's/Scriptura's
+     "sf-mobile" stacked-card gap on mobile rather than leaving it at 30px */
+  .Conferences-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    /* ConferencesBody's gap here is 40px — pull up 10px so legend->grid
+       lands at 30px, matching the site's mobile trim convention */
+    margin-top: -10px;
+  }
+
+  /* per the mobile redline: 8px gap between most rows (title->tags,
+     tags->description, description->attribution), except meta->title
+     which is wider at 18px (handled via .Conferences-card-name below).
+     Padding stays the base 30px on both breakpoints. */
+  .Conferences-card {
+    gap: 8px;
+  }
+
+  .Conferences-card-name {
+    /* card's gap is 8px; push down 10px so meta->title lands at 18px */
+    margin-top: 10px;
+  }
+
+  .Conferences-attribution {
+    padding-top: 8px;
+  }
+}
