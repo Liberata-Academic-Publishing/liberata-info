@@ -151,10 +151,11 @@
 .Conferences-featured {
   display: flex;
   gap: 40px;
-  /* stretch + aspect-ratio (deriving the photo's width from its stretched
-     height) collapsed the photo to 0 width in practice — back to a fixed
-     box sized to match the text content's height instead */
-  align-items: flex-start;
+  /* the photo now derives its height from a fixed width (see
+     .Conferences-featured-image's flex-basis), not the other way around,
+     so stretch is safe here — it also lets the footer below stick to the
+     bottom of the card via margin-top: auto */
+  align-items: stretch;
   width: 100%;
   /* matches the grid cards' and mobile featured card's hairline border */
   border: 1px solid #e5e7eb;
@@ -218,9 +219,10 @@
   flex-wrap: wrap;
   gap: 12px;
   width: 100%;
-  /* content's flex gap is 16px; push down 4px so description->footer
-     lands at 20px, per the redline */
-  margin-top: 4px;
+  /* sticks to the bottom of the card (content is stretched to the row's
+     full height, see .Conferences-featured above) instead of a fixed
+     push-down, so it stays pinned there regardless of description length */
+  margin-top: auto;
   padding-top: 20px;
   border-top: 1.25px solid #e5e7eb;
 }
@@ -370,6 +372,13 @@
   gap: 12px;
   align-items: flex-start;
   min-width: 0;
+}
+
+/* the grid stretches every card in a row to match the tallest one, so
+   pushing this to the bottom of that extra space keeps the avatar+name
+   row aligned across cards regardless of how long each description is */
+.Conferences-card > .Conferences-attribution {
+  margin-top: auto;
 }
 
 .Conferences-card-name {
