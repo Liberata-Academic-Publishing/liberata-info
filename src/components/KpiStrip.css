@@ -40,7 +40,8 @@
 }
 
 @media (max-width: 699px) {
-  .kpi-strip {
-    grid-template-columns: 1fr !important;
+  /* dropped on mobile per Norma's Figma — desktop keeps it */
+  .kpi-spark {
+    display: none;
   }
 }

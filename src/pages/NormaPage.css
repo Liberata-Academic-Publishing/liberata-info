@@ -55,9 +55,10 @@
 }
 
 .NormaHero-primary {
+  display: inline-block;
   background: white;
   border: 1.5px solid white;
-  color: var(--brand-500);
+  color: var(--brand-500) !important;
   font-family: inherit;
   font-weight: 600;
   font-size: 20px;
@@ -66,6 +67,8 @@
   padding: 10px 20px;
   border-radius: 999px;
   cursor: pointer;
+  text-decoration: none;
+  text-align: center;
 }
 
 .NormaHero-secondary {
@@ -149,7 +152,8 @@
 .NormaCard {
   background: var(--neutral-300);
   border-radius: 15px;
-  padding: 20px;
+  /* matches Textura's card padding */
+  padding: 30px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -221,16 +225,57 @@
   align-items: stretch;
 }
 
+/* Mobile-only toggle between the code and output panels (see the
+   max-width: 699px block for the actual tab/panel switching — desktop shows
+   both at once via the two-column grid above, so the toggle stays hidden).
+   Same pattern as Textura's Graph View/Code View toggle. */
+.NormaQuickstart-toggle {
+  display: none;
+}
+
+.NormaQuickstart-tab {
+  position: relative;
+  z-index: 1;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--neutral-600);
+  background: none;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: color 0.25s ease;
+}
+
+/* compound selector — higher specificity than the mobile .NormaQuickstart-tab
+   rule below, so this can't lose to it on source order alone (that's
+   exactly what happened before this fix: both classes land on the same
+   element, and without the extra specificity the later rule wins even
+   though it targets the inactive state) */
+.NormaQuickstart-tab.NormaQuickstart-tab-active {
+  color: white;
+}
+
+.NormaQuickstart-toggle-indicator {
+  display: none;
+}
+
 .NormaCode {
   margin: 0;
-  background: #2e3947;
+  /* matches .NormaOutput and the toggle bar */
+  background: #374151;
   border-radius: 15px;
   padding: 32px;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 14.5px;
+  /* matches Textura's .TexturaCurl */
+  font-size: 16px;
   line-height: 1.7;
   color: white;
-  overflow-x: auto;
+  /* wraps long lines instead of needing horizontal scroll, matching
+     Textura's .TexturaCurl */
+  white-space: pre-wrap;
+  word-break: break-word;
   min-width: 0;
 }
 
@@ -308,17 +353,20 @@
 }
 
 .NormaDocsButton {
-  margin-top: 30px;
+  display: inline-block;
+  margin-top: 25px;
   align-self: flex-start;
   background: #4f70d8;
   border: none;
-  color: white;
+  color: white !important;
   font-family: inherit;
   font-weight: 500;
   font-size: 20px;
   height: auto;
   padding: 20px 40px;
-  border-radius: 10px;
+  border-radius: 999px;
+  text-decoration: none;
+  text-align: center;
   cursor: pointer;
 }
 
@@ -361,19 +409,152 @@
     margin-bottom: 25px;
   }
 
+  /* forces the break after "for" so "scientific AI" wraps together onto its
+     own line, instead of "AI" alone being orphaned on a third line —
+     matches Textura's .TexturaFeatures-title */
+  .NormaFeatures-title {
+    max-width: 260px;
+  }
+
   .NormaCards-4,
   .NormaCards-3,
   .NormaQuickstart {
     grid-template-columns: 1fr;
   }
 
+  /* Features cards drop their illustration on mobile per Figma — just
+     name + description, matching the tight stacked-card look there */
+  .NormaCards-4 .NormaCard-illustration {
+    display: none;
+  }
+
+  /* Capital & reference metrics' caption needs a bit more room */
+  .NormaCards-4 .NormaCard:first-child .NormaCard-desc {
+    margin-right: -15px;
+  }
+
+  /* matches Scriptura's .sf-mobile stacked-card gap */
+  .NormaCards-4,
+  .NormaCards-3 {
+    gap: 10px;
+  }
+
+  /* Horizontal scroll-snap row instead of a stacked grid, same treatment as
+     Textura's Features carousel — see that file's mobile block for the full
+     explanation of the bleed/padding/scroll-padding split. Card 1 sits flush
+     with the page margin at rest; card 2 onward centers with an even peek
+     on both sides once scrolled to. */
+  .NormaModel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    box-sizing: border-box;
+    width: calc(100% + 72px);
+    margin: 0 -36px;
+    padding: 0 36px;
+    /* a bit narrower an inset than Textura's carousel (40 vs 50) so the
+       card — and its longer caption text — has more room, at the cost of a
+       slightly smaller peek (30px vs 40px) */
+    scroll-padding: 0 40px;
+    gap: 10px;
+    scrollbar-width: none;
+  }
+
+  .NormaModel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .NormaModel .NormaCard {
+    box-sizing: border-box;
+    flex: 0 0 calc(100vw - 80px);
+    scroll-snap-align: start;
+  }
+
+  /* per Figma, only Capital Matrix's caption runs past the card's own right
+     padding — the other two cards stay fully inset */
+  .NormaModel .NormaCard:first-child .NormaCard-desc {
+    margin-right: -25px;
+  }
+
+  /* Below 700px, Quickstart becomes one card with a Code View/Output
+     toggle instead of the two-column grid — same pattern as Textura's
+     Graph View/Code View toggle on "Inside a record". */
+  .NormaQuickstart {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .NormaQuickstart-toggle {
+    position: relative;
+    display: flex;
+    gap: 8px;
+    padding: 8px;
+    /* always dark, unlike Textura's toggle which switches with the active
+       panel — Quickstart's own panels are both dark already, so there's no
+       light state to transition from */
+    background: #374151;
+    /* top + sides only — the panel below carries the matching sides +
+       bottom, so together they trace one border with no seam where they
+       meet */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: none;
+    /* matches Textura's toggle/card/json radius */
+    border-radius: 25px 25px 0 0;
+  }
+
+  .NormaQuickstart-tab {
+    flex: 1;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .NormaQuickstart-toggle-indicator {
+    display: block;
+    position: absolute;
+    z-index: 0;
+    top: 8px;
+    bottom: 8px;
+    left: 8px;
+    width: calc(50% - 12px);
+    background: #4f70d8;
+    border-radius: 100px;
+    transition: transform 0.25s ease;
+  }
+
+  .NormaQuickstart-toggle-indicator-output {
+    transform: translateX(calc(100% + 8px));
+  }
+
+  /* only one panel shows at a time on mobile, picked by the toggle above */
+  .NormaQuickstart:not(.NormaQuickstart-output-active) .NormaOutput {
+    display: none;
+  }
+
+  .NormaQuickstart-output-active .NormaCode {
+    display: none;
+  }
+
   .NormaCode {
     font-size: 12px;
     padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: none;
+    border-radius: 0 0 25px 25px;
+    /* tucks under the toggle by 1px so no sub-pixel seam shows between them */
+    margin-top: -1px;
   }
 
   .NormaOutput {
     padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: none;
+    /* matches the toggle's radius and .NormaCode's — .NormaOutput's own
+       base radius is 16px, but the two panels need to agree with each
+       other here since only one shows at a time */
+    border-radius: 0 0 25px 25px;
+    margin-top: -1px;
   }
 
   .NormaOutput-chart {
@@ -383,7 +564,11 @@
   .NormaDocsButton {
     width: 100%;
     padding: 14px 20px;
-    font-size: 17px;
+    /* matches Textura's mobile docs button: same size as desktop, full pill */
+    font-size: 20px;
+    border-radius: 999px;
+    /* 15 here + the section's 15px flex gap = 30px endpoints→button */
+    margin-top: 15px;
   }
 }
 
