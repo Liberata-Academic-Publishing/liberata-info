@@ -31,7 +31,9 @@
 /* Design puts an 868px content column beside a 280px rail (Figma 1108:17336) */
 .FaqsBody {
   box-sizing: border-box;
-  padding: 100px;
+  /* matches the site-wide body padding (Textura, Norma, Mensura,
+     Scriptura, Research, News, Team all use this same value) */
+  padding: 100px 75px;
   display: flex;
   gap: 75px;
   align-items: flex-start;
@@ -93,6 +95,11 @@
 
 .Faqs-question {
   width: 100%;
+  /* overrides App.css's global `button { height: 35px; }` — without this,
+     the button's layout box stays pinned at 35px no matter how much text
+     it holds, so a 2-line question visually overflows past where the
+     padding-bottom actually starts and collides with the answer below */
+  height: auto;
   padding: 40px 0;
   display: flex;
   gap: 20px;
@@ -120,14 +127,21 @@
   transform: scaleY(-1);
 }
 
-/* the question button already carries the row's top padding, so the answer
-   only needs the 15px gap the design puts under the question */
+/* Shrinks the question's own bottom padding once open, so there's only a
+   20px gap before the answer — real padding on the button itself, rather
+   than a fixed negative margin on the answer, so it stays 20px whether the
+   question wraps to one line or two (a fixed negative margin only gave the
+   right gap for a one-line question and let the answer creep up into a
+   wrapped second line). */
+.Faqs-row.is-open .Faqs-question {
+  padding-bottom: 20px;
+}
+
 .Faqs-answer {
   display: flex;
   flex-direction: column;
   gap: 15px;
   padding: 0 0 40px 0;
-  margin-top: -25px;
 }
 
 .Faqs-answer p {
@@ -174,7 +188,9 @@
 
 @media (max-width: 899px) {
   .FaqsBody {
-    padding: 60px 36px;
+    /* matches the site-wide mobile body padding (Textura, Norma, Mensura,
+       Scriptura, Research, News, Team all use this same value) */
+    padding: 50px 36px;
     gap: 40px;
   }
 
@@ -203,8 +219,24 @@
     gap: 60px;
   }
 
+  /* matches the site's mobile spacing convention of trimming vertical
+     gaps by 10px (see .TexturaSection-title's 35px/45px -> 25px) */
+  .Faqs-intro {
+    margin-top: 20px;
+    font-size: 17px;
+  }
+
+  .Faqs-system-video {
+    margin-top: 30px;
+  }
+
   .Faqs-title {
     font-size: 30px;
+    margin-top: 10px;
+  }
+
+  .Faqs-list {
+    margin-top: 30px;
   }
 
   .Faqs-question {
@@ -213,17 +245,18 @@
     gap: 16px;
   }
 
+  /* mirrors the desktop fix — real padding, not a fixed negative margin,
+     so a wrapped question doesn't overlap the answer */
+  .Faqs-row.is-open .Faqs-question {
+    padding-bottom: 16px;
+  }
+
   .Faqs-answer {
-    margin-top: -16px;
     padding-bottom: 28px;
   }
 
   .Faqs-answer p {
     font-size: 16px;
     line-height: 1.5rem;
-  }
-
-  .Faqs-intro {
-    font-size: 17px;
   }
 }
