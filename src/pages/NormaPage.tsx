@@ -211,8 +211,14 @@ function NormaPage() {
               on Liberata's Academic Capital metrics, quality-control signals, and the scientometrics you already trust.
             </p>
             <div className="NormaHero-actions">
-              {/* TODO: point at the real repository once public */}
-              <button type="button" className="NormaHero-primary">View repository →</button>
+              <a
+                href="https://github.com/Liberata-Academic-Publishing/liberata-scientometrics"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="NormaHero-primary"
+              >
+                View repository →
+              </a>
               <a href="#norma-quickstart" className="NormaHero-secondary">See how it works</a>
             </div>
           </div>
@@ -299,8 +305,14 @@ matrix_visuals.<span className="tok-fn">plot_sparsity_pattern</span>(refs)
               </div>
             </div>
           </div>
-          {/* TODO: link to the real documentation once published */}
-          <button type="button" className="NormaDocsButton">View full documentation</button>
+          <a
+            href="https://liberata-academic-publishing.github.io/liberata-scientometrics/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="NormaDocsButton"
+          >
+            View full documentation
+          </a>
         </div>
 
         {/* Hidden: keeping the hero CTA and "View full documentation" button,

@@ -55,9 +55,10 @@
 }
 
 .NormaHero-primary {
+  display: inline-block;
   background: white;
   border: 1.5px solid white;
-  color: var(--brand-500);
+  color: var(--brand-500) !important;
   font-family: inherit;
   font-weight: 600;
   font-size: 20px;
@@ -66,6 +67,8 @@
   padding: 10px 20px;
   border-radius: 999px;
   cursor: pointer;
+  text-decoration: none;
+  text-align: center;
 }
 
 .NormaHero-secondary {
@@ -350,17 +353,20 @@
 }
 
 .NormaDocsButton {
-  margin-top: 30px;
+  display: inline-block;
+  margin-top: 25px;
   align-self: flex-start;
   background: #4f70d8;
   border: none;
-  color: white;
+  color: white !important;
   font-family: inherit;
   font-weight: 500;
   font-size: 20px;
   height: auto;
   padding: 20px 40px;
-  border-radius: 10px;
+  border-radius: 999px;
+  text-decoration: none;
+  text-align: center;
   cursor: pointer;
 }
 
@@ -561,6 +567,8 @@
     /* matches Textura's mobile docs button: same size as desktop, full pill */
     font-size: 20px;
     border-radius: 999px;
+    /* 15 here + the section's 15px flex gap = 30px endpoints→button */
+    margin-top: 15px;
   }
 }
 
