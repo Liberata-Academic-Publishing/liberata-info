@@ -217,8 +217,24 @@
     gap: 60px;
   }
 
+  /* matches the site's mobile spacing convention of trimming vertical
+     gaps by 10px (see .TexturaSection-title's 35px/45px -> 25px) */
+  .Faqs-intro {
+    margin-top: 20px;
+    font-size: 17px;
+  }
+
+  .Faqs-system-video {
+    margin-top: 30px;
+  }
+
   .Faqs-title {
     font-size: 30px;
+    margin-top: 10px;
+  }
+
+  .Faqs-list {
+    margin-top: 30px;
   }
 
   .Faqs-question {
@@ -240,9 +256,5 @@
   .Faqs-answer p {
     font-size: 16px;
     line-height: 1.5rem;
-  }
-
-  .Faqs-intro {
-    font-size: 17px;
   }
 }
