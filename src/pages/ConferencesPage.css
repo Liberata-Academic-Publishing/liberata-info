@@ -253,6 +253,9 @@
      own rows on narrow widths, per Figma's redline */
   gap: 24px;
   width: 100%;
+  /* ConferencesBody's 60px gap above felt tight after the featured card —
+     a bit of extra breathing room here */
+  margin-top: 20px;
 }
 
 .ConferencesSection-title {
@@ -463,6 +466,13 @@
      title mobile scale */
   .ConferencesSection-title {
     font-size: 22px;
+  }
+
+  /* ConferencesBody's gap here is 40px; +20px lands on 60px total, matching
+     the site's mobile section-gap convention (Products/Scriptura/Mensura/
+     Textura/Norma all trim their desktop 100-125px down to 60px here) */
+  .Conferences-listHeader {
+    margin-top: 20px;
   }
 
   /* ConferencesBody's gap is 40px here (not the desktop 60px), so pull up
