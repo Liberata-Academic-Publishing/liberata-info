@@ -245,14 +245,10 @@ function ConferencesPage() {
   const statusPillRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const [statusIndicator, setStatusIndicator] = useState({ left: 0, width: 0 });
 
-  useLayoutEffect(() => {
-    const activeIndex = STATUS_FILTERS.findIndex((f) => f.value === statusFilter);
-    const activeEl = statusPillRefs.current[activeIndex];
-    if (activeEl) {
-      setStatusIndicator({ left: activeEl.offsetLeft, width: activeEl.offsetWidth });
-    }
-  }, [statusFilter]);
-
+  // Measures on mount, on filter change, and on resize. The resize listener
+  // has to be re-bound when statusFilter changes: recalc closes over it, so a
+  // listener bound once on mount keeps measuring whichever pill was active at
+  // mount and snaps the indicator back to it on the next resize.
   useLayoutEffect(() => {
     const recalc = () => {
       const activeIndex = STATUS_FILTERS.findIndex((f) => f.value === statusFilter);
@@ -261,10 +257,10 @@ function ConferencesPage() {
         setStatusIndicator({ left: activeEl.offsetLeft, width: activeEl.offsetWidth });
       }
     };
+    recalc();
     window.addEventListener("resize", recalc);
     return () => window.removeEventListener("resize", recalc);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [statusFilter]);
 
   const [featured, ...rest] = CONFERENCES;
 
