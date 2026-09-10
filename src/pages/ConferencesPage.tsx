@@ -58,7 +58,7 @@ const CONFERENCES: Conference[] = [
   {
     name: "FOR2026 – Facts of Research",
     location: "Munich, Germany",
-    date: "Apr 4–6, 2026",
+    date: "May 4–6, 2026",
     tags: ["Academic publishing", "Peer review", "Technology"],
     description: "Research on research — how open science gets studied, measured, and reviewed.",
     representedBy: ["Han Zhang"],
@@ -79,7 +79,7 @@ const CONFERENCES: Conference[] = [
     date: "Feb 2, 2026",
     tags: ["Academic publishing", "Peer review", "Technology"],
     description: "On diamond open access — publishing free for authors and readers — and the peer review tooling that makes it work.",
-    representedBy: ["Anshuman Sabu"],
+    representedBy: ["Anshuman Sabath"],
     status: "attended",
   },
   {
@@ -88,7 +88,7 @@ const CONFERENCES: Conference[] = [
     date: "Sep 9–11, 2026",
     tags: ["Academic publishing", "Research integrity", "Technology"],
     description: "The 30th international conference on measuring publishing, integrity, and technology. Talk accepted.",
-    representedBy: ["Anshuman Sabu"],
+    representedBy: ["Anshuman Sabath"],
     status: "upcoming",
   },
   {
