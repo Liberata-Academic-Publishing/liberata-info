@@ -273,7 +273,6 @@ function OverviewPage() {
             <a href="#App-solutions" id="solution-nav">Key Concepts</a>
           </div>
         </div>
-
       </div>
     </div>
   );
