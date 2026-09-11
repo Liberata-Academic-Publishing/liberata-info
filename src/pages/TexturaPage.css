@@ -132,21 +132,19 @@
   padding: 100px 75px;
   display: flex;
   flex-direction: column;
-  gap: 125px;
+  gap: var(--section-gap);
   align-items: flex-start;
 }
 
 .TexturaSection {
   display: flex;
   flex-direction: column;
-  /* eyebrow-to-title gap — see .ScripturaSection, .MensuraSection,
-     .NormaSection */
-  gap: 12px;
+  gap: var(--eyebrow-gap);
   width: 100%;
 }
 
 .TexturaSection-title {
-  margin: 0 0 35px 0;
+  margin: 0 0 var(--title-gap) 0;
   font-weight: 500;
   font-size: 30px;
   line-height: 1.3;
@@ -747,17 +745,12 @@
 
   .TexturaBody {
     padding: 50px 36px;
-    /* site-wide mobile section-gap convention — see .NormaBody,
-       .MensuraBody, .ScripturaBody, .Faqs-main, .TeamMain, .ProductsBody,
-       .ConferencesBody */
-    gap: 80px;
+    gap: var(--section-gap-mobile);
   }
 
   .TexturaSection-title {
     font-size: 22px;
-    /* site-wide mobile title-to-content gap — see .NormaSection-title,
-       .MensuraSection-title, .ScripturaSection-title */
-    margin-bottom: 24px;
+    margin-bottom: var(--title-gap-mobile);
   }
 
   /* forces the break after "for" so "scientific AI" wraps together onto its

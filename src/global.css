@@ -19,6 +19,16 @@
   --neutral-600: #64758B;
   --neutral-700: #3F4C67;
   --neutral-800: #0E172A;
+
+  /* Spacing convention — site-wide mobile section/title/eyebrow gaps, plus
+     the majority desktop values (some pages, e.g. Products/Team/Conferences,
+     intentionally use their own desktop or section-gap value instead — see
+     the comment at each such usage). */
+  --section-gap: 125px;
+  --section-gap-mobile: 80px;
+  --title-gap: 35px;
+  --title-gap-mobile: 24px;
+  --eyebrow-gap: 12px;
 }
 
 html {

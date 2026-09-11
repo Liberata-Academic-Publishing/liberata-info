@@ -43,7 +43,7 @@
 .Faqs-main {
   display: flex;
   flex-direction: column;
-  gap: 125px;
+  gap: var(--section-gap);
   flex: 793 1 0;
   min-width: 0;
 }
@@ -207,16 +207,11 @@
   }
 
   .Faqs-main {
-    /* site-wide mobile section-gap convention — see .NormaBody,
-       .MensuraBody, .ScripturaBody, .TexturaBody, .TeamMain, .ProductsBody,
-       .ConferencesBody */
-    gap: 80px;
+    gap: var(--section-gap-mobile);
   }
 
-  /* eyebrow-to-content gap — matches the site-wide mobile convention, see
-     .ScripturaSection/.MensuraSection/.NormaSection/.TexturaSection */
   .Faqs-intro {
-    margin-top: 12px;
+    margin-top: var(--eyebrow-gap);
     font-size: 17px;
   }
 
@@ -224,10 +219,8 @@
     margin-top: 30px;
   }
 
-  /* eyebrow-to-content gap — matches the site-wide mobile convention, see
-     .ScripturaSection/.MensuraSection/.NormaSection/.TexturaSection */
   .Faqs-list {
-    margin-top: 12px;
+    margin-top: var(--eyebrow-gap);
   }
 
   .Faqs-question {

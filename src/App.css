@@ -107,13 +107,12 @@
 .App-column-left {
   display: flex;
   flex-direction: column;
-  /* site-wide section-gap convention — see .ScripturaBody, .MensuraBody,
-     .NormaBody, .TexturaBody. Previously each .App-col-left-section carried
-     its own 11vh top+bottom padding, so consecutive sections stacked to
-     ~22vh between them (padding doesn't collapse) — nearly double the rest
-     of the site. This single gap replaces that doubling; the first/last
-     section below still keep their own 11vh buffer against the hero/footer. */
-  gap: 125px;
+  /* Previously each .App-col-left-section carried its own 11vh top+bottom
+     padding, so consecutive sections stacked to ~22vh between them (padding
+     doesn't collapse) — nearly double the rest of the site. This single gap
+     replaces that doubling; the first/last section below still keep their
+     own 11vh buffer against the hero/footer. */
+  gap: var(--section-gap);
 }
 
 .App-col-left-section {
@@ -136,10 +135,7 @@
 
 @media (max-width: 450px) {
   .App-column-left {
-    /* site-wide mobile section-gap convention — see .ScripturaBody,
-       .MensuraBody, .NormaBody, .TexturaBody, .Faqs-main, .TeamMain,
-       .ProductsBody, .ConferencesBody */
-    gap: 80px;
+    gap: var(--section-gap-mobile);
   }
 
   .App-col-left-section {
@@ -187,10 +183,7 @@
 #mission-heading {
   font-size: 1.9rem;
   line-height: 2.5rem;
-  /* title-to-content gap — matches the site-wide convention, see
-     .ScripturaSection-title/.MensuraSection-title/.NormaSection-title/
-     .TexturaSection-title's 35px desktop value */
-  margin-bottom: 35px;
+  margin-bottom: var(--title-gap);
   max-width: 55vw;
   color: var(--neutral-800);
   font-weight: 500;
@@ -242,9 +235,7 @@
   .section-description {
     font-size: 16px;
     line-height: 1.5rem;
-    /* eyebrow-to-content gap — matches the site-wide mobile convention,
-       see .ScripturaSection/.MensuraSection/.NormaSection/.TexturaSection */
-    margin-top: 12px;
+    margin-top: var(--eyebrow-gap);
   }
 }
 
@@ -273,9 +264,7 @@
   #mission-heading {
     font-size: 22px;
    line-height: 1.3;
-    /* eyebrow-to-content gap — matches the site-wide mobile convention,
-       see .ScripturaSection/.MensuraSection/.NormaSection/.TexturaSection */
-    margin-top: 12px;
+    margin-top: var(--eyebrow-gap);
     margin-bottom: 15px;
   }
   #mission-body {
