@@ -144,7 +144,7 @@ function MensuraPage() {
         <div className="MensuraSection">
           <div className="section-heading">/Features</div>
           <h2 className="MensuraSection-title">The math of academic merit</h2>
-          <ProductFeatureShowcase features={FEATURES} largeSmallTitles />
+          <ProductFeatureShowcase features={FEATURES} />
         </div>
 
         <div className="MensuraSection">

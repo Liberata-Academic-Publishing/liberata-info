@@ -470,6 +470,27 @@
     scroll-margin-top: 90px;
   }
 
+  /* FeaturedCard (the expanded state) normally uses the bigger .sf-icon-tile
+     (60px) — fine on desktop, where it's promoted to its own row, but on
+     mobile the accordion just swaps the same card in place, so the icon
+     visibly growing on tap reads as a glitch. Keep it at the .sf-icon-tile-
+     small size (50px/25px img) here regardless of expanded state. */
+  .sf-mobile .sf-icon-tile {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+  }
+
+  .sf-mobile .sf-icon-tile img {
+    width: 25px;
+    height: 25px;
+  }
+
+  .sf-mobile .sf-icon-tile .sf-icon-stack {
+    width: 25px;
+    height: 25px;
+  }
+
   .sf-card-small,
   .sf-card-compact {
     padding: 30px;
@@ -492,7 +513,11 @@
 
   .sf-card-featured {
     flex-direction: column;
-    padding: 30px 24px;
+    /* matches .sf-card-small's 30px on every side — was 24px left/right,
+       which sat the icon/text noticeably further left than the collapsed
+       card at the same spot. The demo carousel below compensates its own
+       bleed math to keep the same visual width despite the extra padding. */
+    padding: 30px;
     gap: 24px;
   }
 
@@ -505,23 +530,43 @@
     justify-content: flex-start;
   }
 
-  .sf-featured-headline {
-    font-size: 24px;
+  /* matches the eyebrow header convention (.section-heading's mobile size) —
+     weight and color already matched at every width */
+  .sf-featured-label {
+    font-size: 18px;
   }
 
+  /* matches the site's h2/section-title convention (.XSection-title's
+     mobile size) — weight and line-height already matched at every width */
+  .sf-featured-headline {
+    font-size: 22px;
+  }
+
+  /* matches the collapsed card's own description (.sf-small-desc) */
   .sf-featured-desc {
-    font-size: 17px;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  /* checklist text matches .sf-small-desc too — the bold lead-in
+     (.sf-point strong below) keeps its own weight at this new size */
+  .sf-point p {
+    font-weight: 300;
   }
 
   .sf-demo-placeholder {
     flex: none;
-    /* bleed partway past the card's own 24px side padding so the demo reads
-       bigger than the text column without reaching all the way to the
-       card's true edges */
+    /* bleed past the card's own 30px side padding so the demo reads bigger
+       than the text column without reaching all the way to the card's true
+       edges (still 12px short of each true edge, same as before the card's
+       padding went from 24px to 30px — 36px/-18px here is what keeps that
+       visual width unchanged: 30px padding + 18px bleed = the same 12px
+       inset the old 24px padding + 12px bleed gave) */
     box-sizing: border-box;
-    width: calc(100% + 24px);
-    margin-left: -12px;
-    margin-right: -12px;
+    width: calc(100% + 36px);
+    margin-left: -18px;
+    margin-right: -18px;
     aspect-ratio: auto;
     min-height: 260px;
     /* matches .sf-demo-image img's own radius below — this box clips the
