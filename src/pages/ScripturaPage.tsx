@@ -86,7 +86,7 @@ function ScripturaPage() {
             </>
           }
           primaryTo="/beta-signup"
-          secondaryLabel="Request a demo"
+          secondaryLabel="Coming Soon"
         />
       </div>
     </div>
