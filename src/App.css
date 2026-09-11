@@ -22,7 +22,6 @@
   left: 0;
   height: 100vh;
   max-height: 920px;
-  margin-bottom: 8vh;
 }
 
 @media (max-width: 450px) {
@@ -103,17 +102,56 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  margin-top: 8vh;
+}
+
+.App-column-left {
+  display: flex;
+  flex-direction: column;
+  /* site-wide section-gap convention — see .ScripturaBody, .MensuraBody,
+     .NormaBody, .TexturaBody. Previously each .App-col-left-section carried
+     its own 11vh top+bottom padding, so consecutive sections stacked to
+     ~22vh between them (padding doesn't collapse) — nearly double the rest
+     of the site. This single gap replaces that doubling; the first/last
+     section below still keep their own 11vh buffer against the hero/footer. */
+  gap: 125px;
 }
 
 .App-col-left-section {
-  padding-top: 11vh;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.App-col-left-section:first-child {
+  /* hero-to-first-section gap — was stacked across three separate
+     margins/padding (.App-intro's margin-bottom, .App-column-container's
+     margin-top, and this padding-top, all vh-based), which grew much
+     larger than the ~100px other pages use as viewport height increased.
+     Consolidated into this one fixed value. */
+  padding-top: 100px;
+}
+
+.App-col-left-section:last-child {
   padding-bottom: 11vh;
 }
 
 @media (max-width: 450px) {
+  .App-column-left {
+    /* site-wide mobile section-gap convention — see .ScripturaBody,
+       .MensuraBody, .NormaBody, .TexturaBody, .Faqs-main, .TeamMain,
+       .ProductsBody, .ConferencesBody */
+    gap: 80px;
+  }
+
   .App-col-left-section {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .App-col-left-section:first-child {
     padding-top: 30px;
+  }
+
+  .App-col-left-section:last-child {
     padding-bottom: 30px;
   }
 }
@@ -149,7 +187,10 @@
 #mission-heading {
   font-size: 1.9rem;
   line-height: 2.5rem;
-  margin-bottom: 10vh;
+  /* title-to-content gap — matches the site-wide convention, see
+     .ScripturaSection-title/.MensuraSection-title/.NormaSection-title/
+     .TexturaSection-title's 35px desktop value */
+  margin-bottom: 35px;
   max-width: 55vw;
   color: var(--neutral-800);
   font-weight: 500;
@@ -201,7 +242,9 @@
   .section-description {
     font-size: 16px;
     line-height: 1.5rem;
-    margin-top: 15px;
+    /* eyebrow-to-content gap — matches the site-wide mobile convention,
+       see .ScripturaSection/.MensuraSection/.NormaSection/.TexturaSection */
+    margin-top: 12px;
   }
 }
 
@@ -230,7 +273,9 @@
   #mission-heading {
     font-size: 22px;
    line-height: 1.3;
-    margin-top: 15px;
+    /* eyebrow-to-content gap — matches the site-wide mobile convention,
+       see .ScripturaSection/.MensuraSection/.NormaSection/.TexturaSection */
+    margin-top: 12px;
     margin-bottom: 15px;
   }
   #mission-body {

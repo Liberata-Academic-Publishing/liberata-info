@@ -266,7 +266,10 @@
   .TeamMain {
     width: 100%;
     padding: 50px 36px;
-    gap: 60px;
+    /* site-wide mobile section-gap convention — see .NormaBody,
+       .MensuraBody, .ScripturaBody, .TexturaBody, .Faqs-main,
+       .ProductsBody, .ConferencesBody */
+    gap: 80px;
   }
 
   .TeamSideNav {

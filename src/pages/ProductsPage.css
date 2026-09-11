@@ -64,7 +64,10 @@
 
   .ProductsBody {
     padding: 60px 36px;
-    gap: 60px;
+    /* site-wide mobile section-gap convention — see .NormaBody,
+       .MensuraBody, .ScripturaBody, .TexturaBody, .Faqs-main, .TeamMain,
+       .ConferencesBody */
+    gap: 80px;
   }
 
   .ProductsEcosystem {

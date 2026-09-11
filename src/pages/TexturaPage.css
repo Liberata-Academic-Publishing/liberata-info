@@ -139,7 +139,9 @@
 .TexturaSection {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  /* eyebrow-to-title gap — see .ScripturaSection, .MensuraSection,
+     .NormaSection */
+  gap: 12px;
   width: 100%;
 }
 
@@ -745,12 +747,17 @@
 
   .TexturaBody {
     padding: 50px 36px;
-    gap: 60px;
+    /* site-wide mobile section-gap convention — see .NormaBody,
+       .MensuraBody, .ScripturaBody, .Faqs-main, .TeamMain, .ProductsBody,
+       .ConferencesBody */
+    gap: 80px;
   }
 
   .TexturaSection-title {
     font-size: 22px;
-    margin-bottom: 25px;
+    /* site-wide mobile title-to-content gap — see .NormaSection-title,
+       .MensuraSection-title, .ScripturaSection-title */
+    margin-bottom: 24px;
   }
 
   /* forces the break after "for" so "scientific AI" wraps together onto its

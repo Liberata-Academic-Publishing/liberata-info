@@ -207,13 +207,16 @@
   }
 
   .Faqs-main {
-    gap: 60px;
+    /* site-wide mobile section-gap convention — see .NormaBody,
+       .MensuraBody, .ScripturaBody, .TexturaBody, .TeamMain, .ProductsBody,
+       .ConferencesBody */
+    gap: 80px;
   }
 
-  /* matches the site's mobile spacing convention of trimming vertical
-     gaps by 10px (see .TexturaSection-title's 35px/45px -> 25px) */
+  /* eyebrow-to-content gap — matches the site-wide mobile convention, see
+     .ScripturaSection/.MensuraSection/.NormaSection/.TexturaSection */
   .Faqs-intro {
-    margin-top: 20px;
+    margin-top: 12px;
     font-size: 17px;
   }
 
@@ -221,8 +224,10 @@
     margin-top: 30px;
   }
 
+  /* eyebrow-to-content gap — matches the site-wide mobile convention, see
+     .ScripturaSection/.MensuraSection/.NormaSection/.TexturaSection */
   .Faqs-list {
-    margin-top: 30px;
+    margin-top: 12px;
   }
 
   .Faqs-question {
