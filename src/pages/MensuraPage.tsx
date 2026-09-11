@@ -182,7 +182,7 @@ function MensuraPage() {
             </>
           }
           primaryTo="/beta-signup"
-          secondaryLabel="See sample metrics"
+          secondaryLabel="Coming Soon"
         />
       </div>
     </div>
