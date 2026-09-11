@@ -121,8 +121,7 @@ function FaqsPage() {
           </section>
 
           <section className="Faqs-section" id="faq">
-            <div className="section-heading">/Details</div>
-            <h2 className="Faqs-title">Frequently Asked Questions</h2>
+            <div className="section-heading">/Frequently Asked Questions</div>
             <div className="Faqs-list">
               {FAQS.map((faq, i) => (
                 <FaqRow
