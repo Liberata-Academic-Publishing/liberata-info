@@ -266,7 +266,7 @@
   .TeamMain {
     width: 100%;
     padding: 50px 36px;
-    gap: 60px;
+    gap: var(--section-gap-mobile);
   }
 
   .TeamSideNav {

@@ -44,19 +44,19 @@
   padding: 100px 75px;
   display: flex;
   flex-direction: column;
-  gap: 125px;
+  gap: var(--section-gap);
   align-items: flex-start;
 }
 
 .MensuraSection {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: var(--eyebrow-gap);
   width: 100%;
 }
 
 .MensuraSection-title {
-  margin: 0 0 35px 0;
+  margin: 0 0 var(--title-gap) 0;
   font-weight: 500;
   font-size: 30px;
   line-height: 1.3;
@@ -116,12 +116,12 @@
 
   .MensuraBody {
     padding: 50px 36px;
-    gap: 60px;
+    gap: var(--section-gap-mobile);
   }
 
   .MensuraSection-title {
     font-size: 22px;
-    margin-bottom: 25px;
+    margin-bottom: var(--title-gap-mobile);
   }
 
   .MensuraAnalytics {

@@ -64,7 +64,7 @@
 
   .ProductsBody {
     padding: 60px 36px;
-    gap: 60px;
+    gap: var(--section-gap-mobile);
   }
 
   .ProductsEcosystem {

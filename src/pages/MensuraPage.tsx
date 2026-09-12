@@ -144,7 +144,7 @@ function MensuraPage() {
         <div className="MensuraSection">
           <div className="section-heading">/Features</div>
           <h2 className="MensuraSection-title">The math of academic merit</h2>
-          <ProductFeatureShowcase features={FEATURES} largeSmallTitles />
+          <ProductFeatureShowcase features={FEATURES} />
         </div>
 
         <div className="MensuraSection">
@@ -171,9 +171,18 @@ function MensuraPage() {
         <ProductCta
           title="Measure what actually matters."
           subtitle="Built for research offices, funding agencies, and policymakers who need more than citation counts."
-          primaryLabel="Get a demo →"
+          primaryLabel={
+            <>
+              <span>Get a demo</span>
+              {/* real icon instead of a plain "→" character — same fix as
+                  the Norma hero CTA and mobile "Sign up for beta" button */}
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M4.16626 10H15.8343M10.0003 15.834L15.8343 10L10.0003 4.16603" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+              </svg>
+            </>
+          }
           primaryTo="/beta-signup"
-          secondaryLabel="See sample metrics"
+          secondaryLabel="Coming Soon"
         />
       </div>
     </div>

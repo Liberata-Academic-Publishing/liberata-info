@@ -43,7 +43,7 @@
 .Faqs-main {
   display: flex;
   flex-direction: column;
-  gap: 125px;
+  gap: var(--section-gap);
   flex: 793 1 0;
   min-width: 0;
 }
@@ -75,15 +75,6 @@
   object-fit: cover;
 }
 
-.Faqs-title {
-  margin: 20px 0 0 0;
-  font-weight: 700;
-  font-size: 40px;
-  line-height: normal;
-  letter-spacing: normal;
-  color: var(--neutral-800);
-}
-
 .Faqs-list {
   width: 100%;
   margin-top: 40px;
@@ -109,10 +100,10 @@
   border: none;
   text-align: left;
   cursor: pointer;
+  /* matches .sf-small-name, the feature-grid card titles on
+     Mensura/Norma/Textura */
   font-weight: 600;
-  font-size: 22.5px;
-  line-height: normal;
-  letter-spacing: normal;
+  font-size: 17px;
   color: var(--neutral-800);
 }
 
@@ -216,13 +207,11 @@
   }
 
   .Faqs-main {
-    gap: 60px;
+    gap: var(--section-gap-mobile);
   }
 
-  /* matches the site's mobile spacing convention of trimming vertical
-     gaps by 10px (see .TexturaSection-title's 35px/45px -> 25px) */
   .Faqs-intro {
-    margin-top: 20px;
+    margin-top: var(--eyebrow-gap);
     font-size: 17px;
   }
 
@@ -230,18 +219,14 @@
     margin-top: 30px;
   }
 
-  .Faqs-title {
-    font-size: 30px;
-    margin-top: 10px;
-  }
-
   .Faqs-list {
-    margin-top: 30px;
+    margin-top: var(--eyebrow-gap);
   }
 
   .Faqs-question {
     padding: 28px 0;
-    font-size: 18px;
+    font-size: 16px;
+    line-height: 1.5rem;
     gap: 16px;
   }
 

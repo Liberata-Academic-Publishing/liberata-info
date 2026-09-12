@@ -27,6 +27,8 @@ function Footer() {
         <div className="Footer-quick-links">
           <Link to="/" className="footer-link">Overview</Link>
           <span className="footer-dot">•</span>
+          <Link to="/products" className="footer-link">Products</Link>
+          <span className="footer-dot">•</span>
           {/* Team link temporarily hidden until content is curated:
           <Link to="/team" className="footer-link">Team</Link>
           <span className="footer-dot">•</span> */}

@@ -55,7 +55,9 @@
 }
 
 .NormaHero-primary {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   background: white;
   border: 1.5px solid white;
   color: var(--brand-500) !important;
@@ -69,6 +71,12 @@
   cursor: pointer;
   text-decoration: none;
   text-align: center;
+}
+
+.NormaHero-primary svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
 }
 
 .NormaHero-secondary {
@@ -115,19 +123,19 @@
   padding: 100px 75px;
   display: flex;
   flex-direction: column;
-  gap: 125px;
+  gap: var(--section-gap);
   align-items: flex-start;
 }
 
 .NormaSection {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: var(--eyebrow-gap);
   width: 100%;
 }
 
 .NormaSection-title {
-  margin: 0 0 35px 0;
+  margin: 0 0 var(--title-gap) 0;
   font-weight: 500;
   font-size: 30px;
   line-height: 1.3;
@@ -399,14 +407,19 @@
     line-height: 1.5rem;
   }
 
+  .NormaHero-primary svg {
+    width: 16px;
+    height: 16px;
+  }
+
   .NormaBody {
     padding: 50px 36px;
-    gap: 60px;
+    gap: var(--section-gap-mobile);
   }
 
   .NormaSection-title {
     font-size: 22px;
-    margin-bottom: 25px;
+    margin-bottom: var(--title-gap-mobile);
   }
 
   /* forces the break after "for" so "scientific AI" wraps together onto its
