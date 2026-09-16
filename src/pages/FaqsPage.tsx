@@ -100,7 +100,7 @@ function FaqsPage() {
       {/* id="intro" drives the Header's transparent-over-hero scroll behavior */}
       <div className="FaqsHero" id="intro">
         <Header />
-        <h1 className="FaqsHero-title">FAQs.</h1>
+        <h1 className="FaqsHero-title">FAQ.</h1>
         <p className="FaqsHero-subtitle">
           An overview of the Liberata system, and answers to frequently asked questions.
         </p>

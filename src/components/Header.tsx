@@ -73,7 +73,7 @@ function Header({ scrollToSection = () => { }, forceLight = false }) {
               Conferences
             </NavLink>
             <NavLink to="/faqs" className="Header-navbar">
-              FAQs
+              FAQ
             </NavLink>
             {/* Temporarily hidden until content is curated:
             <NavLink to="/research" className="Header-navbar">

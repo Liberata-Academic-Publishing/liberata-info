@@ -14,7 +14,7 @@ const IMPACT_COLUMNS = [
   {
     icon: iconPencil,
     title: "For authors",
-    body: "Get reviews and replications that genuinely strengthen your paper — and pay in shares of credit, not the $2,000–$10,000 fees legacy open access charges. Keep your copyright, publish openly, and build a real track record instead of borrowing a journal's prestige.",
+    body: "Get reviews and replications that genuinely strengthen your paper — and offer shares of credit instead of costly legacy open-access fees. Keep your copyright, publish openly, and build a real track record instead of borrowing a journal's prestige.",
   },
   {
     icon: iconCheck,
@@ -53,7 +53,7 @@ function ScripturaPage() {
 
         <div className="ScripturaSection">
           <div className="section-heading">/Impact</div>
-          <h2 className="ScripturaSection-title">A fairer deal for everyone who does the work</h2>
+          <h2 className="ScripturaSection-title">Credit follows contribution</h2>
           <p className="ScripturaSection-subtitle">
             Legacy publishing rewards prestige and captures the value. Scriptura rewards the work itself — writing,
             reviewing, replicating, and building on research — and keeps every paper open to anyone.
@@ -81,7 +81,7 @@ function ScripturaPage() {
           subtitle="Join researchers, labs, and institutions already building on Scriptura."
           primaryLabel={
             <>
-              <span>Start publishing</span>
+              <span>Sign up for beta</span>
               {/* real icon instead of a plain "→" character — same fix as
                   the Norma hero CTA and mobile "Sign up for beta" button */}
               <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">

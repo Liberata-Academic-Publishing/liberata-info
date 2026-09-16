@@ -51,7 +51,7 @@ const FEATURES: ShowcaseFeature[] = [
     key: "peer-review",
     name: "Peer Review Marketplace",
     icon: <img src={iconRefreshCw} alt="" />,
-    gridDesc: "Offer reviewers a share of credit, so review is rewarded for improving the work — with enforced deadlines.",
+    gridDesc: "Offer reviewers a share of credit, so review is rewarded for improving the work, with enforced deadlines.",
     altDesc: "Commission and trade structured peer review with transparent, verifiable credit.",
     label: "/Peer Review Marketplace",
     demo: [demoPeerReview1, demoPeerReview2, demoPeerReview3, demoPeerReview4, demoPeerReview5],
@@ -89,7 +89,7 @@ const FEATURES: ShowcaseFeature[] = [
     key: "collections",
     name: "Collections",
     icon: <img src={iconSearch} alt="" />,
-    gridDesc: "Search 250M+ open works at fine-grained precision, then save them into project folders and live journals.",
+    gridDesc: "Search 250M+ open works at fine-grained precision, then save them into static and dynamic collections.",
     altDesc: "Editors and institutions organize research into canonical, citable collections.",
     label: "/Collections",
     // the design file has no active-4 variant, so this runs 5 slides

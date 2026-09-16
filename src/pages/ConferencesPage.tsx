@@ -65,7 +65,7 @@ const CONFERENCES: Conference[] = [
     status: "attended",
   },
   {
-    name: "R2R 2026 – Research to Reader",
+    name: "R2R 2026 – Researcher to Reader",
     location: "London, UK",
     date: "Feb 24, 2026",
     tags: ["Academic publishing", "Peer review", "Research integrity"],
