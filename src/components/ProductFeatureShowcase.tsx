@@ -24,12 +24,17 @@ export type ShowcaseFeature = {
   expandable?: boolean;
 };
 
-// Grid state: expansion happens only via the expand button in the corner.
+// Grid state: the whole card is clickable to expand, not just the corner
+// button — the button is a visual cue and stays independently keyboard-
+// operable, but the card itself is the bigger, easier mouse/touch target.
 // Passing no onExpand renders the card display-only.
 function SmallCard({ feature, onExpand }: { feature: ShowcaseFeature; onExpand?: () => void }) {
   const expandable = feature.expandable !== false && onExpand !== undefined;
   return (
-    <div className="sf-card sf-card-small">
+    <div
+      className={`sf-card sf-card-small${expandable ? " sf-card-clickable" : ""}`}
+      onClick={expandable ? onExpand : undefined}
+    >
       {expandable && (
         <button type="button" className="sf-toggle" onClick={onExpand} aria-label={`Expand ${feature.name}`}>
           <img src={iconExpand} alt="" />
@@ -42,11 +47,21 @@ function SmallCard({ feature, onExpand }: { feature: ShowcaseFeature; onExpand?:
   );
 }
 
-// While another card is expanded, the rest are display-only: no expand
-// button, not clickable. Minimize the featured card first, then expand.
-function CompactCard({ feature }: { feature: ShowcaseFeature }) {
+// While another card is expanded, the rest sit in the bottom row. Each still
+// gets its own expand button and is fully clickable, so switching between
+// cards is a single click — no need to minimize the current one first.
+function CompactCard({ feature, onExpand }: { feature: ShowcaseFeature; onExpand?: () => void }) {
+  const expandable = feature.expandable !== false && onExpand !== undefined;
   return (
-    <div className="sf-card sf-card-compact">
+    <div
+      className={`sf-card sf-card-compact${expandable ? " sf-card-clickable" : ""}`}
+      onClick={expandable ? onExpand : undefined}
+    >
+      {expandable && (
+        <button type="button" className="sf-toggle" onClick={onExpand} aria-label={`Expand ${feature.name}`}>
+          <img src={iconExpand} alt="" />
+        </button>
+      )}
       <div className="sf-icon-tile">{feature.icon}</div>
       <p className="sf-compact-name">{feature.name}</p>
       <p className="sf-compact-desc">{feature.altDesc}</p>
@@ -233,7 +248,7 @@ function ProductFeatureShowcase({ features, largeSmallTitles = false }: { featur
       <FeaturedCard feature={expanded} onMinimize={() => setExpandedKey(null)} />
       <div className="sf-bottom-row">
         {rest.map((feature) => (
-          <CompactCard key={feature.key} feature={feature} />
+          <CompactCard key={feature.key} feature={feature} onExpand={() => setExpandedKey(feature.key)} />
         ))}
       </div>
     </div>

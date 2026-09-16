@@ -44,6 +44,24 @@
   letter-spacing: normal;
 }
 
+/* small/compact cards only — the featured card isn't clickable as a whole */
+.sf-card-clickable {
+  cursor: pointer;
+}
+
+.sf-card-small,
+.sf-card-compact {
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+/* both are expandable cards (grid state and the bottom row while another
+   card is expanded) — same hover lift on either */
+.sf-desktop .sf-card-small:hover,
+.sf-desktop .sf-card-compact:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(5, 5, 153, 0.12);
+}
+
 .sf-card-small {
   border-radius: 15px;
   padding: 30px;
@@ -167,22 +185,55 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  /* border-box + a transparent 1px border at rest, so the hover border
+     below only swaps color and never changes the button's size */
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  transition: background-color 0.2s ease-out, transform 0.2s ease-out, border-color 0.2s ease-out;
 }
 
 .sf-toggle img {
   width: 14px;
   height: 14px;
+  transition: filter 0.2s ease-out;
+}
+
+/* Hovering anywhere on the card highlights its expand button, not just
+   hovering the button itself — same reasoning as the card lift above: the
+   button alone is a small target to notice. Also covers keyboard focus so
+   the highlight isn't mouse-only. Applies to both the grid's small cards
+   and the compact cards in the bottom row while another card is expanded. */
+.sf-desktop .sf-card-small:hover .sf-toggle,
+.sf-desktop .sf-card-compact:hover .sf-toggle,
+.sf-toggle:focus-visible {
+  /* the site's recurring un-tokenized eyebrow blue (#4f70d8 — see
+     App.css .section-heading, TexturaPage.css's docs button) at 15% opacity,
+     with a 1px stroke of the same blue at 30% opacity */
+  background: rgba(79, 112, 216, 0.15);
+  border-color: rgba(79, 112, 216, 0.3);
+  transform: scale(1.1);
+}
+
+.sf-desktop .sf-card-small:hover .sf-toggle img,
+.sf-desktop .sf-card-compact:hover .sf-toggle img,
+.sf-toggle:focus-visible img {
+  /* icon strokes are #555 by default; this filter chain maps that to an
+     exact solid #4f70d8 (the eyebrow blue) — brightness(0) flattens to
+     black, the rest is a solved invert/sepia/saturate/hue-rotate/contrast
+     chain that lands on that color */
+  filter: brightness(0) invert(35%) sepia(44%) saturate(528%) hue-rotate(188deg) brightness(121%) contrast(141%);
 }
 
 /* Design splits the 1050px content box into a 490px text column and a 520px
    demo column with a 40px gap; the flex ratios keep that proportion at any
-   width. The demo column is centred against the taller text column. */
+   width. Both columns are top-aligned against each other rather than
+   vertically centered. */
 .sf-featured-left {
   display: flex;
   flex-direction: column;
   gap: 24px;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
   flex: 490 1 0;
   min-width: 0;
 }
@@ -192,9 +243,7 @@
   flex-direction: column;
   gap: 24px;
   align-items: flex-start;
-  /* inert while the demo grows to fill; it only matters for the screenshot
-     variant, which keeps its own height and leaves the column short */
-  justify-content: center;
+  justify-content: flex-start;
   flex: 520 1 0;
   min-width: 0;
 }
