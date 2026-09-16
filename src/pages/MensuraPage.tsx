@@ -51,7 +51,7 @@ const FEATURES: ShowcaseFeature[] = [
     icon: <img src={iconSearch} alt="" />,
     gridDesc: "Deep entity profiles for researchers, labs, departments, institutions, fields, and regions with Liberata-native metrics.",
     altDesc: "Deep entity profiles for researchers, labs, departments, institutions, fields, and regions with Liberata-native metrics.",
-    label: "/Inspect",
+    label: "Inspect",
     demo: [demoInspect1, demoInspect2, demoInspect3, demoInspect4, demoInspect5, demoInspect6],
     demoAlt: "Mensura entity profile: a search bar above a dashboard of metric cards for the selected entity",
     headline: "Every entity, fully explained",
@@ -70,7 +70,7 @@ const FEATURES: ShowcaseFeature[] = [
     icon: <img src={iconDatabase} alt="" />,
     gridDesc: "A spreadsheet-style workspace to line entities up side by side across any set of metrics. Sort, filter, and export benchmarking tables in seconds.",
     altDesc: "A spreadsheet-style workspace to line entities up side by side across any set of metrics. Sort, filter, and export benchmarking tables in seconds.",
-    label: "/Dataframe",
+    label: "Dataframe",
     demo: [demoDataframe1, demoDataframe2, demoDataframe3, demoDataframe4, demoDataframe5, demoDataframe6],
     demoAlt: "Mensura dataframe: entities as rows and metrics as sortable columns in a comparison table",
     headline: "Build the table you actually need",
@@ -89,7 +89,7 @@ const FEATURES: ShowcaseFeature[] = [
     icon: chartIcon,
     gridDesc: "Track output, impact, and academic capital over time. See trajectories and field dynamics that a single number can't show.",
     altDesc: "Track output, impact, and academic capital over time. See trajectories and field dynamics that a single number can't show.",
-    label: "/Chart",
+    label: "Chart",
     demo: [demoChart1, demoChart2, demoChart3, demoChart4, demoChart5, demoChart6],
     demoAlt: "Mensura chart builder: the entity and cohort picker open over an empty chart canvas",
     headline: "See the pattern, not just the numbers",
@@ -108,7 +108,7 @@ const FEATURES: ShowcaseFeature[] = [
     icon: <img className="sf-icon-cohorts" src={iconCohorts} alt="" />,
     gridDesc: "A comparison group built from entity type, geography, research area, and organization — as a live rule or a fixed list you pick yourself.",
     altDesc: "A comparison group built from entity type, geography, research area, and organization — as a live rule or a fixed list you pick yourself.",
-    label: "/Cohorts",
+    label: "Cohorts",
     demo: [demoCohorts1, demoCohorts2, demoCohorts3, demoCohorts4, demoCohorts5],
     demoAlt: "Mensura cohort builder: a dynamic cohort form beside a live preview of the matching researchers",
     headline: "Build the cohort that makes sense",
@@ -146,7 +146,7 @@ function MensuraPage() {
 
       <div className="MensuraBody">
         <div className="MensuraSection">
-          <div className="section-heading">/Features</div>
+          <div className="section-heading">Features</div>
           <h2 className="MensuraSection-title">The math of academic merit</h2>
           <ProductFeatureShowcase features={FEATURES} />
         </div>
@@ -154,7 +154,7 @@ function MensuraPage() {
         {/* Hidden per Vicky's request — the Analytics section under the
             carousels. Restore by uncommenting. */}
         {/* <div className="MensuraSection">
-          <div className="section-heading">/Analytics</div>
+          <div className="section-heading">Analytics</div>
           <h2 className="MensuraSection-title">Impact visualization</h2>
           <div className="MensuraAnalytics">
             {ANALYTICS_PANELS.map((panel) => (
@@ -170,7 +170,7 @@ function MensuraPage() {
         </div> */}
 
         <div className="MensuraSection">
-          <div className="section-heading">/Roadmap</div>
+          <div className="section-heading">Roadmap</div>
           <RoadmapTimeline />
         </div>
 

@@ -109,7 +109,7 @@ function FaqsPage() {
       <div className="FaqsBody">
         <div className="Faqs-main">
           <section className="Faqs-section" id="the-liberata-system">
-            <div className="section-heading">/The Liberata System</div>
+            <div className="section-heading">The Liberata System</div>
             <p className="Faqs-intro">Watch a brief overview video explaining the Liberata system.</p>
             <video
               className="Faqs-system-video"
@@ -121,7 +121,7 @@ function FaqsPage() {
           </section>
 
           <section className="Faqs-section" id="faq">
-            <div className="section-heading">/Frequently Asked Questions</div>
+            <div className="section-heading">Frequently Asked Questions</div>
             <div className="Faqs-list">
               {FAQS.map((faq, i) => (
                 <FaqRow

@@ -131,7 +131,7 @@ function TexturaPage() {
 
       <div className="TexturaBody">
         <div className="TexturaSection">
-          <div className="section-heading">/Features</div>
+          <div className="section-heading">Features</div>
           <h2 className="TexturaSection-title TexturaFeatures-title">Data infrastructure for scientific AI</h2>
           <div className="TexturaFeatures">
             <div className="TexturaFeature">
@@ -186,7 +186,7 @@ function TexturaPage() {
         </div>
 
         <div className="TexturaSection" id="textura-how">
-          <div className="section-heading">/How it works</div>
+          <div className="section-heading">How it works</div>
           <h2 className="TexturaSection-title">From scholarly record to AI training data.</h2>
           <div className="TexturaSteps">
             <div className="TexturaStep">
@@ -233,7 +233,7 @@ function TexturaPage() {
         </div>
 
         <div className="TexturaSection">
-          <div className="section-heading">/Inside a record</div>
+          <div className="section-heading">Inside a record</div>
           <h2 className="TexturaSection-title">Every record is graph-linked and annotated</h2>
           <div className={`TexturaRecord${recordView === "code" ? " TexturaRecord-code-active" : ""}`}>
             {/* mobile-only toggle — hidden on desktop via CSS, where both
@@ -302,7 +302,7 @@ function TexturaPage() {
         </div>
 
         <div className="TexturaSection">
-          <div className="section-heading">/Datasets</div>
+          <div className="section-heading">Datasets</div>
           <h2 className="TexturaSection-title">Slice the data by field, time, and quality</h2>
           <p className="TexturaSection-subtitle">
             Every dataset is filtered to the quality tiers you need and ships with full graph context.
@@ -346,7 +346,7 @@ function TexturaPage() {
         </div>
 
         <div className="TexturaSection">
-          <div className="section-heading">/Intuitive API</div>
+          <div className="section-heading">Intuitive API</div>
           <h2 className="TexturaSection-title">Built to fit right into your existing workflow</h2>
           <div className="TexturaCurl">
             curl -X GET <span className="TexturaJson-str">"https://api.liberata.org/v1/papers"</span>

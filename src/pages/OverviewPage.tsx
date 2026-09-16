@@ -246,14 +246,14 @@ function OverviewPage() {
         <div className="App-column-container">
           <div className="App-column-left">
             <div className="App-section App-col-left-section" id="App-publishing-problems">
-              <div className="section-heading">/Academic Publishing Problems</div>
+              <div className="section-heading">Academic Publishing Problems</div>
               <div className="section-description">Academic publishing today suffers from merit, economic, and societal problems arising from maligned legacy incentive structures
                 
               </div>
               <AcademicPublishingProblems />
             </div>
             <div className="App-section App-col-left-section" id="App-mission">
-              <div className="section-heading">/Liberata's Mission</div>
+              <div className="section-heading">Liberata's Mission</div>
               <div id="mission-heading" ref={textRef}>
                 {displayedText}
               </div>
@@ -262,7 +262,7 @@ function OverviewPage() {
               </div>
             </div>
             <div className="App-section App-col-left-section" id="App-solutions">
-              <div className="section-heading">/Key Concepts</div>
+              <div className="section-heading">Key Concepts</div>
               <KeyConcepts />
             </div>
           </div>

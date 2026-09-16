@@ -29,6 +29,7 @@ function ContactModal({ open, onClose }: { open: boolean; onClose: () => void })
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (isLoading || status === "success") return;
     if (!name.trim() || !email.trim()) return;
 
     setLoading(true);
@@ -77,8 +78,8 @@ function ContactModal({ open, onClose }: { open: boolean; onClose: () => void })
           </select>
           <textarea placeholder="Message" value={message} onChange={(e) => setMessage(e.target.value)} rows={4} maxLength={5000} />
           <div className="ContactModal-actions">
-            <button type="submit" className="ContactModal-submit" disabled={isLoading}>
-              {isLoading ? <CircularProgress size={18} style={{ color: "white" }} /> : "Submit"}
+            <button type="submit" className="ContactModal-submit" disabled={isLoading || status === "success"}>
+              {isLoading ? <CircularProgress size={18} style={{ color: "white" }} /> : status === "success" ? "Sent" : "Submit"}
             </button>
             {status === "success" && <span className="ContactModal-status">Thanks — we'll be in touch!</span>}
             {status === "error" && <span className="ContactModal-status ContactModal-status-error">Something went wrong. Please try again.</span>}

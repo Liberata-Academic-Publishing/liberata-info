@@ -243,7 +243,7 @@ function NormaPage() {
         {/* <KpiStrip kpis={KPIS} /> */}
 
         <div className="NormaSection">
-          <div className="section-heading">/Features</div>
+          <div className="section-heading">Features</div>
           <h2 className="NormaSection-title NormaFeatures-title">Data infrastructure for scientific AI</h2>
           <div className="NormaCards NormaCards-4">
             {CAPABILITIES.map((card) => (
@@ -257,7 +257,7 @@ function NormaPage() {
         </div>
 
         <div className="NormaSection" id="norma-quickstart">
-          <div className="section-heading">/Quickstart</div>
+          <div className="section-heading">Quickstart</div>
           <h2 className="NormaSection-title">From install to metrics in seconds</h2>
           <div className={`NormaQuickstart${quickstartView === "output" ? " NormaQuickstart-output-active" : ""}`}>
             <div className="NormaQuickstart-toggle">

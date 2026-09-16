@@ -46,13 +46,13 @@ function ScripturaPage() {
 
       <div className="ScripturaBody">
         <div className="ScripturaSection">
-          <div className="section-heading">/Features</div>
+          <div className="section-heading">Features</div>
           <h2 className="ScripturaSection-title">The new standard for publishing</h2>
           <ScripturaFeatures />
         </div>
 
         <div className="ScripturaSection">
-          <div className="section-heading">/Impact</div>
+          <div className="section-heading">Impact</div>
           <h2 className="ScripturaSection-title">Credit follows contribution</h2>
           <p className="ScripturaSection-subtitle">
             Legacy publishing rewards prestige and captures the value. Scriptura rewards the work itself — writing,
@@ -72,7 +72,7 @@ function ScripturaPage() {
         </div>
 
         <div className="ScripturaSection">
-          <div className="section-heading">/Roadmap</div>
+          <div className="section-heading">Roadmap</div>
           <RoadmapTimeline />
         </div>
 
