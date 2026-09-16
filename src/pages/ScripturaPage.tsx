@@ -1,7 +1,9 @@
+import { useState } from "react";
 import Header from "../components/Header";
 import ScripturaFeatures from "../components/ScripturaFeatures";
 import RoadmapTimeline from "../components/RoadmapTimeline";
 import ProductCta from "../components/ProductCta";
+import ContactModal from "../components/ContactModal";
 import iconPencil from "../images/figma/scriptura/icon_pencil.svg";
 import iconCheck from "../images/figma/scriptura/icon_check.svg";
 import iconBookAlt from "../images/figma/scriptura/icon_book_alt.svg";
@@ -27,6 +29,8 @@ const IMPACT_COLUMNS = [
 ];
 
 function ScripturaPage() {
+  const [contactOpen, setContactOpen] = useState(false);
+
   return (
     <div className="App">
       {/* id="intro" drives the Header's transparent-over-hero scroll behavior */}
@@ -86,8 +90,10 @@ function ScripturaPage() {
             </>
           }
           primaryTo="/beta-signup"
-          secondaryLabel="Coming Soon"
+          secondaryLabel="Contact us"
+          secondaryOnClick={() => setContactOpen(true)}
         />
+        <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
       </div>
     </div>
   );

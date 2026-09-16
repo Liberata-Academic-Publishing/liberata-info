@@ -3,14 +3,14 @@ import Header from "../components/Header";
 // Unused while the ProductCta below is hidden — restore this import
 // alongside it.
 // import ProductCta from "../components/ProductCta";
-import KpiStrip from "../components/KpiStrip";
+// Unused while the KpiStrip below is hidden — restore this import
+// alongside it.
+// import KpiStrip from "../components/KpiStrip";
 import heroGraph from "../images/figma/norma/hero_graph.svg";
 import sparkStarred from "../images/figma/norma/spark_starred.svg";
 import sparkWatched from "../images/figma/norma/spark_watched.svg";
 import sparkForked from "../images/figma/norma/spark_forked.svg";
-import vizCapitalOverTime from "../images/figma/norma/viz_capital_over_time.svg";
 import outputChart from "../images/figma/norma/output_chart.svg";
-import conceptMetricsNetwork from "../images/figma/norma/concept_metrics_network.svg";
 import "../App.css";
 import "./NormaPage.css";
 
@@ -144,44 +144,24 @@ function AreaChart({ compact = false }: { compact?: boolean }) {
 
 const CAPABILITIES = [
   {
-    name: "Capital & reference metrics",
+    name: "Contribution & impact metrics",
     desc: "Returns, volatility, Sharpe, concentration, inequality, and overall system health, paper-by-paper.",
     diagram: <HeatGrid rows={8} cols={13} seed={7} />,
   },
   {
-    name: "Portfolio & system metrics",
+    name: "Academic portfolio & community metrics",
     desc: "Every record segmented by discipline, time period, quality tier, and position in the citation graph.",
     diagram: <AreaChart />,
   },
   {
-    name: "Synthetic data generators",
+    name: "Incentive structure simulations",
     desc: "Generate controlled citation networks at any density to test, benchmark, and reproduce results.",
     diagram: <DotNetwork seed={11} />,
   },
   {
-    name: "Public Data Index",
+    name: "Research patterns and trends",
     desc: "Sparsity matrix and citation concentration patterns across the whole academic corpus.",
     diagram: <ScatterBand seed={23} />,
-  },
-];
-
-// Visualize and Concepts used to be two separate 3-card sections with a lot
-// of overlapping content — merged into one, per the updated Figma.
-const MODEL_CARDS = [
-  {
-    name: "Capital Matrix",
-    caption: "Rows are papers, columns are researchers. Entry [i, j] is the capital researcher j accrued from paper i (papers × researchers). Bright cells mark where capital concentrates, showing at a glance which researchers accrued the most from which papers.",
-    diagram: <HeatGrid rows={10} cols={16} seed={53} />,
-  },
-  {
-    name: "Citation network",
-    caption: "Papers on both axes. Entry [i, j] counts how often paper i cites paper j, the citation graph as a sparse matrix. Viewed structurally, the same matrix becomes a map of where citations concentrate across the corpus.",
-    diagram: <img className="NormaDiagram-img" src={conceptMetricsNetwork} alt="" />,
-  },
-  {
-    name: "Metrics",
-    caption: "Portfolio, market, distribution, and system metrics quantify concentration, returns, risk, and the health of the network, including how capital compounds over time as citations arrive and contributions accumulate.",
-    diagram: <img className="NormaDiagram-img" src={vizCapitalOverTime} alt="" />,
   },
 ];
 
@@ -205,10 +185,11 @@ function NormaPage() {
         <div className="NormaHero-inner">
           <div className="NormaHero-content">
             <h1 className="NormaHero-title">Norma.</h1>
-            <p className="NormaHero-subtitle">Research intelligence for the people who fund, hire, and shape science.</p>
+            <p className="NormaHero-subtitle">Open source scientometrics and simulations for meta science research.</p>
             <p className="NormaHero-description">
-              Inspect, compare, and visualize the impact of any researcher, lab, institution, field, or nation — built
-              on Liberata's Academic Capital metrics, quality-control signals, and the scientometrics you already trust.
+              Inspect, compare, visualize, and experiment with the impact of any researcher, lab, institution, field, or
+              nation — built on Liberata's Academic Capital metrics, quality-control signals, and the scientometrics
+              you already trust.
             </p>
             <div className="NormaHero-actions">
               <a
@@ -226,7 +207,24 @@ function NormaPage() {
                   <path d="M4.16626 10H15.8343M10.0003 15.834L15.8343 10L10.0003 4.16603" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
                 </svg>
               </a>
-              <a href="#norma-quickstart" className="NormaHero-secondary">See how it works</a>
+              <a
+                href="https://liberata-academic-publishing.github.io/liberata-scientometrics/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="NormaHero-secondary"
+              >
+                <span className="NormaHero-secondary-text">View full documentation</span>
+                <span className="NormaHero-badge">GitHub</span>
+              </a>
+              <a
+                href="https://arxiv.org/abs/2605.02128"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="NormaHero-secondary"
+              >
+                <span className="NormaHero-secondary-text">Graph-based scientometrics</span>
+                <span className="NormaHero-badge">arXiv</span>
+              </a>
             </div>
           </div>
           <div className="NormaHero-glass" aria-hidden="true">
@@ -240,7 +238,9 @@ function NormaPage() {
       </div>
 
       <div className="NormaBody">
-        <KpiStrip kpis={KPIS} />
+        {/* Hidden per Vicky's request — numbers aren't impressive yet, might
+            bring this back in a couple months. Restore by uncommenting. */}
+        {/* <KpiStrip kpis={KPIS} /> */}
 
         <div className="NormaSection">
           <div className="section-heading">/Features</div>
@@ -256,23 +256,9 @@ function NormaPage() {
           </div>
         </div>
 
-        <div className="NormaSection">
-          <div className="section-heading">/Visualize</div>
-          <h2 className="NormaSection-title">The data model</h2>
-          <div className="NormaCards NormaCards-3 NormaModel">
-            {MODEL_CARDS.map((panel) => (
-              <div className="NormaCard" key={panel.name}>
-                <div className="NormaCard-illustration NormaCard-illustration-tall">{panel.diagram}</div>
-                <p className="NormaCard-name">{panel.name}</p>
-                <p className="NormaCard-desc">{panel.caption}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
         <div className="NormaSection" id="norma-quickstart">
           <div className="section-heading">/Quickstart</div>
-          <h2 className="NormaSection-title">From install to metrics in 30 seconds</h2>
+          <h2 className="NormaSection-title">From install to metrics in seconds</h2>
           <div className={`NormaQuickstart${quickstartView === "output" ? " NormaQuickstart-output-active" : ""}`}>
             <div className="NormaQuickstart-toggle">
               <div
@@ -312,14 +298,6 @@ matrix_visuals.<span className="tok-fn">plot_sparsity_pattern</span>(refs)
               </div>
             </div>
           </div>
-          <a
-            href="https://liberata-academic-publishing.github.io/liberata-scientometrics/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="NormaDocsButton"
-          >
-            View full documentation
-          </a>
         </div>
 
         {/* Hidden: keeping the hero CTA and "View full documentation" button,

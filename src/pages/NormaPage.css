@@ -80,12 +80,33 @@
 }
 
 .NormaHero-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-weight: 500;
   font-size: 20px;
   line-height: 1.6;
   color: white !important;
+  text-decoration: none;
+}
+
+.NormaHero-secondary-text {
   text-decoration: underline dotted;
   text-underline-offset: 4px;
+}
+
+.NormaHero-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.4;
+  text-decoration: none;
+  white-space: nowrap;
 }
 
 .NormaHero-glass {
@@ -187,9 +208,9 @@
 
 .NormaCard-name {
   margin: 0;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Figtree', sans-serif;
   font-weight: 600;
-  font-size: 15px;
+  font-size: 17px;
   color: var(--neutral-800);
 }
 
@@ -398,7 +419,9 @@
   }
 
   .NormaHero-actions {
-    gap: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
   }
 
   .NormaHero-primary,
@@ -433,12 +456,6 @@
   .NormaCards-3,
   .NormaQuickstart {
     grid-template-columns: 1fr;
-  }
-
-  /* Features cards drop their illustration on mobile per Figma — just
-     name + description, matching the tight stacked-card look there */
-  .NormaCards-4 .NormaCard-illustration {
-    display: none;
   }
 
   /* Capital & reference metrics' caption needs a bit more room */

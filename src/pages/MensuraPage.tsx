@@ -1,7 +1,9 @@
+import { useState } from "react";
 import Header from "../components/Header";
 import ProductFeatureShowcase, { ShowcaseFeature } from "../components/ProductFeatureShowcase";
 import RoadmapTimeline from "../components/RoadmapTimeline";
 import ProductCta from "../components/ProductCta";
+import ContactModal from "../components/ContactModal";
 import iconSearch from "../images/figma/mensura/icon_search.svg";
 import iconDatabase from "../images/figma/mensura/icon_database.svg";
 import iconChartArrow from "../images/figma/mensura/icon_chart_arrow.svg";
@@ -127,6 +129,8 @@ const ANALYTICS_PANELS = [
 ];
 
 function MensuraPage() {
+  const [contactOpen, setContactOpen] = useState(false);
+
   return (
     <div className="App">
       {/* id="intro" drives the Header's transparent-over-hero scroll behavior */}
@@ -147,7 +151,9 @@ function MensuraPage() {
           <ProductFeatureShowcase features={FEATURES} />
         </div>
 
-        <div className="MensuraSection">
+        {/* Hidden per Vicky's request — the Analytics section under the
+            carousels. Restore by uncommenting. */}
+        {/* <div className="MensuraSection">
           <div className="section-heading">/Analytics</div>
           <h2 className="MensuraSection-title">Impact visualization</h2>
           <div className="MensuraAnalytics">
@@ -161,7 +167,7 @@ function MensuraPage() {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
 
         <div className="MensuraSection">
           <div className="section-heading">/Roadmap</div>
@@ -173,17 +179,20 @@ function MensuraPage() {
           subtitle="Built for research offices, funding agencies, and policymakers who need more than citation counts."
           primaryLabel={
             <>
-              <span>Get a demo</span>
+              <span>Sign up for beta</span>
               {/* real icon instead of a plain "→" character — same fix as
-                  the Norma hero CTA and mobile "Sign up for beta" button */}
+                  Scriptura's and Textura's ProductCta, the Norma hero CTA,
+                  and the mobile "Sign up for beta" button */}
               <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
                 <path d="M4.16626 10H15.8343M10.0003 15.834L15.8343 10L10.0003 4.16603" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
               </svg>
             </>
           }
           primaryTo="/beta-signup"
-          secondaryLabel="Coming Soon"
+          secondaryLabel="Contact us"
+          secondaryOnClick={() => setContactOpen(true)}
         />
+        <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
       </div>
     </div>
   );
