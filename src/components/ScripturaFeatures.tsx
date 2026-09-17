@@ -156,42 +156,41 @@ const FEATURES: ShowcaseFeature[] = [
     ],
   },
   {
-    // PLACEHOLDER COPY — images are wired up and in the order you gave, but
-    // the headline/description/points below are drafts standing in until
-    // you give me the real copy. Swap key/name/label/icon too if these
-    // aren't what you want.
     key: "collaborator-search",
     name: "Collaborator Search",
     icon: <img src={iconUserSearch} alt="" />,
-    gridDesc: "PLACEHOLDER — one-line grid card description for Collaborator Search.",
-    altDesc: "PLACEHOLDER — one-line alt description for Collaborator Search.",
+    gridDesc: "Search researchers by granular expertise, then rank them by objective portfolio metrics instead of personal connections.",
+    altDesc: "Search researchers by granular expertise, then rank them by objective portfolio metrics instead of personal connections.",
     label: "Collaborator Search",
     demo: [demoCollaboratorSearch, demoCollaboratorSearchSaved, demoProfileOverview, demoProfileCollections],
     demoAlt: "Scriptura collaborator search: finding and saving researcher profiles",
-    headline: "PLACEHOLDER headline for Collaborator Search",
-    longDesc: "PLACEHOLDER — longer description of what Collaborator Search does and why it matters.",
+    headline: "Collaborators, not connections",
+    longDesc:
+      "Most academic collaboration still comes down to who you already know. Search any technique or research area down to the same granular tags your own portfolio is scored on, and sort by real expertise instead.",
     points: [
-      { lead: "PLACEHOLDER.", text: "Replace with a real point." },
-      { lead: "PLACEHOLDER.", text: "Replace with a real point." },
-      { lead: "PLACEHOLDER.", text: "Replace with a real point." },
+      { lead: "Rank by expertise, not connections.", text: "Sort by total Academic Capital for the top expert in a tag, or by portfolio share for the specialist." },
+      { lead: "Know before you reach out.", text: "A collaboration status badge shows who's open to new work, and \"more like this\" surfaces similar researchers." },
+      { lead: "Filter out who's gone quiet.", text: "An \"Active\" filter shows only researchers with recent publications, so you're not reaching out to someone who left research years ago." },
+      { lead: "Built for people without a network yet.", text: "Early-career researchers get the same discovery tools as tenured faculty, then save and contact prospects directly." },
     ],
   },
   {
-    // PLACEHOLDER COPY — same as above, images only.
     key: "institution-search",
     name: "Institution Search",
     icon: <img src={iconInstitutionSearch} alt="" />,
-    gridDesc: "PLACEHOLDER — one-line grid card description for Institution Search.",
-    altDesc: "PLACEHOLDER — one-line alt description for Institution Search.",
+    gridDesc: "See how an institution performs in one narrow research area, not just its overall prestige ranking.",
+    altDesc: "See how an institution performs in one narrow research area, not just its overall prestige ranking.",
     label: "Institution Search",
     demo: [demoInstitutionSearch, demoUniversityAcademicsFilters, demoUniProfileMetrics],
     demoAlt: "Scriptura institution search: finding institutions and their academic profile metrics",
-    headline: "PLACEHOLDER headline for Institution Search",
-    longDesc: "PLACEHOLDER — longer description of what Institution Search does and why it matters.",
+    headline: "Search by expertise, not prestige",
+    longDesc:
+      "Rankings rate institutions in broad categories like \"best in mechanical engineering.\" That's no help if you need to know who's actually doing the work in one narrow subfield. Search by that same granular tag instead.",
     points: [
-      { lead: "PLACEHOLDER.", text: "Replace with a real point." },
-      { lead: "PLACEHOLDER.", text: "Replace with a real point." },
-      { lead: "PLACEHOLDER.", text: "Replace with a real point." },
+      { lead: "Rank by output or by focus.", text: "Sort by total Academic Capital for the biggest program in a field, or by portfolio share for the most specialized one." },
+      { lead: "Numbers that protect you, too.", text: "Per-capita impact and risk premium flag programs that overwork or under-credit their researchers." },
+      { lead: "See who's actually there.", text: "Every profile links to the institution's full researcher directory and publication list, not just a summary card." },
+      { lead: "Track it like a shortlist.", text: "Save institutions while you're applying or job-hunting, and check back as new papers come in." },
     ],
   },
 ];
