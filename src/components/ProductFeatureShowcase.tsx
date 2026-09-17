@@ -68,8 +68,12 @@ function CompactCard({ feature, onExpand }: { feature: ShowcaseFeature; onExpand
         </button>
       )}
       <div className="sf-icon-tile">{feature.icon}</div>
-      <p className="sf-compact-name">{feature.name}</p>
-      <p className="sf-compact-desc">{feature.altDesc}</p>
+      {/* same name/description styling and copy as the grid's SmallCard
+          (sf-small-name/-desc, gridDesc) — compact cards are just the grid
+          cards demoted to a bottom row while another card is expanded, so
+          the text shouldn't change size or content when that happens */}
+      <p className="sf-small-name">{feature.name}</p>
+      <p className="sf-small-desc">{feature.gridDesc}</p>
     </div>
   );
 }
@@ -204,8 +208,13 @@ function FeaturedCard({ feature, onMinimize, mobile = false }: { feature: Showca
         <p className="sf-featured-headline">{feature.headline}</p>
         <p className="sf-featured-desc">{feature.longDesc}</p>
         <div className="sf-points">
-          {feature.points.map((point) => (
-            <div className="sf-point" key={point.lead}>
+          {feature.points.map((point, i) => (
+            // keyed by feature + index, not point.lead — the two PLACEHOLDER
+            // features currently reuse "PLACEHOLDER." as every point's lead,
+            // and duplicate keys within one list corrupt React's reconciliation:
+            // switching from one of those to a different feature could leave
+            // stale point rows behind instead of swapping them out cleanly.
+            <div className="sf-point" key={`${feature.key}-${i}`}>
               <span className="sf-point-check">
                 <img src={checkMark} alt="" />
               </span>
