@@ -15,23 +15,27 @@ import demoChart3 from "../images/figma/mensura/demo_chart_3.png";
 import demoChart4 from "../images/figma/mensura/demo_chart_4.png";
 import demoChart5 from "../images/figma/mensura/demo_chart_5.png";
 import demoChart6 from "../images/figma/mensura/demo_chart_6.png";
+import demoChart7 from "../images/figma/mensura/demo_chart_7.png";
 import demoDataframe1 from "../images/figma/mensura/demo_dataframe_1.png";
 import demoDataframe2 from "../images/figma/mensura/demo_dataframe_2.png";
 import demoDataframe3 from "../images/figma/mensura/demo_dataframe_3.png";
 import demoDataframe4 from "../images/figma/mensura/demo_dataframe_4.png";
 import demoDataframe5 from "../images/figma/mensura/demo_dataframe_5.png";
 import demoDataframe6 from "../images/figma/mensura/demo_dataframe_6.png";
+import demoDataframe7 from "../images/figma/mensura/demo_dataframe_7.png";
 import demoInspect1 from "../images/figma/mensura/demo_inspect_1.png";
 import demoInspect2 from "../images/figma/mensura/demo_inspect_2.png";
 import demoInspect3 from "../images/figma/mensura/demo_inspect_3.png";
 import demoInspect4 from "../images/figma/mensura/demo_inspect_4.png";
 import demoInspect5 from "../images/figma/mensura/demo_inspect_5.png";
 import demoInspect6 from "../images/figma/mensura/demo_inspect_6.png";
+import demoInspect7 from "../images/figma/mensura/demo_inspect_7.png";
 import demoCohorts1 from "../images/figma/mensura/demo_cohorts_1.png";
 import demoCohorts2 from "../images/figma/mensura/demo_cohorts_2.png";
 import demoCohorts3 from "../images/figma/mensura/demo_cohorts_3.png";
 import demoCohorts4 from "../images/figma/mensura/demo_cohorts_4.png";
 import demoCohorts5 from "../images/figma/mensura/demo_cohorts_5.png";
+import demoCohorts6 from "../images/figma/mensura/demo_cohorts_6.png";
 import imgDataframe from "../images/dataframe_comparison.png";
 import imgChart from "../images/chart_example.png";
 import "../App.css";
@@ -52,7 +56,7 @@ const FEATURES: ShowcaseFeature[] = [
     gridDesc: "Deep entity profiles for researchers, labs, departments, institutions, fields, and regions with Liberata-native metrics.",
     altDesc: "Deep entity profiles for researchers, labs, departments, institutions, fields, and regions with Liberata-native metrics.",
     label: "Inspect",
-    demo: [demoInspect1, demoInspect2, demoInspect3, demoInspect4, demoInspect5, demoInspect6],
+    demo: [demoInspect1, demoInspect2, demoInspect3, demoInspect4, demoInspect5, demoInspect6, demoInspect7],
     demoAlt: "Mensura entity profile: a search bar above a dashboard of metric cards for the selected entity",
     headline: "Every entity, fully explained",
     longDesc:
@@ -71,7 +75,7 @@ const FEATURES: ShowcaseFeature[] = [
     gridDesc: "A spreadsheet-style workspace to line entities up side by side across any set of metrics. Sort, filter, and export benchmarking tables in seconds.",
     altDesc: "A spreadsheet-style workspace to line entities up side by side across any set of metrics. Sort, filter, and export benchmarking tables in seconds.",
     label: "Dataframe",
-    demo: [demoDataframe1, demoDataframe2, demoDataframe3, demoDataframe4, demoDataframe5, demoDataframe6],
+    demo: [demoDataframe1, demoDataframe2, demoDataframe3, demoDataframe4, demoDataframe5, demoDataframe6, demoDataframe7],
     demoAlt: "Mensura dataframe: entities as rows and metrics as sortable columns in a comparison table",
     headline: "Build the table you actually need",
     longDesc:
@@ -90,7 +94,7 @@ const FEATURES: ShowcaseFeature[] = [
     gridDesc: "Track output, impact, and academic capital over time. See trajectories and field dynamics that a single number can't show.",
     altDesc: "Track output, impact, and academic capital over time. See trajectories and field dynamics that a single number can't show.",
     label: "Chart",
-    demo: [demoChart1, demoChart2, demoChart3, demoChart4, demoChart5, demoChart6],
+    demo: [demoChart1, demoChart2, demoChart3, demoChart4, demoChart5, demoChart6, demoChart7],
     demoAlt: "Mensura chart builder: the entity and cohort picker open over an empty chart canvas",
     headline: "See the pattern, not just the numbers",
     longDesc:
@@ -109,7 +113,7 @@ const FEATURES: ShowcaseFeature[] = [
     gridDesc: "A comparison group built from entity type, geography, research area, and organization — as a live rule or a fixed list you pick yourself.",
     altDesc: "A comparison group built from entity type, geography, research area, and organization — as a live rule or a fixed list you pick yourself.",
     label: "Cohorts",
-    demo: [demoCohorts1, demoCohorts2, demoCohorts3, demoCohorts4, demoCohorts5],
+    demo: [demoCohorts1, demoCohorts2, demoCohorts3, demoCohorts4, demoCohorts5, demoCohorts6],
     demoAlt: "Mensura cohort builder: a dynamic cohort form beside a live preview of the matching researchers",
     headline: "Build the cohort that makes sense",
     longDesc:
