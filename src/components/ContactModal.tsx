@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { CircularProgress } from "@mui/material";
 import { supabase } from "../lib/supabase";
 import iconClose from "../images/figma/contact/icon_close.svg";
@@ -16,14 +16,31 @@ function ContactModal({ open, onClose }: { open: boolean; onClose: () => void })
   const [isLoading, setLoading] = useState(false);
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
 
+  // The component stays mounted while closed, so without this a sent message
+  // would still be sitting behind a disabled "Sent" button the next time the
+  // modal opens, with no way to send another until a reload. Cleared on the
+  // way out, and only after a successful send, so an unsent draft survives
+  // an accidental close.
+  const close = useCallback(() => {
+    if (status === "success") {
+      setName("");
+      setEmail("");
+      setAffiliation("");
+      setPurpose("");
+      setMessage("");
+      setStatus("idle");
+    }
+    onClose();
+  }, [status, onClose]);
+
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") close();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [open, onClose]);
+  }, [open, close]);
 
   if (!open) return null;
 
@@ -50,9 +67,9 @@ function ContactModal({ open, onClose }: { open: boolean; onClose: () => void })
   };
 
   return (
-    <div className="ContactModal-overlay" onClick={onClose} role="presentation">
+    <div className="ContactModal-overlay" onClick={close} role="presentation">
       <div className="ContactModal" role="dialog" aria-modal="true" aria-label="Contact us" onClick={(e) => e.stopPropagation()}>
-        <button type="button" className="ContactModal-close" onClick={onClose} aria-label="Close">
+        <button type="button" className="ContactModal-close" onClick={close} aria-label="Close">
           <img src={iconClose} alt="" />
         </button>
         <div className="ContactModal-left">
