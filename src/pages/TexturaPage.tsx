@@ -1,8 +1,7 @@
 import { useState } from "react";
 import Header from "../components/Header";
-// Unused while the ProductCta below is hidden (Textura is still coming
-// soon) — restore this import alongside it.
-// import ProductCta from "../components/ProductCta";
+import ProductCta from "../components/ProductCta";
+import ContactModal from "../components/ContactModal";
 import visualLayer from "../images/figma/textura/visual_layer.svg";
 import featDocBadge from "../images/figma/textura/feat_doc_badge.svg";
 import tag1 from "../images/figma/textura/tag_1.svg";
@@ -93,6 +92,7 @@ function TexturaPage() {
   // .TexturaRecord's two-column grid) — this only drives the mobile toggle,
   // where showing both stacked was a big chunk of the page's scroll length.
   const [recordView, setRecordView] = useState<"graph" | "code">("graph");
+  const [contactOpen, setContactOpen] = useState(false);
 
   return (
     <div className="App">
@@ -101,17 +101,19 @@ function TexturaPage() {
         <Header />
         <div className="TexturaHero-content">
           <h1 className="TexturaHero-title">Textura.</h1>
-          <p className="TexturaHero-subtitle">Scientific AI training data — structured, validated, and expert-annotated.</p>
+          <p className="TexturaHero-subtitle">API access to scientific AI training data — structured, validated, and expert-annotated.</p>
           <p className="TexturaHero-description">
             The natural source of expert annotations on state-of-the-art scientific literature, paired with graph
             representations, for scientific AI that actually understands research.
           </p>
-          <div className="TexturaHero-actions">
-            {/* Textura is still coming soon — no real CTA here yet.
-                TODO: swap back to "View repository →" once it's public. */}
+          {/* Hidden per Vicky's request — no "Coming soon" placeholder or
+              "See how it works" link in the hero for now. Restore by
+              uncommenting (swap the button back to "View repository →" once
+              Textura is public, per the original TODO here). */}
+          {/* <div className="TexturaHero-actions">
             <button type="button" className="TexturaHero-primary" disabled>Coming soon</button>
             <a href="#textura-how" className="TexturaHero-secondary">See how it works</a>
-          </div>
+          </div> */}
         </div>
         <div className="TexturaHero-visual" aria-hidden="true">
           <img className="TexturaHero-network" src={visualLayer} alt="" />
@@ -129,7 +131,7 @@ function TexturaPage() {
 
       <div className="TexturaBody">
         <div className="TexturaSection">
-          <div className="section-heading">/Features</div>
+          <div className="section-heading">Features</div>
           <h2 className="TexturaSection-title TexturaFeatures-title">Data infrastructure for scientific AI</h2>
           <div className="TexturaFeatures">
             <div className="TexturaFeature">
@@ -184,7 +186,7 @@ function TexturaPage() {
         </div>
 
         <div className="TexturaSection" id="textura-how">
-          <div className="section-heading">/How it works</div>
+          <div className="section-heading">How it works</div>
           <h2 className="TexturaSection-title">From scholarly record to AI training data.</h2>
           <div className="TexturaSteps">
             <div className="TexturaStep">
@@ -231,7 +233,7 @@ function TexturaPage() {
         </div>
 
         <div className="TexturaSection">
-          <div className="section-heading">/Inside a record</div>
+          <div className="section-heading">Inside a record</div>
           <h2 className="TexturaSection-title">Every record is graph-linked and annotated</h2>
           <div className={`TexturaRecord${recordView === "code" ? " TexturaRecord-code-active" : ""}`}>
             {/* mobile-only toggle — hidden on desktop via CSS, where both
@@ -300,7 +302,7 @@ function TexturaPage() {
         </div>
 
         <div className="TexturaSection">
-          <div className="section-heading">/Datasets</div>
+          <div className="section-heading">Datasets</div>
           <h2 className="TexturaSection-title">Slice the data by field, time, and quality</h2>
           <p className="TexturaSection-subtitle">
             Every dataset is filtered to the quality tiers you need and ships with full graph context.
@@ -344,8 +346,8 @@ function TexturaPage() {
         </div>
 
         <div className="TexturaSection">
-          <div className="section-heading">/Getting Started</div>
-          <h2 className="TexturaSection-title">Integration Guide</h2>
+          <div className="section-heading">Intuitive API</div>
+          <h2 className="TexturaSection-title">Built to fit right into your existing workflow</h2>
           <div className="TexturaCurl">
             curl -X GET <span className="TexturaJson-str">"https://api.liberata.org/v1/papers"</span>
             {"      "}-H <span className="TexturaJson-str">"Authorization: Bearer YOUR_API_KEY"</span>
@@ -367,14 +369,25 @@ function TexturaPage() {
           {/* <button type="button" className="TexturaDocsButton">View full documentation</button> */}
         </div>
 
-        {/* Hidden: Textura is still coming soon, so no CTAs should show on
-            the page yet. Restore this ProductCta once it's ready to launch. */}
-        {/* <ProductCta
+        <ProductCta
           title="The scholarly record, ready for AI."
           subtitle="License structured scientific training data built on the world's most credibility-rich research corpus."
-          primaryLabel="Request dataset access →"
-          secondaryLabel="View API docs"
-        /> */}
+          primaryLabel={
+            <>
+              <span>Sign up for beta</span>
+              {/* real icon instead of a plain "→" character — same fix as
+                  Scriptura's ProductCta, the Norma hero CTA, and the mobile
+                  "Sign up for beta" button */}
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M4.16626 10H15.8343M10.0003 15.834L15.8343 10L10.0003 4.16603" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+              </svg>
+            </>
+          }
+          primaryTo="/beta-signup"
+          secondaryLabel="Contact us"
+          secondaryOnClick={() => setContactOpen(true)}
+        />
+        <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
       </div>
     </div>
   );

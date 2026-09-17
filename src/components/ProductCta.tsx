@@ -12,10 +12,13 @@ type ProductCtaProps = {
   // internal path like "/beta-signup" (react-router Link). Omit to keep the
   // secondary button inert, same as before.
   secondaryTo?: string;
+  // For a secondary action that isn't a navigation (e.g. opening the Contact
+  // modal, same as Header/Footer). Ignored if secondaryTo is set.
+  secondaryOnClick?: () => void;
 };
 
 // TODO: wire up real destinations (demo requests etc.) as they come online
-function ProductCta({ title, subtitle, primaryLabel, primaryTo, secondaryLabel, secondaryTo }: ProductCtaProps) {
+function ProductCta({ title, subtitle, primaryLabel, primaryTo, secondaryLabel, secondaryTo, secondaryOnClick }: ProductCtaProps) {
   const isExternal = (to: string) => /^https?:\/\//.test(to);
 
   return (
@@ -35,7 +38,7 @@ function ProductCta({ title, subtitle, primaryLabel, primaryTo, secondaryLabel, 
             <Link to={secondaryTo} className="product-cta-secondary">{secondaryLabel}</Link>
           )
         ) : (
-          <button type="button" className="product-cta-secondary">{secondaryLabel}</button>
+          <button type="button" className="product-cta-secondary" onClick={secondaryOnClick}>{secondaryLabel}</button>
         )}
       </div>
     </div>

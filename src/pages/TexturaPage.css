@@ -36,6 +36,9 @@
   font-size: 20px;
   line-height: 1.6;
   color: white;
+  /* same fix as .TexturaHero-description below it — narrower than the 800px
+     hero content column so it wraps more evenly */
+  max-width: 620px;
 }
 
 .TexturaHero-description {
@@ -45,6 +48,9 @@
   line-height: 1.6;
   color: white;
   opacity: 0.85;
+  /* narrower than the 800px hero content column so lines wrap more evenly,
+     instead of stray single words trailing onto their own line */
+  max-width: 620px;
 }
 
 .TexturaHero-actions {
@@ -153,7 +159,7 @@
 
 .TexturaSection-subtitle {
   margin: -20px 0 35px 0;
-  font-family: 'Geist', 'Inter', sans-serif;
+  font-family: 'Geist', 'Figtree', sans-serif;
   font-size: 18px;
   line-height: 1.5;
   color: #475569;
@@ -253,9 +259,9 @@
 
 .TexturaFeature-name {
   margin: 0;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Figtree', sans-serif;
   font-weight: 600;
-  font-size: 15px;
+  font-size: 17px;
   color: var(--neutral-800);
 }
 
@@ -419,7 +425,7 @@
 
 .TexturaRecord-paper {
   margin: 0;
-  font-family: 'Geist', 'Inter', sans-serif;
+  font-family: 'Geist', 'Figtree', sans-serif;
   font-weight: 700;
   font-size: 28px;
   line-height: 1.2;
@@ -428,7 +434,7 @@
 
 .TexturaRecord-authors {
   margin: -16px 0 0 0;
-  font-family: 'Geist', 'Inter', sans-serif;
+  font-family: 'Geist', 'Figtree', sans-serif;
   font-size: 16px;
   color: #475569;
 }
@@ -455,7 +461,7 @@
 }
 
 .TexturaChip {
-  font-family: 'Geist', 'Inter', sans-serif;
+  font-family: 'Geist', 'Figtree', sans-serif;
   font-weight: 600;
   font-size: 12px;
   padding: 4px 10px;
@@ -504,7 +510,7 @@
 
 .TexturaRecord-caption {
   margin: -16px 0 0 0;
-  font-family: 'Geist', 'Inter', sans-serif;
+  font-family: 'Geist', 'Figtree', sans-serif;
   font-size: 14px;
   text-align: center;
   color: #94a3b8;
@@ -579,7 +585,7 @@
 
 .TexturaDataset-name {
   margin: 0;
-  font-family: 'Geist', 'Inter', sans-serif;
+  font-family: 'Geist', 'Figtree', sans-serif;
   font-weight: 700;
   font-size: 20px;
   color: var(--neutral-800);
@@ -587,7 +593,7 @@
 
 .TexturaDataset-records {
   margin: -4px 0 0 0;
-  font-family: 'Geist', 'Inter', sans-serif;
+  font-family: 'Geist', 'Figtree', sans-serif;
   font-size: 14px;
   color: #475569;
 }
@@ -611,7 +617,7 @@
 .TexturaDataset-legend {
   display: flex;
   gap: 16px;
-  font-family: 'Geist', 'Inter', sans-serif;
+  font-family: 'Geist', 'Figtree', sans-serif;
   font-weight: 500;
   font-size: 12px;
   color: #475569;
@@ -836,11 +842,11 @@
 
   .TexturaDataset-name,
   .TexturaDataset-records {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Figtree', sans-serif;
   }
 
   .TexturaDataset-legend span {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Figtree', sans-serif;
   }
 
   /* matches Scriptura's .sf-small-name/.sf-small-desc mobile sizing (the
@@ -1034,19 +1040,19 @@
   }
 
   .TexturaRecord-paper {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Figtree', sans-serif;
     font-size: 16px;
   }
 
   .TexturaRecord-authors {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Figtree', sans-serif;
     font-size: 12px;
     /* card's flex gap is 15px; pull up 7px so paper→authors lands at 8px */
     margin: -7px 0 0 0;
   }
 
   .TexturaChip {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Figtree', sans-serif;
     font-size: 12px;
   }
 

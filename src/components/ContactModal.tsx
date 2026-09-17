@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { CircularProgress } from "@mui/material";
 import { supabase } from "../lib/supabase";
 import iconClose from "../images/figma/contact/icon_close.svg";
@@ -16,19 +16,37 @@ function ContactModal({ open, onClose }: { open: boolean; onClose: () => void })
   const [isLoading, setLoading] = useState(false);
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
 
+  // The component stays mounted while closed, so without this a sent message
+  // would still be sitting behind a disabled "Sent" button the next time the
+  // modal opens, with no way to send another until a reload. Cleared on the
+  // way out, and only after a successful send, so an unsent draft survives
+  // an accidental close.
+  const close = useCallback(() => {
+    if (status === "success") {
+      setName("");
+      setEmail("");
+      setAffiliation("");
+      setPurpose("");
+      setMessage("");
+      setStatus("idle");
+    }
+    onClose();
+  }, [status, onClose]);
+
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") close();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [open, onClose]);
+  }, [open, close]);
 
   if (!open) return null;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (isLoading || status === "success") return;
     if (!name.trim() || !email.trim()) return;
 
     setLoading(true);
@@ -49,9 +67,9 @@ function ContactModal({ open, onClose }: { open: boolean; onClose: () => void })
   };
 
   return (
-    <div className="ContactModal-overlay" onClick={onClose} role="presentation">
+    <div className="ContactModal-overlay" onClick={close} role="presentation">
       <div className="ContactModal" role="dialog" aria-modal="true" aria-label="Contact us" onClick={(e) => e.stopPropagation()}>
-        <button type="button" className="ContactModal-close" onClick={onClose} aria-label="Close">
+        <button type="button" className="ContactModal-close" onClick={close} aria-label="Close">
           <img src={iconClose} alt="" />
         </button>
         <div className="ContactModal-left">
@@ -77,8 +95,8 @@ function ContactModal({ open, onClose }: { open: boolean; onClose: () => void })
           </select>
           <textarea placeholder="Message" value={message} onChange={(e) => setMessage(e.target.value)} rows={4} maxLength={5000} />
           <div className="ContactModal-actions">
-            <button type="submit" className="ContactModal-submit" disabled={isLoading}>
-              {isLoading ? <CircularProgress size={18} style={{ color: "white" }} /> : "Submit"}
+            <button type="submit" className="ContactModal-submit" disabled={isLoading || status === "success"}>
+              {isLoading ? <CircularProgress size={18} style={{ color: "white" }} /> : status === "success" ? "Sent" : "Submit"}
             </button>
             {status === "success" && <span className="ContactModal-status">Thanks — we'll be in touch!</span>}
             {status === "error" && <span className="ContactModal-status ContactModal-status-error">Something went wrong. Please try again.</span>}

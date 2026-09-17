@@ -1,7 +1,9 @@
+import { useState } from "react";
 import Header from "../components/Header";
 import ScripturaFeatures from "../components/ScripturaFeatures";
 import RoadmapTimeline from "../components/RoadmapTimeline";
 import ProductCta from "../components/ProductCta";
+import ContactModal from "../components/ContactModal";
 import iconPencil from "../images/figma/scriptura/icon_pencil.svg";
 import iconCheck from "../images/figma/scriptura/icon_check.svg";
 import iconBookAlt from "../images/figma/scriptura/icon_book_alt.svg";
@@ -12,7 +14,7 @@ const IMPACT_COLUMNS = [
   {
     icon: iconPencil,
     title: "For authors",
-    body: "Get reviews and replications that genuinely strengthen your paper — and pay in shares of credit, not the $2,000–$10,000 fees legacy open access charges. Keep your copyright, publish openly, and build a real track record instead of borrowing a journal's prestige.",
+    body: "Get reviews and replications that genuinely strengthen your paper — and offer shares of credit instead of costly legacy open-access fees. Keep your copyright, publish openly, and build a real track record instead of borrowing a journal's prestige.",
   },
   {
     icon: iconCheck,
@@ -27,6 +29,8 @@ const IMPACT_COLUMNS = [
 ];
 
 function ScripturaPage() {
+  const [contactOpen, setContactOpen] = useState(false);
+
   return (
     <div className="App">
       {/* id="intro" drives the Header's transparent-over-hero scroll behavior */}
@@ -42,14 +46,14 @@ function ScripturaPage() {
 
       <div className="ScripturaBody">
         <div className="ScripturaSection">
-          <div className="section-heading">/Features</div>
+          <div className="section-heading">Features</div>
           <h2 className="ScripturaSection-title">The new standard for publishing</h2>
           <ScripturaFeatures />
         </div>
 
         <div className="ScripturaSection">
-          <div className="section-heading">/Impact</div>
-          <h2 className="ScripturaSection-title">A fairer deal for everyone who does the work</h2>
+          <div className="section-heading">Impact</div>
+          <h2 className="ScripturaSection-title">Credit follows contribution</h2>
           <p className="ScripturaSection-subtitle">
             Legacy publishing rewards prestige and captures the value. Scriptura rewards the work itself — writing,
             reviewing, replicating, and building on research — and keeps every paper open to anyone.
@@ -68,7 +72,7 @@ function ScripturaPage() {
         </div>
 
         <div className="ScripturaSection">
-          <div className="section-heading">/Roadmap</div>
+          <div className="section-heading">Roadmap</div>
           <RoadmapTimeline />
         </div>
 
@@ -77,7 +81,7 @@ function ScripturaPage() {
           subtitle="Join researchers, labs, and institutions already building on Scriptura."
           primaryLabel={
             <>
-              <span>Start publishing</span>
+              <span>Sign up for beta</span>
               {/* real icon instead of a plain "→" character — same fix as
                   the Norma hero CTA and mobile "Sign up for beta" button */}
               <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -86,8 +90,10 @@ function ScripturaPage() {
             </>
           }
           primaryTo="/beta-signup"
-          secondaryLabel="Coming Soon"
+          secondaryLabel="Contact us"
+          secondaryOnClick={() => setContactOpen(true)}
         />
+        <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
       </div>
     </div>
   );

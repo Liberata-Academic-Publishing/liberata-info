@@ -1,7 +1,9 @@
+import { useState } from "react";
 import Header from "../components/Header";
 import ProductFeatureShowcase, { ShowcaseFeature } from "../components/ProductFeatureShowcase";
 import RoadmapTimeline from "../components/RoadmapTimeline";
 import ProductCta from "../components/ProductCta";
+import ContactModal from "../components/ContactModal";
 import iconSearch from "../images/figma/mensura/icon_search.svg";
 import iconDatabase from "../images/figma/mensura/icon_database.svg";
 import iconChartArrow from "../images/figma/mensura/icon_chart_arrow.svg";
@@ -49,7 +51,7 @@ const FEATURES: ShowcaseFeature[] = [
     icon: <img src={iconSearch} alt="" />,
     gridDesc: "Deep entity profiles for researchers, labs, departments, institutions, fields, and regions with Liberata-native metrics.",
     altDesc: "Deep entity profiles for researchers, labs, departments, institutions, fields, and regions with Liberata-native metrics.",
-    label: "/Inspect",
+    label: "Inspect",
     demo: [demoInspect1, demoInspect2, demoInspect3, demoInspect4, demoInspect5, demoInspect6],
     demoAlt: "Mensura entity profile: a search bar above a dashboard of metric cards for the selected entity",
     headline: "Every entity, fully explained",
@@ -68,7 +70,7 @@ const FEATURES: ShowcaseFeature[] = [
     icon: <img src={iconDatabase} alt="" />,
     gridDesc: "A spreadsheet-style workspace to line entities up side by side across any set of metrics. Sort, filter, and export benchmarking tables in seconds.",
     altDesc: "A spreadsheet-style workspace to line entities up side by side across any set of metrics. Sort, filter, and export benchmarking tables in seconds.",
-    label: "/Dataframe",
+    label: "Dataframe",
     demo: [demoDataframe1, demoDataframe2, demoDataframe3, demoDataframe4, demoDataframe5, demoDataframe6],
     demoAlt: "Mensura dataframe: entities as rows and metrics as sortable columns in a comparison table",
     headline: "Build the table you actually need",
@@ -87,7 +89,7 @@ const FEATURES: ShowcaseFeature[] = [
     icon: chartIcon,
     gridDesc: "Track output, impact, and academic capital over time. See trajectories and field dynamics that a single number can't show.",
     altDesc: "Track output, impact, and academic capital over time. See trajectories and field dynamics that a single number can't show.",
-    label: "/Chart",
+    label: "Chart",
     demo: [demoChart1, demoChart2, demoChart3, demoChart4, demoChart5, demoChart6],
     demoAlt: "Mensura chart builder: the entity and cohort picker open over an empty chart canvas",
     headline: "See the pattern, not just the numbers",
@@ -106,7 +108,7 @@ const FEATURES: ShowcaseFeature[] = [
     icon: <img className="sf-icon-cohorts" src={iconCohorts} alt="" />,
     gridDesc: "A comparison group built from entity type, geography, research area, and organization — as a live rule or a fixed list you pick yourself.",
     altDesc: "A comparison group built from entity type, geography, research area, and organization — as a live rule or a fixed list you pick yourself.",
-    label: "/Cohorts",
+    label: "Cohorts",
     demo: [demoCohorts1, demoCohorts2, demoCohorts3, demoCohorts4, demoCohorts5],
     demoAlt: "Mensura cohort builder: a dynamic cohort form beside a live preview of the matching researchers",
     headline: "Build the cohort that makes sense",
@@ -127,6 +129,8 @@ const ANALYTICS_PANELS = [
 ];
 
 function MensuraPage() {
+  const [contactOpen, setContactOpen] = useState(false);
+
   return (
     <div className="App">
       {/* id="intro" drives the Header's transparent-over-hero scroll behavior */}
@@ -142,13 +146,15 @@ function MensuraPage() {
 
       <div className="MensuraBody">
         <div className="MensuraSection">
-          <div className="section-heading">/Features</div>
+          <div className="section-heading">Features</div>
           <h2 className="MensuraSection-title">The math of academic merit</h2>
           <ProductFeatureShowcase features={FEATURES} />
         </div>
 
-        <div className="MensuraSection">
-          <div className="section-heading">/Analytics</div>
+        {/* Hidden per Vicky's request — the Analytics section under the
+            carousels. Restore by uncommenting. */}
+        {/* <div className="MensuraSection">
+          <div className="section-heading">Analytics</div>
           <h2 className="MensuraSection-title">Impact visualization</h2>
           <div className="MensuraAnalytics">
             {ANALYTICS_PANELS.map((panel) => (
@@ -161,10 +167,10 @@ function MensuraPage() {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
 
         <div className="MensuraSection">
-          <div className="section-heading">/Roadmap</div>
+          <div className="section-heading">Roadmap</div>
           <RoadmapTimeline />
         </div>
 
@@ -173,17 +179,20 @@ function MensuraPage() {
           subtitle="Built for research offices, funding agencies, and policymakers who need more than citation counts."
           primaryLabel={
             <>
-              <span>Get a demo</span>
+              <span>Sign up for beta</span>
               {/* real icon instead of a plain "→" character — same fix as
-                  the Norma hero CTA and mobile "Sign up for beta" button */}
+                  Scriptura's and Textura's ProductCta, the Norma hero CTA,
+                  and the mobile "Sign up for beta" button */}
               <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
                 <path d="M4.16626 10H15.8343M10.0003 15.834L15.8343 10L10.0003 4.16603" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
               </svg>
             </>
           }
           primaryTo="/beta-signup"
-          secondaryLabel="Coming Soon"
+          secondaryLabel="Contact us"
+          secondaryOnClick={() => setContactOpen(true)}
         />
+        <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
       </div>
     </div>
   );

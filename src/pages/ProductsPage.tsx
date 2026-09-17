@@ -19,7 +19,7 @@ function ProductsPage() {
       <div className="ProductsBody">
         <ProductsGrid />
         <div className="ProductsEcosystem">
-          <div className="section-heading">/How they work together</div>
+          <div className="section-heading">How they work together</div>
           <EcosystemDiagram />
         </div>
       </div>

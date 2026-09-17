@@ -100,7 +100,7 @@ function FaqsPage() {
       {/* id="intro" drives the Header's transparent-over-hero scroll behavior */}
       <div className="FaqsHero" id="intro">
         <Header />
-        <h1 className="FaqsHero-title">FAQs.</h1>
+        <h1 className="FaqsHero-title">FAQ.</h1>
         <p className="FaqsHero-subtitle">
           An overview of the Liberata system, and answers to frequently asked questions.
         </p>
@@ -109,7 +109,7 @@ function FaqsPage() {
       <div className="FaqsBody">
         <div className="Faqs-main">
           <section className="Faqs-section" id="the-liberata-system">
-            <div className="section-heading">/The Liberata System</div>
+            <div className="section-heading">The Liberata System</div>
             <p className="Faqs-intro">Watch a brief overview video explaining the Liberata system.</p>
             <video
               className="Faqs-system-video"
@@ -121,7 +121,7 @@ function FaqsPage() {
           </section>
 
           <section className="Faqs-section" id="faq">
-            <div className="section-heading">/Frequently Asked Questions</div>
+            <div className="section-heading">Frequently Asked Questions</div>
             <div className="Faqs-list">
               {FAQS.map((faq, i) => (
                 <FaqRow

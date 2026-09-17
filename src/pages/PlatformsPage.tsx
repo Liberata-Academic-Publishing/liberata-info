@@ -118,7 +118,7 @@ function PlatformsPage() {
                         {/* /Main Platform */}
                         <div className="App-section App-col-left-section" id="App-main-platform">
                             <div className="section-heading" style={{ color: "#2F6BFF" }}>
-                                /Main Platform
+                                Main Platform
                             </div>
 
                             <div
@@ -197,7 +197,7 @@ function PlatformsPage() {
                         {/* /Metrics Platform */}
                         <div className="App-section App-col-left-section" id="Platforms-metrics-section">
                             <div className="section-heading" style={{ color: "#2F6BFF" }}>
-                                /Metrics Platform
+                                Metrics Platform
                             </div>
 
                             <div
