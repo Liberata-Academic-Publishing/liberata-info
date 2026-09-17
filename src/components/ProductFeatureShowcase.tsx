@@ -34,6 +34,11 @@ function SmallCard({ feature, onExpand }: { feature: ShowcaseFeature; onExpand?:
     <div
       className={`sf-card sf-card-small${expandable ? " sf-card-clickable" : ""}`}
       onClick={expandable ? onExpand : undefined}
+      // iOS Safari only applies :active styles to elements with a directly
+      // attached touch/click listener — React's onClick is delegated, so
+      // without this no-op the :active press state below silently never
+      // fires on iPhone (still works fine everywhere else without it).
+      onTouchStart={expandable ? () => {} : undefined}
     >
       {expandable && (
         <button type="button" className="sf-toggle" onClick={onExpand} aria-label={`Expand ${feature.name}`}>

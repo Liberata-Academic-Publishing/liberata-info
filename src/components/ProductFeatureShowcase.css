@@ -62,6 +62,13 @@
   box-shadow: 0 12px 24px rgba(5, 5, 153, 0.12);
 }
 
+/* Mobile equivalent of the hover lift: a quick press-down on tap rather
+   than a lift, since there's no cursor hovering beforehand to lift toward. */
+.sf-mobile .sf-card-small:active {
+  transform: scale(0.98);
+  box-shadow: 0 4px 12px rgba(5, 5, 153, 0.1);
+}
+
 .sf-card-small {
   border-radius: 15px;
   padding: 30px;
@@ -202,9 +209,12 @@
    hovering the button itself — same reasoning as the card lift above: the
    button alone is a small target to notice. Also covers keyboard focus so
    the highlight isn't mouse-only. Applies to both the grid's small cards
-   and the compact cards in the bottom row while another card is expanded. */
+   and the compact cards in the bottom row while another card is expanded.
+   Mobile has no hover, so :active (the press-down state on tap) gets the
+   same treatment there instead — see the mobile block below. */
 .sf-desktop .sf-card-small:hover .sf-toggle,
 .sf-desktop .sf-card-compact:hover .sf-toggle,
+.sf-mobile .sf-card-small:active .sf-toggle,
 .sf-toggle:focus-visible {
   /* the site's recurring un-tokenized eyebrow blue (#4f70d8 — see
      App.css .section-heading, TexturaPage.css's docs button) at 15% opacity,
@@ -216,6 +226,7 @@
 
 .sf-desktop .sf-card-small:hover .sf-toggle img,
 .sf-desktop .sf-card-compact:hover .sf-toggle img,
+.sf-mobile .sf-card-small:active .sf-toggle img,
 .sf-toggle:focus-visible img {
   /* icon strokes are #555 by default; this filter chain maps that to an
      exact solid #4f70d8 (the eyebrow blue) — brightness(0) flattens to
