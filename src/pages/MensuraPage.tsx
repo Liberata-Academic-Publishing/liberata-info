@@ -6,7 +6,6 @@ import ProductCta from "../components/ProductCta";
 import ContactModal from "../components/ContactModal";
 import iconSearch from "../images/figma/mensura/icon_search.svg";
 import iconDatabase from "../images/figma/mensura/icon_database.svg";
-import iconChartArrow from "../images/figma/mensura/icon_chart_arrow.svg";
 import iconChartBubble from "../images/figma/mensura/icon_chart_bubble.svg";
 import iconCohorts from "../images/figma/mensura/icon_cohorts.svg";
 import demoChart1 from "../images/figma/mensura/demo_chart_1.png";
@@ -40,13 +39,6 @@ import imgDataframe from "../images/dataframe_comparison.png";
 import imgChart from "../images/chart_example.png";
 import "../App.css";
 import "./MensuraPage.css";
-
-const chartIcon = (
-  <span className="sf-icon-stack">
-    <img src={iconChartBubble} alt="" />
-    <img className="sf-icon-stack-arrow" src={iconChartArrow} alt="" />
-  </span>
-);
 
 const FEATURES: ShowcaseFeature[] = [
   {
@@ -90,7 +82,7 @@ const FEATURES: ShowcaseFeature[] = [
   {
     key: "chart",
     name: "Chart",
-    icon: chartIcon,
+    icon: <img src={iconChartBubble} alt="" />,
     gridDesc: "Track output, impact, and academic capital over time. See trajectories and field dynamics that a single number can't show.",
     altDesc: "Track output, impact, and academic capital over time. See trajectories and field dynamics that a single number can't show.",
     label: "Chart",
