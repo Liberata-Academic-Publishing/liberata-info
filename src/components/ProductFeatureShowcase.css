@@ -489,14 +489,35 @@
   transform: scaleX(-1);
 }
 
-/* Four cards across don't fit at the narrow end of the desktop range (they
-   overflow below ~825px), so the grid wraps to two columns until the mobile
-   stack takes over. */
+/* .sf-grid wraps to a fixed column count before the mobile stack takes
+   over, once all-in-one-row no longer fits — the count and the breakpoint
+   differ per card count (see the sf-grid-cols-* class in
+   ProductFeatureShowcase.tsx), so Mensura's 4 cards and Scriptura's 6 don't
+   share one setting. .sf-bottom-row (the compact cards under an expanded
+   card) is deliberately NOT included here — it always stays one row, per
+   its base rule above. */
+
+/* Mensura: 4 cards don't fit across below ~825px, so 2 columns (a clean
+   2x2) from 899px down to the mobile breakpoint. */
 @media (min-width: 700px) and (max-width: 899px) {
-  .sf-grid,
-  .sf-bottom-row {
+  .sf-grid-cols-2.sf-grid {
     grid-auto-flow: row;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Scriptura: 6 cards need much more room than 4 did. At 1380px wide the
+   single-row-of-6 state was still too cramped — 6 cards splitting ~1230px
+   of content area only get ~180px each, not enough room for the icon tile,
+   name, and description. Raised from an earlier 1199px cutoff so the
+   3-column grid (two rows of three, ~390px per card at 1380px) is already
+   active there; single-row-of-6 now only shows on wider monitors above
+   this. Nudge further if it's still cramped right at the edge, or if the
+   single row turns out to have room to spare well below 1600px. */
+@media (min-width: 700px) and (max-width: 1599px) {
+  .sf-grid-cols-3.sf-grid {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 

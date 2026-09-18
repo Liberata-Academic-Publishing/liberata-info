@@ -249,10 +249,17 @@ function ProductFeatureShowcase({ features, largeSmallTitles = false }: { featur
   const expanded = features.find((f) => f.key === expandedKey);
   const rest = features.filter((f) => f.key !== expandedKey);
   const titles = largeSmallTitles ? "sf-large-titles" : "";
+  // How many columns the grid should wrap to before the mobile stack takes
+  // over, based on how many cards there are — Scriptura's 6 want 3 columns
+  // (two rows of three), Mensura's 4 want 2 (a clean 2x2). Tied to card
+  // count instead of a per-page prop so it stays correct if either page's
+  // feature list changes size later. See the sf-grid-cols-* media queries
+  // in ProductFeatureShowcase.css.
+  const gridCols = features.length >= 5 ? "sf-grid-cols-3" : "sf-grid-cols-2";
 
   // Desktop: the expanded card is promoted to a featured row on top
   const desktop = !expanded ? (
-    <div className={`sf-grid ${titles}`}>
+    <div className={`sf-grid ${gridCols} ${titles}`}>
       {features.map((feature) => (
         <SmallCard key={feature.key} feature={feature} onExpand={() => setExpandedKey(feature.key)} />
       ))}
@@ -260,6 +267,9 @@ function ProductFeatureShowcase({ features, largeSmallTitles = false }: { featur
   ) : (
     <div className={`sf-expanded ${titles}`}>
       <FeaturedCard feature={expanded} onMinimize={() => setExpandedKey(null)} />
+      {/* stays one row regardless of width, unlike .sf-grid above — the
+          expanded card is already the focal point, so the rest just line
+          up underneath rather than reflowing into their own grid */}
       <div className="sf-bottom-row">
         {rest.map((feature) => (
           <CompactCard key={feature.key} feature={feature} onExpand={() => setExpandedKey(feature.key)} />
