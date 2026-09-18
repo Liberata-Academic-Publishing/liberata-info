@@ -31,10 +31,34 @@
   flex-shrink: 0;
 }
 
+/* Default (not-yet-reached) dot/line color, and the "reached" (current or
+   past) color once a milestone's date has passed — see getCurrentIndex in
+   RoadmapTimeline.tsx. The connector leading away from a reached dot fills
+   too, since that's the stretch of time we're currently in.
+   Reached uses the site's recurring un-tokenized eyebrow blue (#4f70d8 —
+   see App.css .section-heading, TexturaPage.css's docs button). Not-reached
+   is that same blue at 15% opacity — identical to the feature-card expand
+   button's background (ProductFeatureShowcase.css .sf-toggle). */
+.roadmap-dot circle {
+  fill: rgba(79, 112, 216, 0.15);
+}
+
+.roadmap-step-reached .roadmap-dot circle {
+  fill: #4f70d8;
+}
+
 .roadmap-rule {
   flex: 1;
   min-width: 0;
   height: 3px;
+}
+
+.roadmap-rule line {
+  stroke: rgba(79, 112, 216, 0.15);
+}
+
+.roadmap-step-reached .roadmap-rule line {
+  stroke: #4f70d8;
 }
 
 .roadmap-milestone {
@@ -79,9 +103,13 @@
     content: "";
     width: 2.5px;
     flex: 1;
-    background: var(--neutral-400);
+    background: rgba(79, 112, 216, 0.15);
     margin-top: 6px;
     margin-bottom: -50px;
+  }
+
+  .roadmap-step-reached .roadmap-line::after {
+    background: #4f70d8;
   }
 
   .roadmap-step:last-child .roadmap-line::after {

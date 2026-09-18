@@ -15,6 +15,12 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.products-desktop .product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(5, 5, 153, 0.12);
 }
 
 .product-card-top {
@@ -99,11 +105,39 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  /* border-box + a transparent 1px border at rest, so the hover border
+     below only swaps color and never changes the button's size */
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  transition: background-color 0.2s ease-out, transform 0.2s ease-out, border-color 0.2s ease-out;
 }
 
 .product-toggle img {
   width: 14px;
   height: 14px;
+  transition: filter 0.2s ease-out;
+}
+
+/* Card hover, not just button hover — the button is small, so the whole
+   card acts as the hit area for "notice me". Also covers keyboard/focus
+   so the highlight isn't mouse-only. */
+.products-desktop .product-card:hover .product-toggle,
+.product-toggle:focus-visible {
+  /* the site's recurring un-tokenized eyebrow blue (#4f70d8 — see
+     App.css .section-heading, TexturaPage.css's docs button) at 15% opacity,
+     with a 1px stroke of the same blue at 30% opacity */
+  background: rgba(79, 112, 216, 0.15);
+  border-color: rgba(79, 112, 216, 0.3);
+  transform: scale(1.1);
+}
+
+.products-desktop .product-card:hover .product-toggle img,
+.product-toggle:focus-visible img {
+  /* icon strokes are #555 by default; this filter chain maps that to an
+     exact solid #4f70d8 (the eyebrow blue) — brightness(0) flattens to
+     black, the rest is a solved invert/sepia/saturate/hue-rotate/contrast
+     chain that lands on that color */
+  filter: brightness(0) invert(35%) sepia(44%) saturate(528%) hue-rotate(188deg) brightness(121%) contrast(141%);
 }
 
 .product-card-featured {

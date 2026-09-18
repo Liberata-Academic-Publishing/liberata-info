@@ -24,12 +24,22 @@ export type ShowcaseFeature = {
   expandable?: boolean;
 };
 
-// Grid state: expansion happens only via the expand button in the corner.
+// Grid state: the whole card is clickable to expand, not just the corner
+// button — the button is a visual cue and stays independently keyboard-
+// operable, but the card itself is the bigger, easier mouse/touch target.
 // Passing no onExpand renders the card display-only.
 function SmallCard({ feature, onExpand }: { feature: ShowcaseFeature; onExpand?: () => void }) {
   const expandable = feature.expandable !== false && onExpand !== undefined;
   return (
-    <div className="sf-card sf-card-small">
+    <div
+      className={`sf-card sf-card-small${expandable ? " sf-card-clickable" : ""}`}
+      onClick={expandable ? onExpand : undefined}
+      // iOS Safari only applies :active styles to elements with a directly
+      // attached touch/click listener — React's onClick is delegated, so
+      // without this no-op the :active press state below silently never
+      // fires on iPhone (still works fine everywhere else without it).
+      onTouchStart={expandable ? () => {} : undefined}
+    >
       {expandable && (
         <button type="button" className="sf-toggle" onClick={onExpand} aria-label={`Expand ${feature.name}`}>
           <img src={iconExpand} alt="" />
@@ -42,14 +52,28 @@ function SmallCard({ feature, onExpand }: { feature: ShowcaseFeature; onExpand?:
   );
 }
 
-// While another card is expanded, the rest are display-only: no expand
-// button, not clickable. Minimize the featured card first, then expand.
-function CompactCard({ feature }: { feature: ShowcaseFeature }) {
+// While another card is expanded, the rest sit in the bottom row. Each still
+// gets its own expand button and is fully clickable, so switching between
+// cards is a single click — no need to minimize the current one first.
+function CompactCard({ feature, onExpand }: { feature: ShowcaseFeature; onExpand?: () => void }) {
+  const expandable = feature.expandable !== false && onExpand !== undefined;
   return (
-    <div className="sf-card sf-card-compact">
+    <div
+      className={`sf-card sf-card-compact${expandable ? " sf-card-clickable" : ""}`}
+      onClick={expandable ? onExpand : undefined}
+    >
+      {expandable && (
+        <button type="button" className="sf-toggle" onClick={onExpand} aria-label={`Expand ${feature.name}`}>
+          <img src={iconExpand} alt="" />
+        </button>
+      )}
       <div className="sf-icon-tile">{feature.icon}</div>
-      <p className="sf-compact-name">{feature.name}</p>
-      <p className="sf-compact-desc">{feature.altDesc}</p>
+      {/* same name/description styling and copy as the grid's SmallCard
+          (sf-small-name/-desc, gridDesc) — compact cards are just the grid
+          cards demoted to a bottom row while another card is expanded, so
+          the text shouldn't change size or content when that happens */}
+      <p className="sf-small-name">{feature.name}</p>
+      <p className="sf-small-desc">{feature.gridDesc}</p>
     </div>
   );
 }
@@ -184,8 +208,13 @@ function FeaturedCard({ feature, onMinimize, mobile = false }: { feature: Showca
         <p className="sf-featured-headline">{feature.headline}</p>
         <p className="sf-featured-desc">{feature.longDesc}</p>
         <div className="sf-points">
-          {feature.points.map((point) => (
-            <div className="sf-point" key={point.lead}>
+          {feature.points.map((point, i) => (
+            // keyed by feature + index, not point.lead — the two PLACEHOLDER
+            // features currently reuse "PLACEHOLDER." as every point's lead,
+            // and duplicate keys within one list corrupt React's reconciliation:
+            // switching from one of those to a different feature could leave
+            // stale point rows behind instead of swapping them out cleanly.
+            <div className="sf-point" key={`${feature.key}-${i}`}>
               <span className="sf-point-check">
                 <img src={checkMark} alt="" />
               </span>
@@ -220,10 +249,17 @@ function ProductFeatureShowcase({ features, largeSmallTitles = false }: { featur
   const expanded = features.find((f) => f.key === expandedKey);
   const rest = features.filter((f) => f.key !== expandedKey);
   const titles = largeSmallTitles ? "sf-large-titles" : "";
+  // How many columns the grid should wrap to before the mobile stack takes
+  // over, based on how many cards there are — Scriptura's 6 want 3 columns
+  // (two rows of three), Mensura's 4 want 2 (a clean 2x2). Tied to card
+  // count instead of a per-page prop so it stays correct if either page's
+  // feature list changes size later. See the sf-grid-cols-* media queries
+  // in ProductFeatureShowcase.css.
+  const gridCols = features.length >= 5 ? "sf-grid-cols-3" : "sf-grid-cols-2";
 
   // Desktop: the expanded card is promoted to a featured row on top
   const desktop = !expanded ? (
-    <div className={`sf-grid ${titles}`}>
+    <div className={`sf-grid ${gridCols} ${titles}`}>
       {features.map((feature) => (
         <SmallCard key={feature.key} feature={feature} onExpand={() => setExpandedKey(feature.key)} />
       ))}
@@ -231,9 +267,12 @@ function ProductFeatureShowcase({ features, largeSmallTitles = false }: { featur
   ) : (
     <div className={`sf-expanded ${titles}`}>
       <FeaturedCard feature={expanded} onMinimize={() => setExpandedKey(null)} />
+      {/* stays one row regardless of width, unlike .sf-grid above — the
+          expanded card is already the focal point, so the rest just line
+          up underneath rather than reflowing into their own grid */}
       <div className="sf-bottom-row">
         {rest.map((feature) => (
-          <CompactCard key={feature.key} feature={feature} />
+          <CompactCard key={feature.key} feature={feature} onExpand={() => setExpandedKey(feature.key)} />
         ))}
       </div>
     </div>
