@@ -86,6 +86,9 @@ const CONFERENCES: Conference[] = [
     name: "STI 2026 – Science & Technology Indicators",
     location: "Antwerp, Belgium",
     date: "Sep 9–11, 2026",
+    // link: { label: "Conference website", url: "https://enid-europe.eu/index.php?id=confSeries" },
+    // ^ have the URL, but unsure what it actually points to / whether it's
+    // the right link — hidden until confirmed, per Vicky.
     tags: ["Academic publishing", "Research integrity", "Technology"],
     description: "The 30th international conference on measuring publishing, integrity, and technology. Talk accepted.",
     representedBy: ["Anshuman Sabath"],
@@ -128,6 +131,45 @@ const CONFERENCES: Conference[] = [
     status: "upcoming",
   },
 ];
+
+// Dates are "Month Day, Year" or a same-month range like "Month Day–Day,
+// Year" (en dash). Returns both the first and last day of the range (the
+// same day twice for a single-date entry) — start is used for
+// chronological sorting, end for checking whether the conference is over.
+function parseConferenceDateRange(dateStr: string): { start: Date; end: Date } {
+  const match = dateStr.match(/^([A-Za-z]+)\s+(\d+)(?:[–-](\d+))?,\s*(\d{4})$/);
+  if (!match) return { start: new Date(NaN), end: new Date(NaN) };
+  const [, month, startDay, endDay, year] = match;
+  return {
+    start: new Date(`${month} ${startDay}, ${year}`),
+    end: new Date(`${month} ${endDay ?? startDay}, ${year}`),
+  };
+}
+
+// A conference listed as "upcoming" is one we planned to attend — once its
+// last day has actually passed, treat it as attended rather than relying
+// on someone to flip the field by hand (see CONFERENCES' TODO about
+// keeping this data current).
+function getEffectiveStatus(conf: Conference): "attended" | "upcoming" {
+  if (conf.status === "attended") return "attended";
+  const { end } = parseConferenceDateRange(conf.date);
+  if (Number.isNaN(end.getTime())) return conf.status;
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  return end < today ? "attended" : "upcoming";
+}
+
+// The featured card up top is the most recent attended conference (the one
+// with the writeup) by effective status, not just whichever entry happens
+// to be listed first — so reordering or adding to CONFERENCES below can't
+// silently leave a stale one featured.
+function getMostRecentConference(conferences: Conference[]): Conference {
+  const attended = conferences.filter((c) => getEffectiveStatus(c) === "attended");
+  const pool = attended.length > 0 ? attended : conferences;
+  return pool.reduce((latest, c) =>
+    parseConferenceDateRange(c.date).start > parseConferenceDateRange(latest.date).start ? c : latest
+  );
+}
 
 const STATUS_FILTERS: { label: string; value: "All" | "Attended" | "Upcoming" }[] = [
   { label: "All", value: "All" },
@@ -262,11 +304,12 @@ function ConferencesPage() {
     return () => window.removeEventListener("resize", recalc);
   }, [statusFilter]);
 
-  const [featured, ...rest] = CONFERENCES;
+  const featured = getMostRecentConference(CONFERENCES);
+  const rest = CONFERENCES.filter((conf) => conf !== featured);
 
   const filtered = rest.filter((conf) => {
     const matchesStatus =
-      statusFilter === "All" || conf.status === statusFilter.toLowerCase();
+      statusFilter === "All" || getEffectiveStatus(conf) === statusFilter.toLowerCase();
     const matchesFocus = !focusFilter || conf.tags.includes(focusFilter);
     return matchesStatus && matchesFocus;
   });
