@@ -2,6 +2,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    /* space-between alone has no floor — if the column is narrow or the
+       title text runs long, the +/- icon can end up sitting right against
+       the last word. gap guarantees a minimum, while space-between still
+       pushes the icon to the far edge when there's room to spare. Wider on
+       desktop; the 450px breakpoint below brings it back down. */
+    gap: 40px;
     padding: 10px 0;
     cursor: pointer;
 }
@@ -16,7 +22,8 @@
     user-select: none;
 }
 .open-close-num{
-    color: var(--neutral-700);
+    /* no color override — inherits neutral-800 from .open-close-title so
+       the number matches the letters instead of reading as a lighter grey */
 }
 .open-close-icon{
     font-size: 28px !important;
@@ -76,6 +83,9 @@
 }
 
 @media (max-width: 450px) {
+    .open-close-header{
+        gap: 20px;
+    }
     .open-close-title{
         font-size: 22px;
     }

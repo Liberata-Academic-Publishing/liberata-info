@@ -92,7 +92,7 @@ function KeyConcepts(){
         <>
             <OpenCloseItem
                 id="merit-problem"
-                num="1"
+                num="1."
                 title="Academic Credit"
                 activeId={activeSection}
                 onToggle={toggleSolution}
@@ -107,7 +107,7 @@ function KeyConcepts(){
             
             <OpenCloseItem
                 id="economic-problem"
-                num="2"
+                num="2."
                 title="Academic Marketplaces"
                 activeId={activeSection}
                 onToggle={toggleSolution}
@@ -122,7 +122,7 @@ function KeyConcepts(){
 
             <OpenCloseItem
                 id="trust-problem"
-                num="3"
+                num="3."
                 title="Academic Metrics"
                 activeId={activeSection}
                 onToggle={toggleSolution}
