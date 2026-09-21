@@ -10,6 +10,10 @@ import iconBookAlt from "../images/figma/scriptura/icon_book_alt.svg";
 import "../App.css";
 import "./ScripturaPage.css";
 
+const VIDEO_BASE = "https://pub-c93f131df06d44f88212bf9bdb396d2c.r2.dev/"; // same bucket as FaqsPage.tsx
+const WALKTHROUGH_VIDEO = `${VIDEO_BASE}REPLACE_ME.mp4`; // TODO: swap in real filename once uploaded
+// TODO: add poster once there's a still frame (see FaqsPage.tsx for the pattern)
+
 const IMPACT_COLUMNS = [
   {
     icon: iconPencil,
@@ -45,6 +49,15 @@ function ScripturaPage() {
       </div>
 
       <div className="ScripturaBody">
+        {/* hidden until the video's uploaded
+        <div className="ScripturaSection" id="walkthrough">
+          <div className="section-heading">Overview</div>
+          <h2 className="ScripturaSection-title">Watch how Scriptura works</h2>
+          <p className="ScripturaSection-subtitle">A walkthrough of every feature.</p>
+          <video className="Scriptura-video" src={WALKTHROUGH_VIDEO} controls preload="none" />
+        </div>
+        */}
+
         <div className="ScripturaSection">
           <div className="section-heading">Features</div>
           <h2 className="ScripturaSection-title">The new standard for publishing</h2>
