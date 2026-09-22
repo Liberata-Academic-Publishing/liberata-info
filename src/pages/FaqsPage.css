@@ -167,14 +167,19 @@
 }
 
 .Faqs-rail a {
+  display: block;
   font-weight: 400;
   font-size: 20px;
   line-height: 1.2;
-  color: var(--brand-500);
+  color: var(--neutral-500);
 }
 
 .Faqs-rail a:hover {
   color: #0c45cc;
+}
+
+.Faqs-rail a.section-active {
+  text-decoration: none !important;
 }
 
 @media (max-width: 899px) {
