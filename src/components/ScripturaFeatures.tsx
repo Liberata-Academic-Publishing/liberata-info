@@ -147,12 +147,12 @@ const FEATURES: ShowcaseFeature[] = [
     demoAlt: "Scriptura collections library: saved article collections in a searchable, sortable grid",
     headline: "Find the right work, then keep it",
     longDesc:
-      "Search 250M+ open papers at a granularity legacy tools can't reach, ranked by what authors actually meant — then organize what you find into project folders and journals that update themselves.",
+      "Search 250M+ open papers at a granularity legacy tools can't reach, ranked by what authors actually meant — then organize what you find into static collections you curate, or dynamic collections that update themselves.",
     points: [
       { lead: "Precise by design.", text: "Search down to fine-grained topic tags, not the few dozen broad buckets of older tools. Results respect author-intended classification over keyword guessing." },
       { lead: "Quality over prestige.", text: "Filter and sort by Academic Capital, replications, saves, and reviews — real usage signals, not journal brand or impact factor." },
       { lead: "Open to everyone.", text: "Search, read, download, and share with no account. Only saving to a collection needs a login." },
-      { lead: "Collections & journals.", text: "Bookmark papers into project folders, and spin up “journals” — custom feeds by tag, author, institution, and quality bar — that surface new preprints, reviews, and replications as they land." },
+      { lead: "Static & dynamic collections.", text: "Bookmark papers into static collections — project folders you curate by hand — or spin up dynamic collections: custom feeds by tag, author, institution, and quality bar that surface new preprints, reviews, and replications as they land." },
     ],
   },
   {
