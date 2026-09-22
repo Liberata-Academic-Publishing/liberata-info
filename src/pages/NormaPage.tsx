@@ -244,7 +244,7 @@ function NormaPage() {
 
         <div className="NormaSection">
           <div className="section-heading">Features</div>
-          <h2 className="NormaSection-title NormaFeatures-title">Data infrastructure for scientific AI</h2>
+          <h2 className="NormaSection-title NormaFeatures-title">Metrics infrastructure for academic research</h2>
           <div className="NormaCards NormaCards-4">
             {CAPABILITIES.map((card) => (
               <div className="NormaCard" key={card.name}>
