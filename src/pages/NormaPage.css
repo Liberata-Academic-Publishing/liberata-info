@@ -469,11 +469,6 @@
     gap: 10px;
   }
 
-  /* matches Scriptura's .sf-card-small mobile inner-item gap */
-  .NormaCard {
-    gap: 15px;
-  }
-
   /* Horizontal scroll-snap row instead of a stacked grid, same treatment as
      Textura's Features carousel — see that file's mobile block for the full
      explanation of the bleed/padding/scroll-padding split. Card 1 sits flush
