@@ -90,7 +90,7 @@ function ScripturaPage() {
         </div>
 
         <ProductCta
-          title="Ready to reshape academic publishing?"
+          title="Try a new way to publish."
           subtitle="Join researchers, labs, and institutions already building on Scriptura."
           primaryLabel={
             <>
