@@ -60,7 +60,7 @@ function ScripturaPage() {
 
         <div className="ScripturaSection">
           <div className="section-heading">Features</div>
-          <h2 className="ScripturaSection-title">The new standard for publishing</h2>
+          <h2 className="ScripturaSection-title">How Scriptura supports your work, from draft to citation</h2>
           <ScripturaFeatures />
         </div>
 
