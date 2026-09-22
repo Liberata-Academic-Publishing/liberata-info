@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Header from "../components/Header";
 import ProductFeatureShowcase, { ShowcaseFeature } from "../components/ProductFeatureShowcase";
+import MensuraChartsShowcase from "../components/MensuraChartsShowcase";
 import RoadmapTimeline from "../components/RoadmapTimeline";
 import ProductCta from "../components/ProductCta";
 import ContactModal from "../components/ContactModal";
@@ -35,8 +36,6 @@ import demoCohorts3 from "../images/figma/mensura/demo_cohorts_3.png";
 import demoCohorts4 from "../images/figma/mensura/demo_cohorts_4.png";
 import demoCohorts5 from "../images/figma/mensura/demo_cohorts_5.png";
 import demoCohorts6 from "../images/figma/mensura/demo_cohorts_6.png";
-import imgDataframe from "../images/dataframe_comparison.png";
-import imgChart from "../images/chart_example.png";
 import "../App.css";
 import "./MensuraPage.css";
 
@@ -119,11 +118,6 @@ const FEATURES: ShowcaseFeature[] = [
   },
 ];
 
-const ANALYTICS_PANELS = [
-  { title: "Dataframe", tag: "Institution:", image: imgDataframe, alt: "Mensura dataframe comparison table" },
-  { title: "Charts", tag: "Top 3", image: imgChart, alt: "Mensura time-series chart" },
-];
-
 function MensuraPage() {
   const [contactOpen, setContactOpen] = useState(false);
 
@@ -147,23 +141,11 @@ function MensuraPage() {
           <ProductFeatureShowcase features={FEATURES} />
         </div>
 
-        {/* Hidden per Vicky's request — the Analytics section under the
-            carousels. Restore by uncommenting. */}
-        {/* <div className="MensuraSection">
-          <div className="section-heading">Analytics</div>
-          <h2 className="MensuraSection-title">Impact visualization</h2>
-          <div className="MensuraAnalytics">
-            {ANALYTICS_PANELS.map((panel) => (
-              <div className="MensuraAnalytics-panel" key={panel.title}>
-                <div className="MensuraAnalytics-header">
-                  <span className="MensuraAnalytics-name">{panel.title}</span>
-                  <span className="MensuraAnalytics-tag">{panel.tag}</span>
-                </div>
-                <img className="MensuraAnalytics-image" src={panel.image} alt={panel.alt} />
-              </div>
-            ))}
-          </div>
-        </div> */}
+        <div className="MensuraSection">
+          <div className="section-heading">Visualizations</div>
+          <h2 className="MensuraSection-title">Six ways to see your data</h2>
+          <MensuraChartsShowcase />
+        </div>
 
         <div className="MensuraSection">
           <div className="section-heading">Roadmap</div>

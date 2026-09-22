@@ -1,0 +1,120 @@
+.MensuraCharts-mobile {
+  display: none;
+}
+
+.MensuraCharts-desktop {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.MensuraCharts-viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+.MensuraCharts-track {
+  display: flex;
+  transition: transform 0.3s ease;
+}
+
+.MensuraCharts-page {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  flex: 0 0 100%;
+  min-width: 0;
+}
+
+.MensuraCharts-arrow {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--neutral-350);
+  cursor: pointer;
+  transition: background-color 0.2s ease-out;
+}
+
+.MensuraCharts-arrow:hover {
+  /* the site's recurring eyebrow-blue icon-button hover tint (see
+     ProductsGrid.css's .product-toggle hover) */
+  background: rgba(79, 112, 216, 0.15);
+}
+
+.MensuraCharts-arrow img {
+  width: 20px;
+  height: 20px;
+}
+
+/* one asset for both directions */
+.MensuraCharts-arrow img {
+  transform: scaleX(-1);
+}
+
+.MensuraCharts-arrow-next img {
+  transform: none;
+}
+
+.MensuraChart-tile {
+  background: var(--neutral-300);
+  border-radius: 15px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+.MensuraChart-tile img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+}
+
+.MensuraChart-name {
+  margin: 0;
+  font-weight: 600;
+  font-size: 17px;
+  color: var(--neutral-800);
+}
+
+@media (max-width: 699px) {
+  .MensuraCharts-desktop {
+    display: none;
+  }
+
+  .MensuraCharts-mobile {
+    display: flex;
+    box-sizing: border-box;
+    width: calc(100% + 72px);
+    margin: 0 -36px;
+    padding: 0 36px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scroll-padding: 0 50px;
+    gap: 10px;
+    scrollbar-width: none;
+  }
+
+  .MensuraCharts-mobile::-webkit-scrollbar {
+    display: none;
+  }
+
+  .MensuraCharts-mobile .MensuraChart-tile {
+    box-sizing: border-box;
+    flex: 0 0 calc(100vw - 100px);
+    scroll-snap-align: start;
+    padding: 30px;
+    gap: 15px;
+  }
+}

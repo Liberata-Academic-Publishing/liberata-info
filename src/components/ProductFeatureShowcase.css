@@ -77,13 +77,13 @@
 
 .sf-card-compact {
   border-radius: 16px;
-  padding: 40px;
+  padding: 30px;
   gap: 20px;
 }
 
 .sf-card-featured {
   border-radius: 16px;
-  padding: 40px;
+  padding: 30px;
   flex-direction: row;
   gap: 40px;
   /* .sf-card sets align-items: flex-start; the two columns must stretch to
