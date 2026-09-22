@@ -136,15 +136,15 @@ function MensuraPage() {
 
       <div className="MensuraBody">
         <div className="MensuraSection">
-          <div className="section-heading">Features</div>
-          <h2 className="MensuraSection-title">How Mensura measures academic merit</h2>
-          <ProductFeatureShowcase features={FEATURES} />
+          <div className="section-heading">Analytics</div>
+          <h2 className="MensuraSection-title">Six ways to visualize your data</h2>
+          <MensuraChartsShowcase />
         </div>
 
         <div className="MensuraSection">
-          <div className="section-heading">Visualizations</div>
-          <h2 className="MensuraSection-title">Six ways to see your data</h2>
-          <MensuraChartsShowcase />
+          <div className="section-heading">Features</div>
+          <h2 className="MensuraSection-title">How Mensura measures academic merit</h2>
+          <ProductFeatureShowcase features={FEATURES} />
         </div>
 
         <div className="MensuraSection">

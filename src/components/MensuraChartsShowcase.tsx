@@ -1,5 +1,4 @@
-import { useState } from "react";
-import iconCarouselNext from "../images/figma/products/icon_carousel_next.svg";
+import { useRef, useState } from "react";
 import chartTimeSeries from "../images/figma/mensura/Time Series.png";
 import chartLine from "../images/figma/mensura/Line Chart.png";
 import chartBar from "../images/figma/mensura/Bar Chart.png";
@@ -17,7 +16,22 @@ const CHART_TYPES = [
   { name: "Histogram", image: chartHistogram },
 ];
 
-const PER_PAGE = 3;
+// Just the chevron from icon_carousel_next.svg, inlined without that
+// asset's own baked-in translucent grey circle — the circle is part of the
+// SVG file itself, not something CSS added, so it couldn't be styled away.
+function ChevronIcon() {
+  return (
+    <svg width="32" height="32" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M8.53784 14.3388L11.8196 11.0571C11.9936 10.883 12.0914 10.6469 12.0914 10.4007C12.0914 10.1545 11.9936 9.91844 11.8196 9.74437L8.53784 6.46265"
+        stroke="currentColor"
+        strokeWidth="1.55638"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
 
 function ChartTile({ chart }: { chart: (typeof CHART_TYPES)[number] }) {
   return (
@@ -29,35 +43,69 @@ function ChartTile({ chart }: { chart: (typeof CHART_TYPES)[number] }) {
 }
 
 function MensuraChartsShowcase() {
-  const [page, setPage] = useState(0);
-  const pageCount = Math.ceil(CHART_TYPES.length / PER_PAGE);
-  const next = () => setPage((p) => (p + 1) % pageCount);
-  const prev = () => setPage((p) => (p - 1 + pageCount) % pageCount);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [atStart, setAtStart] = useState(true);
+  const [atEnd, setAtEnd] = useState(false);
+
+  const updateEdges = () => {
+    const el = trackRef.current;
+    if (!el) return;
+    setAtStart(el.scrollLeft <= 1);
+    setAtEnd(el.scrollLeft >= el.scrollWidth - el.clientWidth - 1);
+  };
+
+  // Scrolls by exactly one tile (measured from the actual rendered layout)
+  // instead of jumping a full "page" at a time — this is what gives the
+  // next/previous tile its peek.
+  const scrollByOne = (direction: 1 | -1) => {
+    const el = trackRef.current;
+    if (!el) return;
+    const first = el.children[0] as HTMLElement | undefined;
+    const second = el.children[1] as HTMLElement | undefined;
+    const step = first && second ? second.offsetLeft - first.offsetLeft : el.clientWidth;
+    el.scrollBy({ left: direction * step, behavior: "smooth" });
+  };
 
   return (
     <div className="MensuraCharts">
-      {/* Desktop: 3 charts at a time, arrows page by a full row */}
-      <div className="MensuraCharts-desktop">
-        <button type="button" className="MensuraCharts-arrow" aria-label="Previous charts" onClick={prev}>
-          <img src={iconCarouselNext} alt="" />
-        </button>
-        <div className="MensuraCharts-viewport">
-          <div className="MensuraCharts-track" style={{ transform: `translateX(-${page * 100}%)` }}>
-            {Array.from({ length: pageCount }).map((_, pageIndex) => (
-              <div className="MensuraCharts-page" key={pageIndex}>
-                {CHART_TYPES.slice(pageIndex * PER_PAGE, pageIndex * PER_PAGE + PER_PAGE).map((chart) => (
-                  <ChartTile chart={chart} key={chart.name} />
-                ))}
-              </div>
-            ))}
-          </div>
+      {/* Desktop: the cards themselves fill the section's normal width and
+          peek their own next/previous card at the edge — the arrow is a
+          bare chevron (no box, no background) sitting separately out in the
+          page margin, not overlapping the cards at all. */}
+      <button
+        type="button"
+        className="MensuraCharts-arrow MensuraCharts-arrow-prev"
+        aria-label="Previous charts"
+        onClick={() => scrollByOne(-1)}
+        disabled={atStart}
+      >
+        <ChevronIcon />
+      </button>
+
+      <div className="MensuraCharts-track-wrap">
+        <div className="MensuraCharts-track" ref={trackRef} onScroll={updateEdges}>
+          {CHART_TYPES.map((chart) => (
+            <ChartTile chart={chart} key={chart.name} />
+          ))}
         </div>
-        <button type="button" className="MensuraCharts-arrow MensuraCharts-arrow-next" aria-label="Next charts" onClick={next}>
-          <img src={iconCarouselNext} alt="" />
-        </button>
+        {/* Softens the hard crop on whichever edge still has more to
+            reveal — a plain rectangular clip otherwise looks like a
+            mistake rather than "there's more this way." */}
+        {!atStart && <div className="MensuraCharts-fade MensuraCharts-fade-left" aria-hidden="true" />}
+        {!atEnd && <div className="MensuraCharts-fade MensuraCharts-fade-right" aria-hidden="true" />}
       </div>
 
-      {/* Mobile: swipe through one at a time, same pattern as Textura/Norma */}
+      <button
+        type="button"
+        className="MensuraCharts-arrow MensuraCharts-arrow-next"
+        aria-label="Next charts"
+        onClick={() => scrollByOne(1)}
+        disabled={atEnd}
+      >
+        <ChevronIcon />
+      </button>
+
+      {/* Mobile: swipe through one at a time, same peeking pattern as Textura/Norma */}
       <div className="MensuraCharts-mobile">
         {CHART_TYPES.map((chart) => (
           <ChartTile chart={chart} key={chart.name} />
