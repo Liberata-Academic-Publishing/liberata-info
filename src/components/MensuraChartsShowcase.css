@@ -155,4 +155,11 @@
     padding: 16px;
     gap: 10px;
   }
+
+  /* matches the feature cards' mobile title size (.sf-small-name in
+     ProductFeatureShowcase.css) — weight and color already matched at
+     every width */
+  .MensuraChart-name {
+    font-size: 16px;
+  }
 }
