@@ -44,6 +44,31 @@
   letter-spacing: normal;
 }
 
+/* small/compact cards only — the featured card isn't clickable as a whole */
+.sf-card-clickable {
+  cursor: pointer;
+}
+
+.sf-card-small,
+.sf-card-compact {
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+/* both are expandable cards (grid state and the bottom row while another
+   card is expanded) — same hover lift on either */
+.sf-desktop .sf-card-small:hover,
+.sf-desktop .sf-card-compact:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(5, 5, 153, 0.12);
+}
+
+/* Mobile equivalent of the hover lift: a quick press-down on tap rather
+   than a lift, since there's no cursor hovering beforehand to lift toward. */
+.sf-mobile .sf-card-small:active {
+  transform: scale(0.98);
+  box-shadow: 0 4px 12px rgba(5, 5, 153, 0.1);
+}
+
 .sf-card-small {
   border-radius: 15px;
   padding: 30px;
@@ -139,22 +164,6 @@
   color: var(--neutral-700);
 }
 
-.sf-compact-name {
-  margin: 0;
-  font-weight: 500;
-  font-size: 30px;
-  line-height: 1.3;
-  color: var(--neutral-800);
-}
-
-.sf-compact-desc {
-  margin: 0;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 1.6;
-  color: var(--neutral-700);
-}
-
 .sf-toggle {
   position: absolute;
   top: 12px;
@@ -167,22 +176,59 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  /* border-box + a transparent 1px border at rest, so the hover border
+     below only swaps color and never changes the button's size */
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  transition: background-color 0.2s ease-out, transform 0.2s ease-out, border-color 0.2s ease-out;
 }
 
 .sf-toggle img {
   width: 14px;
   height: 14px;
+  transition: filter 0.2s ease-out;
+}
+
+/* Hovering anywhere on the card highlights its expand button, not just
+   hovering the button itself — same reasoning as the card lift above: the
+   button alone is a small target to notice. Also covers keyboard focus so
+   the highlight isn't mouse-only. Applies to both the grid's small cards
+   and the compact cards in the bottom row while another card is expanded.
+   Mobile has no hover, so :active (the press-down state on tap) gets the
+   same treatment there instead — see the mobile block below. */
+.sf-desktop .sf-card-small:hover .sf-toggle,
+.sf-desktop .sf-card-compact:hover .sf-toggle,
+.sf-mobile .sf-card-small:active .sf-toggle,
+.sf-toggle:focus-visible {
+  /* the site's recurring un-tokenized eyebrow blue (#4f70d8 — see
+     App.css .section-heading, TexturaPage.css's docs button) at 15% opacity,
+     with a 1px stroke of the same blue at 30% opacity */
+  background: rgba(79, 112, 216, 0.15);
+  border-color: rgba(79, 112, 216, 0.3);
+  transform: scale(1.1);
+}
+
+.sf-desktop .sf-card-small:hover .sf-toggle img,
+.sf-desktop .sf-card-compact:hover .sf-toggle img,
+.sf-mobile .sf-card-small:active .sf-toggle img,
+.sf-toggle:focus-visible img {
+  /* icon strokes are #555 by default; this filter chain maps that to an
+     exact solid #4f70d8 (the eyebrow blue) — brightness(0) flattens to
+     black, the rest is a solved invert/sepia/saturate/hue-rotate/contrast
+     chain that lands on that color */
+  filter: brightness(0) invert(35%) sepia(44%) saturate(528%) hue-rotate(188deg) brightness(121%) contrast(141%);
 }
 
 /* Design splits the 1050px content box into a 490px text column and a 520px
    demo column with a 40px gap; the flex ratios keep that proportion at any
-   width. The demo column is centred against the taller text column. */
+   width. Both columns are top-aligned against each other rather than
+   vertically centered. */
 .sf-featured-left {
   display: flex;
   flex-direction: column;
   gap: 24px;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
   flex: 490 1 0;
   min-width: 0;
 }
@@ -192,9 +238,7 @@
   flex-direction: column;
   gap: 24px;
   align-items: flex-start;
-  /* inert while the demo grows to fill; it only matters for the screenshot
-     variant, which keeps its own height and leaves the column short */
-  justify-content: center;
+  justify-content: flex-start;
   flex: 520 1 0;
   min-width: 0;
 }
@@ -284,14 +328,24 @@
   color: var(--neutral-700);
 }
 
-/* Real screenshot instead of the grey placeholder: a white card with an 11px
-   inset around the shot (Figma 1130:22710). The design's aspect includes a row
-   of carousel dots we drop, so the box is 520 x 345 rather than 520 x 385. */
+/* Real screenshot instead of the grey placeholder: no matte box, just the
+   photo itself with a thin white border (see .sf-demo-image img below) —
+   the same treatment the mobile layout always used, now shared everywhere.
+   background: none overrides .sf-demo-placeholder's grey "coming soon" fill,
+   which otherwise still shows through in any of this box's own padding/gap
+   (e.g. the space reserved for the dot row) since both classes land on the
+   same element. */
 .sf-demo-image {
-  background: var(--neutral-100);
-  padding: 11px;
+  background: none;
+  /* matches .sf-demo-image img's own radius below — this box only clips the
+     sliding track now (its fill is gone), but its corner still shows past
+     the photo at the top and bottom (the photo sits flush against the box's
+     top edge, and the box's own bottom-left/right corners are what the
+     photo's rounded bottom corners read against), so a mismatched radius
+     here read as different curves stacked at once. */
+  border-radius: 8px;
   /* the box hugs the screenshot rather than growing into the column's spare
-     height — a screenshot can only widen, so growth would show as a white void
+     height — a screenshot can only widen, so growth would show as a void
      (up to 390px of it at the narrow end of the two-column range) */
   aspect-ratio: auto;
   flex: 0 0 auto;
@@ -305,6 +359,9 @@
   display: block;
   width: 100%;
   height: auto;
+  box-sizing: border-box;
+  border: 3px solid white;
+  border-radius: 8px;
 }
 
 /* Multi-slide track: every screenshot laid out in one continuous row so
@@ -318,38 +375,43 @@
   align-items: flex-start;
 }
 
-/* The carousel's own white-matte inset (see .sf-demo-image) moves down onto
-   each slide instead of staying on the shared box: left on the shared box it
-   sits outside the track entirely, so the clip region stays wider than one
-   slide and lets a sliver of the neighbour show through at rest. border-box
-   keeps the 11px inside each slide's inline flexBasis instead of adding on
-   top of it, so the slides still tile edge to edge with no gap. The 30px
-   below the dots (see .sf-demo-carousel's gap for the 20px above them) is
-   its own chosen value now, not derived from that gap. */
+/* No extra reserved space below the dots — the card's own 40px padding
+   (.sf-card-featured) is already the breathing room below this column, same
+   as the text column on the left gets no bonus padding of its own either.
+   An earlier 30px added here on top of that read as too much empty space
+   at the bottom of the card. */
 .sf-demo-carousel.sf-demo-image {
-  padding: 0 0 30px 0;
+  padding: 0;
 }
 
+/* The track lays every slide out side by side at once (even the ones
+   off-screen), so its height is set by the tallest slide in the set — a
+   shorter slide doesn't fill that height on its own. This backdrop covers
+   that leftover space so it reads as empty margin around the photo instead
+   of the placeholder's gray showing through underneath it. Radius matches
+   the photo's own (see .sf-demo-image img) — at the top the photo sits flush
+   against the carousel box's edge, so the box's own rounded clip hides this
+   backdrop's square corner there, but the photo doesn't reach the box's
+   bottom edge (the gap + dot row sit below it), so nothing clips the
+   backdrop's bottom corners — without its own matching radius they'd peek
+   out square from behind the photo's rounded one. */
 .sf-demo-slide {
   flex-shrink: 0;
   min-width: 0;
   box-sizing: border-box;
-  padding: 11px;
   background: var(--neutral-100);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
-/* Multi-slide demos add the design's dot row. The photo's own 11px matte
-   (see .sf-demo-slide) counts as part of the gap above the dots, so 9px of
-   flex gap here plus that 11px puts the dots 20px below the bare photo —
-   closer than the 30px still sitting below them (see .sf-demo-carousel.sf-
-   demo-image above), a deliberate asymmetry rather than the equal-gap
-   Figma split (1130:21509 measures 11 + 322.917 + 22.801 + 6.465 + 22 =
-   385.183). */
+/* Multi-slide demos add the design's dot row, 18px below the bare photo on
+   desktop (doubled from the design's original 9px on request) — mobile
+   keeps its own smaller 20px gap (still set separately below). */
 .sf-demo-carousel {
   /* anchors the next arrow; .sf-card is otherwise the nearest positioned box */
   position: relative;
   flex-direction: column;
-  gap: 9px;
+  gap: 18px;
   /* .sf-demo-placeholder centers its content (right for the plain "coming
      soon" text) — but the mobile track is 6x this box's width, so that
      centering shifted it hundreds of pixels off to the left instead */
@@ -414,6 +476,12 @@
 .sf-demo-next img {
   width: 32px;
   height: 32px;
+  /* these buttons sit directly on the photo (see .sf-demo-prev/-next above),
+     not inside a .sf-demo-slide — but they're still descendants of
+     .sf-demo-image, so without this override they'd pick up the white
+     photo-border treatment meant only for the actual screenshots. */
+  border: none;
+  border-radius: 0;
 }
 
 /* one asset for both directions */
@@ -421,14 +489,35 @@
   transform: scaleX(-1);
 }
 
-/* Four cards across don't fit at the narrow end of the desktop range (they
-   overflow below ~825px), so the grid wraps to two columns until the mobile
-   stack takes over. */
+/* .sf-grid wraps to a fixed column count before the mobile stack takes
+   over, once all-in-one-row no longer fits — the count and the breakpoint
+   differ per card count (see the sf-grid-cols-* class in
+   ProductFeatureShowcase.tsx), so Mensura's 4 cards and Scriptura's 6 don't
+   share one setting. .sf-bottom-row (the compact cards under an expanded
+   card) is deliberately NOT included here — it always stays one row, per
+   its base rule above. */
+
+/* Mensura: 4 cards don't fit across below ~825px, so 2 columns (a clean
+   2x2) from 899px down to the mobile breakpoint. */
 @media (min-width: 700px) and (max-width: 899px) {
-  .sf-grid,
-  .sf-bottom-row {
+  .sf-grid-cols-2.sf-grid {
     grid-auto-flow: row;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Scriptura: 6 cards need much more room than 4 did. At 1380px wide the
+   single-row-of-6 state was still too cramped — 6 cards splitting ~1230px
+   of content area only get ~180px each, not enough room for the icon tile,
+   name, and description. Raised from an earlier 1199px cutoff so the
+   3-column grid (two rows of three, ~390px per card at 1380px) is already
+   active there; single-row-of-6 now only shows on wider monitors above
+   this. Nudge further if it's still cramped right at the edge, or if the
+   single row turns out to have room to spare well below 1600px. */
+@media (min-width: 700px) and (max-width: 1599px) {
+  .sf-grid-cols-3.sf-grid {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -497,18 +586,13 @@
     gap: 15px;
   }
 
-  .sf-small-name,
-  .sf-compact-desc {
+  .sf-small-name {
     font-size: 16px;
     line-height: 1.5rem;
   }
 
   .sf-small-desc {
     font-size: 16px;
-  }
-
-  .sf-compact-name {
-    font-size: 20px;
   }
 
   .sf-card-featured {
@@ -569,28 +653,17 @@
     margin-right: -18px;
     aspect-ratio: auto;
     min-height: 260px;
-    /* matches .sf-demo-image img's own radius below — this box clips the
-       sliding track (overflow: hidden), so a mismatched radius here would
-       cut the photo's rounded corner off at a different curve than the
-       photo's own white border draws */
+    /* matches .sf-demo-image img's own radius — this box clips the sliding
+       track (overflow: hidden), so a mismatched radius here would cut the
+       photo's rounded corner off at a different curve than the photo's own
+       white border draws. */
     border-radius: 8px;
   }
 
-  /* the screenshot sets its own height; the placeholder's floor would only pad
-     it with white */
+  /* the screenshot sets its own height; the placeholder's floor (shared via
+     .sf-demo-placeholder, above) would only pad it with empty space */
   .sf-demo-image {
     min-height: 0;
-    /* drop the white matte inset so the screenshot itself is bigger inside
-       the gray card, without touching its aspect ratio */
-    padding: 0;
-    background: none;
-  }
-
-  /* Carousel matte inset lives on .sf-demo-slide on desktop (see the base
-     rule) — drop it here too, same reason as .sf-demo-image above. */
-  .sf-demo-slide {
-    padding: 0;
-    background: none;
   }
 
   /* .sf-card-featured's own 30px bottom padding (below) sits outside this
@@ -605,14 +678,6 @@
 
   .sf-demo-carousel {
     gap: 20px;
-  }
-
-  /* border goes on the photo itself, not the carousel box — otherwise it'd
-     also wrap the dot row sitting below the image */
-  .sf-demo-image img {
-    box-sizing: border-box;
-    border: 3px solid white;
-    border-radius: 8px;
   }
 
   /* Mobile navigates by swiping (already wired up via onTouchStart/onTouchEnd

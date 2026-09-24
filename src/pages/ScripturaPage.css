@@ -72,6 +72,13 @@
   opacity: 0.9;
 }
 
+.Scriptura-video {
+  display: block;
+  width: 100%;
+  border-radius: 16px;
+  aspect-ratio: 568 / 319;
+}
+
 .ScripturaImpact-columns {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
