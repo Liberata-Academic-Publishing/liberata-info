@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import chevronDown from "../images/figma/faqs/chevron.svg";
 import coverSystem from "../images/figma/faqs/cover_system.png";
@@ -95,6 +95,34 @@ function FaqRow({ faq, open, onToggle }: { faq: Faq; open: boolean; onToggle: ()
 function FaqsPage() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
+  useEffect(() => {
+    const sections = [
+      { sectionId: "the-liberata-system", navId: "system-nav" },
+      { sectionId: "faq", navId: "faq-nav" },
+    ];
+    let active: Element | null = null;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const nav = document.getElementById(
+            sections.find((s) => s.sectionId === entry.target.id)?.navId ?? ""
+          );
+          if (!nav) return;
+          active?.classList.remove("section-active");
+          nav.classList.add("section-active");
+          active = nav;
+        });
+      },
+      { threshold: 0.6 }
+    );
+    sections.forEach(({ sectionId }) => {
+      const el = document.getElementById(sectionId);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="App">
       {/* id="intro" drives the Header's transparent-over-hero scroll behavior */}
@@ -137,8 +165,8 @@ function FaqsPage() {
 
         {/* Section rail, sticky alongside the content on desktop */}
         <nav className="Faqs-rail" aria-label="On this page">
-          <a href="#the-liberata-system">The Liberata System</a>
-          <a href="#faq">FAQ</a>
+          <a href="#the-liberata-system" id="system-nav">The Liberata System</a>
+          <a href="#faq" id="faq-nav">FAQ</a>
         </nav>
       </div>
     </div>

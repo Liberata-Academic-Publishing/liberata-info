@@ -143,7 +143,7 @@ function MensuraPage() {
       <div className="MensuraBody">
         <div className="MensuraSection">
           <div className="section-heading">Features</div>
-          <h2 className="MensuraSection-title">The math of academic merit</h2>
+          <h2 className="MensuraSection-title">How Mensura measures academic merit</h2>
           <ProductFeatureShowcase features={FEATURES} />
         </div>
 
