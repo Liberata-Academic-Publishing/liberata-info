@@ -497,17 +497,12 @@
     margin-top: -10px;
   }
 
-  /* per the mobile redline: 8px gap between most rows (title->tags,
-     tags->description, description->attribution), except meta->title
-     which is wider at 18px (handled via .Conferences-card-name below).
-     Padding stays the base 30px on both breakpoints. */
+  /* matches Scriptura's .sf-card-small mobile inner-item gap, applied
+     uniformly to every row (meta->title no longer gets a wider gap than
+     the rest, so all card rows across the site match). Padding stays the
+     base 30px on both breakpoints. */
   .Conferences-card {
-    gap: 8px;
-  }
-
-  .Conferences-card-name {
-    /* card's gap is 8px; push down 10px so meta->title lands at 18px */
-    margin-top: 10px;
+    gap: 15px;
   }
 
   .Conferences-attribution {
