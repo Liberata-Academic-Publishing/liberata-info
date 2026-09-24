@@ -1,0 +1,165 @@
+.MensuraCharts {
+  position: relative;
+  width: 100%;
+}
+
+.MensuraCharts-track-wrap {
+  position: relative;
+}
+
+.MensuraCharts-track {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.MensuraCharts-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* Softens the hard crop of a peeking tile at either edge — a plain rectangular
+   clip otherwise reads as a mistake instead of "there's more this way." Only
+   rendered on whichever side still has more to scroll to (see atStart/atEnd),
+   so a fully-scrolled edge doesn't get a pointless fade over a clean card end. */
+.MensuraCharts-fade {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 64px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.MensuraCharts-fade-left {
+  left: 0;
+  background: linear-gradient(to right, var(--neutral-100), transparent);
+}
+
+.MensuraCharts-fade-right {
+  right: 0;
+  background: linear-gradient(to left, var(--neutral-100), transparent);
+}
+
+.MensuraChart-tile {
+  background: var(--neutral-300);
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+  scroll-snap-align: start;
+  /* ~2.75 tiles + gaps fill the container's width — bigger than the previous
+     3.25, so the text inside each screenshot (titles, legends, axis labels)
+     stays readable — while still leaving a clear peek of the next one. */
+  flex: 0 0 calc((100% - 3 * 24px) / 2.75);
+}
+
+.MensuraChart-tile img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  display: block;
+  box-sizing: border-box;
+  border: 2px solid white;
+  border-radius: 8px;
+}
+
+.MensuraChart-name {
+  margin: 0;
+  font-weight: 600;
+  font-size: 17px;
+  color: var(--neutral-800);
+}
+
+.MensuraCharts-mobile {
+  display: none;
+}
+
+/* Bare chevron, no box, no background — lives entirely in .MensuraBody's own
+   side padding (75px), not overlapping the real cards at all. Just the arrow,
+   vertically centered against the full row height. */
+.MensuraCharts-arrow {
+  position: absolute;
+  /* True center of the row's actual rendered height — no manual math to get
+     wrong. (A previous version tried to center on just the chart image,
+     excluding the caption below it, but that only pulled the arrow further
+     toward the top, which is the opposite of what was needed.) */
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: none;
+  color: var(--neutral-600);
+  cursor: pointer;
+}
+
+.MensuraCharts-arrow:hover {
+  color: var(--neutral-800);
+}
+
+.MensuraCharts-arrow:disabled {
+  visibility: hidden;
+}
+
+.MensuraCharts-arrow-prev {
+  left: -58px;
+}
+
+.MensuraCharts-arrow-next {
+  right: -58px;
+}
+
+/* one shape for both directions */
+.MensuraCharts-arrow-prev svg {
+  transform: scaleX(-1);
+}
+
+@media (max-width: 699px) {
+  .MensuraCharts-arrow,
+  .MensuraCharts-track {
+    display: none;
+  }
+
+  .MensuraCharts-mobile {
+    display: flex;
+    box-sizing: border-box;
+    width: calc(100% + 72px);
+    margin: 0 -36px;
+    padding: 0 36px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scroll-padding: 0 50px;
+    gap: 10px;
+    scrollbar-width: none;
+  }
+
+  .MensuraCharts-mobile::-webkit-scrollbar {
+    display: none;
+  }
+
+  .MensuraCharts-mobile .MensuraChart-tile {
+    flex: 0 0 calc(100vw - 100px);
+    scroll-snap-align: start;
+    padding: 16px;
+    gap: 10px;
+  }
+
+  /* matches the feature cards' mobile title size (.sf-small-name in
+     ProductFeatureShowcase.css) — weight and color already matched at
+     every width */
+  .MensuraChart-name {
+    font-size: 16px;
+  }
+}
