@@ -88,11 +88,15 @@ const SNAP_MS = 260;
 
 export function DemoCarousel({ slides, name, alt, mobile = false }: { slides: string[]; name: string; alt: string; mobile?: boolean }) {
   const [index, setIndex] = useState(0);
-  // Mobile-only: drag offset in px, added on top of the track's index-based
-  // base position — 0 except while actively dragging.
+  // Drag offset in px, added on top of the track's index-based base
+  // position — 0 except while actively dragging (mobile touch, or a
+  // desktop trackpad swipe below). Shared by both input types so a wheel
+  // gesture visually follows the swipe in real time exactly like a touch
+  // drag does, instead of only snapping once the gesture ends.
   const [dragPx, setDragPx] = useState(0);
   const [dragging, setDragging] = useState(false);
   const touchX = useRef<number | null>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
   const count = slides.length;
   const go = (i: number) => setIndex((i + count) % count);
 
@@ -112,6 +116,87 @@ export function DemoCarousel({ slides, name, alt, mobile = false }: { slides: st
       }
     }
   }, [index, count, slides, mobile]);
+
+  // Desktop trackpad/mouse-wheel support for the carousel: React's JSX
+  // onWheel is passive by default, so e.preventDefault() inside it silently
+  // fails to stop the page scrolling sideways — a native listener has to
+  // opt out of passive mode to actually own the gesture. Drives the same
+  // dragPx/dragging state the touch handlers use, so a swipe visually
+  // follows in real time either way.
+  //
+  // Trackpad momentum keeps sending shrinking wheel events for up to ~1s
+  // after a swipe, so we can't wait for a gap in events to decide "the
+  // gesture ended" — a fast next swipe can start before that tail is done,
+  // and momentum-tail events would otherwise register as extra swipes. So
+  // instead: commit the instant a swipe crosses the threshold, then ignore
+  // everything (including that swipe's own momentum) for WHEEL_LOCK_MS. A
+  // swipe that never reaches the threshold eases back to center instead.
+  //
+  // WHEEL_DIR flips which way a swipe moves the track — flip this constant
+  // if it ever reads backwards on a given setup.
+  const WHEEL_DIR = -1;
+  // Generous on purpose: a harder swipe's momentum tail runs longer, not
+  // just bigger, and needs to fully clear this window before a real next
+  // swipe is allowed through.
+  const WHEEL_LOCK_MS = 1000;
+  useEffect(() => {
+    const el = carouselRef.current;
+    if (!el || count < 2) return;
+    let accumX = 0;
+    let lockedUntil = 0;
+    let idleTimer: number | undefined;
+    const handleWheel = (e: WheelEvent) => {
+      // A mostly-vertical scroll (ordinary mouse wheel, or a trackpad swipe
+      // that's really scrolling the page) should keep scrolling the page,
+      // not get hijacked into moving the carousel. Deliberately lenient
+      // (deltaX just has to be the larger-ish component, not strictly
+      // dominant) — a real horizontal swipe isn't perfectly horizontal, and
+      // one direction reading as more "diagonal" than the other (common
+      // depending on hand position) shouldn't make that direction silently
+      // never register.
+      if (Math.abs(e.deltaX) < Math.abs(e.deltaY) * 0.5) return;
+      e.preventDefault();
+      const now = Date.now();
+      if (now < lockedUntil) return;
+
+      setDragging(true);
+      accumX += WHEEL_DIR * e.deltaX;
+      // Clamped to one slide-width for the live preview (each slide fills
+      // the carousel's own width — see .sf-demo-track/.sf-demo-slide in the
+      // CSS), so the track can never visually show more than one neighbour
+      // peeking in regardless of how large the raw accumulation gets.
+      const maxDrag = el.clientWidth || Infinity;
+      setDragPx(Math.max(-maxDrag, Math.min(maxDrag, accumX)));
+      if (Math.abs(accumX) > 40) {
+        window.clearTimeout(idleTimer);
+        setDragging(false);
+        // Resolved before accumX is reset below — setIndex's updater runs
+        // later, not at this call site, so reading accumX directly inside
+        // it would see the post-reset value (0) instead of the swipe's
+        // actual direction.
+        const dir = accumX < 0 ? 1 : -1;
+        setIndex((i) => (i + dir + count) % count);
+        setDragPx(0);
+        accumX = 0;
+        lockedUntil = now + WHEEL_LOCK_MS;
+        return;
+      }
+      // Below the commit threshold — if the swipe genuinely stops here
+      // (no momentum carrying it further), ease the preview back to rest
+      // instead of leaving it hanging mid-drag.
+      window.clearTimeout(idleTimer);
+      idleTimer = window.setTimeout(() => {
+        setDragging(false);
+        setDragPx(0);
+        accumX = 0;
+      }, 150);
+    };
+    el.addEventListener("wheel", handleWheel, { passive: false });
+    return () => {
+      el.removeEventListener("wheel", handleWheel);
+      window.clearTimeout(idleTimer);
+    };
+  }, [count]);
 
   if (count < 2) {
     return (
@@ -136,6 +221,7 @@ export function DemoCarousel({ slides, name, alt, mobile = false }: { slides: st
 
   return (
     <div
+      ref={carouselRef}
       className="sf-demo-placeholder sf-demo-image sf-demo-carousel"
       onKeyDown={(e) => {
         if (e.key === "ArrowRight") go(index + 1);
