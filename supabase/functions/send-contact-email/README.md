@@ -27,7 +27,21 @@ Supabase project (`fkoqpbnywedlexlumryt`). **Do not commit any of these values.*
    ```
 
    `CONTACT_FROM_EMAIL` must be on a domain verified in Resend, or sends are
-   rejected. Recipients default to liberata@duke.edu and
+   rejected. A send-only ("restricted") Resend key is the right kind to use
+   here, but it cannot read account data — `GET /domains` returns
+   `restricted_api_key`, so confirm the sender with a test send rather than by
+   listing domains:
+
+   ```sh
+   curl -s -X POST https://api.resend.com/emails \
+     -H "Authorization: Bearer $RESEND_API_KEY" \
+     -H "Content-Type: application/json" \
+     -d '{"from":"<the from address>","to":["academia.liberata@gmail.com"],
+          "subject":"Resend sender check","text":"Checking the sender."}'
+   ```
+
+   An `id` in the response means the sender is good; an error names the
+   problem (most often an unverified domain). Recipients default to liberata@duke.edu and
    academia.liberata@gmail.com; override with `CONTACT_TO_EMAILS` (comma
    separated) if that changes.
 
