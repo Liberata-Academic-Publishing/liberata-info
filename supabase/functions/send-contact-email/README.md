@@ -41,9 +41,14 @@ Supabase project (`fkoqpbnywedlexlumryt`). **Do not commit any of these values.*
 3. Deploy the function and the trigger:
 
    ```sh
-   supabase functions deploy send-contact-email
+   supabase functions deploy send-contact-email --no-verify-jwt
    supabase db push
    ```
+
+   `--no-verify-jwt` is required: the trigger calls this function with only the
+   `x-webhook-secret` header, so Supabase's default JWT check would reject the
+   request before the function runs. The header secret is what guards the
+   endpoint instead.
 
 ## Checking it works
 
