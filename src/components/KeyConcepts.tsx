@@ -32,7 +32,7 @@ function OpenCloseItem({id, num, title, children, activeId, onToggle}:OpenCloseI
                 }}
             >
                 <span className="open-close-title">
-                    <span className="open-close-num">{num}</span> {title}
+                    <span className="open-close-num">{num}.</span> {title}
                 </span>
                 {isOpen ? <RemoveIcon className="open-close-icon" /> : <AddIcon className="open-close-icon" />}
             </a>
