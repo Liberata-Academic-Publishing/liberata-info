@@ -22,11 +22,13 @@ Supabase project (`fkoqpbnywedlexlumryt`). **Do not commit any of these values.*
    ```sh
    supabase link --project-ref fkoqpbnywedlexlumryt
    supabase secrets set RESEND_API_KEY='...' \
-                        CONTACT_FROM_EMAIL='Liberata <noreply@liberata.info>' \
+                        RESEND_FROM_EMAIL='noreply@liberata.info' \
                         CONTACT_WEBHOOK_SECRET="$(openssl rand -hex 32)"
    ```
 
-   `CONTACT_FROM_EMAIL` must be on a domain verified in Resend, or sends are
+   `RESEND_FROM_EMAIL` is the same variable name and value the platform app
+   uses (`noreply@liberata.info`), so the already-verified sender carries over.
+   It must be on a domain verified in Resend, or sends are
    rejected. A send-only ("restricted") Resend key is the right kind to use
    here, but it cannot read account data — `GET /domains` returns
    `restricted_api_key`, so confirm the sender with a test send rather than by

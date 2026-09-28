@@ -6,13 +6,22 @@
 // Resend outage loses the notification but never the message itself.
 //
 // Required secrets (supabase secrets set ...):
-//   RESEND_API_KEY        Resend API key
-//   CONTACT_FROM_EMAIL    verified Resend sender, e.g. "Liberata <noreply@liberata.info>"
+//   RESEND_API_KEY          Resend API key (a send-scoped key is enough)
+//   RESEND_FROM_EMAIL       verified Resend sender; same name and value the
+//                           platform app uses, e.g. noreply@liberata.info
 //   CONTACT_WEBHOOK_SECRET  shared with the trigger so the endpoint isn't open to the world
 // Optional:
 //   CONTACT_TO_EMAILS     comma-separated; defaults to the two team inboxes
 
 const DEFAULT_RECIPIENTS = ["liberata@duke.edu", "academia.liberata@gmail.com"];
+
+// RESEND_FROM_EMAIL may be a bare address or already carry a display name.
+// A bare address shows up in inboxes as "noreply", so give it the product
+// name — same handling as the platform app's lib/resend.ts.
+function formatFrom(fromEmail: string): string {
+  const trimmed = fromEmail.trim();
+  return trimmed.includes("<") ? trimmed : `Liberata <${trimmed}>`;
+}
 
 type ContactRecord = {
   id?: string;
@@ -54,9 +63,9 @@ Deno.serve(async (req: Request) => {
   }
 
   const apiKey = Deno.env.get("RESEND_API_KEY");
-  const from = Deno.env.get("CONTACT_FROM_EMAIL");
-  if (!apiKey || !from) {
-    console.error("Missing RESEND_API_KEY or CONTACT_FROM_EMAIL");
+  const fromEmail = Deno.env.get("RESEND_FROM_EMAIL");
+  if (!apiKey || !fromEmail) {
+    console.error("Missing RESEND_API_KEY or RESEND_FROM_EMAIL");
     return new Response("Server not configured", { status: 500 });
   }
 
@@ -107,7 +116,7 @@ Deno.serve(async (req: Request) => {
   ].filter(Boolean).join("\n");
 
   const body: Record<string, unknown> = {
-    from,
+    from: formatFrom(fromEmail),
     to: recipients,
     subject: `Liberata contact form — ${subjectName}`,
     html,
