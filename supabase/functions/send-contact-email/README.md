@@ -57,9 +57,14 @@ Supabase project (`fkoqpbnywedlexlumryt`). **Do not commit any of these values.*
 3. Deploy the function and the trigger:
 
    ```sh
-   supabase functions deploy send-contact-email --no-verify-jwt
-   supabase db push
+   supabase functions deploy send-contact-email --no-verify-jwt --project-ref fkoqpbnywedlexlumryt
    ```
+
+   Then run `supabase/migrations/20260925000000_contact_email_notification.sql`
+   in the SQL editor. Prefer that over `supabase db push`: the tables predate
+   CLI migration tracking, so a push may try to replay the init schema, and
+   `create policy` has no `if not exists` — it would fail on policies that are
+   already there.
 
    `--no-verify-jwt` is required: the trigger calls this function with only the
    `x-webhook-secret` header, so Supabase's default JWT check would reject the
