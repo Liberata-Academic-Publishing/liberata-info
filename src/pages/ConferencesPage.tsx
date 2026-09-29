@@ -14,7 +14,6 @@ type Conference = {
   tags: string[];
   description: string;
   representedBy: string[];
-  status: "attended" | "upcoming";
 };
 
 // Dot color for each focus-area tag, both in the filter row and on the tag
@@ -31,6 +30,64 @@ const FOCUS_COLOR: Record<string, string> = Object.fromEntries(
   FOCUS_AREAS.map((f) => [f.label, f.color])
 );
 
+const MONTH_INDEX: Record<string, number> = {
+  jan: 0, feb: 1, mar: 2, apr: 3, may: 4, jun: 5,
+  jul: 6, aug: 7, sep: 8, oct: 9, nov: 10, dec: 11,
+};
+
+// Conference dates are written as "<Month> <day>[–<day>], <year>" — either a
+// single day or a range. A conference isn't over until its LAST day has
+// passed, so this parses out the end day of the range (or the single day)
+// rather than the start.
+function parseConferenceEndDate(date: string): Date | null {
+  const match = date.match(/^([A-Za-z]+)\s+(\d{1,2})(?:[–-](\d{1,2}))?,\s*(\d{4})$/);
+  if (!match) return null;
+  const monthIndex = MONTH_INDEX[match[1].slice(0, 3).toLowerCase()];
+  if (monthIndex === undefined) return null;
+  const endDay = match[3] ? Number(match[3]) : Number(match[2]);
+  return new Date(Number(match[4]), monthIndex, endDay);
+}
+
+// Computed from the date instead of a hand-set field, so an entry never sits
+// with a stale "upcoming" label once its dates have actually passed.
+function getConferenceStatus(date: string): "attended" | "upcoming" {
+  const endDate = parseConferenceEndDate(date);
+  if (!endDate) return "upcoming";
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  return endDate < today ? "attended" : "upcoming";
+}
+
+// The callout should always be whichever conference most recently happened —
+// the attended entry with the latest end date — regardless of what order the
+// list below is written in. If none have happened yet, fall back to the
+// soonest upcoming one so the page still has something to feature.
+function pickFeatured(conferences: Conference[]): Conference {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  let mostRecentPast: Conference | null = null;
+  let mostRecentPastDate: Date | null = null;
+  let soonestUpcoming: Conference | null = null;
+  let soonestUpcomingDate: Date | null = null;
+
+  for (const conf of conferences) {
+    const endDate = parseConferenceEndDate(conf.date);
+    if (!endDate) continue;
+    if (endDate < today) {
+      if (!mostRecentPastDate || endDate > mostRecentPastDate) {
+        mostRecentPast = conf;
+        mostRecentPastDate = endDate;
+      }
+    } else if (!soonestUpcomingDate || endDate < soonestUpcomingDate) {
+      soonestUpcoming = conf;
+      soonestUpcomingDate = endDate;
+    }
+  }
+
+  return mostRecentPast ?? soonestUpcoming ?? conferences[0];
+}
+
 // TODO: verify names, dates, and locations against the source list before
 // publishing — transcribed from the Figma mockup, some of it (attendee
 // names especially) is small enough that it's worth a second pass.
@@ -44,7 +101,6 @@ const CONFERENCES: Conference[] = [
     description:
       "The CIVICA alliance's open-science gathering, on the practices and infrastructure that keep research open, reproducible, and trustworthy. Han Zhang represented Liberata; the full programme is published.",
     representedBy: ["Han Zhang"],
-    status: "attended",
   },
   {
     name: "OIS Research Conference 2026",
@@ -53,7 +109,6 @@ const CONFERENCES: Conference[] = [
     tags: ["Academic publishing", "Technology"],
     description: "On the systems and technology behind open, interoperable scholarship. Proceedings are published.",
     representedBy: ["Han Zhang"],
-    status: "attended",
   },
   {
     name: "FOR2026 – Facts of Research",
@@ -62,7 +117,6 @@ const CONFERENCES: Conference[] = [
     tags: ["Academic publishing", "Peer review", "Technology"],
     description: "Research on research — how open science gets studied, measured, and reviewed.",
     representedBy: ["Han Zhang"],
-    status: "attended",
   },
   {
     name: "R2R 2026 – Researcher to Reader",
@@ -71,7 +125,6 @@ const CONFERENCES: Conference[] = [
     tags: ["Academic publishing", "Peer review", "Research integrity"],
     description: "Bridging research and readers, centred on peer review and integrity across the publishing pipeline.",
     representedBy: ["Patrick Prochazka", "Anish R. Verma"],
-    status: "attended",
   },
   {
     name: "DiamondOA Summit 2026",
@@ -80,7 +133,6 @@ const CONFERENCES: Conference[] = [
     tags: ["Academic publishing", "Peer review", "Technology"],
     description: "On diamond open access — publishing free for authors and readers — and the peer review tooling that makes it work.",
     representedBy: ["Anshuman Sabath"],
-    status: "attended",
   },
   {
     name: "STI 2026 – Science & Technology Indicators",
@@ -89,7 +141,6 @@ const CONFERENCES: Conference[] = [
     tags: ["Academic publishing", "Research integrity", "Technology"],
     description: "The 30th international conference on measuring publishing, integrity, and technology. Talk accepted.",
     representedBy: ["Anshuman Sabath"],
-    status: "upcoming",
   },
   {
     name: "OASPA Annual Conference 2026",
@@ -98,7 +149,6 @@ const CONFERENCES: Conference[] = [
     tags: ["Academic publishing"],
     description: "The Open Access Scholarly Publishers Association's annual meeting on the practice and business of open publishing.",
     representedBy: ["Han Zhang"],
-    status: "upcoming",
   },
   {
     name: "RDA 27th Plenary (P27)",
@@ -107,16 +157,14 @@ const CONFERENCES: Conference[] = [
     tags: ["Academic publishing", "Technology"],
     description: "The Research Data Alliance, on the data infrastructure under open publishing. Session accepted.",
     representedBy: ["Patrick Prochazka"],
-    status: "upcoming",
   },
   {
     name: "IOSP 2026",
     location: "Leiden, Netherlands",
-    date: "Oct 13–15, 2026",
+    date: "Oct 12–15, 2026",
     tags: ["Academic publishing", "Technology"],
     description: "An interdisciplinary gathering on open-science policy and the publishing technology that supports it.",
     representedBy: ["Han Zhang", "Patrick Prochazka"],
-    status: "upcoming",
   },
   {
     name: "Charleston Conference 2026",
@@ -125,7 +173,6 @@ const CONFERENCES: Conference[] = [
     tags: ["Academic publishing"],
     description: "Brings libraries, publishers, and vendors together around scholarly collections. Proposal submitted.",
     representedBy: ["Han Zhang", "Patrick Prochazka"],
-    status: "upcoming",
   },
 ];
 
@@ -262,11 +309,12 @@ function ConferencesPage() {
     return () => window.removeEventListener("resize", recalc);
   }, [statusFilter]);
 
-  const [featured, ...rest] = CONFERENCES;
+  const featured = pickFeatured(CONFERENCES);
+  const rest = CONFERENCES.filter((conf) => conf !== featured);
 
   const filtered = rest.filter((conf) => {
     const matchesStatus =
-      statusFilter === "All" || conf.status === statusFilter.toLowerCase();
+      statusFilter === "All" || getConferenceStatus(conf.date) === statusFilter.toLowerCase();
     const matchesFocus = !focusFilter || conf.tags.includes(focusFilter);
     return matchesStatus && matchesFocus;
   });

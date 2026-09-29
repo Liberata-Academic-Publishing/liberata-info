@@ -910,6 +910,21 @@
     gap: 15px;
   }
 
+  /* Matches Scriptura's .sf-small-name/.sf-small-desc mobile sizing — same
+     convention .TexturaStep-name/-desc already follows below in "How it
+     works" (see its own comment). This card was missing the override
+     entirely, so it stayed at the 17px/17.5px desktop size on mobile while
+     the Step cards right below it dropped to 16px, an unintended mismatch
+     between the two card types on the same page. */
+  .TexturaFeature-name {
+    font-size: 16px;
+    line-height: 1.5rem;
+  }
+
+  .TexturaFeature-desc {
+    font-size: 16px;
+  }
+
   /* Below 700px, "Inside a record" becomes one card with a Graph
      View/Code View toggle instead of stacking both panels — that stack was
      a big chunk of the page's scroll length. The toggle and whichever

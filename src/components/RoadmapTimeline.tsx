@@ -9,6 +9,28 @@ const DEFAULT_ROADMAP = [
 
 type Entry = { date: string; milestone: string };
 
+const MONTH_INDEX: Record<string, number> = {
+  jan: 0, feb: 1, mar: 2, apr: 3, may: 4, jun: 5,
+  jul: 6, aug: 7, sep: 8, oct: 9, nov: 10, dec: 11,
+};
+
+// `new Date("June 2026")` relies on the JS engine's own loose parsing of a
+// non-ISO string, which isn't standardized — Chrome (desktop and its dev
+// tools device emulation, still the same engine) accepts it, but Safari on
+// an actual iPhone returns Invalid Date for it. That silently broke every
+// "reached" check below (isNaN caught it and skipped the entry), so no
+// milestone was ever marked reached on a real iPhone even though the exact
+// same code looked correct when just resizing a desktop browser. Parsing
+// the "<Month> <year>" shape explicitly, rather than handing the whole
+// string to `new Date`, sidesteps that engine-specific behavior entirely.
+function parseEntryDate(date: string): Date | null {
+  const match = date.match(/([A-Za-z]+)\s+(\d{4})/);
+  if (!match) return null;
+  const monthIndex = MONTH_INDEX[match[1].slice(0, 3).toLowerCase()];
+  if (monthIndex === undefined) return null;
+  return new Date(Number(match[2]), monthIndex, 1);
+}
+
 // The most recent milestone whose date has already passed, so the timeline
 // can show progress toward "now" instead of a static list. -1 means today
 // is before every milestone (nothing reached yet).
@@ -16,8 +38,8 @@ function getCurrentIndex(entries: Entry[]): number {
   const today = new Date();
   let currentIndex = -1;
   entries.forEach((entry, i) => {
-    const entryDate = new Date(entry.date);
-    if (!Number.isNaN(entryDate.getTime()) && entryDate <= today) {
+    const entryDate = parseEntryDate(entry.date);
+    if (entryDate && entryDate <= today) {
       currentIndex = i;
     }
   });

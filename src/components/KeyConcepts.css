@@ -16,7 +16,9 @@
     user-select: none;
 }
 .open-close-num{
-    color: var(--neutral-700);
+    /* no color of its own — inherits var(--neutral-800) from .open-close-title,
+       so it always matches the title text instead of drifting if that color
+       ever changes */
 }
 .open-close-icon{
     font-size: 28px !important;
@@ -24,6 +26,9 @@
     cursor: pointer;
     user-select: none;
     transition: opacity 0.3s ease;
+    /* extra breathing room from the title text next to it, on top of
+       whatever .open-close-header's space-between already provides */
+    margin-left: 48px;
 }
 
 .open-close-description{
