@@ -85,6 +85,8 @@ function CompactCard({ feature, onExpand }: { feature: ShowcaseFeature; onExpand
 // buttons or dots, on mobile also by dragging, which drags the neighbour
 // in and follows your finger.
 const SNAP_MS = 260;
+const WHEEL_DIR = -1; // flip if a swipe ever reads backwards on a given setup
+const WHEEL_LOCK_MS = 1000; // generous — a harder swipe's momentum tail runs longer
 
 export function DemoCarousel({ slides, name, alt, mobile = false }: { slides: string[]; name: string; alt: string; mobile?: boolean }) {
   const [index, setIndex] = useState(0);
@@ -125,8 +127,6 @@ export function DemoCarousel({ slides, name, alt, mobile = false }: { slides: st
   // so instead of waiting for a gap to detect "swipe over," we commit the
   // instant a swipe crosses the threshold and ignore everything — including
   // that swipe's own momentum — for WHEEL_LOCK_MS.
-  const WHEEL_DIR = -1; // flip if a swipe ever reads backwards on a given setup
-  const WHEEL_LOCK_MS = 1000; // generous — a harder swipe's momentum tail runs longer
   useEffect(() => {
     const el = carouselRef.current;
     if (!el || count < 2) return;
