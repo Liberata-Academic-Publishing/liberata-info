@@ -474,6 +474,19 @@
     gap: 15px;
   }
 
+  /* Matches Scriptura's .sf-small-name/.sf-small-desc mobile sizing — same
+     convention Textura's card text already follows on mobile. This card was
+     missing the override entirely, so it stayed at the 17px/17.5px desktop
+     size here instead. */
+  .NormaCard-name {
+    font-size: 16px;
+    line-height: 1.5rem;
+  }
+
+  .NormaCard-desc {
+    font-size: 16px;
+  }
+
   /* Horizontal scroll-snap row instead of a stacked grid, same treatment as
      Textura's Features carousel — see that file's mobile block for the full
      explanation of the bleed/padding/scroll-padding split. Card 1 sits flush

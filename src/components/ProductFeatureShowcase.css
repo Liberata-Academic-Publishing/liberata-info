@@ -220,9 +220,14 @@
 }
 
 /* Design splits the 1050px content box into a 490px text column and a 520px
-   demo column with a 40px gap; the flex ratios keep that proportion at any
-   width. Both columns are top-aligned against each other rather than
-   vertically centered. */
+   demo column with a 40px gap. The two used to be top-aligned against each
+   other, but the toggle button is a direct child of .sf-card-featured
+   itself (not of either column), and its usual 12px inset — fine on the
+   small/compact cards, where that corner is just blank card background —
+   lands 18px inside the card's own 30px padding on this card, right on top
+   of the photo, which sits flush against the top of its column (see
+   .sf-demo-image's comment). Nudging the demo column down (below) clears
+   that corner without moving the toggle itself. */
 .sf-featured-left {
   display: flex;
   flex-direction: column;
@@ -241,6 +246,10 @@
   justify-content: flex-start;
   flex: 520 1 0;
   min-width: 0;
+  /* Desktop only — reset to 0 in the mobile media query below, where the
+     card stacks into a single column with the text first, so the toggle
+     sits over the text's top instead and this column doesn't need it. */
+  margin-top: 16px;
 }
 
 .sf-featured-label-row {
@@ -612,6 +621,15 @@
     flex: none;
     width: 100%;
     justify-content: flex-start;
+  }
+
+  /* Text comes first in the stacked mobile order (see .sf-card-featured's
+     flex-direction: column above), so .sf-featured-right's desktop-only
+     16px clearance from the toggle (added above) isn't needed here — it'd
+     just open up an extra gap between the two stacked columns on top of
+     the card's own 24px gap. */
+  .sf-featured-right {
+    margin-top: 0;
   }
 
   /* matches the eyebrow header convention (.section-heading's mobile size) —

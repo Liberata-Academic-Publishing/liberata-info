@@ -85,14 +85,20 @@ function CompactCard({ feature, onExpand }: { feature: ShowcaseFeature; onExpand
 // buttons or dots, on mobile also by dragging, which drags the neighbour
 // in and follows your finger.
 const SNAP_MS = 260;
+const WHEEL_DIR = -1; // flip if a swipe ever reads backwards on a given setup
+const WHEEL_LOCK_MS = 1000; // generous — a harder swipe's momentum tail runs longer
 
 export function DemoCarousel({ slides, name, alt, mobile = false }: { slides: string[]; name: string; alt: string; mobile?: boolean }) {
   const [index, setIndex] = useState(0);
-  // Mobile-only: drag offset in px, added on top of the track's index-based
-  // base position — 0 except while actively dragging.
+  // Drag offset in px, added on top of the track's index-based base
+  // position — 0 except while actively dragging (mobile touch, or a
+  // desktop trackpad swipe below). Shared by both input types so a wheel
+  // gesture visually follows the swipe in real time exactly like a touch
+  // drag does, instead of only snapping once the gesture ends.
   const [dragPx, setDragPx] = useState(0);
   const [dragging, setDragging] = useState(false);
   const touchX = useRef<number | null>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
   const count = slides.length;
   const go = (i: number) => setIndex((i + count) % count);
 
@@ -112,6 +118,63 @@ export function DemoCarousel({ slides, name, alt, mobile = false }: { slides: st
       }
     }
   }, [index, count, slides, mobile]);
+
+  // Native wheel listener (React's onWheel is passive and can't
+  // preventDefault) drives trackpad/mouse-wheel swipes on desktop, reusing
+  // the same dragPx/dragging state as touch.
+  //
+  // Trackpad momentum keeps firing wheel events for ~1s after a swipe ends,
+  // so instead of waiting for a gap to detect "swipe over," we commit the
+  // instant a swipe crosses the threshold and ignore everything — including
+  // that swipe's own momentum — for WHEEL_LOCK_MS.
+  useEffect(() => {
+    const el = carouselRef.current;
+    if (!el || count < 2) return;
+    let accumX = 0;
+    let lockedUntil = 0;
+    let idleTimer: number | undefined;
+    const handleWheel = (e: WheelEvent) => {
+      // Mostly-vertical scroll = page scroll, not carousel drag. Lenient on
+      // purpose since a real horizontal swipe is rarely perfectly horizontal.
+      if (Math.abs(e.deltaX) < Math.abs(e.deltaY) * 0.5) return;
+      e.preventDefault();
+      const now = Date.now();
+      if (now < lockedUntil) return;
+
+      setDragging(true);
+      accumX += WHEEL_DIR * e.deltaX;
+      // Clamp to one slide-width so the track never shows more than one
+      // neighbour peeking in, regardless of the raw accumulation.
+      const maxDrag = el.clientWidth || Infinity;
+      setDragPx(Math.max(-maxDrag, Math.min(maxDrag, accumX)));
+      if (Math.abs(accumX) > 40) {
+        window.clearTimeout(idleTimer);
+        setDragging(false);
+        // Compute dir before accumX resets below — setIndex's updater runs
+        // later and would otherwise read the post-reset value.
+        const dir = accumX < 0 ? 1 : -1;
+        setIndex((i) => (i + dir + count) % count);
+        setDragPx(0);
+        accumX = 0;
+        lockedUntil = now + WHEEL_LOCK_MS;
+        return;
+      }
+      // Below the commit threshold — if the swipe genuinely stops here
+      // (no momentum carrying it further), ease the preview back to rest
+      // instead of leaving it hanging mid-drag.
+      window.clearTimeout(idleTimer);
+      idleTimer = window.setTimeout(() => {
+        setDragging(false);
+        setDragPx(0);
+        accumX = 0;
+      }, 150);
+    };
+    el.addEventListener("wheel", handleWheel, { passive: false });
+    return () => {
+      el.removeEventListener("wheel", handleWheel);
+      window.clearTimeout(idleTimer);
+    };
+  }, [count]);
 
   if (count < 2) {
     return (
@@ -136,6 +199,7 @@ export function DemoCarousel({ slides, name, alt, mobile = false }: { slides: st
 
   return (
     <div
+      ref={carouselRef}
       className="sf-demo-placeholder sf-demo-image sf-demo-carousel"
       onKeyDown={(e) => {
         if (e.key === "ArrowRight") go(index + 1);
