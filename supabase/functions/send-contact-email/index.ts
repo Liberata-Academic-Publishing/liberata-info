@@ -11,9 +11,9 @@
 //                           platform app uses, e.g. noreply@liberata.info
 //   CONTACT_WEBHOOK_SECRET  shared with the trigger so the endpoint isn't open to the world
 // Optional:
-//   CONTACT_TO_EMAILS     comma-separated; defaults to academia.liberata@gmail.com
+//   CONTACT_TO_EMAILS     comma-separated; defaults to the two team inboxes
 
-const DEFAULT_RECIPIENTS = ["academia.liberata@gmail.com"];
+const DEFAULT_RECIPIENTS = ["liberata@duke.edu", "academia.liberata@gmail.com"];
 
 // RESEND_FROM_EMAIL may be a bare address or already carry a display name.
 // A bare address shows up in inboxes as "noreply", so give it the product

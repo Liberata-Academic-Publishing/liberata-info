@@ -23,7 +23,7 @@ Supabase project (`fkoqpbnywedlexlumryt`). **Do not commit any of these values.*
    supabase link --project-ref fkoqpbnywedlexlumryt
    supabase secrets set RESEND_API_KEY='...' \
                         RESEND_FROM_EMAIL='noreply@liberata.info' \
-                        CONTACT_TO_EMAILS='academia.liberata@gmail.com' \
+                        CONTACT_TO_EMAILS='liberata@duke.edu,academia.liberata@gmail.com' \
                         CONTACT_WEBHOOK_SECRET="$(openssl rand -hex 32)"
    ```
 
@@ -44,9 +44,10 @@ Supabase project (`fkoqpbnywedlexlumryt`). **Do not commit any of these values.*
    ```
 
    An `id` in the response means the sender is good; an error names the
-   problem (most often an unverified domain). Contact notifications go only to
-   academia.liberata@gmail.com by default. `CONTACT_TO_EMAILS` overrides that
-   default, so update any existing value to `academia.liberata@gmail.com` too.
+   problem (most often an unverified domain). Contact notifications go to
+   liberata@duke.edu and academia.liberata@gmail.com by default.
+   `CONTACT_TO_EMAILS` overrides those defaults, so include both addresses
+   when setting it.
 
 2. Store the same webhook secret in Vault so the trigger can send it. Use the
    value generated above:
