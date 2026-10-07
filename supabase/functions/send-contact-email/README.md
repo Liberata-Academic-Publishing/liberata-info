@@ -63,7 +63,8 @@ Supabase project (`fkoqpbnywedlexlumryt`). **Do not commit any of these values.*
    ```
 
    Then run `supabase/migrations/20260925000000_contact_email_notification.sql`
-   in the SQL editor. Prefer that over `supabase db push`: the tables predate
+   in one transaction (`BEGIN;` before the file contents, `COMMIT;` after) in
+   the SQL editor. Prefer that over `supabase db push`: the tables predate
    CLI migration tracking, so a push may try to replay the init schema, and
    `create policy` has no `if not exists` — it would fail on policies that are
    already there.
