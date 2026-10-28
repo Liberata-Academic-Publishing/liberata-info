@@ -102,7 +102,7 @@ function TeamPage() {
       <div className="TeamHero" id="intro">
         <Header />
         <p className="TeamHero-eyebrow">The Liberata Team</p>
-        <h1 className="TeamHero-title">Meet our team.</h1>
+        <h1 className="TeamHero-title">Meet our team</h1>
         <p className="TeamHero-subtitle">
           An interdisciplinary team of innovators with experience at institutions such as Duke, Google, Autodesk and
           Neuralink.

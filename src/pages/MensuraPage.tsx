@@ -126,7 +126,7 @@ function MensuraPage() {
       {/* id="intro" drives the Header's transparent-over-hero scroll behavior */}
       <div className="MensuraHero" id="intro">
         <Header />
-        <h1 className="MensuraHero-title">Mensura.</h1>
+        <h1 className="MensuraHero-title">Mensura</h1>
         <p className="MensuraHero-subtitle">Research intelligence for institutions, funders, and policymakers.</p>
         <p className="MensuraHero-description">
           Inspect, compare, and visualize research impact using Liberata scientometrics, extensible to all academic entities, from researchers to institutions to geographic regions.
@@ -152,8 +152,7 @@ function MensuraPage() {
         </div>
 
         <ProductCta
-          title="Measure what actually matters."
-          subtitle="Built for research offices, funding agencies, and policymakers who need more than citation counts."
+          title="Join institutions, funders, and policymakers on Mensura"
           primaryLabel={
             <>
               <span>Sign up for beta</span>

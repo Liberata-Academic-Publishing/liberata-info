@@ -55,7 +55,7 @@ function NewsPage() {
       {/* id="intro" drives the Header's transparent-over-hero scroll behavior */}
       <div className="NewsHero" id="intro">
         <Header />
-        <h1 className="NewsHero-title">News.</h1>
+        <h1 className="NewsHero-title">News</h1>
         <p className="NewsHero-subtitle">Conferences, features, and updates from Liberata</p>
       </div>
 

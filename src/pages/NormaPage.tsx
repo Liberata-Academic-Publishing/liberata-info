@@ -184,7 +184,7 @@ function NormaPage() {
         <Header />
         <div className="NormaHero-inner">
           <div className="NormaHero-content">
-            <h1 className="NormaHero-title">Norma.</h1>
+            <h1 className="NormaHero-title">Norma</h1>
             <p className="NormaHero-subtitle">Open source scientometrics and simulations for metascience research.</p>
             <p className="NormaHero-description">
               Inspect, compare, visualize, and experiment with the impact of any researcher, lab, institution, field, or
@@ -304,8 +304,7 @@ matrix_visuals.<span className="tok-fn">plot_sparsity_pattern</span>(refs)
             just dropping this bottom CTA per Vicky's request. Restore if
             that changes. */}
         {/* <ProductCta
-          title="Open-source graph-based scientometrics."
-          subtitle="Decision-grade intelligence on every researcher, lab, and institution — built on the world's most credibility-rich research corpus."
+          title="Open-source graph-based scientometrics"
           primaryLabel="View repository →"
           secondaryLabel="View API docs"
         /> */}

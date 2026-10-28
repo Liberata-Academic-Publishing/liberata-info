@@ -87,7 +87,7 @@ function ResearchPage() {
       {/* id="intro" drives the Header's transparent-over-hero scroll behavior */}
       <div className="ResearchHero" id="intro">
         <Header />
-        <h1 className="ResearchHero-title">Research.</h1>
+        <h1 className="ResearchHero-title">Research</h1>
         <p className="ResearchHero-subtitle">Papers associated with the Liberata platform</p>
       </div>
 

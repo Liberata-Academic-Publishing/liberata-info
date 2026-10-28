@@ -324,7 +324,7 @@ function ConferencesPage() {
       {/* id="intro" drives the Header's transparent-over-hero scroll behavior */}
       <div className="ConferencesHero" id="intro">
         <Header />
-        <h1 className="ConferencesHero-title">Conferences.</h1>
+        <h1 className="ConferencesHero-title">Conferences</h1>
         <p className="ConferencesHero-subtitle">Conferences, features, and updates from Liberata</p>
       </div>
 

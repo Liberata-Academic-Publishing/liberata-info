@@ -40,7 +40,7 @@ function ScripturaPage() {
       {/* id="intro" drives the Header's transparent-over-hero scroll behavior */}
       <div className="ScripturaHero" id="intro">
         <Header />
-        <h1 className="ScripturaHero-title">Scriptura.</h1>
+        <h1 className="ScripturaHero-title">Scriptura</h1>
         <p className="ScripturaHero-subtitle">Open access academic publishing platform with incentivized quality controls</p>
         <p className="ScripturaHero-description">
           Publish preprints, exchange credit for peer review, commission replications, and verify scholarly contributions, all on open, auditable records.
@@ -89,8 +89,7 @@ function ScripturaPage() {
         </div>
 
         <ProductCta
-          title="Try a new way to publish."
-          subtitle="Join researchers, labs, and institutions already building on Scriptura."
+          title="Join researchers, labs, and institutions on Scriptura"
           primaryLabel={
             <>
               <span>Sign up for beta</span>

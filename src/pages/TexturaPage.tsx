@@ -100,7 +100,7 @@ function TexturaPage() {
       <div className="TexturaHero" id="intro">
         <Header />
         <div className="TexturaHero-content">
-          <h1 className="TexturaHero-title">Textura.</h1>
+          <h1 className="TexturaHero-title">Textura</h1>
           <p className="TexturaHero-subtitle">API access to scientific AI training data: structured, validated, and expert-annotated.</p>
           <p className="TexturaHero-description">
             The natural source of expert annotations on state-of-the-art scientific literature, paired with graph
@@ -187,7 +187,7 @@ function TexturaPage() {
 
         <div className="TexturaSection" id="textura-how">
           <div className="section-heading">How it works</div>
-          <h2 className="TexturaSection-title">From scholarly record to AI training data.</h2>
+          <h2 className="TexturaSection-title">From scholarly record to AI training data</h2>
           <div className="TexturaSteps">
             <div className="TexturaStep">
               <div className="TexturaStep-tile">
@@ -370,8 +370,7 @@ function TexturaPage() {
         </div>
 
         <ProductCta
-          title="The scholarly record, ready for AI."
-          subtitle="License structured scientific training data built on the world's most credibility-rich research corpus."
+          title="API access to scientific AI training data"
           primaryLabel={
             <>
               <span>Sign up for beta</span>

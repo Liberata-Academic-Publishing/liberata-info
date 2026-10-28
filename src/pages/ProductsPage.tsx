@@ -10,7 +10,7 @@ function ProductsPage() {
       {/* id="intro" drives the Header's transparent-over-hero scroll behavior */}
       <div className="ProductsHero" id="intro">
         <Header />
-        <h1 className="ProductsHero-title">Products.</h1>
+        <h1 className="ProductsHero-title">Products</h1>
         <p className="ProductsHero-subtitle">
           Liberata's ecosystem of specialized tools, built to democratize and quantify academic excellence.
         </p>
