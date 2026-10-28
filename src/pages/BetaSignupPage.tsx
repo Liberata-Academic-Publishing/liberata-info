@@ -191,7 +191,7 @@ function BetaSignupPage() {
           )}
 
           {isDuplicateVisible && (
-            <div>Looks like this ORCID has already signed up — you're on the list, and we'll be in touch!</div>
+            <div>This ORCID has already signed up. You're on the list, and we'll be in touch.</div>
           )}
 
           {isErrorVisible && (

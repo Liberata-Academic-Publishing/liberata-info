@@ -18,17 +18,17 @@ const IMPACT_COLUMNS = [
   {
     icon: iconPencil,
     title: "For authors",
-    body: "Get reviews and replications that genuinely strengthen your paper — and offer shares of credit instead of costly legacy open-access fees. Keep your copyright, publish openly, and build a real track record instead of borrowing a journal's prestige.",
+    body: "Get reviews and replications that strengthen your article, and offer shares of credit instead of paying legacy open-access fees. Keep your copyright, publish openly, and build a track record that does not depend on a journal's prestige.",
   },
   {
     icon: iconCheck,
     title: "For reviewers",
-    body: "Checking and reproducing research finally earns durable, citable credit. Where review today is unpaid and invisible and replication competes with the original for citations, here both earn a verified stake in the work they make better.",
+    body: "Checking and reproducing research earns durable, citable credit. Review is currently unpaid and invisible, and replication competes with the original for citations. Here, both earn a verified stake in the work they improve.",
   },
   {
     icon: iconBookAlt,
     title: "For readers and industry",
-    body: "Judge work by whether it holds up — replication counts, review status, and real usage — rather than the logo on the journal. Search 250M+ works at fine-grained precision and read any of them free, no account required.",
+    body: "Judge work by replication counts, review status, and usage rather than the journal that published it. Search 250M+ works at fine-grained precision and read any of them for free, with no account required.",
   },
 ];
 
@@ -41,10 +41,9 @@ function ScripturaPage() {
       <div className="ScripturaHero" id="intro">
         <Header />
         <h1 className="ScripturaHero-title">Scriptura.</h1>
-        <p className="ScripturaHero-subtitle">The open publishing platform for academic research.</p>
+        <p className="ScripturaHero-subtitle">Open access academic publishing platform with incentivized quality controls</p>
         <p className="ScripturaHero-description">
-          Publish preprints, trade peer review for credit, commission replications, and verify scholarly contribution,
-          all on one open record. No paywalls. No article fees. The credit goes to the people who do the work.
+          Publish preprints, exchange credit for peer review, commission replications, and verify scholarly contributions, all on open, auditable records.
         </p>
       </div>
 
@@ -68,8 +67,8 @@ function ScripturaPage() {
           <div className="section-heading">Impact</div>
           <h2 className="ScripturaSection-title">Credit follows contribution</h2>
           <p className="ScripturaSection-subtitle">
-            Legacy publishing rewards prestige and captures the value. Scriptura rewards the work itself — writing,
-            reviewing, replicating, and building on research — and keeps every paper open to anyone.
+            Legacy publishing rewards prestige and captures the value. Scriptura rewards the work itself: writing,
+            reviewing, replicating, and building on research. Every article stays open to anyone.
           </p>
           <div className="ScripturaImpact-columns">
             {IMPACT_COLUMNS.map((column) => (
@@ -85,7 +84,7 @@ function ScripturaPage() {
         </div>
 
         <div className="ScripturaSection">
-          <div className="section-heading">Roadmap</div>
+          <div className="section-heading">Timeline</div>
           <RoadmapTimeline />
         </div>
 

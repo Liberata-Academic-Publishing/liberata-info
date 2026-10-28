@@ -56,21 +56,21 @@ import ProductFeatureShowcase, { ShowcaseFeature } from "./ProductFeatureShowcas
 const FEATURES: ShowcaseFeature[] = [
   {
     key: "preprints",
-    name: "Preprints & Papers",
+    name: "Preprints and Articles",
     icon: <img src={iconUpload} alt="" />,
-    gridDesc: "Host, version, and cite your work with DOI-linked records. Open access by default, and you keep the copyright.",
-    altDesc: "Host, version, and cite your work with DOI-linked records. Open access by default, and you keep the copyright.",
-    label: "Preprints & Papers",
+    gridDesc: "Host, version, and cite your work with DOI-linked records. Diamond open access by default",
+    altDesc: "Host, version, and cite your work with DOI-linked records. Diamond open access by default",
+    label: "Preprints and Articles",
     demo: [demoLitSearchResults, demoLitStep1, demoLitStep2, demoLitStep3],
-    demoAlt: "Scriptura walkthrough: browsing papers, filtering, saving to a collection, and the upload flow",
-    headline: "Publishing that you actually own",
+    demoAlt: "Scriptura walkthrough: browsing articles, filtering, saving to a collection, and the upload flow",
+    headline: "Own your work",
     longDesc:
-      "Post a preprint the moment it's ready, attach your data and code, and get a citable, DOI-linked record — without signing your rights over to a journal.",
+      "Post a preprint the moment it's ready, attach your data and code, and get a citable, DOI-linked record.",
     points: [
-      { lead: "Open by default.", text: "Every paper is free to read and download. No subscription, no paywall, no account required to access the work." },
-      { lead: "Keep your copyright.", text: "No transfer of rights and no $2,000–$10,000 article-processing charge. The work stays yours to distribute." },
-      { lead: "A versioned record.", text: "Revisions are tracked over time, so each reviewer's and replicator's contribution stays tied to the exact version they worked on." },
-      { lead: "Honest contribution splits.", text: "Declare who did what up front. Anomalous share splits are easy to spot with graph metrics and get flagged." },
+      { lead: "Open by default.", text: "All works are free to read and download. No subscription, no paywall, and no account required." },
+      { lead: "Keep your copyright.", text: "No transfer of rights and no article-processing charge. The work stays yours to distribute." },
+      { lead: "A versioned record.", text: "Revisions are tracked, so each reviewer's and replicator's contribution is attached to the version they worked on." },
+      { lead: "Contribution shares.", text: "Share splits replace authorship positions as the primary way to credit contributions." },
     ],
   },
   {

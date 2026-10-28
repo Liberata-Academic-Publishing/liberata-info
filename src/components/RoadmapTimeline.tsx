@@ -2,9 +2,9 @@ import "./RoadmapTimeline.css";
 
 const DEFAULT_ROADMAP = [
   { date: "June 2026", milestone: "Alpha version & testing with early users" },
-  { date: "Dec 2026", milestone: "Beta open trials" },
-  { date: "June 2027", milestone: "Full rollout" },
-  { date: "Dec 2027", milestone: "AI based premium features" },
+  { date: "Nov 2026", milestone: "Beta trials open" },
+  { date: "Jan 2027", milestone: "Full rollout" },
+  { date: "Jun 2027", milestone: "AI-based premium features" },
 ];
 
 type Entry = { date: string; milestone: string };

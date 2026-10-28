@@ -37,9 +37,9 @@ const DATASETS = [
 ];
 
 const ENDPOINTS = [
-  { method: "GET", path: "/v1/papers", desc: "List all papers published on the Liberata ledger." },
-  { method: "POST", path: "/v1/submit", desc: "Initiate a new manuscript submission with ORCID auth." },
-  { method: "GET", path: "/v1/metrics/:id", desc: "Retrieve contribution metrics for a specific paper." },
+  { method: "GET", path: "/v1/papers", desc: "List all articles published on the Liberata ledger." },
+  { method: "POST", path: "/v1/submit", desc: "Initiate a new article submission with ORCID auth." },
+  { method: "GET", path: "/v1/metrics/:id", desc: "Retrieve contribution metrics for a specific article." },
 ];
 
 // Decorative citation-graph diagram approximated with SVG primitives from the
@@ -101,7 +101,7 @@ function TexturaPage() {
         <Header />
         <div className="TexturaHero-content">
           <h1 className="TexturaHero-title">Textura.</h1>
-          <p className="TexturaHero-subtitle">API access to scientific AI training data — structured, validated, and expert-annotated.</p>
+          <p className="TexturaHero-subtitle">API access to scientific AI training data: structured, validated, and expert-annotated.</p>
           <p className="TexturaHero-description">
             The natural source of expert annotations on state-of-the-art scientific literature, paired with graph
             representations, for scientific AI that actually understands research.
@@ -148,7 +148,7 @@ function TexturaPage() {
               </div>
               <p className="TexturaFeature-name">Quality-Controlled</p>
               <p className="TexturaFeature-desc">
-                Scholarly data validated through Scriptura's peer-review and replication signals - not scraped from the open web.
+                Scholarly data validated through Scriptura's peer-review and replication signals, not scraped from the open web.
               </p>
             </div>
             <div className="TexturaFeature">
