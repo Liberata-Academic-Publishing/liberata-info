@@ -28,7 +28,7 @@ const PAPERS: Paper[] = [
     title: "Open Peer Review Ecosystems",
     authors: "M. Webb, S. Doe",
     meta: "2025 • IEEE Symposium",
-    abstract: "Analyzing the impact of crowdsourced peer review on paper quality and publication speed.",
+    abstract: "Analyzing the impact of crowdsourced peer review on article quality and publication speed.",
     tag: "Metric",
     category: "Metrics",
   },
@@ -88,7 +88,7 @@ function ResearchPage() {
       <div className="ResearchHero" id="intro">
         <Header />
         <h1 className="ResearchHero-title">Research</h1>
-        <p className="ResearchHero-subtitle">Papers associated with the Liberata platform</p>
+        <p className="ResearchHero-subtitle">Articles associated with the Liberata platform</p>
       </div>
 
       <div className="ResearchBody">
@@ -97,10 +97,10 @@ function ResearchPage() {
             <img src={iconSearch} alt="" />
             <input
               type="search"
-              placeholder="Search papers"
+              placeholder="Search articles"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              aria-label="Search papers"
+              aria-label="Search articles"
             />
           </div>
 
@@ -115,11 +115,11 @@ function ResearchPage() {
                 <p className="Research-card-authors">{paper.authors}</p>
                 <p className="Research-card-meta">{paper.meta}</p>
                 <p className="Research-card-abstract">{paper.abstract}</p>
-                <span className="Research-card-link">Read paper →</span>
+                <span className="Research-card-link">Read article →</span>
               </div>
             ))}
             {papers.length === 0 && (
-              <p className="Research-empty">No papers match your search.</p>
+              <p className="Research-empty">No articles match your search.</p>
             )}
           </div>
 
