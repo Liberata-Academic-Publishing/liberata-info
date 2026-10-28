@@ -7,8 +7,8 @@ type Conference = {
   name: string;
   location: string;
   date: string;
-  // Only the featured (most recent) conference carries a pull-quote and a
-  // link out to its writeup — the grid cards below don't have either yet.
+  // Optional pull-quote and link out to a writeup, shown only when this
+  // conference is the featured one (the grid cards don't show either).
   quote?: string;
   link?: { label: string; url: string };
   tags: string[];
@@ -58,34 +58,45 @@ function getConferenceStatus(date: string): "attended" | "upcoming" {
   return endDate < today ? "attended" : "upcoming";
 }
 
-// The callout should always be whichever conference most recently happened —
-// the attended entry with the latest end date — regardless of what order the
-// list below is written in. If none have happened yet, fall back to the
-// soonest upcoming one so the page still has something to feature.
+// The callout is the next conference we're attending: the upcoming entry with
+// the soonest end date, regardless of what order the list below is written in.
+// If none are upcoming, it falls back to the most recent past one so the page
+// still has something to feature.
 function pickFeatured(conferences: Conference[]): Conference {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  let mostRecentPast: Conference | null = null;
-  let mostRecentPastDate: Date | null = null;
   let soonestUpcoming: Conference | null = null;
   let soonestUpcomingDate: Date | null = null;
+  let mostRecentPast: Conference | null = null;
+  let mostRecentPastDate: Date | null = null;
 
   for (const conf of conferences) {
     const endDate = parseConferenceEndDate(conf.date);
     if (!endDate) continue;
-    if (endDate < today) {
-      if (!mostRecentPastDate || endDate > mostRecentPastDate) {
-        mostRecentPast = conf;
-        mostRecentPastDate = endDate;
+    if (endDate >= today) {
+      if (!soonestUpcomingDate || endDate < soonestUpcomingDate) {
+        soonestUpcoming = conf;
+        soonestUpcomingDate = endDate;
       }
-    } else if (!soonestUpcomingDate || endDate < soonestUpcomingDate) {
-      soonestUpcoming = conf;
-      soonestUpcomingDate = endDate;
+    } else if (!mostRecentPastDate || endDate > mostRecentPastDate) {
+      mostRecentPast = conf;
+      mostRecentPastDate = endDate;
     }
   }
 
-  return mostRecentPast ?? soonestUpcoming ?? conferences[0];
+  return soonestUpcoming ?? mostRecentPast ?? conferences[0];
+}
+
+// Latest date first, so upcoming conferences lead and past ones follow from
+// most to least recent. Entries with a date that can't be parsed go last.
+function compareByDateDesc(a: Conference, b: Conference): number {
+  const aDate = parseConferenceEndDate(a.date);
+  const bDate = parseConferenceEndDate(b.date);
+  if (!aDate && !bDate) return 0;
+  if (!aDate) return 1;
+  if (!bDate) return -1;
+  return bDate.getTime() - aDate.getTime();
 }
 
 // TODO: verify names, dates, and locations against the source list before
@@ -310,13 +321,15 @@ function ConferencesPage() {
   }, [statusFilter]);
 
   const featured = pickFeatured(CONFERENCES);
-  const rest = CONFERENCES.filter((conf) => conf !== featured);
-
-  const filtered = rest.filter((conf) => {
+  // The list below holds every conference, so the status and focus filters can
+  // always find the featured one too. On "All" it is left out, because the
+  // callout above already shows it.
+  const filtered = [...CONFERENCES].sort(compareByDateDesc).filter((conf) => {
     const matchesStatus =
       statusFilter === "All" || getConferenceStatus(conf.date) === statusFilter.toLowerCase();
     const matchesFocus = !focusFilter || conf.tags.includes(focusFilter);
-    return matchesStatus && matchesFocus;
+    const hiddenAsFeatured = statusFilter === "All" && conf === featured;
+    return matchesStatus && matchesFocus && !hiddenAsFeatured;
   });
 
   return (
@@ -329,7 +342,7 @@ function ConferencesPage() {
       </div>
 
       <div className="ConferencesBody">
-        <div className="section-heading">MOST RECENT</div>
+        <div className="section-heading">{getConferenceStatus(featured.date) === "upcoming" ? "NEXT CONFERENCE" : "MOST RECENT"}</div>
         <FeaturedConference conf={featured} />
 
         <div className="Conferences-listHeader">
