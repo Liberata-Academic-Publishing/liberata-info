@@ -131,7 +131,7 @@ function PlatformsPage() {
                                 }}
                             >
                                 The main platform allows any visitor to search and read academic literature. Academic users (ORCID needed) can upload
-                                manuscripts as preprints, and optionally go through peer review or replication processes on the platform. Additionally,
+                                articles as preprints, and optionally go through peer review or replication processes on the platform. Additionally,
                                 all users with an account can search for collaborations with academics.
                             </div>
 

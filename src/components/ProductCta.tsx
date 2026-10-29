@@ -4,7 +4,8 @@ import "./ProductCta.css";
 
 type ProductCtaProps = {
   title: string;
-  subtitle: string;
+  // Optional: omit for a single-line CTA (title only)
+  subtitle?: string;
   primaryLabel: ReactNode;
   primaryTo?: string;
   secondaryLabel: ReactNode;
@@ -23,8 +24,8 @@ function ProductCta({ title, subtitle, primaryLabel, primaryTo, secondaryLabel, 
 
   return (
     <div className="product-cta">
-      <h2 className="product-cta-title">{title}</h2>
-      <p className="product-cta-subtitle">{subtitle}</p>
+      <h2 className={`product-cta-title${subtitle ? "" : " product-cta-title-single"}`}>{title}</h2>
+      {subtitle && <p className="product-cta-subtitle">{subtitle}</p>}
       <div className="product-cta-actions">
         {primaryTo ? (
           <Link to={primaryTo} className="product-cta-primary">{primaryLabel}</Link>

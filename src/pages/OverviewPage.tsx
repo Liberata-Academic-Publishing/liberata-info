@@ -9,7 +9,7 @@ function OverviewPage() {
   const introRef = useRef<HTMLDivElement | null>(null);
   const overlayRef = useRef<HTMLDivElement | null>(null);
 
-  const MISSION_TEXT = "To democratize an academic review system influenced by politics";
+  const MISSION_TEXT = "Correcting the incentive structures and economic models of academic publishing";
   const TYPING_SPEED = 25;
   const [displayedText, setDisplayedText] = useState("");
   const textRef = useRef(null);
@@ -229,8 +229,8 @@ function OverviewPage() {
         <Header />
         <div className="App-section" id="section-hook">
           <Hook
-            header="Introducing Liberata."
-            subheader="Using game theory & graph theory to solve entrenched problems with academic publishing."
+            header="Introducing Liberata"
+            subheader="Using game theory and graph theory to build an open access academic ecosystem."
             subtext="Open access academic publishing with incentivized quality controls."
           />
         </div>
@@ -247,7 +247,7 @@ function OverviewPage() {
           <div className="App-column-left">
             <div className="App-section App-col-left-section" id="App-publishing-problems">
               <div className="section-heading">Academic Publishing Problems</div>
-              <div className="section-description">Academic publishing today suffers from merit, economic, and societal problems arising from maligned legacy incentive structures
+              <div className="section-description">Academic publishing today suffers from merit, economic, and societal problems arising from maligned legacy incentive structures.
                 
               </div>
               <AcademicPublishingProblems />

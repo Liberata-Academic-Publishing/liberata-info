@@ -115,7 +115,7 @@ const CONFERENCES: Conference[] = [
     location: "Munich, Germany",
     date: "May 4–6, 2026",
     tags: ["Academic publishing", "Peer review", "Technology"],
-    description: "Research on research — how open science gets studied, measured, and reviewed.",
+    description: "Research on research: how open science gets studied, measured, and reviewed.",
     representedBy: ["Han Zhang"],
   },
   {
@@ -131,7 +131,7 @@ const CONFERENCES: Conference[] = [
     location: "Bengaluru, India",
     date: "Feb 2, 2026",
     tags: ["Academic publishing", "Peer review", "Technology"],
-    description: "On diamond open access — publishing free for authors and readers — and the peer review tooling that makes it work.",
+    description: "On diamond open access (publishing free for authors and readers) and the peer review tooling that makes it work.",
     representedBy: ["Anshuman Sabath"],
   },
   {
@@ -324,7 +324,7 @@ function ConferencesPage() {
       {/* id="intro" drives the Header's transparent-over-hero scroll behavior */}
       <div className="ConferencesHero" id="intro">
         <Header />
-        <h1 className="ConferencesHero-title">Conferences.</h1>
+        <h1 className="ConferencesHero-title">Conferences</h1>
         <p className="ConferencesHero-subtitle">Conferences, features, and updates from Liberata</p>
       </div>
 

@@ -145,7 +145,7 @@ function AreaChart({ compact = false }: { compact?: boolean }) {
 const CAPABILITIES = [
   {
     name: "Contribution & impact metrics",
-    desc: "Returns, volatility, Sharpe, concentration, inequality, and overall system health, paper-by-paper.",
+    desc: "Returns, volatility, Sharpe, concentration, inequality, and overall system health, article by article.",
     diagram: <HeatGrid rows={8} cols={13} seed={7} />,
   },
   {
@@ -169,7 +169,7 @@ const OUTPUT_ROWS = [
   { label: "Total capital", value: "812412" },
   { label: "Volatility", value: "0.24" },
   { label: "Sharpe ratio", value: "1.87" },
-  { label: "Papers x researchers", value: "100 x 240" },
+  { label: "Articles x researchers", value: "100 x 240" },
 ];
 
 function NormaPage() {
@@ -184,8 +184,8 @@ function NormaPage() {
         <Header />
         <div className="NormaHero-inner">
           <div className="NormaHero-content">
-            <h1 className="NormaHero-title">Norma.</h1>
-            <p className="NormaHero-subtitle">Open source scientometrics and simulations for meta science research.</p>
+            <h1 className="NormaHero-title">Norma</h1>
+            <p className="NormaHero-subtitle">Open source scientometrics and simulations for metascience research.</p>
             <p className="NormaHero-description">
               Inspect, compare, visualize, and experiment with the impact of any researcher, lab, institution, field, or
               nation — built on Liberata's Academic Capital metrics, quality-control signals, and the scientometrics
@@ -231,7 +231,7 @@ function NormaPage() {
             <img className="NormaHero-graph" src={heroGraph} alt="" />
             <div className="NormaHero-glass-footer">
               <span>citation_network.svg</span>
-              <span>nodes = papers · edges = citations</span>
+              <span>nodes = articles · edges = citations</span>
             </div>
           </div>
         </div>
@@ -304,8 +304,7 @@ matrix_visuals.<span className="tok-fn">plot_sparsity_pattern</span>(refs)
             just dropping this bottom CTA per Vicky's request. Restore if
             that changes. */}
         {/* <ProductCta
-          title="Open-source graph-based scientometrics."
-          subtitle="Decision-grade intelligence on every researcher, lab, and institution — built on the world's most credibility-rich research corpus."
+          title="Open-source graph-based scientometrics"
           primaryLabel="View repository →"
           secondaryLabel="View API docs"
         /> */}

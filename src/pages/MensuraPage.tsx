@@ -44,14 +44,14 @@ const FEATURES: ShowcaseFeature[] = [
     key: "inspect",
     name: "Inspect",
     icon: <img src={iconSearch} alt="" />,
-    gridDesc: "Deep entity profiles for researchers, labs, departments, institutions, fields, and regions with Liberata-native metrics.",
-    altDesc: "Deep entity profiles for researchers, labs, departments, institutions, fields, and regions with Liberata-native metrics.",
+    gridDesc: "Deep entity profiles for researchers, labs, departments, institutions, fields, and regions with Liberata scientometrics.",
+    altDesc: "Deep entity profiles for researchers, labs, departments, institutions, fields, and regions with Liberata scientometrics.",
     label: "Inspect",
     demo: [demoInspect1, demoInspect2, demoInspect3, demoInspect4, demoInspect5, demoInspect6, demoInspect7],
     demoAlt: "Mensura entity profile: a search bar above a dashboard of metric cards for the selected entity",
     headline: "Every entity, fully explained",
     longDesc:
-      "Search any researcher, lab, institution, field, or region and open a dashboard built around it — what they publish, where their academic capital comes from, and how they stack up against peers. No stitching together five different systems to get one answer.",
+      "Search any researcher, lab, institution, field, or region and open a dashboard built around it: what they publish, where their academic capital comes from, and how they compare with peers.",
     points: [
       { lead: "Search everything.", text: "Researchers, labs, institutions, departments, fields, countries, and regions are all searchable from one bar. Entity type is labeled right in the results, so you're never guessing which \"Cambridge\" you found." },
       { lead: "Old and new metrics, side by side.", text: "Total and average citations sit next to Academic Capital and Risk Premium. Every card comes with a definition and shows where the entity lands against the 25th, 50th, and 75th percentile." },
@@ -73,7 +73,7 @@ const FEATURES: ShowcaseFeature[] = [
       "Add entities as rows, metrics as columns, and build a comparison table across researchers, institutions, fields, regions, or labs. No flipping between tabs, no rebuilding the same spreadsheet from scratch every time.",
     points: [
       { lead: "Rows for entities, columns for metrics.", text: "Compare ten researchers or a hundred institutions in the same table. Mixed entity types are labeled clearly, so a table of labs and countries never gets confusing." },
-      { lead: "Never manually saved.", text: "Every entity, metric, and layout choice saves automatically as you work — no Save button, no starting over." },
+      { lead: "Never manually saved.", text: "Every entity, metric, and layout choice saves automatically as you work. There is no Save button." },
       { lead: "A real spreadsheet.", text: "Sort, filter, resize, collapse, and highlight columns and rows, the same way you already work in a table." },
       { lead: "Reusable, not disposable.", text: "Come back to a saved comparison later, or export it as CSV, TSV, XLSX, or PDF when it's ready to leave the platform." },
     ],
@@ -89,10 +89,10 @@ const FEATURES: ShowcaseFeature[] = [
     demoAlt: "Mensura chart builder: the entity and cohort picker open over an empty chart canvas",
     headline: "See the pattern, not just the numbers",
     longDesc:
-      "Pick entities and metrics in any order and let the chart build itself — time series, scatter, bar, histogram, or bubble. Mark the spike, the drop, the turning point, and explain why it happened.",
+      "Pick entities and metrics in any order and let the chart build itself: time series, scatter, bar, histogram, or bubble. Mark the spike, the drop, or the turning point, and explain why it happened.",
     points: [
-      { lead: "Build it your way.", text: "Add entities or metrics first, whichever comes to mind — the chart generates once both are selected, and what's chosen stays visible the whole time." },
-      { lead: "Six ways to ask the question.", text: "Time series for trends, scatter and bubble for relationships, bar for rankings, histogram for distributions — each with the exact controls that chart type needs." },
+      { lead: "Build it your way.", text: "Add entities or metrics first, in either order. The chart generates once both are selected, and the current selection stays visible throughout." },
+      { lead: "Six ways to ask the question.", text: "Time series for trends, scatter and bubble for relationships, bar for rankings, and histogram for distributions, each with the controls that chart type needs." },
       { lead: "Explain the moment.", text: "Drop a pin on a spike or anomaly and attach a note, right on the chart, right where it happened." },
       { lead: "Ready when you are.", text: "Every change saves automatically. Export to image or PDF, or share a view-only link when it's time to hand it off." },
     ],
@@ -101,17 +101,17 @@ const FEATURES: ShowcaseFeature[] = [
     key: "cohorts",
     name: "Cohorts",
     icon: <img className="sf-icon-cohorts" src={iconCohorts} alt="" />,
-    gridDesc: "A comparison group built from entity type, geography, research area, and organization — as a live rule or a fixed list you pick yourself.",
-    altDesc: "A comparison group built from entity type, geography, research area, and organization — as a live rule or a fixed list you pick yourself.",
+    gridDesc: "A comparison group built from entity type, geography, research area, and organization, as a live rule or a fixed list you pick yourself.",
+    altDesc: "A comparison group built from entity type, geography, research area, and organization, as a live rule or a fixed list you pick yourself.",
     label: "Cohorts",
     demo: [demoCohorts1, demoCohorts2, demoCohorts3, demoCohorts4, demoCohorts5, demoCohorts6],
     demoAlt: "Mensura cohort builder: a dynamic cohort form beside a live preview of the matching researchers",
     headline: "Build the cohort that makes sense",
     longDesc:
-      "Set a rule or hand-pick the list — either way, watch the cohort build itself in real time. Filters lock when they don't apply, geography inherits when it should, and nothing's final until you say so.",
+      "Set a rule or hand-pick the list, and the cohort builds in real time. Filters lock when they do not apply, geography inherits when relevant, and nothing is final until you confirm.",
     points: [
       { lead: "Watch the cohort build in real time.", text: "As you set a rule like \"Top 50 by Academic Capital\" and add filters, a live preview ranks and counts the matches before you commit to anything." },
-      { lead: "Dynamic or static, your call.", text: "Build a rule that keeps updating as new entities qualify, or check off exactly who belongs and lock the list — even mixing researchers, labs, and institutions in the same static cohort." },
+      { lead: "Dynamic or static.", text: "Build a rule that keeps updating as new entities qualify, or check off exactly who belongs and lock the list. A static cohort can mix researchers, labs, and institutions." },
       { lead: "Filters that know their limits.", text: "Fields that don't apply to the selected entity type disable automatically, so you're never stuck choosing an option that doesn't make sense." },
       { lead: "Saved, searchable, shareable.", text: "Every cohort lives in a library you can search and sort by recency, share with a colleague, or export as data or insights." },
     ],
@@ -126,11 +126,10 @@ function MensuraPage() {
       {/* id="intro" drives the Header's transparent-over-hero scroll behavior */}
       <div className="MensuraHero" id="intro">
         <Header />
-        <h1 className="MensuraHero-title">Mensura.</h1>
+        <h1 className="MensuraHero-title">Mensura</h1>
         <p className="MensuraHero-subtitle">Research intelligence for institutions, funders, and policymakers.</p>
         <p className="MensuraHero-description">
-          Inspect, compare, and visualize research impact using Liberata-native Academic Capital metrics,
-          quality-control signals, and scientometrics, at every scale from researcher to nation.
+          Inspect, compare, and visualize research impact using Liberata scientometrics, extensible to all academic entities, from researchers to institutions to geographic regions.
         </p>
       </div>
 
@@ -148,13 +147,12 @@ function MensuraPage() {
         </div>
 
         <div className="MensuraSection">
-          <div className="section-heading">Roadmap</div>
+          <div className="section-heading">Timeline</div>
           <RoadmapTimeline />
         </div>
 
         <ProductCta
-          title="Measure what actually matters."
-          subtitle="Built for research offices, funding agencies, and policymakers who need more than citation counts."
+          title="Join institutions, funders, and policymakers on Mensura"
           primaryLabel={
             <>
               <span>Sign up for beta</span>
