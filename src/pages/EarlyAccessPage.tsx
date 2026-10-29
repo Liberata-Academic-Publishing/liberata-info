@@ -12,7 +12,10 @@ type EarlyAccessPageProps = {
   description: string;
 };
 
-const EMAIL_PATTERN = /^[\w.-]+@\w+(\.\w+)?\.\w{2,}$/;
+// Deliberately loose: something@something.something with no spaces. A stricter
+// pattern rejects real addresses (hyphenated domains like uni-heidelberg.de,
+// "+" in the name, deeper subdomains), which matters for an academic audience.
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 // Sign-up page for one product's early access, opened from the QR codes at
 // the 2026 Charleston Conference. Submissions go to their own Supabase table,
@@ -35,7 +38,8 @@ function EarlyAccessPage({ product, description }: EarlyAccessPageProps) {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!validateEmail(email)) {
+    const cleanEmail = email.trim();
+    if (!validateEmail(cleanEmail)) {
       return;
     }
 
@@ -47,7 +51,7 @@ function EarlyAccessPage({ product, description }: EarlyAccessPageProps) {
         product: product.toLowerCase(),
         name: name.trim(),
         affiliation: affiliation.trim(),
-        email,
+        email: cleanEmail,
       })
       .then(({ error }) => {
         setLoading(false);
@@ -97,7 +101,7 @@ function EarlyAccessPage({ product, description }: EarlyAccessPageProps) {
             fullWidth
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            onBlur={() => email && validateEmail(email)}
+            onBlur={() => email.trim() && validateEmail(email.trim())}
             error={isEmailErrorVisible}
             helperText={
               isEmailErrorVisible ? "Enter an email in the format name@example.com." : undefined
