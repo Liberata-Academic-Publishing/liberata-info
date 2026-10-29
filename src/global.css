@@ -42,6 +42,16 @@ body {
   overflow-x: hidden;
 }
 
+/* form controls don't inherit the page font by default (they fall back to
+   Arial), so inherit it here instead of setting it on each form */
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+  letter-spacing: inherit;
+}
+
 a {
   text-decoration: none;
   color: black;
