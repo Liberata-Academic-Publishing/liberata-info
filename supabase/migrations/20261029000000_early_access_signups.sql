@@ -16,6 +16,7 @@ create table if not exists early_access_signups (
 
 alter table early_access_signups enable row level security;
 
+drop policy if exists "public can sign up for early access" on early_access_signups;
 create policy "public can sign up for early access" on early_access_signups
   for insert to anon with check (true);
 
