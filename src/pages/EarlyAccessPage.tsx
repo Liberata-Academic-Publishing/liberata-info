@@ -15,8 +15,9 @@ type EarlyAccessPageProps = {
 const EMAIL_PATTERN = /^[\w.-]+@\w+(\.\w+)?\.\w{2,}$/;
 
 // Sign-up page for one product's early access, opened from the QR codes at
-// the 2026 Charleston Conference. Submissions go to the same Supabase table
-// as the contact form; `message` records which product they signed up for.
+// the 2026 Charleston Conference. Submissions go to their own Supabase table,
+// early_access_signups (see supabase/migrations), separate from the contact
+// form and the beta sign-up.
 function EarlyAccessPage({ product, description }: EarlyAccessPageProps) {
   const [name, setName] = useState("");
   const [affiliation, setAffiliation] = useState("");
@@ -41,12 +42,12 @@ function EarlyAccessPage({ product, description }: EarlyAccessPageProps) {
     setLoading(true);
     setErrorVisible(false);
     supabase
-      .from("contact_messages")
+      .from("early_access_signups")
       .insert({
+        product: product.toLowerCase(),
         name: name.trim(),
-        email,
         affiliation: affiliation.trim(),
-        message: `${product} early access sign-up`,
+        email,
       })
       .then(({ error }) => {
         setLoading(false);
