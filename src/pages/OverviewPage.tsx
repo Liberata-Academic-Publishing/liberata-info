@@ -136,10 +136,20 @@ function OverviewPage() {
 
     // BG_overlay.png's own dimensions (3883 x 2519)
     const IMAGE_ASPECT = 2519 / 3883;
+    // where the rays visually end, as a fraction of the image's height
+    const RAY_BOTTOM = 0.93;
 
     function layout() {
       if (!intro || !overlay) return;
       const heroRect = intro.getBoundingClientRect();
+      // On wider screens the overlay box is extended past the hero's top and
+      // left (CSS clips it back to the hero) so that rotating it about the
+      // bottom-left corner never uncovers a bare edge of the box. Phones get
+      // the same thing from the .App-background-overlay rule in App.css.
+      // 0.4 > sin(20deg) = 0.34, the most the scroll rotation can sweep.
+      overlay.style.inset = window.innerWidth >= 450
+        ? `${-0.4 * heroRect.width}px 0px 0px ${-0.4 * heroRect.height}px`
+        : "";
       const boxRect = overlay.getBoundingClientRect();
 
       const imageW = heroRect.width * 2; // matches the original background-size: 200%
@@ -149,13 +159,24 @@ function OverviewPage() {
       // "background-position: center 120%" used back when this element was
       // exactly hero-sized
       const imageLeftRel = heroRect.width / 2 - imageW / 2;
-      const imageTopRel = (heroRect.height - imageH) * 1.2;
+      // phones keep the original "center 120%" crop. Wider screens instead
+      // line the bottom of the logo rays up with the bottom of the hero: the
+      // rays fade out at ~93% of the image's height, so that's the line we
+      // anchor to the hero's bottom edge.
+      const imageTopRel = window.innerWidth >= 450
+        ? heroRect.height - imageH * RAY_BOTTOM
+        : (heroRect.height - imageH) * 1.2;
 
       // re-expressed relative to the overlay's own (now oversized) box,
       // since that's what background-position is actually measured from
       const boxLeftRel = boxRect.left - heroRect.left;
       const boxTopRel = boxRect.top - heroRect.top;
 
+      // the scroll rotation below pivots at the hero's bottom-left corner. On
+      // phones the CSS sets that (with an oversized box); on wider screens the
+      // box isn't oversized, so pivot there explicitly. Rotating about the
+      // center instead swings the image's bottom edge up into view.
+      overlay.style.transformOrigin = window.innerWidth >= 450 ? "0% 100%" : "";
       overlay.style.backgroundSize = `${imageW}px auto`;
       overlay.style.backgroundPosition = `${imageLeftRel - boxLeftRel}px ${imageTopRel - boxTopRel}px`;
     }
