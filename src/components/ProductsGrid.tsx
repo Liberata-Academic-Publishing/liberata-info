@@ -29,18 +29,18 @@ const PRODUCTS: Product[] = [
     exploreTo: "/products/mensura",
   },
   {
-    key: "textura",
-    name: "Textura",
-    icon: iconUsers,
-    shortDesc: "Discover research and form elite interdisciplinary teams.",
-    exploreTo: "/products/textura",
-  },
-  {
     key: "norma",
     name: "Norma",
     icon: iconFileText,
     shortDesc: "Standardized compliance frameworks and regulatory alignment tools.",
     exploreTo: "/products/norma",
+  },
+  {
+    key: "textura",
+    name: "Textura",
+    icon: iconUsers,
+    shortDesc: "Discover research and form elite interdisciplinary teams.",
+    exploreTo: "/products/textura",
   },
 ];
 

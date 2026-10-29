@@ -454,6 +454,21 @@
   padding-top: 40px;
 }
 
+/* Desktop/tablet: center the hero text vertically in the space below the
+   fixed 65px header, instead of leaving it at the top with empty space under */
+@media (min-width: 450px) {
+  .App-intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    padding-top: 65px;
+  }
+  #section-hook {
+    padding-top: 0;
+  }
+}
+
 @media (min-width: 700px) {
   #section-hook {
     padding-right: 2rem;

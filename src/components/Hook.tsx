@@ -11,18 +11,18 @@ type HookProps = {
 function Hook({ header, subheader, subtext }: HookProps) {
   return (
     <div className="Hook-wrapper">
-      {/* DESKTOP: header, CTA, subheader (unchanged order/styling) */}
+      {/* DESKTOP: header, subheader directly under it, then CTA */}
       <div className="Hook-content Hook-desktop">
         <div className="Hook-header">
           {header}
-        </div>
-        <div className="Hook-cta-row">
-          <Link to="/beta-signup" className="Hook-cta">Sign up for beta</Link>
         </div>
         <div className="Hook-subheader-row">
           <div className="Hook-subheader">
             {subheader}
           </div>
+        </div>
+        <div className="Hook-cta-row">
+          <Link to="/beta-signup" className="Hook-cta">Sign up for beta</Link>
         </div>
       </div>
 
