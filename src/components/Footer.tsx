@@ -29,6 +29,8 @@ function Footer() {
           <span className="footer-dot">•</span>
           <Link to="/products" className="footer-link">Products</Link>
           <span className="footer-dot">•</span>
+          <Link to="/faqs" className="footer-link">FAQ</Link>
+          <span className="footer-dot">•</span>
           {/* Team link temporarily hidden until content is curated:
           <Link to="/team" className="footer-link">Team</Link>
           <span className="footer-dot">•</span> */}
