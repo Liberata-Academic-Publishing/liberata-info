@@ -22,6 +22,12 @@
   left: 0;
   height: 100vh;
   max-height: 920px;
+  /* .App centers its children rather than stretching them, so without this
+     the hero is sized by its own max-content instead of the viewport. That
+     comes out wider than the screen because #section-hook's padding-right
+     (2rem at >=700px) sits outside .Hook-wrapper's `width: 100vw` — which is
+     what put a 16px horizontal scrollbar on the page. */
+  width: 100%;
 }
 
 @media (max-width: 450px) {
