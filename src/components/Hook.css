@@ -68,6 +68,44 @@
   }
 }
 
+/* Keep "Introducing Liberata" on one line wherever the screen is wide enough
+   for it; narrower screens still wrap it inside the 45vw cap */
+@media (min-width: 1100px) {
+  .Hook-header {
+    max-width: none !important;
+    white-space: nowrap;
+  }
+}
+
+/* Desktop: the subheader sits directly under the title, left-aligned with it
+   (it used to sit below the CTA, pushed to the right) */
+@media (min-width: 450px) {
+  .Hook-desktop .Hook-subheader-row {
+    justify-content: flex-start;
+  }
+  .Hook-desktop .Hook-subheader {
+    margin-top: 0 !important;
+    margin-bottom: 0;
+    max-width: 40vw !important;
+  }
+  /* the hero centers this block vertically now (see .App-intro in App.css),
+     so the old top/bottom offsets that pushed it down are no longer needed */
+  .Hook-desktop.Hook-content,
+  .Hook-desktop .Hook-header {
+    margin-top: 0;
+  }
+  /* more air between the title, subtitle and button */
+  .Hook-desktop .Hook-header {
+    margin-bottom: 1.6rem !important;
+  }
+  .Hook-desktop .Hook-cta-row {
+    margin-top: 44px;
+  }
+  .Hook-wrapper {
+    margin-bottom: 0;
+  }
+}
+
 /* Media queries for large screens like monitors */
 @media (min-width: 1500px) {
   .Hook-header {

@@ -56,13 +56,13 @@ function MenuDrawer({ onContact = () => { } }: { onContact?: () => void }) {
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton className="MenuDrawer-sub" component={Link} to="/products/textura" sx={{ pl: 4, py: 0.5 }}>
-            <ListItemText primary="Textura" />
+          <ListItemButton className="MenuDrawer-sub" component={Link} to="/products/norma" sx={{ pl: 4, py: 0.5 }}>
+            <ListItemText primary="Norma" />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton className="MenuDrawer-sub" component={Link} to="/products/norma" sx={{ pl: 4, py: 0.5 }}>
-            <ListItemText primary="Norma" />
+          <ListItemButton className="MenuDrawer-sub" component={Link} to="/products/textura" sx={{ pl: 4, py: 0.5 }}>
+            <ListItemText primary="Textura" />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>

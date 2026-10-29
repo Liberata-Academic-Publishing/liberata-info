@@ -454,6 +454,30 @@
   padding-top: 40px;
 }
 
+/* Desktop/tablet: center the hero text vertically in the space below the
+   fixed 65px header, instead of leaving it at the top with empty space under */
+@media (min-width: 450px) {
+  .App-intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    padding-top: 65px;
+    /* clip the oversized, rotating ray overlay to the hero */
+    overflow: hidden;
+  }
+  #section-hook {
+    padding-top: 0;
+  }
+  /* line the bottom of the logo rays up with the bottom of the hero. The image
+     is anchored to its bottom edge, then nudged down by ~7% of its own height
+     (4.5vw, since it scales to the hero's width) because the rays fade out
+     slightly above the image's last row */
+  .App-background-overlay {
+    background-position: center calc(100% + 4.5vw);
+  }
+}
+
 @media (min-width: 700px) {
   #section-hook {
     padding-right: 2rem;

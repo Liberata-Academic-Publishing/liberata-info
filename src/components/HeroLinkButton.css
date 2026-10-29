@@ -1,0 +1,35 @@
+.HeroLinkButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  border: 1.5px solid white;
+  color: var(--brand-500) !important;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.6;
+  padding: 10px 20px;
+  border-radius: 999px;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+}
+
+.HeroLinkButton svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 699px) {
+  .HeroLinkButton {
+    font-size: 16px;
+    line-height: 1.5rem;
+  }
+
+  .HeroLinkButton svg {
+    width: 16px;
+    height: 16px;
+  }
+}

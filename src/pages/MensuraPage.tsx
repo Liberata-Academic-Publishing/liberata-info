@@ -4,6 +4,7 @@ import ProductFeatureShowcase, { ShowcaseFeature } from "../components/ProductFe
 import MensuraChartsShowcase from "../components/MensuraChartsShowcase";
 import RoadmapTimeline from "../components/RoadmapTimeline";
 import ProductCta from "../components/ProductCta";
+import HeroLinkButton from "../components/HeroLinkButton";
 import ContactModal from "../components/ContactModal";
 import iconSearch from "../images/figma/mensura/icon_search.svg";
 import iconDatabase from "../images/figma/mensura/icon_database.svg";
@@ -38,6 +39,8 @@ import demoCohorts5 from "../images/figma/mensura/demo_cohorts_5.png";
 import demoCohorts6 from "../images/figma/mensura/demo_cohorts_6.png";
 import "../App.css";
 import "./MensuraPage.css";
+
+const MENSURA_URL = "https://mensura.liberata.app";
 
 const FEATURES: ShowcaseFeature[] = [
   {
@@ -131,6 +134,7 @@ function MensuraPage() {
         <p className="MensuraHero-description">
           Inspect, compare, and visualize research impact using Liberata scientometrics, extensible to all academic entities, from researchers to institutions to geographic regions.
         </p>
+        <HeroLinkButton href={MENSURA_URL}>Open Mensura</HeroLinkButton>
       </div>
 
       <div className="MensuraBody">
@@ -155,7 +159,7 @@ function MensuraPage() {
           title="Join institutions, funders, and policymakers on Mensura"
           primaryLabel={
             <>
-              <span>Sign up for beta</span>
+              <span>Open Mensura</span>
               {/* real icon instead of a plain "→" character — same fix as
                   Scriptura's and Textura's ProductCta, the Norma hero CTA,
                   and the mobile "Sign up for beta" button */}
@@ -164,7 +168,7 @@ function MensuraPage() {
               </svg>
             </>
           }
-          primaryTo="/beta-signup"
+          primaryTo={MENSURA_URL}
           secondaryLabel="Contact us"
           secondaryOnClick={() => setContactOpen(true)}
         />

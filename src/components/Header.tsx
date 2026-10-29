@@ -65,8 +65,8 @@ function Header({ scrollToSection = () => { }, forceLight = false }) {
               <span className="Header-products-inline" aria-hidden={!productsOpen}>
                 <Link to="/products/scriptura" tabIndex={productsOpen ? 0 : -1}>Scriptura</Link>
                 <Link to="/products/mensura" tabIndex={productsOpen ? 0 : -1}>Mensura</Link>
-                <Link to="/products/textura" tabIndex={productsOpen ? 0 : -1}>Textura</Link>
                 <Link to="/products/norma" tabIndex={productsOpen ? 0 : -1}>Norma</Link>
+                <Link to="/products/textura" tabIndex={productsOpen ? 0 : -1}>Textura</Link>
               </span>
             </span>
             <NavLink to="/conferences" className="Header-navbar">
