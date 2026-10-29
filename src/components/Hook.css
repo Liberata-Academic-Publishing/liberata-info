@@ -94,6 +94,13 @@
   .Hook-desktop .Hook-header {
     margin-top: 0;
   }
+  /* more air between the title, subtitle and button */
+  .Hook-desktop .Hook-header {
+    margin-bottom: 1.6rem !important;
+  }
+  .Hook-desktop .Hook-cta-row {
+    margin-top: 44px;
+  }
   .Hook-wrapper {
     margin-bottom: 0;
   }
