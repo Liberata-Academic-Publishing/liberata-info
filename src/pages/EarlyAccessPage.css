@@ -1,0 +1,119 @@
+.EarlyAccessHero {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 150px 100px 100px 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: flex-start;
+  background-image: url(../images/figma/hero_bg.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+.EarlyAccessHero-title {
+  margin: 0;
+  font-weight: 500;
+  font-size: 56px;
+  line-height: 1.15;
+  color: var(--neutral-100);
+  /* no max-width, so the title stays on one line whenever the screen is wide
+     enough; balance evens out the lines when it has to wrap */
+  text-wrap: balance;
+}
+
+.EarlyAccessHero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 640px;
+}
+
+.EarlyAccessHero-event {
+  margin: 0;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.6;
+  color: var(--neutral-100);
+}
+
+.EarlyAccessHero-subtitle {
+  margin: 0;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.6;
+  color: var(--neutral-100);
+}
+
+.EarlyAccessBody {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 100px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.EarlyAccess-form {
+  width: 100%;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+/* overrides App.css's global `button { height: 35px; }` */
+.EarlyAccess-submit {
+  height: auto;
+  padding: 10px 28px;
+  border-radius: 999px;
+  background: var(--brand-500);
+  color: var(--neutral-100);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.6;
+  cursor: pointer;
+}
+
+.EarlyAccess-message {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--neutral-800);
+}
+
+.EarlyAccess-link {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--brand-500);
+  text-decoration: underline;
+}
+
+@media (max-width: 699px) {
+  .EarlyAccessHero {
+    padding: 120px 36px 80px 36px;
+    gap: 24px;
+  }
+
+  .EarlyAccessHero-title {
+    font-size: 36px;
+  }
+
+  .EarlyAccessHero-event,
+  .EarlyAccessHero-subtitle {
+    font-size: 17px;
+  }
+
+  .EarlyAccessBody {
+    padding: 60px 36px;
+  }
+
+  .EarlyAccess-submit {
+    font-size: 16px;
+  }
+
+  .EarlyAccess-message,
+  .EarlyAccess-link {
+    font-size: 16px;
+  }
+}
