@@ -11,6 +11,7 @@ import MensuraPage from './pages/MensuraPage';
 import TexturaPage from './pages/TexturaPage';
 import NormaPage from './pages/NormaPage';
 import BetaSignupPage from './pages/BetaSignupPage';
+import EarlyAccessPage from './pages/EarlyAccessPage';
 import FaqsPage from './pages/FaqsPage';
 import ConferencesPage from './pages/ConferencesPage';
 // Temporarily hidden until content is curated — see the commented routes below.
@@ -46,6 +47,25 @@ function App() {
         <Route path="/conferences" element={<ConferencesPage />} />
         <Route path="/platforms" element={<PlatformsPage />} />
         <Route path="/beta-signup" element={<BetaSignupPage/>}/>
+        {/* QR-code sign-up pages for the 2026 Charleston Conference; not linked from the site nav. */}
+        <Route
+          path="/early-access/scriptura"
+          element={
+            <EarlyAccessPage
+              product="Scriptura"
+              description="Sign up for early access to Scriptura, Liberata's platform for open scholarly publishing, peer review, and research replication."
+            />
+          }
+        />
+        <Route
+          path="/early-access/mensura"
+          element={
+            <EarlyAccessPage
+              product="Mensura"
+              description="Sign up for early access to Mensura, Liberata's scientometrics platform. Mensura helps institutions explore research activity, impact, expertise, and collaboration through transparent, open-data-driven analytics."
+            />
+          }
+        />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <Footer/>
