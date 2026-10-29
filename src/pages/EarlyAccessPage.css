@@ -17,7 +17,9 @@
   font-size: 56px;
   line-height: 1.15;
   color: var(--neutral-100);
-  max-width: 900px;
+  /* no max-width, so the title stays on one line whenever the screen is wide
+     enough; balance evens out the lines when it has to wrap */
+  text-wrap: balance;
 }
 
 .EarlyAccessHero-text {
