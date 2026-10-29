@@ -5,9 +5,10 @@ import iconCollection from "../images/figma/scriptura/icons/icon_collection.svg"
 import iconUserSearch from "../images/figma/scriptura/icons/icon_user_search.svg";
 import iconInstitutionSearch from "../images/figma/scriptura/icons/icon_institution_search.svg";
 
-// Literature Browse (the "Preprints & Papers" card) — search results plus the
-// 3-step upload flow
+// Literature Browse (the "Preprints & Papers" card) — search results, the
+// paper view with its PDF, then the 3-step upload flow
 import demoLitSearchResults from "../images/figma/scriptura/demo_preprints_1.png";
+import demoLitPaperViewerPdf from "../images/figma/scriptura/demo_paper_viewer_pdf.png";
 import demoLitStep1 from "../images/figma/scriptura/demo_preprints_2.png";
 import demoLitStep2 from "../images/figma/scriptura/demo_preprints_3.png";
 import demoLitStep3 from "../images/figma/scriptura/demo_preprints_4.png";
@@ -61,8 +62,8 @@ const FEATURES: ShowcaseFeature[] = [
     gridDesc: "Host, version, and cite your work with DOI-linked records. Diamond open access by default",
     altDesc: "Host, version, and cite your work with DOI-linked records. Diamond open access by default",
     label: "Preprints and Articles",
-    demo: [demoLitSearchResults, demoLitStep1, demoLitStep2, demoLitStep3],
-    demoAlt: "Scriptura walkthrough: browsing articles, filtering, saving to a collection, and the upload flow",
+    demo: [demoLitSearchResults, demoLitPaperViewerPdf, demoLitStep1, demoLitStep2, demoLitStep3],
+    demoAlt: "Scriptura walkthrough: browsing articles, viewing an article and its PDF, and the upload flow",
     headline: "Own your work",
     longDesc:
       "Post a preprint the moment it's ready, attach your data and code, and get a citable, DOI-linked record.",
