@@ -49,17 +49,41 @@
 }
 
 .NormaHero-actions {
+  /* one row of four when it fits (see @media below), otherwise buttons
+     on top and links below */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.NormaHero-buttons {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 16px 30px;
+  gap: 16px 20px;
 }
 
-/* grouping wrappers: transparent on desktop so all four items sit in one
-   row and only wrap when the row runs out of room */
-.NormaHero-buttons,
 .NormaHero-links {
-  display: contents;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 30px;
+}
+
+@media (min-width: 1615px) {
+  .NormaHero-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px 30px;
+  }
+
+  .NormaHero-buttons,
+  .NormaHero-links {
+    display: contents;
+  }
 }
 
 .NormaHero-primary {
