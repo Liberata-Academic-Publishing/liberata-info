@@ -27,7 +27,11 @@ function ProductCta({ title, subtitle, primaryLabel, primaryTo, secondaryLabel, 
       <p className="product-cta-subtitle">{subtitle}</p>
       <div className="product-cta-actions">
         {primaryTo ? (
-          <Link to={primaryTo} className="product-cta-primary">{primaryLabel}</Link>
+          isExternal(primaryTo) ? (
+            <a href={primaryTo} target="_blank" rel="noopener noreferrer" className="product-cta-primary">{primaryLabel}</a>
+          ) : (
+            <Link to={primaryTo} className="product-cta-primary">{primaryLabel}</Link>
+          )
         ) : (
           <button type="button" className="product-cta-primary">{primaryLabel}</button>
         )}

@@ -3,12 +3,15 @@ import Header from "../components/Header";
 import ScripturaFeatures from "../components/ScripturaFeatures";
 import RoadmapTimeline from "../components/RoadmapTimeline";
 import ProductCta from "../components/ProductCta";
+import HeroLinkButton from "../components/HeroLinkButton";
 import ContactModal from "../components/ContactModal";
 import iconPencil from "../images/figma/scriptura/icon_pencil.svg";
 import iconCheck from "../images/figma/scriptura/icon_check.svg";
 import iconBookAlt from "../images/figma/scriptura/icon_book_alt.svg";
 import "../App.css";
 import "./ScripturaPage.css";
+
+const SCRIPTURA_URL = "https://scriptura.liberata.app";
 
 const VIDEO_BASE = "https://pub-c93f131df06d44f88212bf9bdb396d2c.r2.dev/"; // same bucket as FaqsPage.tsx
 const WALKTHROUGH_VIDEO = `${VIDEO_BASE}REPLACE_ME.mp4`; // TODO: swap in real filename once uploaded
@@ -46,6 +49,7 @@ function ScripturaPage() {
           Publish preprints, trade peer review for credit, commission replications, and verify scholarly contribution,
           all on one open record. No paywalls. No article fees. The credit goes to the people who do the work.
         </p>
+        <HeroLinkButton href={SCRIPTURA_URL}>Open Scriptura</HeroLinkButton>
       </div>
 
       <div className="ScripturaBody">
@@ -94,7 +98,7 @@ function ScripturaPage() {
           subtitle="Join researchers, labs, and institutions already building on Scriptura."
           primaryLabel={
             <>
-              <span>Sign up for beta</span>
+              <span>Open Scriptura</span>
               {/* real icon instead of a plain "→" character — same fix as
                   the Norma hero CTA and mobile "Sign up for beta" button */}
               <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -102,7 +106,7 @@ function ScripturaPage() {
               </svg>
             </>
           }
-          primaryTo="/beta-signup"
+          primaryTo={SCRIPTURA_URL}
           secondaryLabel="Contact us"
           secondaryOnClick={() => setContactOpen(true)}
         />
