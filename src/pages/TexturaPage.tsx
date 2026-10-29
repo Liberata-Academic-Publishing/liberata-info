@@ -1,7 +1,8 @@
 import { useState } from "react";
 import Header from "../components/Header";
-import ProductCta from "../components/ProductCta";
-import ContactModal from "../components/ContactModal";
+// Hidden along with the CTA at the bottom of the page (see the note there):
+// import ProductCta from "../components/ProductCta";
+// import ContactModal from "../components/ContactModal";
 import visualLayer from "../images/figma/textura/visual_layer.svg";
 import featDocBadge from "../images/figma/textura/feat_doc_badge.svg";
 import tag1 from "../images/figma/textura/tag_1.svg";
@@ -92,7 +93,7 @@ function TexturaPage() {
   // .TexturaRecord's two-column grid) — this only drives the mobile toggle,
   // where showing both stacked was a big chunk of the page's scroll length.
   const [recordView, setRecordView] = useState<"graph" | "code">("graph");
-  const [contactOpen, setContactOpen] = useState(false);
+  // const [contactOpen, setContactOpen] = useState(false); // used by the hidden CTA
 
   return (
     <div className="App">
@@ -369,14 +370,14 @@ function TexturaPage() {
           {/* <button type="button" className="TexturaDocsButton">View full documentation</button> */}
         </div>
 
+        {/* Hidden: Textura is still coming soon, so the bottom CTA ("Sign up
+            for beta" and "Contact us") should not show yet. Restore it, along
+            with the imports and contactOpen state above, once it's ready:
         <ProductCta
           title="API access to scientific AI training data"
           primaryLabel={
             <>
               <span>Sign up for beta</span>
-              {/* real icon instead of a plain "→" character — same fix as
-                  Scriptura's ProductCta, the Norma hero CTA, and the mobile
-                  "Sign up for beta" button */}
               <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
                 <path d="M4.16626 10H15.8343M10.0003 15.834L15.8343 10L10.0003 4.16603" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
               </svg>
@@ -387,6 +388,7 @@ function TexturaPage() {
           secondaryOnClick={() => setContactOpen(true)}
         />
         <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
+        */}
       </div>
     </div>
   );
