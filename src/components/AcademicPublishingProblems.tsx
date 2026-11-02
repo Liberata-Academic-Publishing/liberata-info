@@ -6,7 +6,7 @@ function AcademicPublishingProblems() {
     const [expandedIndex, setExpandedIndex] = useState(0); // mobile: which accordion item is open
 
     const items = [
-        { id: 1, title: "Article Written", tag: "Merit", subtitle: "Authorship credit", body: "When an article is written, authorship positions are the primary way to recognize contributions to the article, but these only show the order of contributions, not relative contribution sizes." },
+        { id: 1, title: "Article Written", tag: "Merit", subtitle: "Authorship Credit", body: "When an article is written, authorship positions are the primary way to recognize contributions to the article, but these only show the order of contributions, not relative contribution sizes." },
         { id: 2, title: "Article Submitted", tag: "Economic", subtitle: "Publishing Fees", body: "If an article submitted to a journal is accepted, there are often publishing fees. These are a substantial economic burden to academics, and indirectly to taxpayers." },
         { id: 3, title: "Peer Review", tag: "Merit", subtitle: "Unincentivized Reviews", body: "In today's system, peer reviewers are incentivized to complete reviews, but not to review well. This leads to poor quality control and negative experiences with peer review." },
         { id: 4, title: "Article Published", tag: "Societal", subtitle: "Rights Issues", body: "When an article is published, authors often lose the copyright to their work. As a result, taxpayer-funded research is often owned by private journal companies." },
