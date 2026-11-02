@@ -278,7 +278,7 @@ function OverviewPage() {
                 {displayedText}
               </div>
               <div id="mission-body">
-                All the problems mentioned above originate from a common root problem. All academics want to read well curated works but no academic is well incentivized to do curation. This leads to academia offloading that effort to private companies who then monetize the works they curate, making academia less open. Liberata's mechanisms correct this incentive problem to allow academia to effectively curate its own works, allowing for works to remain open access.
+                All the problems mentioned above originate from a common root problem. All academics want to read well-curated works but no academic is well-incentivized to do curation. This leads to academia offloading that effort to private companies who then monetize the works they curate, making academia less open. Liberata's mechanisms correct this incentive problem to allow academia to effectively curate its own works, allowing for works to remain open access.
               </div>
             </div>
             <div className="App-section App-col-left-section" id="App-solutions">
