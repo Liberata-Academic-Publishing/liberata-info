@@ -8,14 +8,16 @@ import ContactModal from "../components/ContactModal";
 import iconPencil from "../images/figma/scriptura/icon_pencil.svg";
 import iconCheck from "../images/figma/scriptura/icon_check.svg";
 import iconBookAlt from "../images/figma/scriptura/icon_book_alt.svg";
+import walkthroughPoster from "../images/figma/scriptura/cover_walkthrough.jpg";
 import "../App.css";
 import "./ScripturaPage.css";
 
 const SCRIPTURA_URL = "https://scriptura.liberata.app";
 
-const VIDEO_BASE = "https://pub-c93f131df06d44f88212bf9bdb396d2c.r2.dev/"; // same bucket as FaqsPage.tsx
-const WALKTHROUGH_VIDEO = `${VIDEO_BASE}REPLACE_ME.mp4`; // TODO: swap in real filename once uploaded
-// TODO: add poster once there's a still frame (see FaqsPage.tsx for the pattern)
+// Served from the liberata-overview-videos R2 bucket, same as FaqsPage.tsx.
+// The poster is the title-card frame at 0:03 of the same video.
+const VIDEO_BASE = "https://pub-c93f131df06d44f88212bf9bdb396d2c.r2.dev/";
+const WALKTHROUGH_VIDEO = `${VIDEO_BASE}Scriptura_Walkthrough_v2.mp4`;
 
 const IMPACT_COLUMNS = [
   {
@@ -52,14 +54,19 @@ function ScripturaPage() {
       </div>
 
       <div className="ScripturaBody">
-        {/* hidden until the video's uploaded
         <div className="ScripturaSection" id="walkthrough">
           <div className="section-heading">Overview</div>
           <h2 className="ScripturaSection-title">Watch how Scriptura works</h2>
           <p className="ScripturaSection-subtitle">A walkthrough of every feature.</p>
-          <video className="Scriptura-video" src={WALKTHROUGH_VIDEO} controls preload="none" />
+          <video
+            className="Scriptura-video"
+            src={WALKTHROUGH_VIDEO}
+            poster={walkthroughPoster}
+            controls
+            playsInline
+            preload="none"
+          />
         </div>
-        */}
 
         <div className="ScripturaSection">
           <div className="section-heading">Features</div>
