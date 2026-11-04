@@ -100,8 +100,24 @@ function EarlyAccessPage({ product, description }: EarlyAccessPageProps) {
             required
             fullWidth
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            onBlur={() => email.trim() && validateEmail(email.trim())}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              // Clear the error as soon as the address becomes valid, while the
+              // user is still typing. It must not clear on blur: on phones the
+              // blur is caused by tapping "Sign up", and removing the helper
+              // text at that moment shifts the button up ~23px (half its
+              // height) before the tap lands, so the tap misses and nothing
+              // submits.
+              if (isEmailErrorVisible && EMAIL_PATTERN.test(e.target.value.trim())) {
+                setEmailErrorVisible(false);
+              }
+            }}
+            onBlur={() => {
+              const cleanEmail = email.trim();
+              if (cleanEmail && !EMAIL_PATTERN.test(cleanEmail)) {
+                setEmailErrorVisible(true);
+              }
+            }}
             error={isEmailErrorVisible}
             helperText={
               isEmailErrorVisible ? "Enter an email in the format name@example.com." : undefined
