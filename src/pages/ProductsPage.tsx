@@ -12,7 +12,7 @@ function ProductsPage() {
         <Header />
         <h1 className="ProductsHero-title">Products</h1>
         <p className="ProductsHero-subtitle">
-          Liberata's ecosystem of specialized tools, built to democratize and quantify academic excellence.
+          Liberata's open ecosystem of academic tools and platforms for publishing, scientometrics, and data processing, compatible with existing open scholarship infrastructure
         </p>
       </div>
 

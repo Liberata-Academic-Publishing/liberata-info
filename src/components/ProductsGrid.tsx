@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import iconFileText from "../images/figma/products/icon_file_text.svg";
 import iconBarChart from "../images/figma/products/icon_bar_chart.svg";
@@ -9,7 +10,7 @@ type Product = {
   key: string;
   name: string;
   icon: string;
-  shortDesc: string;
+  shortDesc: ReactNode;
   exploreTo?: string;
 };
 
@@ -18,28 +19,38 @@ const PRODUCTS: Product[] = [
     key: "scriptura",
     name: "Scriptura",
     icon: iconFileText,
-    shortDesc: "Open-access publishing with community-run peer review.",
+    shortDesc: (
+      <>
+        Diamond open access academic publishing platform with{" "}
+        <span className="product-nowrap">marketplace-powered</span> quality controls
+      </>
+    ),
     exploreTo: "/products/scriptura",
   },
   {
     key: "mensura",
     name: "Mensura",
     icon: iconBarChart,
-    shortDesc: "Precise contribution metrics and institutional impact analysis.",
+    shortDesc: "Precise and insightful scientometrics on a modern platform experience",
     exploreTo: "/products/mensura",
   },
   {
     key: "norma",
     name: "Norma",
     icon: iconFileText,
-    shortDesc: "Standardized compliance frameworks and regulatory alignment tools.",
+    shortDesc: (
+      <>
+        <span className="product-nowrap">Open-source</span>{" "}
+        <span className="product-nowrap">graph-based</span> scientometrics for metascience research
+      </>
+    ),
     exploreTo: "/products/norma",
   },
   {
     key: "textura",
     name: "Textura",
     icon: iconUsers,
-    shortDesc: "Discover research and form elite interdisciplinary teams.",
+    shortDesc: "Rich data for scientific AI applications",
     exploreTo: "/products/textura",
   },
 ];
