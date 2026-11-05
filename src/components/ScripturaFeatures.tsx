@@ -71,7 +71,7 @@ const FEATURES: ShowcaseFeature[] = [
       { lead: "Diamond open access.", text: "All works are free to read and free to publish. Publication requires passing incentivized, rigorous peer review or replication." },
       { lead: "Keep your rights.", text: "No transfer of rights. You keep copyright and distribution rights to your work." },
       { lead: "Transparent version control.", text: "Revisions, peer reviewer comments, and replicator reports are all tied to the same work's record." },
-      { lead: "Contributions as credit.", text: "Contribution shares replace authorship positions as the primary way to assign credit for work impact. CREDIT (Contributor Roles, Evaluations, Data, and Incentives Taxonomy) system tracks rich metadata for cataloging works." },
+      { lead: "Contributions as credit.", text: "Contribution shares replace authorship positions as the primary way to assign credit for work impact. The CRediT (Contributor Roles Taxonomy) system tracks rich metadata for cataloging works." },
     ],
   },
   {
