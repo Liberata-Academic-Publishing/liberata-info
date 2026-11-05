@@ -36,7 +36,7 @@ const FAQS: Faq[] = [
   {
     question: "Who can join?",
     answer:
-      "Any academic researcher can join. The beta is open to researchers across all disciplines — sign up with your institutional email and ORCID through the beta signup form.",
+      "Any academic researcher can join. Early access is open to researchers across all disciplines. Sign up with your institutional email through the early access form.",
   },
   {
     question: "Is it free to use?",

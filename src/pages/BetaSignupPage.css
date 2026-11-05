@@ -4,7 +4,7 @@
     flex-direction: row !important;
   }
   .BetaSignup-message {
-    width: 40% !important;
+    width: 45% !important;
     position: sticky !important;
     align-self: flex-start;
   }
@@ -54,4 +54,78 @@
   opacity: 0;
 	transform: translateY(50px);
 	transition: opacity .8s, transform .8s;
+}
+
+.BetaSignup-title {
+  font-size: 48px;
+}
+
+.BetaSignup-text {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Same 16px gap under both section titles. "About you" sits inside the
+   flex column (which already adds a 16px gap); "Your interest" does not. */
+.BetaSignup-form h3 {
+  margin: 0 0 16px 0;
+}
+.BetaSignup-basic h3 {
+  margin-bottom: 0;
+}
+
+/* matches the site's mobile heading and body sizes (see App.css) */
+@media (max-width: 450px) {
+  .BetaSignup-title {
+    font-size: 1.8rem;
+    line-height: 1.3;
+    margin-bottom: 15px;
+  }
+  .BetaSignup-text {
+    line-height: 1.5rem;
+  }
+  /* "About you" and "Your interest" were heavier than the intro above them */
+  .BetaSignup-form h3 {
+    font-size: 1.125rem;
+    font-weight: 500;
+  }
+}
+
+/* The site has no MUI theme, so the form fields default to MUI's Roboto and
+   light blue. Use the site font and brand color instead. */
+.BetaSignup-form .MuiInputBase-root,
+.BetaSignup-form .MuiInputLabel-root,
+.MuiPopover-root .MuiMenuItem-root {
+  font-family: inherit;
+  letter-spacing: inherit;
+}
+.BetaSignup-form .MuiInputLabel-root.Mui-focused {
+  color: var(--brand-500);
+}
+.BetaSignup-form .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: var(--brand-500);
+}
+
+/* 8px fields and a pill-shaped submit button in the site's brand blue (the
+   same blue as the header and mobile menu sign-up buttons). */
+.BetaSignup-form .MuiOutlinedInput-root {
+  border-radius: 8px;
+}
+
+.BetaSignup-form .BetaSignup-submit {
+  width: fit-content;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 24px;
+  background: var(--brand-500);
+  color: white;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.BetaSignup-form .BetaSignup-submit:hover {
+  background: #0c45cc;
 }
