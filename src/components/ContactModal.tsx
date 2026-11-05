@@ -4,8 +4,12 @@ import { supabase } from "../lib/supabase";
 import iconClose from "../images/figma/contact/icon_close.svg";
 import "./ContactModal.css";
 
-// TODO: confirm the purpose options with the team
-const PURPOSES = ["General inquiry", "Trials", "Partnership", "Press", "Other"];
+const PURPOSES = [
+  "Press inquiries",
+  "Partnership",
+  "Funding",
+  "Other",
+];
 
 function ContactModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   const [name, setName] = useState("");
@@ -74,9 +78,9 @@ function ContactModal({ open, onClose }: { open: boolean; onClose: () => void })
         </button>
         <div className="ContactModal-left">
           <h2 className="ContactModal-title">
-            Let's build a better academic ecosystem <span>together.</span>
+            Let us build a better academic ecosystem <span>together</span>
           </h2>
-          <p className="ContactModal-subtitle">Join the mailing list or get in touch with a message.</p>
+          <p className="ContactModal-subtitle">Send us a message, and we will be in touch.</p>
         </div>
         <form className="ContactModal-form" onSubmit={handleSubmit}>
           <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} required />
@@ -98,8 +102,8 @@ function ContactModal({ open, onClose }: { open: boolean; onClose: () => void })
             <button type="submit" className="ContactModal-submit" disabled={isLoading || status === "success"}>
               {isLoading ? <CircularProgress size={18} style={{ color: "white" }} /> : status === "success" ? "Sent" : "Submit"}
             </button>
-            {status === "success" && <span className="ContactModal-status">Thanks, we'll be in touch.</span>}
-            {status === "error" && <span className="ContactModal-status ContactModal-status-error">Something went wrong. Please try again.</span>}
+            {status === "success" && <span className="ContactModal-status">Thank you. We have received your message and will be in touch.</span>}
+            {status === "error" && <span className="ContactModal-status ContactModal-status-error">There was an error sending your message. Please try again.</span>}
           </div>
         </form>
       </div>
