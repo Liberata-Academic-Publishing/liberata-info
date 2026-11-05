@@ -83,8 +83,8 @@ function ContactModal({ open, onClose }: { open: boolean; onClose: () => void })
           <p className="ContactModal-subtitle">Send us a message, and we will be in touch.</p>
         </div>
         <form className="ContactModal-form" onSubmit={handleSubmit}>
-          <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} required />
-          <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          <input type="text" placeholder="Name *" value={name} onChange={(e) => setName(e.target.value)} required />
+          <input type="email" placeholder="Email *" value={email} onChange={(e) => setEmail(e.target.value)} required />
           <input type="text" placeholder="Affiliation" value={affiliation} onChange={(e) => setAffiliation(e.target.value)} />
           <select
             value={purpose}
