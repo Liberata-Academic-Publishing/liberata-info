@@ -57,7 +57,7 @@ function ScripturaPage() {
         <div className="ScripturaSection" id="walkthrough">
           <div className="section-heading">Overview</div>
           <h2 className="ScripturaSection-title">Watch how Scriptura works</h2>
-          <p className="ScripturaSection-subtitle">A walkthrough of every feature.</p>
+          <p className="ScripturaSection-subtitle">A walkthrough of every feature</p>
           <video
             className="Scriptura-video"
             src={WALKTHROUGH_VIDEO}
@@ -70,7 +70,7 @@ function ScripturaPage() {
 
         <div className="ScripturaSection">
           <div className="section-heading">Features</div>
-          <h2 className="ScripturaSection-title">How Scriptura supports your work, from draft to citation</h2>
+          <h2 className="ScripturaSection-title">Complete academic publishing platform with synergistic features</h2>
           <ScripturaFeatures />
         </div>
 
