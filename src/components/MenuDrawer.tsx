@@ -99,7 +99,7 @@ function MenuDrawer({ onContact = () => { } }: { onContact?: () => void }) {
             <ListItemText primary="Contact" />
           </ListItemButton>
         </ListItem>
-        {/* Solid pill CTA, mirroring the header's "Sign up for beta" button */}
+        {/* Solid pill CTA, mirroring the header's "Request early access" button */}
         <ListItem disablePadding>
           <ListItemButton
             component={Link}
@@ -114,7 +114,7 @@ function MenuDrawer({ onContact = () => { } }: { onContact?: () => void }) {
               "& .MuiListItemText-primary": { color: "white", textAlign: "center" },
             }}
           >
-            <ListItemText primary="Sign up for beta" />
+            <ListItemText primary="Request early access" />
           </ListItemButton>
         </ListItem>
       </List>

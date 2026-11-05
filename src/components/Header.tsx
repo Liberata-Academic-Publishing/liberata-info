@@ -92,7 +92,7 @@ function Header({ scrollToSection = () => { }, forceLight = false }) {
               Contact
             </button>
             <Link to="/beta-signup" className="Header-cta Header-cta-solid">
-              Sign up for beta
+              Request early access
             </Link>
           </span>
 
