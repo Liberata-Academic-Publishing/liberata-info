@@ -105,3 +105,27 @@
 .BetaSignup-form .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
   border-color: var(--brand-500);
 }
+
+/* 8px fields and a pill-shaped submit button in the site's brand blue (the
+   same blue as the header and mobile menu sign-up buttons). */
+.BetaSignup-form .MuiOutlinedInput-root {
+  border-radius: 8px;
+}
+
+.BetaSignup-form .BetaSignup-submit {
+  width: fit-content;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 24px;
+  background: var(--brand-500);
+  color: white;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.BetaSignup-form .BetaSignup-submit:hover {
+  background: #0c45cc;
+}

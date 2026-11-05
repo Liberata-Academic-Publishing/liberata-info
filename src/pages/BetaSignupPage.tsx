@@ -255,8 +255,7 @@ function BetaSignupPage() {
           {!isLoading && !isSuccessVisible && !isDuplicateVisible && <input
             type="submit"
             value="Request early access"
-            className="outlined-submit is-visible"
-            style={{width: 'fit-content', padding: '10px 20px', fontSize: '16px', fontWeight: 'bold'}}
+            className="BetaSignup-submit"
           />}
 
           {isSuccessVisible && (
