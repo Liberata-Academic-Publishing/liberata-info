@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Header from "../components/Header";
 import ProductFeatureShowcase, { ShowcaseFeature } from "../components/ProductFeatureShowcase";
-import MensuraChartsShowcase from "../components/MensuraChartsShowcase";
 import RoadmapTimeline from "../components/RoadmapTimeline";
 import ProductCta from "../components/ProductCta";
 import HeroLinkButton from "../components/HeroLinkButton";
@@ -10,12 +9,14 @@ import iconSearch from "../images/figma/mensura/icon_search.svg";
 import iconDatabase from "../images/figma/mensura/icon_database.svg";
 import iconChartBubble from "../images/figma/mensura/icon_chart_bubble.svg";
 import iconCohorts from "../images/figma/mensura/icon_cohorts.svg";
-import demoChart1 from "../images/figma/mensura/demo_chart_1.png";
+import chartTimeSeries from "../images/figma/mensura/Time Series.png";
+import chartLine from "../images/figma/mensura/Line Chart.png";
+import chartBar from "../images/figma/mensura/Bar Chart.png";
+import chartScatter from "../images/figma/mensura/Scatterplot.png";
+import chartBubble from "../images/figma/mensura/Bubble Chart.png";
+import chartHistogram from "../images/figma/mensura/Histogram.png";
 import demoChart2 from "../images/figma/mensura/demo_chart_2.png";
-import demoChart3 from "../images/figma/mensura/demo_chart_3.png";
-import demoChart4 from "../images/figma/mensura/demo_chart_4.png";
 import demoChart5 from "../images/figma/mensura/demo_chart_5.png";
-import demoChart6 from "../images/figma/mensura/demo_chart_6.png";
 import demoChart7 from "../images/figma/mensura/demo_chart_7.png";
 import demoDataframe1 from "../images/figma/mensura/demo_dataframe_1.png";
 import demoDataframe2 from "../images/figma/mensura/demo_dataframe_2.png";
@@ -23,14 +24,12 @@ import demoDataframe3 from "../images/figma/mensura/demo_dataframe_3.png";
 import demoDataframe4 from "../images/figma/mensura/demo_dataframe_4.png";
 import demoDataframe5 from "../images/figma/mensura/demo_dataframe_5.png";
 import demoDataframe6 from "../images/figma/mensura/demo_dataframe_6.png";
-import demoDataframe7 from "../images/figma/mensura/demo_dataframe_7.png";
 import demoInspect1 from "../images/figma/mensura/demo_inspect_1.png";
 import demoInspect2 from "../images/figma/mensura/demo_inspect_2.png";
 import demoInspect3 from "../images/figma/mensura/demo_inspect_3.png";
 import demoInspect4 from "../images/figma/mensura/demo_inspect_4.png";
 import demoInspect5 from "../images/figma/mensura/demo_inspect_5.png";
 import demoInspect6 from "../images/figma/mensura/demo_inspect_6.png";
-import demoInspect7 from "../images/figma/mensura/demo_inspect_7.png";
 import demoCohorts1 from "../images/figma/mensura/demo_cohorts_1.png";
 import demoCohorts2 from "../images/figma/mensura/demo_cohorts_2.png";
 import demoCohorts3 from "../images/figma/mensura/demo_cohorts_3.png";
@@ -50,7 +49,7 @@ const FEATURES: ShowcaseFeature[] = [
     gridDesc: "Deep entity profiles for researchers, labs, departments, institutions, fields, and regions with Liberata scientometrics.",
     altDesc: "Deep entity profiles for researchers, labs, departments, institutions, fields, and regions with Liberata scientometrics.",
     label: "Inspect",
-    demo: [demoInspect1, demoInspect2, demoInspect3, demoInspect4, demoInspect5, demoInspect6, demoInspect7],
+    demo: [demoInspect1, demoInspect2, demoInspect3, demoInspect4, demoInspect5, demoInspect6],
     demoAlt: "Mensura entity profile: a search bar above a dashboard of metric cards for the selected entity",
     headline: "Every entity, fully explained",
     longDesc:
@@ -69,7 +68,7 @@ const FEATURES: ShowcaseFeature[] = [
     gridDesc: "A spreadsheet-style workspace to line entities up side by side across any set of metrics. Sort, filter, and export benchmarking tables in seconds.",
     altDesc: "A spreadsheet-style workspace to line entities up side by side across any set of metrics. Sort, filter, and export benchmarking tables in seconds.",
     label: "Dataframe",
-    demo: [demoDataframe1, demoDataframe2, demoDataframe3, demoDataframe4, demoDataframe5, demoDataframe6, demoDataframe7],
+    demo: [demoDataframe1, demoDataframe2, demoDataframe3, demoDataframe4, demoDataframe5, demoDataframe6],
     demoAlt: "Mensura dataframe: entities as rows and metrics as sortable columns in a comparison table",
     headline: "Build the table you actually need",
     longDesc:
@@ -88,8 +87,8 @@ const FEATURES: ShowcaseFeature[] = [
     gridDesc: "Track output, impact, and academic capital over time. See trajectories and field dynamics that a single number can't show.",
     altDesc: "Track output, impact, and academic capital over time. See trajectories and field dynamics that a single number can't show.",
     label: "Chart",
-    demo: [demoChart1, demoChart2, demoChart3, demoChart4, demoChart5, demoChart6, demoChart7],
-    demoAlt: "Mensura chart builder: the entity and cohort picker open over an empty chart canvas",
+    demo: [chartTimeSeries, chartLine, chartBar, chartScatter, chartBubble, chartHistogram, demoChart2, demoChart5, demoChart7],
+    demoAlt: "Mensura charts: time series, line, bar, scatterplot, bubble, and histogram examples, followed by the chart builder and chart library",
     headline: "See the pattern, not just the numbers",
     longDesc:
       "Pick entities and metrics in any order and let the chart build itself: time series, scatter, bar, histogram, or bubble. Mark the spike, the drop, or the turning point, and explain why it happened.",
@@ -138,12 +137,6 @@ function MensuraPage() {
       </div>
 
       <div className="MensuraBody">
-        <div className="MensuraSection">
-          <div className="section-heading">Analytics</div>
-          <h2 className="MensuraSection-title">Six ways to visualize your data</h2>
-          <MensuraChartsShowcase />
-        </div>
-
         <div className="MensuraSection">
           <div className="section-heading">Features</div>
           <h2 className="MensuraSection-title">How Mensura measures academic merit</h2>
