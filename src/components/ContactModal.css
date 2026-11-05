@@ -128,7 +128,8 @@
 }
 
 .ContactModal-submit {
-  background: var(--accent-500);
+  background: var(--brand-500);
+  transition: background-color 0.3s ease-in-out;
   border: none;
   color: white;
   font-family: inherit;
@@ -168,4 +169,15 @@
   .ContactModal-form {
     width: 100%;
   }
+}
+
+.ContactModal-submit:hover:not(:disabled) {
+  background: #0c45cc;
+}
+
+.ContactModal-form input:focus,
+.ContactModal-form select:focus,
+.ContactModal-form textarea:focus {
+  outline: none;
+  border-color: var(--brand-500);
 }
