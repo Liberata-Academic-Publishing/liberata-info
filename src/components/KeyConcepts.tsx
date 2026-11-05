@@ -7,13 +7,12 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import "./KeyConcepts.css"
 
 type OpenCloseItemProps = {id:string;
-                        num: string;
                         title: string;
                         children:JSX.Element|string;
                         activeId:string|null;
                         onToggle:(id:string)=> void;}
 
-function OpenCloseItem({id, num, title, children, activeId, onToggle}:OpenCloseItemProps){
+function OpenCloseItem({id, title, children, activeId, onToggle}:OpenCloseItemProps){
     const isOpen = (id ===activeId);
 
     return(
@@ -32,7 +31,7 @@ function OpenCloseItem({id, num, title, children, activeId, onToggle}:OpenCloseI
                 }}
             >
                 <span className="open-close-title">
-                    <span className="open-close-num">{num}.</span> {title}
+                    {title}
                 </span>
                 {isOpen ? <RemoveIcon className="open-close-icon" /> : <AddIcon className="open-close-icon" />}
             </a>
@@ -41,27 +40,25 @@ function OpenCloseItem({id, num, title, children, activeId, onToggle}:OpenCloseI
     );
 }
 
-type OpenCloseChildrenProps ={description: string;
-                            oldSystemContent: string;
+type OpenCloseChildrenProps ={oldSystemContent: string;
                             liberataContent: string;
                             oldSystemImage? : string;
                             liberataImage? : string;
                             }
-function OpenCloseChildren({description, oldSystemContent, liberataContent, oldSystemImage, liberataImage}:OpenCloseChildrenProps){
+function OpenCloseChildren({oldSystemContent, liberataContent, oldSystemImage, liberataImage}:OpenCloseChildrenProps){
     return(
         <>
-            <p className="open-close-description">{description}</p>
             <div className="cards-layout">
                 <div className="card old-system-card">
-                    <p className="card-title">Tradition</p>
+                    <p className="card-title">Traditional System</p>
                     <p className="card-content" style={{ whiteSpace: "pre-line" }}>{oldSystemContent}</p>
                     {oldSystemImage && (
                         <img src={oldSystemImage} alt="Old system" className="card-image" />
                     )}
                 </div>
                 <div className="card liberata-card">
-                    <p className="card-title">Liberata</p>
-                    <p className="card-content">{liberataContent}</p>
+                    <p className="card-title">Liberata's System</p>
+                    <p className="card-content" style={{ whiteSpace: "pre-line" }}>{liberataContent}</p>
                     {liberataImage && (
                         <img src={liberataImage} alt="Liberata" className="card-image" />
                     )}
@@ -77,28 +74,30 @@ function KeyConcepts(){
     const toggleSolution = (id:string) => {
         setActiveSection(activeSection === id ? null : id);
     }
-    const creditTraditional = `Traditionally, academic credit is given in the form of authorship positions on papers. However, these positions can only give an ordering of contributions, but not exact distances in contributions. These lead to scenarios where it is impossible to tell if one author did 10% or 10x more work than another, and this results in highly exploitable metrics whereby the same credit is given to all authors, or only to the first author, both of which are inaccurate in almost all cases. These metrics can then cause politics and abuse of power dynamics in the assignment of authorship positions.`;
-    const creditLiberata = `Liberata uses contribution shares to assign academic credit, similar to percentage ownership of patents or companies. These shares have no direct financial value, and are used for a new suite of more accurate academic metrics based on shares and weighted citations. Optionally, institutions may refer to the share split on papers when assigning IP ownership, which can give the shares indirect financial value. \n\n
-    The share based system allows the precise quantification of contributions, rather than just the ordering of contributions. Liberata will use a default blind survey mechanism to assign shares to circumvent power dynamics issues, but authors are allowed to decide their own share split in lieu of a survey.`;
-    const qualityControlTraditional = `Traditionally, the only forms of quality control are editors capable of doing a desk rejection, and peer reviewers that can suggest changes and final acceptance/rejection to the editor. The problem with the former is that all editors will be inherently biased given where they were educated, and their research subject area. The problem with the latter is that peer reviewers are anonymous, and uncompensated. Given that a thorough review is a much higher time opportunity cost than a quick skim, peer reviewers often do a poor job of review, opting for whatever they feel is enough to convince the editor they did their job. This is a critical problem with incentive alignment today. Peer reviewers are incentivized to get the job done, but not to do it well as there are no additional rewards for doing a thorough peer review.`;
-    const qualityControlLiberata = `In Liberata, many more forms of quality control are possible, and they are properly incentivized. The platform will start off supporting peer review, and replication, through its academic marketplaces. In these marketplaces, authors can trade shares in their work (i.e. credit on their work) to other academics for peer review & replication services. \n\n
-    The author(s) would be willing to do this if the additional citations gained are greater than the shares given away. The quality controllers would be willing to provide these services if the time taken to do them is less than the proportional time it would take them to do a similar quality project of their own. Additionally, in this system, the peer reviewers and replicators are incentivized to make the work better, as their own shares in the work are worth more, if the work ends up becoming actually better and more read & cited. \n\n
-    Liberata is built to depend on no altruism and no centralized authority (editors, etc.), and only requires self-interested actors to operate as intended.`;
-    const metricsTraditional = `Traditionally, impact is measured with citation count or citation count derivatives such as H-index. These metrics are highly problematic for several reasons. First, each paper published can cite a different number of other works, allowing papers to disproportionally yield credit to other papers just by referencing more works. This leads to a gradual but noticeable practice of reference section inflation over the years, and the formation of citation rings, where different groups will cite each other whenever possible to boost each other's academic metrics. Second, different academic fields have naturally different rates of publication and thus naturally different citation counts and derivative metrics. Third, it is possible to buy citations. In addition to not being able to measure impact reliably, today's metrics struggle to measure any other quantity of interest, such as relative risk or reliability of works, people, and institutions.`;
-    const metricsLiberata = `Liberata uses a graph based metrics suite (provisional patent granted), which uses weighted contributions and weighted citations to calculate academic impact. The weighted contributions are called shares, and the weighted citations are the references list corrected for factors such as 1. number of references, 2. average publication frequency in the field, and 3. author list self-similarity in the references list. \n\n
-    Because the continuous system of shares allows for more accurate pictures of contributions than the discrete system of authorship positions, Liberata's metrics are able to provide a more accurate picture of academic impact. Additionally, Liberata has market based metrics such as fair market price for quality control services, and risk premiums paid by research topics, individual labs, institutions, geographic regions, and demographics. These metrics allow us to reveal hard-to-quantify aspects of the current academic landscape. Liberata monetizes these metrics so that the academic literature is free to read and publish for all.`;
+    const creditTraditional = `Traditionally, academic credit is primarily given in the form of authorship positions on articles. However, these positions can only give an ordering of contributions, but not exact distances in contributions. This makes it impossible to tell, for example, if one author did 10% or 10x more work than another, resulting in highly distortable and exploitable metrics where the same credit is given to all authors, or only to the first author, both of which are inaccurate pictures of contributions. The same noisy metrics can then cause politics and abuse of power dynamics in the assignment of authorship positions.`;
+    const creditLiberata = `Liberata uses fractional contribution (contribution shares) to assign academic credit, which are similar to percentage ownership of patents or companies. These shares record both order and distances in contributions of all contributors, allowing more accurate academic metrics based on shares and weighted citations. The shares are not financial assets, and are purely a way to split academic credit on works. Liberata uses a default blind survey mechanism to assign shares to circumvent power dynamics issues, but authors are allowed to decide their own share split in lieu of a survey if they can demonstrate consensus. Additionally, because shares are fungible, they can be used to recognize a much wider range of contributions, or be traded on marketplaces for services such as peer review or replication.`;
+    const qualityControlTraditional = `Traditionally, the primary forms of quality control are editors who can do desk rejections, and peer reviewers who can critique works and advise the editor. The problem with the former is that all editors carry some level of personal bias. The problem with the latter is that since peer reviewers are anonymous and uncompensated, they are incentivized to get the job done, but not to do it well, as there are no additional rewards for doing a thorough review over a quick review. These quality control issues over time lead to an increasing retraction rate and declining trust in science.`;
+    const qualityControlLiberata = `Liberata features two forms of quality control: peer review and replication. Both are optional, and are incentivized on the platform's academic marketplaces. In these marketplaces, authors can trade shares in their work (i.e. credit in their work) to other academics in exchange for peer review and replication services. The author(s) would be willing to do this if the additional credit (citations, altmetrics, etc.) gained due to the article being more trustworthy and more read is relatively greater than the shares given away to the quality controllers. The quality controllers would be willing to provide these services if the time taken to do the job is less than the (share) proportion of time it would take them to do a similar quality project of their own by themselves. Additionally, in this system, quality controllers are incentivized to make the work better. The better the work is and the more citations it earns, the more credit accrues to all shares. Liberata is built to depend on no altruism and no centralized authority (editors, etc.), and depends only on the self-interest of all actors to operate.`;
+    const metricsTraditional = [
+        `Traditionally, impact of scholarly works is measured with citation count or its derivatives such as H-index. These metrics suffer from several exploits. First, every article published can cite an unlimited number of other works and thus dole out an unlimited amount of credit. This leads to a noticeable steady inflation of average citations per article over time, and a corresponding decrease of average relevance of cited works to the citing works.`,
+        `Second, because most metrics treat all authors the same, adding another author to the work adds a multiple of the future incoming citations as generated credit, incentivizing researchers to put authors on works despite negligible contributions for similar or other favors.`,
+        `Third, different academic fields have naturally different rates of publication and thus different citation counts and derivative metrics, adding distortions that can make some researchers look artificially better or worse. In addition to not being able to measure impact reliably, today's metrics struggle to capture other quantities of interest, such as relative risk, reliability of works or people, and added value of peer review.`,
+    ].join("\n\n");
+    const metricsLiberata = [
+        `Liberata's metrics suite is designed from graph theory fundamentals to capture more information more accurately than conventional metrics. The shares graph tracks how contributions on works are split between contributors, and the citations graph, with correction factors and weighted citations, tracks how credit flows between works. The product of these two graphs yields precise information about the impact of each person's research, their expertise, collaborative yield, and more.`,
+        `Additionally, statistical distributions on those graphs yield market-based metrics such as fair market price for quality control services, and risk premiums associated with research reliability, language bias, gender bias, and geographical bias.`,
+        `All Liberata metrics, unlike conventional metrics, are extensible to any entity that holds a portfolio of shares, including but not limited to people, labs, institutions, geographic regions, demographic cohorts, and academic fields. Liberata monetizes these metrics so that academic literature on the platform remains free to read and publish for all.`,
+    ].join("\n\n");
 
     return(
         <>
             <OpenCloseItem
                 id="merit-problem"
-                num="1"
                 title="Academic Credit"
                 activeId={activeSection}
                 onToggle={toggleSolution}
             >
                 <OpenCloseChildren
-                    description="Ending politics of maneuvering for authorship roles."
                     oldSystemContent= {creditTraditional}
                     liberataContent={creditLiberata}
                     liberataImage={imgShare}
@@ -107,13 +106,11 @@ function KeyConcepts(){
             
             <OpenCloseItem
                 id="economic-problem"
-                num="2"
                 title="Academic Marketplaces"
                 activeId={activeSection}
                 onToggle={toggleSolution}
             >
                 <OpenCloseChildren
-                    description="An overview of how Liberata incentivizes quality control among the academic community."
                     oldSystemContent={qualityControlTraditional}
                     liberataContent={qualityControlLiberata}
                     liberataImage={imgMarket}
@@ -122,13 +119,11 @@ function KeyConcepts(){
 
             <OpenCloseItem
                 id="trust-problem"
-                num="3"
                 title="Academic Metrics"
                 activeId={activeSection}
                 onToggle={toggleSolution}
             >
                 <OpenCloseChildren
-                    description="An overview of how Liberata measures academic impact."
                     oldSystemContent={metricsTraditional}
                     liberataContent={metricsLiberata}
                     liberataImage={imgMetrics}

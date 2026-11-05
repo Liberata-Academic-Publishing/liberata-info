@@ -86,7 +86,7 @@
   .Hook-desktop .Hook-subheader {
     margin-top: 0 !important;
     margin-bottom: 0;
-    max-width: 40vw !important;
+    max-width: 60vw !important;
   }
   /* the hero centers this block vertically now (see .App-intro in App.css),
      so the old top/bottom offsets that pushed it down are no longer needed */
@@ -229,5 +229,16 @@
   .Hook-cta svg {
     width: 16px;
     height: 16px;
+  }
+}
+
+/* The subheader breaks after "build" on wide screens only; narrower screens
+   let it wrap on its own */
+.Hook-subheader-break {
+  display: none;
+}
+@media (min-width: 900px) {
+  .Hook-subheader-break {
+    display: inline;
   }
 }

@@ -1,10 +1,9 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { ReactNode } from 'react';
 import "./Hook.css";
 
 type HookProps = {
   header: string;
-  subheader: string;
+  subheader: ReactNode;
   subtext?: string;
 }
 
@@ -21,9 +20,12 @@ function Hook({ header, subheader, subtext }: HookProps) {
             {subheader}
           </div>
         </div>
+        {/* Hidden for now: the "Sign up for beta" button. Restore by uncommenting
+            and re-adding `import { Link } from 'react-router-dom'`.
         <div className="Hook-cta-row">
           <Link to="/beta-signup" className="Hook-cta">Sign up for beta</Link>
         </div>
+        */}
       </div>
 
       {/* MOBILE: header, subheader, CTA */}
@@ -36,10 +38,8 @@ function Hook({ header, subheader, subtext }: HookProps) {
             {subheader}
           </div>
         </div>
+        {/* Hidden for now: the mobile "Sign up for beta" button (same as above).
         <div className="Hook-cta-row">
-          {/* real icon instead of a plain "→" character, same fix as Norma's
-              hero CTA — a plain-text arrow shrinks along with the button's
-              font-size instead of staying legible at mobile's 16px */}
           <Link to="/beta-signup" className="Hook-cta">
             <span>Sign up for beta</span>
             <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -47,6 +47,7 @@ function Hook({ header, subheader, subtext }: HookProps) {
             </svg>
           </Link>
         </div>
+        */}
       </div>
     </div>
   )

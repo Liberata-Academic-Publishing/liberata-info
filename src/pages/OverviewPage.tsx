@@ -251,7 +251,7 @@ function OverviewPage() {
         <div className="App-section" id="section-hook">
           <Hook
             header="Introducing Liberata"
-            subheader="Using game theory and graph theory to build an open access academic ecosystem."
+            subheader={<>Using game theory and graph theory to build<br className="Hook-subheader-break" /> an open access academic ecosystem.</>}
             subtext="Open access academic publishing with incentivized quality controls."
           />
         </div>
@@ -268,8 +268,7 @@ function OverviewPage() {
           <div className="App-column-left">
             <div className="App-section App-col-left-section" id="App-publishing-problems">
               <div className="section-heading">Academic Publishing Problems</div>
-              <div className="section-description">Academic publishing today suffers from merit, economic, and societal problems arising from maligned legacy incentive structures.
-                
+              <div className="section-description">Academic publishing today suffers from merit, economic, and societal problems arising from misaligned legacy incentive structures. Explore the issues with each step of the traditional publishing process below.
               </div>
               <AcademicPublishingProblems />
             </div>
@@ -279,7 +278,7 @@ function OverviewPage() {
                 {displayedText}
               </div>
               <div id="mission-body">
-                Our existing academic review system is influenced by politics in places where it should be impartial. With an open-source publishing platform that follows a shareholder model distribution of credit, Liberata seeks to reward all academic contributors fairly.
+                All the problems mentioned above originate from a common root problem. All academics want to read well-curated works but no academic is well-incentivized to do curation. This leads to academia offloading that effort to private companies who then monetize the works they curate, making academia less open. Liberata's mechanisms correct this incentive problem to allow academia to effectively curate its own works, allowing for works to remain open access.
               </div>
             </div>
             <div className="App-section App-col-left-section" id="App-solutions">
